@@ -1,0 +1,88 @@
+---
+title: "Web scraping CETESB"
+author: "William Amorim"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Vamos fazer o web scraping para coletar dados de poluição do ar mais facilmente do site da CETESB.
+
+Primeiro, como o sistema Qualar existe login (?), precisamos capturar o cookie do site para manter a sessão com o login.  
+
+```{r}
+library(magrittr)
+library(httr)
+
+res <- GET("http://qualar.cetesb.sp.gov.br/qualar/home.do")
+my_cookie <- cookies(res)$value %>% purrr::set_names(cookies(res)$name)
+
+# url <- "http://qualar.cetesb.sp.gov.br/qualar/home.do"
+# session <- rvest::html_session(url)
+# 
+# form <- rvest::html_form(xml2::read_html(url))[[1]]
+# 
+# filled_form <- rvest::set_values(form,
+#                                  cetesb_login = "thewilliam89@gmail.com",
+#                                  cetesb_password  = "wouldy0ukindly?")
+# 
+# login <- rvest::submit_form(session, filled_form)
+```
+
+Agora, precisamos enviar uma requisição POST para fazer o login e acessar o sistema.
+
+```{r}
+url <- "http://qualar.cetesb.sp.gov.br/qualar/autenticador"
+
+res <- POST(
+  url, 
+  body = list(
+    cetesb_login = "thewilliam89@gmail.com",
+    cetesb_password = "wouldy0ukindly?",
+    enviar = "OK"
+  ), 
+  encode = "form",
+  set_cookies(my_cookie)
+)
+```
+
+Então, fazemos uma requisão POST para acessar os dados. Nessa requisição, precisamos definir quais dados queremos acessar.
+
+```{r}
+url <- "http://qualar.cetesb.sp.gov.br/qualar/exportaDados.do"
+
+res <- POST(
+  url,
+  query = list(method = "pesquisar"),
+  body = list(
+    irede = "A",
+    dataInicialStr  = "04/03/2018",
+    dataFinalStr = "05/03/2018",
+    cDadosInvalidos = "on",
+    iTipoDado = "P",
+    estacaoVO.nestcaMonto = "Parque D. Pedro II",
+    parametroVO.nparmt = "63"
+  ),
+  encode = "form",
+  set_cookies(my_cookie),
+  write_disk("teste.html", overwrite = TRUE)
+)
+```
+
+Agora precisamos pegar a tabela dentro do arquivo html.
+
+```{r}
+content(res) %>% 
+  rvest::html_table(fill = TRUE) %>%
+  extract2(2)
+```
+
+Tabela com ids.
+
+```{r}
+readr::read_delim("data/param_ids", delim = " ") %>% 
+  readr::write_csv(path = "data/param_ids.csv")
+```
+

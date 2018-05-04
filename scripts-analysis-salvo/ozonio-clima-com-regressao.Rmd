@@ -1,0 +1,383 @@
+---
+title: "Ozônio e clima (2008-2013)"
+author: "William Amorim"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Vamos analisar a relação entre ozõnio e clima na cidade de São Paulo usando dados de 2008 a 2013.
+
+# Pacotes
+
+```{r}
+library(magrittr)
+library(ggplot2)
+library(tidyverse)
+```
+
+
+# Dados
+
+```{r}
+readr::read_csv("../data/artaxo-salvo-geiger/dados_originais.csv") %>% 
+  dplyr::mutate(date = lubridate::ymd(stringr::str_c(year, month, day, sep = "-"))) %>% 
+  dplyr::select(date, year, month, dayofweek, hour,
+         siteid, 
+         o3_mass_conc,
+         tp, hm, rd, ws, pp,
+         congestion_region, congestion_city,
+         dv_ti_0to199m_9am, dv_ti_200to499m_9am) %>% 
+  readr::write_rds(path = "data/df_O3_clima_2008_2013.rds")
+```
+
+
+```{r}
+df_O3 <- readr::read_rds("data/df_O3_clima_2008_2013.rds")
+```
+
+Vamos utilizar a média diária de ozônio medido entre 12h e 17h, focando inicialmente na estação Dom Pedro II.
+
+```{r}
+df_tarde_DPII <- df_O3 %>%
+  dplyr::filter(siteid == 1, hour %in% 12:16) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(o3_mass_conc, tp, rd, hm, ws, pp,
+                                   congestion_city, congestion_region),
+                      .funs = funs(mean),
+                      na.rm = TRUE) %>%  
+  dplyr::ungroup()
+
+medidas_manha <- df_O3 %>%
+  dplyr::filter(siteid == 1, hour %in% 6:10) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(tp, rd, hm, ws, pp, 
+                                   congestion_city, congestion_region),
+                      .funs = funs(mean),
+                      na.rm = TRUE)  %>%
+  rename(morning_tp = tp,
+         morning_rd = rd,
+         morning_hm = hm,
+         morning_ws = ws,
+         morning_pp = pp,
+         morning_con_city = congestion_city,
+         morning_con_region = congestion_region)
+
+df_tarde_DPII %<>% 
+  left_join(medidas_manha, by = "date") %>% 
+  mutate(pp = ifelse(pp == 0, "Não", "Sim"),
+         morning_pp = ifelse(morning_pp == 0, "Não", "Sim"))
+```
+
+Vamos avaliar qual o melhor valor para categorizar a precipitação.
+
+# EDA
+
+### TEMPERATURA
+
+Vamos comparar as séries de ozônio, temperatura, radiação, umidade e velocidade do vento.
+
+```{r}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, Temperature = tp) %>% 
+  tidyr::gather(serie, value, O3, Temperature) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 2, scales = "free_y") +
+  theme_bw()
+```
+
+Observamos que o ozônio apresenta maiores valores em dias quentes.
+
+Vamos ajustar um modelo de regressão linear simples, entre o ozônio e a temperatura, para avaliar o que acontece com os resíduos quando explicamos a série pela temperatura.
+
+```{r, echo = FALSE}
+fit <- lm(o3_mass_conc ~ tp , data = df_tarde_DPII)
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  tidyr::gather(period, value, 
+                tp, morning_tp) %>% 
+  dplyr::select() %>% 
+  ggplot(aes(x = value, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~period, scale = "free") +
+  theme_bw() +
+  labs(x = "Temperature", y = "Residuals")
+```
+
+
+Uma função linear da temperatura não parece explicar completamente a sazonalidade anual da série.
+
+### UMIDADE E PRECIPITAÇÃO
+
+Vamos avaliar a relação do O3 com a umidade agora.
+
+```{r}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, Humidity = hm) %>% 
+  tidyr::gather(serie, value, O3, Humidity) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw()
+```
+
+```{r}
+df_tarde_DPII %>%
+  dplyr::select(date, O3 = o3_mass_conc, Precipitation = pp) %>%
+  na.omit %>% 
+  ggplot(aes(x = Precipitation, y = O3)) +
+  geom_boxplot() +
+  theme_bw()
+```
+
+
+A umidade tende a ser um pouco maior nos períodos de alta do ozônio. Vamos tentar explicar o ozônio agora pela temperatura e pela umidade.
+
+
+```{r}
+fit <- lm(o3_mass_conc ~ tp + hm + pp, data = df_tarde_DPII)
+summary(fit)
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+```
+
+
+
+### RADIAÇÃO E VELOCIDADE DO VENTO
+
+Ainda há sazonalidade nos resíduos. Vamos acrescentar agora a radiação e a velocidade do vento à análise.
+
+```{r}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, Radiation = rd,
+                `Wind speed` = ws) %>% 
+  tidyr::gather(serie, value, O3, Radiation, `Wind speed`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw()
+```
+
+```{r}
+df_tarde_DPII %>%
+  mutate(month = lubridate::month(date),
+         year = lubridate::year(date)) %>%
+  filter(year %in% 2009:2012) %>% 
+  ggplot(aes(x = as.factor(month), y = rd)) +
+  geom_boxplot() +
+  facet_wrap(~year, nrow = 4, scales = "free")
+```
+
+
+E o modelo
+
+```{r}
+fit <- lm(o3_mass_conc ~ tp + hm + rd + ws, data = df_tarde_DPII)
+summary(fit)
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+```
+
+Ainda não conseguimos tirar a sazonilidade dos resíduos.
+
+```{r}
+fit <- lm(o3_mass_conc ~ tp + rd + ws + hm + hm:tp +  tp:rd +
+            congestion_city, data = df_tarde_DPII)
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+```
+
+### GAM
+
+Será que a relação entre as variáveis não é linear?
+
+```{r}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, Temperature = tp, 
+                Humidity = hm, Radiation = rd, `Wind speed` = ws) %>% 
+  tidyr::gather(serie, value, Temperature,
+                Humidity, Radiation, `Wind speed`) %>% 
+  ggplot(aes(x = value, y = O3)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, scales = "free") +
+  theme_bw()
+```
+
+Nos extremos, as relações parecem mudar. Vamos tentar ajustar um GAM.
+
+```{r}
+fit <- mgcv::gam(o3_mass_conc ~ s(tp) + s(hm) + s(rd) + s(ws),
+                 data = df_tarde_DPII) 
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+  
+```
+
+### VALORES PELA MANHÃ
+
+Será que precisamos explicar também pelas medidas climáticas pela manhã?
+
+```{r}
+df_tarde_DPII %>%
+  dplyr::select(date, O3 = o3_mass_conc, Temperature = morning_tp, 
+                Humidity = morning_hm, Radiation = morning_rd, 
+                `Wind speed` = morning_ws) %>% 
+  tidyr::gather(serie, value, Temperature,
+                Humidity, Radiation, `Wind speed`) %>% 
+  ggplot(aes(x = value, y = O3)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, scales = "free") +
+  theme_bw()
+```
+
+```{r}
+fit <- mgcv::gam(o3_mass_conc ~ s(tp) + s(hm) + s(rd) + s(ws) +
+              s(morning_tp) + s(morning_hm) + s(morning_rd) + 
+              s(morning_ws), data = df_tarde_DPII)
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+```
+
+
+
+### Trânsito
+
+```{r}
+fit <- mgcv::gam(o3_mass_conc ~ s(tp) +  s(rd) + s(ws) +
+                 s(morning_con_city)  + s(morning_hm) + s(morning_tp) +
+                 s(morning_con_region) +  morning_pp,
+                 data = df_tarde_DPII) 
+
+df_tarde_DPII %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+```
+
+
+>> Analisar inversão térmica
+
+## Dados Santana
+
+```{r, message=FALSE}
+df_tarde_Santana <- df_O3 %>%
+  dplyr::filter(siteid == 2, hour %in% 12:16) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(o3_mass_conc, tp, rd, hm, ws, pp, share_gas,
+                                   congestion_city, congestion_region),
+                      .funs = funs(mean),
+                      na.rm = TRUE) %>%  
+  dplyr::ungroup()
+```
+
+## Dados {.smaller}
+
+Vamos adicionar agora as médias no período da manhã (6h-10h). 
+
+```{r}
+medidas_manha <- df_O3 %>%
+  dplyr::filter(siteid == 2, hour %in% 6:10) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(tp, rd, hm, ws, pp, 
+                                   congestion_city, congestion_region),
+                      .funs = funs(mean),
+                      na.rm = TRUE)  %>%
+  rename(morning_tp = tp,
+         morning_rd = rd,
+         morning_hm = hm,
+         morning_ws = ws,
+         morning_pp = pp,
+         morning_con_city = congestion_city,
+         morning_con_region = congestion_region)
+
+df_tarde_Santana <- df_tarde_Santana %>%  
+  left_join(medidas_manha, by = "date")
+
+```
+
+## Resíduos
+
+Model: tp + rd + pp + ws + hm + traffic
+
+```{r, echo = FALSE}
+fit <- lm(o3_mass_conc ~ tp + morning_tp +
+            rd + morning_rd + pp + morning_pp +
+            ws + morning_ws + hm + morning_hm +
+            congestion_city + morning_con_city, data = df_tarde_Santana)
+
+df_tarde_Santana %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  theme_bw() +
+  labs(x = "Year", y = "Residuals")
+```
+
+## GAM - Santana
+
+Será que a relação entre as variáveis não é linear?
+
+```{r}
+df_tarde_Santana %>% 
+  dplyr::select(date, O3 = o3_mass_conc, Temperature = tp, 
+                Humidity = hm, Radiation = rd, `Wind speed` = ws) %>% 
+  tidyr::gather(serie, value, Temperature,
+                Humidity, Radiation, `Wind speed`) %>% 
+  ggplot(aes(x = value, y = O3)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, scales = "free") +
+  theme_bw()
+```
+
+## Resíduos
+
+DPII
+GAM: s(tp), s(rd), s(ws), s(hm), s(traffic), pp
+
+```{r}
+fit <- mgcv::gam(o3_mass_conc ~ s(tp) + s(morning_tp) + s(rd) + 
+                   s(morning_rd) + s(ws) + s(morning_ws) + 
+                   s(hm) + s(morning_hm) + s(congestion_city) +
+                   s(morning_con_city),
+                 data = df_tarde_Santana) 
+
+df_tarde_Santana %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = date, y = resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) 
+  
+```

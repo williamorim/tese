@@ -1,0 +1,654 @@
+%% ------------------------------------------------------------------------- %%
+\chapter{Modelos para dados de poluição}
+\label{cap:regressao}
+
+%Há duas formas de atacar esse problema utilizando modelagem estatística. A primeira é assumir um modelo interpretável para o mecanismo gerador do fenômeno e estimar os parâmetros que caracterizam esse modelo. Se o modelo utilizado for uma boa representação da natureza, as suas estimativas trarão informação sobre a relação entre as variáveis. A segunda maneira é utilizar modelos não-interpretáveis em conjunto com alguma técnica para interpretação do modelo. Vamos reproduzir aqui as duas alternativas, começando com a primeira.
+
+\begin{center}
+	\textcolor{gray}{
+		\begin{tabular}{||c}
+			Data will often point with almost equal emphasis on several possible models, and it is \\ 
+			important that the statistician recognize and accept this. --- McCullah and Nelder (1989)
+		\end{tabular} 
+	}
+\end{center}
+\vspace{5mm}
+
+O grande objetivo da Estatística é usar dados para gerar conhecimento sobre um fenômeno de interesse. Como ilustrado na Figura \ref{fig:cap-modelos-black-box}, podemos pensar nos dados como o resultado de um mecanismo da natureza, desconhecido e complexo, no qual um conjunto de variáveis explicativas $\mathbf{X}$ são transformadas em uma variável resposta $Y$\footnote{Também podemos ter o caso multivariado, em que são geradas um conjunto de variáveis respostas $\mathbf{Y}$.} \citep{Breiman2001}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{figuras/cap-modelos-black-box.png}
+	\caption{Esquematização do mecanismo gerador dos dados.}
+	\label{fig:cap-modelos-black-box}
+\end{figure}
+
+
+No contexto da modelagem estatística supervisionada\footnote{No qual uma variável resposta \textit{supervisiona} a estimação dos parâmetros do modelo. Na prática, são os casos em que temos acesso a uma amostra da variável resposta.} \citep{Hastie2008}, dada uma variável $Y$ e um vetor de variáveis explicativas $\mathbf{X} = (X_{1}, \dots, X_{p})$, queremos encontrar funções $f$'s tais que
+
+\begin{equation}
+Y \approx f(\mathbf{X}),
+\label{mod:y-appr-X}
+\end{equation}
+isto é, queremos uma função $f()$ que descreva o mecanismo gerador dos dados da forma mais precisa possível. Dessa forma, podemos tanto fazer predições --- descobrir qual é o novo valor de $Y$ para novos vetores $\mathbf{X}$ --- quanto inferência --- investigar como $\mathbf{X}$ e $Y$ estão relacionadas.
+
+[...]
+
+A relação \ref{mod:y-appr-X} implica que parte da variabilidade de $Y_t$ pode ser explicada pelo componente sistemático $f(\X)$. Em outras palavras, $f$ representa a informação sistemática que $\X$ nos fornece sobre $Y_t$. Modelos estatísticos são simplificações da realidade. Quando modelamos a série de um poluente, estamos supondo que a sua concentração pode ser aproximada por uma função matemática, que depende de variáveis observáveis. Por ser uma aproximação, todo modelo está sujeito a um erro, que descreve o quanto a nossa simplificação se afasta da realidade. Parte desse erro é irredutível e se deve a impedimentos práticos, como erros de medida, variáveis que não podem ser observadas e desconhecimento de outros fatores que influenciam o fenômeno. No entanto, o erro total pode ser minimizado pela escolha adequada do modelo a ser utilizado, o que torna essencial o desenvolvimento de estratégias de modelagem que contemplem as idiossincrasias do problema sobre análises.
+
+%\textsc{\hl{Este trabalho tem os seguintes objetivos:}
+
+%\begin{enumerate}
+%	\item Quais preditores estão associados com a resposta?
+%	\item Qual é a relação entre a resposta e cada preditor?
+%\end{enumerate}
+%Essa aproximação exige a utilização de modelos interpretáveis, ao contrário dos modelos conhecidos como ``caixa-preta'', usualmente aplicados para predição. %No Capítulo \inter, discutiremos com mais detalhes as diferenças entre as duas abordagens.}
+
+A expressão (\ref{mod:y-appr-X}) representa diversas classes de modelos, a depender da escolha de $f$. Podemos reescrevê-la como
+
+\begin{equation}
+Y_t = f(\X) + \epsilon_t,
+\label{mod:y-equal-X-e}
+\end{equation}
+sendo $\epsilon$ um erro aleatório, isto é, o componente que absorve toda a informação não disponível sobre o processo gerador de $Y_t$. Mais precisamente, esse termo representa a variabilidade de $Y_t$ não explicada por $\X$. Apesar de a expressão (\ref{mod:y-appr-X}) ser mais intuitiva, (\ref{mod:y-equal-X-e}) é mais conveniente para a formulação teórica dos modelos estatísticos.
+
+
+
+Neste capítulo, introduziremos os principais modelos utilizados na literatura para análise de dados de poluição do ar. Apresentaremos diversos modelos de regressão, como o modelo linear, o modelo linear generalizado e o modelo aditivo generalizado. Também abordaremos modelos para séries temporais, com ênfase nos modelos espaço-estado. Nos próximos capítulos, avaliaremos a utilização desses modelos em estudos recorrentes de poluição atmosférica.
+
+\section{Regressão linear}
+\label{cap:modelo-linear}
+
+O modelo de regressão linear corresponde à aproximação (\ref{mod:y-appr-X}) mais simples e bem estabelecida dentro da modelagem estatística. Mesmo com um elevado poderio computacional e a introdução de modelos mais flexíveis, essa classe de modelos ainda é bastante utilizada hoje em dia, especialmente por se ajustar bem a diversos problemas reais, pela facilidade de interpretação dos resultados e por estar disponível nos principais \textit{softwares} estatísticos.
+
+Em estudos de poluição do ar, modelos de regressão linear podem ser ajustados para investigar a relação entre variáveis explicativas e uma variável resposta, seja a concentração de poluentes ou dados epidemiológicos. \cite{Saldiva1995}, por exemplo, utilizou esses modelos para estudar o efeito de alguns poluentes nas taxas de mortalidade de idosos, controlando por condições climáticas e sazonais. Já \cite{Salvo2017} utilizou para associar os níveis de material particulado com a proporção de carros a álcool e gasolina.
+
+Apesar da sua popularidade, a autocorrelação característica em séries temporais pode desabilitar o modelo de regressão linear como a opção mais adequada para o ajuste de dados de poluição. Pela sua facilidade de implementação e interpretação, é uma boa ferramenta para uma análise preliminar ou inicial, mas nunca deve ser considerado o modelo final sem antes ser investigado se suas suposições estão sendo satisfeitas.
+
+
+Nas próximas seções, especificaremos o modelo de regressão linear, discutiremos as suas restrições e apresentaremos as maneiras mais utilizadas para tratar séries com tendência, sazonalidade e autocorrelação.
+
+
+\subsection{Especificação do modelo}
+\label{sec:linear-espec-modelo}
+
+Seja $Y_t$ a variável resposta,  $\X = (X_{1t}, ..., X_{pt})$ um vetor de variáveis explicativas cuja associação com $Y_t$ estamos interessados em avaliar e $t = 1, \dots, n$ a ordem na qual essas variáveis foram medidas. Aqui, não faremos suposições sobre a natureza dos preditores $\X$, isto é, essas variáveis podem ser fixas ou aleatórias, qualitativas ou quantitativas. Dado os vetores de parâmetros desconhecidos $\boldsymbol{\beta} = (\beta_1, ..., \beta_p)$, o modelo de regressão linear pode ser definido por
+
+\begin{equation}
+Y_t = \alpha + \beta_1 X_{1t} + ... + \beta_p X_{pt} + \epsilon_t, \quad t = 1, ..., n.
+\label{mod:linear}
+\end{equation}
+Em geral, supomos que os erros $(\epsilon_1, ..., \epsilon_n)$ tenham média zero, variância constante (homoscedasticidade) e sejam não-correlacionados\footnote{A suposição de distribuição Normal também é feita em alguns casos. Essa suposição é relevante na construção de intervalos de confiança e testes de hipóteses para os coeficientes do modelo. No entanto, para amostras grandes, característica comum em estudos de poluição do ar, existem resultados assintóticos \REF que garantem a validade do teste.}. Além disso, a especificação (\ref{mod:linear}) impõe que a relação entre a resposta $Y_t$ e os preditores $\X$ seja linear e aditiva.
+
+A suposição de linearidade estabelece que a variação esperada em $Y_t$ causada pelo acréscimo de uma unidade em $X_{it}$, mantidos. A interpretação dos coeficientes será discutida com mais detalhes na Seção \ref{sec:linearidade} e nas aplicações dos próximos capítulos. Conceitos mais gerais podem ser encontrados em \cite{Hastie2008} e \cite{James2013}.
+
+%O coeficiente $\alpha$ representa a concentração média do poluente quando todas as variáveis do modelo valem zero e, por essa razão, não costuma ter interpretação prática em estudos desta natureza.
+
+A suposição de aditividade estabelece que a variação esperada em $Y_t$ causada por uma mudança no preditor $X_{it}$ é independe do valor (fixado) dos outros preditores. Essa suposição pode ser relaxada com a introdução de termos de interação (ver Seção 3.3 de \cite{James2013}), que abordaremos na Seção \ref{sec:aditividade}.
+
+Daqui em diante, quando não houver ambiguidade, omitiremos o índice $t$ das quantidades $Y_t$ e $\X$.
+
+Na prática, os coeficientes $\beta_1, ..., \beta_p$ são desconhecidos e precisam ser estimados. O procedimento de estimação mais utilizado é o método de mínimos quadrados \citep{Hastie2008}. Outro método bastante utilizado é a estimação por máxima verossimilhança \REF. Sob a suposição de normalidade, as duas abordagens são equivalentes. %Com a recente difusão do \textit{machine learning}, algoritmos como o \textit{gradient descent} e suas extensões \REF passaram a ser bastante utilizados. 
+No R, os modelos de regressão linear podem ser ajustados via mínimos quadrados com a função \texttt{lm()} do pacote \texttt{stats}.
+
+A adequação do modelo é avaliada a partir de medidas de qualidade de ajuste, como o $R^2$ e o erro quadrático médio, e da \textit{análise de resíduos}. De (\ref{mod:linear}), para $t = 1, ..., n$, podemos definir os resíduos como
+
+\begin{equation}
+	r_t = Y_t - \widehat{Y}_t,
+	\label{RLN-residuos}
+\end{equation}
+em que $\hat{Y}_t$ representa o valor predito de $Y_t$ com base nas estimativas dos coeficientes do modelo. Os resíduos medem o quanto os valores preditos se afastam dos valores observados, sendo muito úteis para avaliar a qualidade do ajuste e a violação das suposições do modelo.
+
+Como o instante em que as observações omissas ocorrem não é relevante no processo de estimação, o modelo linear é uma alternativa para avaliar a associação de séries com ``buracos'' ou grandes períodos sem informação, apesar de a identificação da estrutura de tendência e sazonalidade ser mais difícil em dados com essa característica. 
+
+No R, o modelo de regressão linear pode ser ajustado com a função \texttt{lm()} do pacote \texttt{stats}.
+
+A seguir, abordaremos como modelar tendência e sazonalidade no modelo de regressão linear.
+
+%Em alguns casos, as variáveis respostas podem ser medidas em diferentes locais de uma região. \cite{Salvo2014}, por exemplo, mediram a concentração de ozônio (e outras medidas meteorológicas e de tráfego) em diversas estações ao longo da cidade de São Paulo. Como esse componente espacial pode ser um fator de confundimento, ele deve ser considerado pelo modelo. Na Seção \ref{RLN-comp-espacial}, será abordada a incorporação de componentes espaciais no modelo linear para controlar a associação entre observações coletadas em localidades próximas.
+
+%Em geral, os estudos de poluição do ar consideram variáveis positivas, assimétricas, possivelmente correlacionadas e heteroscedásticas. Essas características podem infringir as suposições do modelo linear, causando problemas no ajuste. Técnicas de diagnóstico --- em especial, a análise dos resíduos --- são uma boa opção para verificar se as suposições estabelecidas estão sendo violadas. Na Seção \ref{RLN-suposicoes}, será discutido como utilizar essas técnicas para avaliar se o modelo está bem ajustado e, em caso negativo, maneiras de contornar esse problema.
+
+\subsection{Incorporando tendência e sazonalidade}
+\label{sec:tend-sazon}
+
+% REFs: Lin1999, Saldiva1995 (dummies para mês)
+%      Schwartz1992 (dummies para estação)
+
+Séries de poluição do ar não costumam ser estacionárias. Como vimos nos exemplos do Capítulo \ref{chapter:analise-exploratoria}, é comum encontrarmos tendências tanto crescentes quanto decrescentes e também diversos tipos de sazonalidade (diária, semanal, anual etc). Fatores como crescimento populacional, industrialização, aumento da frota de automóveis, leis de regulamentação de combustíveis, entre outros, podem gerar mudanças a longo prazo na concentração de poluentes, alterando o comportamento da série, e muitas vezes não temos informação disponível para incorporá-los no modelo. 
+
+Como o modelo de regressão linear não exige que a variável resposta seja estacionária, podemos incluir um termos de tendência e sazonalidade no modelo em vez de transformar a série em busca de estacionariedade. A inclusão desses termos é importante porque, em geral, não estamos interessados na avaliação da tendência e da sazonalidade, mas sim no efeito de preditores ao longo desses componentes.
+
+
+Para acrescentar um termo de tendência linear ao modelo (\ref{mod:linear}), podemos especificar $X_{1t} = t$, $t = 1, ..., n$. Assim, um coeficiente $\beta_1$ positivo em (\ref{mod:linear}) indica que $Y$ cresce linearmente com o tempo, enquanto um coeficiente negativo indica que $Y$ decresce linearmente com o tempo. Podemos definir outras formas para a tendência, como quadrática, $X_{1t} = t^2$, ou logarítmica, $X_{1t} = \log(t)$. A Figura \ref{fig:exemplo-serie-tendencia-linear-quadratica} mostra um exemplo de séries com tendências linear e quadrática.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/exemplo-serie-tendencia-linear-quadratica}
+	\caption{Exemplos de séries com tendência linear e quadrática, ambas positivas.}
+	\label{fig:exemplo-serie-tendencia-linear-quadratica}
+\end{figure}
+
+Note que, se modelarmos a tendência dessa maneira, estamos impondo a mesma função ao longo de todo período observado. Em alguns casos, a tendência pode ser diferente em certos intervalos de tempo (Figura \ref{fig:exemplo-serie-tendencias-diferentes}). Uma alternativa seria definir um termo de tendência para cada intervalo, por exemplo:
+
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/exemplo-serie-tendencias-diferentes}
+	\caption{Exemplos de uma série com tendência não-constante.}
+	\label{fig:exemplo-serie-tendencias-diferentes}
+\end{figure}
+
+\begin{displaymath}
+X_{1t} = \left\{
+\begin{array}{ll}
+t, & \textnormal{se $t$ pertence ao conjunto \{1, 2, ..., m\}; e} \\
+0, & \textnormal{em caso contrário}.
+\end{array}
+\right.
+\end{displaymath}
+e
+\begin{displaymath}
+X_{2t} = \left\{
+\begin{array}{ll}
+t-m, & \textnormal{se $t$ pertence ao conjunto \{m+1, m+2, ..., m+n\}; e} \\
+0, & \textnormal{em caso contrário}.
+\end{array}
+\right.
+\end{displaymath}
+
+As vantagens de se incluir um termo de tendência ao modelo, em vez de se transformar $Y_t$, são: 1. poder interpretar os coeficientes do modelo em função da variável original; e 2. estimar a tendência da série.
+
+A sazonalidade também pode ser controlada por meio de variáveis explicativas. A sua presença indica que a média da variável resposta está associada a efeitos periódicos, ligados a intervalos de tempo, como dias, semanas, meses, estações do ano, temporadas de chuva etc. Os níveis de ozônio, por exemplo, crescem no verão e diminuem no inverno; o número de problemas respiratórios tende a aumentar nos meses mais secos; e a concentração de diversos poluentes varia nos fins de semana, devido ao menor intensidade de tráfego. 
+
+%O gráfico da série é uma boa forma de se detectar a sazonalidade. Com uma análise descritiva adequada, é quase sempre possível identificar quando este componente é gerado por uma das variáveis explicativas. O gráfico dos resíduos contra o tempo do modelo (\ref{modelo-linear}) também pode ser usado para identificar a sazonalidade da série.
+
+De uma maneira geral, podemos classificar a sazonalidade como \textit{determinística} --- o padrão é constante ao longo do tempo --- ou \textit{estocástica} --- o padrão muda ao longo do tempo. É possível controlar a sazonalidade determinística no modelo (\ref{mod:linear}) a partir de variáveis indicadoras. Se, por exemplo, acreditamos que há um efeito sazonal de mês, podemos adicionar ao modelo 11 variáveis indicadoras $X_{it}$, $i = 1, ..., 11$ tais que
+
+\begin{equation}
+	X_{it} = \left\{
+	\begin{array}{ll}
+		1, & \textnormal{se a observação $t$ pertence ao $i$-ésimo mês do ano; e} \\
+		0, & \textnormal{caso contrário}.
+	\end{array}
+	\right.
+\end{equation}
+Com essa formulação, o mês de dezembro será tomado como referência, isto é, a interpretação dos coeficientes correspondentes aos meses será feita sempre em relação ao mês de dezembro. Para mais informações sobre a utilização de variáveis indicadoras em modelos de regressão, consultar a Seção 3.3.1 de \cite{James2013}.
+
+Se a sazonalidade for estocástica, procedimentos um pouco mais sofisticados serão necessários para controlá-la. Não trataremos desse tópico neste trabalho. Mais informações podem ser encontradas em \cite{Shumway2006}.
+
+A seguir, discutiremos como contornar as suposições de erros não-correlacionados, homoscedasticidade, linearidade e aditividade utilizando o modelo de regressão linear.
+
+\subsection{Tratando erros correlacionados}
+
+O modelo de regressão linear supõe que os erros $(\epsilon_1, \dots, \epsilon_n)$ são não-correlacionados. Em estudos de poluição do ar, essa suposição é, em geral, inadequada. Como discutimos na Seção \ref{sec:autocorrelacao}, é natural que observações de uma série temporal sejam autocorrelacionadas. A formação de gases na atmosfera, por exemplo, é um processo contínuo ao longo do tempo, sendo que as concentrações medidas no instante $t$ podem estar fortemente associadas aos níveis observados nas últimas horas ou mesmo nos últimos dias. 
+
+Uma forma de avaliar a violação dessa suposição é construir o gráfico dos resíduos do modelo em função do tempo. A presença de padrões na sequência de pontos, isto é, resíduos adjacentes com valores próximos, é um indício de correlação. Na Figura \ref{fig:exemplo-serie-correlacao}, apresentamos os resíduos de um modelo de regressão linear ajustado em dados auto-correlacionados e em dados não-correlacionados. Para o primeiro caso, observe que os pontos adjacentes tendem a permanecer em um mesmo lado da reta $y = 0$. Na ausência de correlação, temos uma sequência aleatória de valores positivos e negativos.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/exemplo-serie-correlacao}
+	\caption{Comparação entre os gráficos dos resíduos de um modelo linear contra o tempo para dados auto-correlacionados e dados não correlacionados.}
+	\label{fig:exemplo-serie-correlacao}
+\end{figure}
+
+Se as observações são muito correlacionadas, os erros-padrão estimados pelo modelo de regressão linear tenderão a subestimar os verdadeiros erros, o que comprometeria a inferência, já que os valores p associados seriam menores do que deveriam ser. Nesses casos, outras estratégias de modelagem devem ser adotadas.
+
+A depender dos objetivos do estudo, agregar os dados pode ser boa uma alternativa para reduzir o efeito da correlação. Se estamos trabalhando com uma série horária e não temos o objetivo de investir a relação entre as variáveis dentro de cada hora, podemos simplificar o problema utilizando a série de médias diárias. Assim, eliminamos a correlação gerada pelas medidas realizadas dentro do mesmo dia.
+
+Quando não for possível agregar os dados, geralmente por perda de informação relevante para o estudo, a solução é considerar generalizações do modelo de regressão linear que contemplem a correlação dos dados, como os modelos mistos \REF. Discutiremos essa classe de modelo na Seção \REF.
+
+%Uma alternativa é utilizar variáveis indicadoras para a unidade de tempo em que as medidas foram realizadas, como hora do dia, dia da semana, semana do mês etc. \hl{Essas variáveis passam a explicar a variação da resposta entre as unidades de tempo, ajudando a reduzir o efeito da correlação.} \cite{Salvo2014}, por exemplo, utilizou variáveis indicadoras para a hora em que a concentração de ozônio foi medida (das 13 às 16 horas) e ajustou um modelo de regressão linear para explicar os níveis de ozônio em função da proporção de carros a gasolina na cidade de São Paulo. 
+
+%A suposição de independência entre as observações também pode ser inadequada em muitos casos. Na análise feita em \cite{Salvo2014}, por exemplo, o modelo supõe que as concentrações horárias de ozônio medidas em uma mesma estação são independentes, o que não seria razoável, pois esperamos que observações feitas no mesmo dia (ou até na mesma semana) sejam próximas. Para \textit{absorver} o efeito da correlação entre as medidas, os autores utilizam variáveis dummies para hora e dia da semana. Discutiremos essa estratégia no próximo capítulo.
+
+\subsection{Contornado a suposição de homoscedasticidade}
+\label{sec:heteroscedasticidade}
+
+Assim como a média, a variância de $Y$ também pode diminuir ou amentar com o tempo. Essa característica viola a suposição de homoscedasticidade do modelo de regressão linear e exige a aplicação de transformações que estabilizem a variância de $Y$ ou o uso de modelos mais flexíveis.
+
+Não é raro encontrarmos séries temporais heteroscedásticas. Uma nova regulamentação, por exemplo, pode limitar a quantidade de certos componentes na composição dos combustíveis, padronizando as diferentes marcas e diminuindo a variação dos poluentes emitidos pelos veículos.
+
+O gráfico dos resíduos em função dos valores preditos é uma boa ferramenta para identificar a violação da suposição de homoscedasticidade. Como podemos observar na Figura \ref{fig:exemplo-serie-heteroscedasticidade}, nuvens de pontos em forma de funil são indícios observações heteroscedásticas. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/exemplo-serie-heteroscedasticidade}
+	\caption{Gráfico dos resíduos contra os valores preditos. Exemplo de nuvem de pontos em forma de funil, indicando heteroscedasticidade.}
+	\label{fig:exemplo-serie-heteroscedasticidade}
+\end{figure}
+
+Uma maneira de estabilizar a variância das observações é transformar a variável $Y$ usando funções côncavas, como $\log Y$ e $\sqrt{Y}$. Uma outra alternativa consiste em ponderar as observações com pesos proporcionais ao inverso de sua variância, mas essa técnica se limita aos casos em que a variabilidade pode ser estimada com precisão.
+
+Os modelos lineares generalizados duplos \REF e os modelos mistos \REF são uma alternativa aos modelos de regressão linear para contemplar a heteroscedasticidade das observações.
+
+\subsection{Contornado a suposição de linearidade}
+\label{sec:linearidade}
+
+Para entendermos melhor a suposição de linearidade, vamos considerar o modelo de regressão linear mais simples, com apenas um preditor:
+
+\begin{equation}
+	Y_t = \beta_0 + \beta_1 X_{t} + \epsilon_t, \quad t = 1, \dots, n.
+	\label{mod:linear-simples}
+\end{equation}
+
+Ao estimarmos os parâmetros $\beta_0$ e $\beta_1$ (pelo método de mínimos quadrados, por exemplo), obtemos a seguinte reta de regressão
+
+\begin{equation}
+\widehat{Y_t} = \hat{\beta}_0 + \hat{\beta}_1 X_{t}, \quad t = 1, \dots, n,
+\label{mod:reta-de-regressao-simples}
+\end{equation}
+sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $\hat{\beta}_1$ as estimativas de $\beta_0$ e $\beta_1$ respectivamente. Note que (\ref{mod:reta-de-regressao-simples}) representa a equação de uma reta com intercepto $\hat{\beta}_0$ e coeficiente angular $\hat{\beta}_1$. Isso significa que essa reta cruza o eixo $y$ no ponto $\hat{\beta}_0$ e, se variamos o valor de $X_{t}$ em uma unidade, $\widehat{Y_t}$ vai variar $\hat{\beta}_1$ unidades, não importa qual seja o valor de $X_{t}$. Essa associação entre $\widehat{Y_t}$ e $X_{t}$ (ou $Y_t$ e $X_{t}$) é dita ser \textit{linear} com respeito aos parâmetros e está ilustrada na Figura \ref{fig:suposicao-linearidade}, para $\hat{\beta}_0$ igual a 0 e $\hat{\beta}_1$ igual a 10. Quando temos mais de um preditor, como no modelo (\ref{mod:linear}), a interpretação é análoga para cada par $(\widehat{Y_t}, X_{it})$, mantendo-se as outras variáveis fixadas.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/suposicao-linearidade.pdf}
+	\caption{A estimativa $\hat{\beta}$ representa a variação em $Y$ quando acrescemos $X$ em uma unidade, não importando o valor de $X$.}
+	\label{fig:suposicao-linearidade}
+\end{figure}
+
+%A suposição de linearidade é restritiva pois a verdadeira relação entre $Y_t$ e $X_t$ pode ter outras formas. \Ex
+
+Os resíduos, definidos pela expressão (\ref{RLN-residuos}), podem ser utilizados para avaliar a suposição de linearidade. A ideia consiste em construir o gráfico dos resíduos contra os valores preditos e verificar se a nuvem de pontos apresenta algum padrão. Nuvens em forma de ``U'', por exemplo, mostram que o modelo não está bem ajustado para valores extremos de $Y$, indicando não-linearidade (veja Figura \ref{fig:exemplo-residuos-linearidade-forma-U}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/exemplo-residuos-linearidade-forma-U}
+	\caption{Gráfico dos resíduos contra os valores preditos, um exemplo de nuvem de pontos em forma de ``U'', indicando não-linearidade.}
+	\label{fig:exemplo-residuos-linearidade-forma-U}
+\end{figure}
+
+Uma maneira simples de contornar esse problema é ajustar modelos da forma
+
+\begin{equation}
+Y_t = \beta_0 + \beta_1 T(X_{t}) + \epsilon_t, \quad t = 1, \dots, n,
+\label{mod:linear-transformacao}
+\end{equation}
+em que $T(\cdot)$ representa uma função ``linearizadora''. As escolhas mais comuns para $T(X)$ são $\log X$ e $\sqrt{X}$. Observe que, embora a relação entre $Y$ e $X$ em (\ref{mod:linear-transformacao}) não seja mais linear, o modelo continua sendo linear em relação à $T(X)$. Um ponto negativo nessa abordagem é a perda de interpretabilidade do modelo, já que os parâmetros estarão associados à $T(X)$ e não mais a $X$.
+
+Modelos polinomiais \citep{James2013} também podem ser utilizados para contornar a não-linearidade. Dado um único preditor $X$, um modelo polinomial pode ser especificado como
+
+\begin{displaymath}
+	Y_t = \beta_0 + \beta_1 X_t + \beta_2 X_t^2 + \cdots +  \beta_p X_t^p + \epsilon_t, \quad t = 1, \dots, n.
+	%\label{mod:polinomial}
+\end{displaymath}
+Essa classe de modelos é bem flexível e permite ajustar associações complexas entre as variáveis $X$ e $Y$, sendo uma boa alternativa para predição, mas pouco utilizados para inferência devido à falta de interpretação.
+
+%Uma terceira maneira utiliza funções escadas para representar o preditor cuja associação com a resposta é supostamente não-linear. Essa variável é dividida em M categorias, transformando-se em uma variável qualitativa. Isso é equivalente a ajustar uma função constante em cada subintervalo.
+
+Outras formas de tratar problemas com a suposição de linearidade incluem funções escada \citep{Hastie2008} e regressão segmentada \REF.
+
+\subsection{Contornado a suposição de aditividade}
+\label{sec:aditividade}
+
+
+Pela suposição de aditividade, os termos do modelo (\ref{mod:linear}) são sempre somados, permitindo que cada coeficiente possa ser interpretado independentemente dos demais se mantivermos as outras variáveis fixadas.
+
+Na prática, o efeito de uma variável explicativa $X_1$ em $Y$ pode depender do nível de um outro preditor $X_2$. O efeito da poluição do ar ($X_1$) em crises respiratórias ($Y$), por exemplo, é muito mais acentuado em certas condições climáticas, como dias de baixa umidade ($X_2$). Essa relação entre $X_1$ e $X_2$ sobre $Y$ é chamada de \textit{interação}. 
+
+Se pelo menos uma das variáveis for qualitativa, os gráficos de perfis podem ser utilizados para investigar a existência de interação entre os preditores. Se ambas variáveis forem quantitativas, uma delas pode ser categorizada para a construção dos gráficos de perfis.
+
+\Ex
+
+A interação de duas variáveis pode ser contemplada pelo modelo de regressão linear acrescentando-se termos da forma $X_1 \times X_2$. Interações de três ou mais variáveis também podem ser incluídas, mas dificilmente tem interpretação prática.
+
+Termos de interação bastante utilizados em estudos de poluição do ar são aqueles entre as variáveis meteorológicas. Em geral, além de controlarmos o efeito marginal da temperatura, umidade, precipitação, radiação, vento etc., precisamos também incluir o efeito conjunto dessas variáveis.
+
+\subsection{Avaliando a qualidade do ajuste}
+\label{sec:linear-qualidade-ajuste}
+
+Além de verificarmos se o modelo escolhido viola as suposições pré-estabelecidas, também precisamos avaliar o quão bem ele se ajusta aos dados. Para os modelos de regressão linear, isso pode ser feito a partir do erro-padrão residual ($RSE$) e do coeficiente de determinação ($R^2$).
+
+O erro-padrão residual é uma estimativa do desvio-padrão de $\epsilon$, uma medida do quanto, em média, a resposta $Y$ se desvia da verdadeira reta de regressão\footnote{No caso do modelo de regressão linear simples, por exemplo, a verdadeira reta de regressão é dada por $Y = \tilde{\beta}_0 + \tilde{\beta}_1X$, em que $\tilde{\beta}_0$ e $\tilde{\beta}_1$ representam os verdadeiros valores de $\beta_0$ e $\beta_1$. Na prática, $\tilde{\beta}_0$ e $\tilde{\beta}_1$ são desconhecidos e substituídos por valores estimados, como apresentado em (\ref{mod:reta-de-regressao-simples}).}. Valores baixos de $RSE$ significam que $\hat{Y_t} \approx Y_t$, para $t = 1, \dots, n$, indicando que o modelo se ajusta bem aos dados. Como o $RSE$ depende da magnitude dos valores de $Y$, ele não é muito informativo se avaliado sozinho. No entanto, os erros-padrão residuais de dois modelos podem ser comparados com o objetivo de escolher qual se ajusta melhor aos dados.
+
+O coeficiente de determinação é uma medida da proporção da variância de $Y$ explicada pelos preditores. Esse coeficiente varia entre 0 e 1 e, ao contrário do $RSE$, não depende da escala de $Y$. Valores próximos de 1 apontam que uma porção considerável da variabilidade está sendo explicada, indicando que o modelo se ajusta bem aos dados.
+
+Acrescentar novas variáveis ao modelo sempre diminui o valor do erro-padrão residual e aumenta o valor do coeficiente de determinação, o que torna a estratégia de escolher o modelo com menor $RSE$ ou menor $R^2$ problemática. O excesso de parâmetros pode gerar sobreajuste (ou \textit{overfitting}, em inglês), um ajuste tão \textit{bom} que o modelo passa a explicar a variação gerada pelos erros aleatórios, que, por construção, não é explicada pelos preditores. Um modelo sobreajustado é ótimo para a amostra, mas, em geral, péssimo para ser generalizado para um contexto mais amplo. Para evitar esse problema, podemos utilizar versões do $RSE$ e do $R^2$ penalizadas pelo número de parâmetros, conhecidas como $RSE$ ajustado e $R^2$ ajustado. Os valores dessas medidas diminuem quando acrescentamos variáveis que não colaboram muito para explicar a variabilidade de $Y$, o que nos permite controlar o \textit{trade off} existente entre um modelo mal ajustado e um modelo sobreajusto.  Para mais informações sobre esse tema, ver a Seção 2.2.2 de \cite{Hastie2008}.
+
+Na prática, o $R^2$ é muito mais utilizado que o $RSE$ para a avaliação do ajuste de modelos de regressão linear. Com objetivo de explicar a variabilidade da concentração de ozônio na cidade de São Paulo, \cite{Salvo2014}, por exemplo, ajustaram sete modelos lineares com diferentes preditores para controlar os efeitos meteorológicos e de tráfego e escolheram aquele com maior $R^2$ como o modelo final.
+
+Valores altos de $RSE$ ou baixos de $R^2$ sugerem problemas com o modelo. Não-linearidade e omissão de preditores importantes são os mais comuns. No primeiro caso, a principal estratégia é transformar os preditores cuja associação com $Y$ suspeita-se não ser linear, assim como discutido na Seção \ref{sec:linearidade}. A solução para o segundo caso é obter mais informação sobre o fenômeno sob analise e incluir novos preditores ao modelo. Essa é uma tarefa complicada, pois dificilmente temos acesso a novas variáveis explicativas, e geralmente demonstra uma falha no delineamento do estudo. 
+
+Uma outra alternativa para explicar valores baixos de $RSE$ ou $R^2$ é uma estratégia de análise equivocada. Muitas vezes, a classe de modelos que estamos utilizando simplesmente não se ajusta aos dados do estudo, demandando modelos mais flexíveis. A seguir, discutiremos os modelos lineares generalizados, uma ampla classe de modelos que permite a utilização de distribuições interessantes para o ajuste de diversos casos práticos.
+
+%\subsection{Normalidade}
+%
+%A distribuição Normal assume que a variável aleatória está definida na reta real, isto é, pode assumir valores positivos e negativos, e é simétrica em relação a sua média. Intuitivamente, não há motivos para acreditar que essa distribuição se ajustaria bem a dados naturalmente positivos e assimétricos, como a concentração de poluentes e número de casos de uma doença ou mortalidade. Mesmo assim, pela facilidade de implementação e interpretação, o modelo normal é muitas vezes utilizado como uma primeira tentativa na estratégia de análise, de tal forma que, se os dados não se afastarem muito desta distribuição, pequenos vieses podem ser negligenciado em favor de um modelo mais simples.
+%
+%Como mencionado anteriormente, o método de mínimos quadrados não supõe normalidade no processo de estimação. Apesar de essa suposição ser feita na construção de intervalos de confiança e testes de hipóteses para os parâmetros, para amostras grandes\footnote{Comum em estudos de poluição do ar.}, a teoria assintótica garante estimadores com distribuição aproximadamente normal \REF. No entanto, como a velocidade dessa convergência depende da natureza (desconhecida) da variável sob estudo, não temos como quantificar o que é uma ``amostra grande'', o que justifica a importância de se avaliar a qualidade do ajuste em relação à suposição de normalidade. 
+%
+%Uma primeira ideia para checar essa suposição seria construir o histograma da variável resposta e avaliar se ele se aproxima de uma distribuição normal. Contudo, a suposição de normalidade se refere à variável $Y|\mathbf{X}, \mathbf{Z}$ e não a $Y$ simplesmente. Seria necessário construir histogramas para cada combinação de valores de $\mathbf{X}$ e $\mathbf{Z}$, o que é quase sempre impossível.
+%
+%Gráficos Q-Q (quantil-quantil) e envelopes \REF são técnicas muito úteis para investigar possíveis desvios da suposição de normalidade. Eles se baseiam nos resíduos studentizados \REF e avaliam o quanto a distribuição empírica desses resíduos se afasta da distribuição teórica. \Ex
+%
+%%Atkinson, A. C. (1985). Plots, Transformations and Regressions. Oxford Statistical Science Series, Oxford.
+%
+%A transformação da variável $Y$ pode ser uma alternativa para casos em que a suposição de normalidade não é válida. As transformações $\log Y$ e $\sqrt{Y}$ são as mais utilizadas. Na Seção \ref{cap:glm}, veremos como generalizar o modelo linear para outras distribuições.
+
+\section{Modelos lineares generalizados}
+\label{cap:glm}
+
+É comum na modelagem estatística assumirmos uma distribuição para os nossos dados. Na prática, o que estamos fazendo é supor como os nossos dados devem estar distribuídos no mundo real. Quando dizemos que uma variável assume distribuição Normal com média 0 e variância 1, queremos dizer que as observações se distribuem na população como apresentado na Figura \ref{label}. Nós fazemos isso pois certas distribuições nos garantem resultados probabilísticos interessantes para o processo de estimação. Assim, para a validade dos resultados do modelo, é de total importância que a distribuição escolhida seja compatível com a natureza dos dados. 
+
+Em geral, a concentração de poluentes é uma medida positiva, assimétrica e heteroscedástica. Já o número de casos de doenças ou mortalidade é uma medida de contagem, isto é, assume apenas valores não-negativos inteiros. Nesse sentido, a usual suposição de normalidade de algumas classes de modelos pode não ser adequada para ajustar dados de poluição. Considerando as características citadas, as distribuições Gama e Poisson, por exemplo, são, respectivamente, boas alternativas para a modelagem de concentração de poluentes e dados epidemiológicos de contagem.
+
+Os modelos lineares generalizados, introduzidos por \cite{Nelder1972}, são uma generalização do modelo de regressão linear que permitem a utilização de distribuições para dados assimétricos (Gama, Normal inversa, Log-normal), dados de contagem (Poisson, Binomial negativa), dados binários (Binomial), entre outras. Neste capítulo, discutiremos como utilizar essa classe de modelos para o ajuste de dados de poluição do ar.
+
+\subsection{Especificação do modelo}
+
+Sejam $Y_t$ e $\X$ definidos como na Seção \ref{sec:linear-espec-modelo}. O modelo linear generalizado pode ser definido como 
+
+\begin{displaymath}
+Y_t|\mathbf{X_t} \stackrel{ind}{\sim} \mathcal{D}(\mu_t, \phi)
+\end{displaymath}
+\begin{equation}
+g(\mu_t) = \alpha + \beta_1 X_{1t} + ... + \beta_p X_{pt}, \quad t = 1, \dots, n,
+\label{mod:glm}
+\end{equation}
+sendo $\mathcal{D}$ uma distribuição pertencente à família exponencial\footnote{A família exponencial corresponde a uma classe de distribuições de probabilidade que, sob certas condições de regularidade, apresentam algumas características em comum. Para mais informações, consulte \cite{Gilberto2013}.}, $g(\cdot)$ uma função de ligação, $\mu_t$ um parâmetro de posição e $\phi$ um parâmetro de precisão\footnote{Algumas distribuições não têm um parâmetro de precisão. Nas distribuições Binomial e Poisson, por exemplo, esse parâmetro vale 1 e a dispersão é uma função da média.}. Se $\mathcal{D}$ é a distribuição Normal e $g(\cdot)$ é a função identidade, (\ref{mod:glm}) se reduz ao modelo de regressão linear (\ref{mod:linear}).
+
+Os parâmetros deste modelo podem ser estimados por máxima verossimilhança. Os cálculos envolvem o uso de procedimentos iterativos, como Newton-Raphson e escore de Fisher \citep{Dobson1990}. Distribuições que têm um parâmetro de precisão permitem a modelagem conjunta de $\mu$ e $\phi$. Essa abordagem é conhecida como \textit{modelo linear generalizado duplo} e flexibiliza a suposição de homoscedasticidade feita em (\ref{mod:glm}). Mais informações sobre esses modelos podem ser encontradas em \cite{Gilberto2013}.
+
+A especificação dos termos de tendência e sazonalidade para modelos lineares generalizados pode ser feita da mesma forma que no modelo linear (ver Seção \ref{sec:tend-sazon}). A utilização de resíduos para avaliar a qualidade do ajuste também pode ser conduzida de forma análoga à apresentada na Seção \ref{cap:modelo-linear}. Os resíduos mais utilizados em modelos lineares generalizados são definidos a partir da \textit{função desvio}. Uma técnica muito utilizada é a construção de gráficos envelope para investigar a adequação da distribuição escolhida para os dados. Para mais informações sobre a análise de resíduos de modelos lineares generalizados, consulte \cite{Gilberto2013}. 
+
+Os modelos Gama, Normal inversa e Log normal são boas alternativas para ajustar dados positivos assimétricos, sendo, em geral, mais adequados para concentrações de poluentes do que a distribuição Normal. Discutiremos os dois primeiros na Seção \ref{sec:glm-assimetricos}.
+
+Dados de contagem, como o número de casos de uma doença ou mortalidade, são usualmente ajustados pelo modelo Poisson. \cite{Gleice2001b}, por exemplo, utilizaram esse modelo para avaliar a associação entre poluição atmosférica e marcadores de mortalidade em idosos na cidade de São Paulo. No entanto, a distribuição Poisson impõe que a média e a variância das observações são iguais e pode não se ajustar bem quando os dados apresentam sobredispersão (variância maior que a média). O modelo com resposta binomial negativa é uma alternativa nesses casos, já que permite a modelagem conjunta dos parâmetros de posição e dispersão. Discutiremos esses modelos com mais detalhes na Seção \ref{sec:glm-contagem}.
+
+\subsection{Modelos para dados positivos assimétricos}
+\label{sec:glm-assimetricos}
+
+
+A distribuição Gama costuma ser a principal alternativa para o ajuste de dados positivos assimétricos. Dada a parametrização $Y \sim \textnormal{Gama}(\mu, \phi)$, sendo $\mu > 0$ a média de $Y$, $\phi > 0$ um parâmetro de precisão\footnote{Isso implica que $\phi^{-1}$ é um parâmetro de dispersão.} e
+
+\begin{displaymath}
+f(y; \mu, \phi) = \frac{1}{\Gamma(\phi)}\left(\frac{\phi y}{\mu}\right)^\phi \exp \left(-\frac{\phi y}{\mu}\right)\frac{1}{y}, \quad y > 0,
+\end{displaymath}
+a função densidade de probabilidade de $Y$, podemos observar pela Figura \ref{fig:gamma-distribution} que, para um $\mu$ fixado, à medida que $\phi$ aumenta, a distribuição Gama se torna mais simétrica em torno da média. Conforme $\phi$ tende para infinito, $Y$ se aproxima da distribuição Normal de média $\mu$ e variância $\mu^2\phi^{-1}$, o que torna a distribuição Gama atrativa para a modelagem tanto de observações assimétricas quanto de observações simétricas cuja dispersão varia em função da média ao quadrado.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/gamma-distribution}
+	\caption{Função densidade da distribuição Gama com $\mu = 1$ e diversos valores de $\phi$. Conforme $\phi$ aumenta, a distribuição se torna menos assimétrica, centralizando-se ao redor da média.}
+	\label{fig:gamma-distribution}
+\end{figure}
+
+Uma alternativa para a distribuição Gama é a Normal inversa. Considere agora $Y \sim \textnormal{NI}(\mu, \phi)$ e a função densidade dada por
+
+\begin{displaymath}
+f(y; \mu, \phi) = \frac{\phi^{1/2}}{\sqrt{2\pi y^3}}\exp\left\{-\frac{\phi (y - \mu)^2}{2\mu^2y}\right\}, \quad y > 0.
+\end{displaymath}
+Da mesma forma, $\mu > 0$ é a média de $Y$ e $\phi > 0$ é um parâmetro de precisão. Podemos ver pela Figura \ref{fig:inverse-normal-distribution} que, para $\mu$ fixado, a simetria da distribuição diminui conforme $\phi$ aumenta. Mais precisamente, $Y$ se aproxima de uma distribuição Normal com média $\mu$ e variância $\mu^3 \phi^{-1}$. Similarmente à Gama, a Normal inversa é apropriada para modelar tanto observações assimétricas quanto observações simétricas cuja dispersão varia em função da média ao cubo.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/inverse-normal-distribution}
+	\caption{Função densidade da distribuição Normal inversa com $\mu = 1$ e diversos valores de $\phi$. Conforme $\phi$ aumenta, a distribuição se torna menos assimétrica, centralizando-se ao redor da média.}
+	\label{fig:inverse-normal-distribution}
+\end{figure}
+
+As funções de ligação mais utilizadas em ambos os modelos são a identidade $(g(\mu) = \mu)$, a logarítmica $(g(\mu) = \log(\mu))$ e a recíproca $(g(\mu) = 1/\mu)$. Gráficos de resíduos podem ser feitos para avaliar a adequabilidade da distribuição e da função de ligação escolhidas. Para mais informações sobre análise de diagnóstico para modelos lineares generalizados, consultar \cite{Williams1987} e \cite{Gilberto2013} . 
+
+No R, os modelos Gama e Normal inversa podem ser ajustados com a função \texttt{glm()} do pacote \texttt{stats}, utilizando os argumentos \texttt{family = Gamma} e \texttt{family = inverse.gaussian}, respectivamente.
+
+Outras distribuições família exponencial também podem ser utilizadas para a análise de dados positivos assimétricos, como a Weibull, a Pareto e a Log-Normal \REF. 
+
+Fora do contexto de modelos lineares generalizados,  a distribuição de Birnbaum-Sanders generalizada (GBS) é outra alternativa para o ajuste de dados positivos assimétricos. \cite{Leiva2008}, por exemplo, utilizaram o modelo GBS para ajustar concentrações horárias de dióxido de enxofre em Santiago, no Chile, mostrando que essa distribuição se ajustava melhor aos dados do que a Log-Normal. Para mais informações sobre a distribuição de Birnbaum-Saunders, consulte \cite{Barros2009} e \cite{Leiva2015}.
+
+\subsection{Modelos para dados de contagem}
+\label{sec:glm-contagem}
+
+Em algumas situações, o objetivo do estudo de poluição do ar não está em descrever as séries de poluentes, mas sim utilizá-las para explicar eventos epidemiológicos, como, por exemplo, a morbidade ou mortalidade causada por doenças respiratórias. A variável resposta nesses estudos é, em geral, uma contagem, isto é, assume valores inteiros positivos que representam o número de casos da doença ou de mortes em cada instante observado.
+
+\cite{Gleice2001b}, por exemplo, utilizaram o modelo Poisson para avaliar a associação entre a concentração de alguns poluentes e marcadores de mortalidade em idosos na cidade de São Paulo, controlando por variáveis meteorológicas. Estes autores observaram uma associação positiva entre mortalidade e níveis de CO, SO$_2$ e, em menor escala, PM10. 
+
+Se a variável resposta $Y$, segue uma Poisson com parâmetro $\lambda$, simbolicamente $Y \sim \textnormal{Poisson}(\lambda)$, o modelo assume que o evento sob estudo ocorre com taxa $\lambda$ dentro de um intervalo de tempo fixado\footnote{Esse intervalo de tempo se refere à frequência com que os dados são coletados, isto é, se as séries são diárias, semanais, mensais, anuais etc.}. Essa taxa representa o valor médio\footnote{A distribuição de Poisson atribui maiores probabilidades aos valores próximos à média $\lambda$.} de casos observados no intervalo e, na prática, queremos explicá-la a partir de séries de poluentes, controlando por variáveis climáticas. Dessa forma, para o modelo Poisson, temos $\mu_t = \lambda_t$ em (\ref{mod:glm}). A função de ligação mais utilizada nesse contexto é a logarítmica.  
+
+Na distribuição Poisson, a média é igual a variância, isto é, $E(Y) = VAR(Y) = \lambda$. Isso gera uma restrição importante no modelo Poisson, deixando-o inadequado para o ajuste de dados com superdispersão, observações com a variância maior do que a média\footnote{Para o modelo Poisson, $\phi = 1$.}. Uma alternativa nesse caso é a utilização de modelos com resposta Binomial Negativa.
+
+Se $Y \sim \textnormal{BN}(\mu, \phi)$, temos que $E(Y) = \mu$ e $VAR(Y) = \mu + \mu^2/\phi$, com $\mu \geq 0$ e $\phi > 0$, o que faz a distribuição Binomial Negativa adequada para dados com variância maior do que a média.
+
+No R, o modelo Poisson pode ser ajustado com a função \texttt{glm()} do pacote \texttt{stats}, utilizando o argumento \texttt{family = poisson}. Já o modelo com resposta Binomial Negativa, com a função \texttt{glm.nb()} do pacote \texttt{MASS}.
+
+%% ------------------------------------------------------------------------- %%
+\section{Modelos aditivos generalizados}
+\label{cap:gam}
+
+%\cite{Carslaw2007}
+%\cite{Belusic2015}
+
+%Em geral, um modelo de regressão paramétrico assume que a forma de $f$ é conhecida a não ser por um número finito de parâmetros desconhecidos. 
+
+Os modelos lineares têm um papel muito importante na análise de dados, provendo técnicas de predição e inferência computacionalmente simples e fáceis de serem interpretadas. Contudo, em problemas reais, o efeito dos preditores na variável resposta frequentemente é não-linear, tornando a suposição de linearidade desses modelos muito restritiva.
+
+Em estudos de poluição do ar, o aspecto temporal dos dados gera efeitos sazonais, cuja relação com a variável reposta é muito melhor representada por curvas senoidais do que por retas.
+
+Na Seção \ref{cap:modelo-linear}, introduzimos algumas técnicas que flexibilizam os modelos lineares na tentativa de ajustar relações não-lineares, como a transformação de variáveis e a regressão polinomial. Agora, apresentaremos os modelos aditivos generalizados \citep{Hastie2008} como um método integrado, automático e flexível para identificar e caracterizar a não-linearidade de preditores em estudos de poluição atmosférica.
+
+\subsection{Especificação do modelo}
+
+O modelo aditivo generalizado é uma extensão do modelo linear generalizado que permite associar cada um dos preditores à variável resposta a partir de funções não-lineares, mantendo a suposição de aditividade. Como nas seções anteriores, sejam $Y_t$, $\mathbf{X}_t$ e $\mathbf{Z}_t$, respectivamente, a variável resposta, as variáveis explicativas e as variáveis confundidoras, medidas nos instantes $t = 1, ..., n$. O modelo aditivo generalizado pode ser escrito como
+
+\begin{displaymath}
+Y_t|\mathbf{X_t} \stackrel{ind}{\sim} \mathcal{D}(\mu_t, \phi)
+\end{displaymath}
+\begin{equation}
+g(\mu_t) = \beta_0 + f_1(X_{1t}) + ... + f_p(X_{pt}),
+\label{gam}
+\end{equation}
+sendo $\mathcal{D}$ uma distribuição pertencente à família exponencial e $f_i$, $i = 1, ..., p$, funções não-lineares. No caso mais simples, assim como nos modelos lineares generalizados, supõe-se que as variáveis $Y_t$ são homoscedásticas, independentes e normalmente distribuídas.
+
+Existem diversas propostas sobre como as funções $f_1, ..., f_{p}$ devem ser representadas, incluindo o uso de \textit{splines} naturais, \textit{splines} suavizados e regressão local \citep{Hastie1990}. Outro ponto importante diz respeito a suavidade dessas funções, controlada por \textit{parâmetros de alisamento}, geralmente escolhidos por validação cruzada \citep{James2013}. Curvas muito suaves podem apresentar grande viés, enquanto curvas muito \textit{rugosas} apresentam grande variância. Discutiremos esses tópicos com mais detalhes na Seção \ref{sec:gam-splines}.
+
+O procedimento de estimação no contexto de modelos aditivos generalizados depende da forma escolhida para as funções $f_1, ..., f_{p}$. A utilização de \textit{splines} naturais, por exemplo, permite a aplicação direta de mínimos quadrados, graças à sua construção a partir de \textit{funções base} (ver Seção \ref{sec:gam-splines}). Já para \textit{splines} penalizados, o processo de estimação envolve algoritmos um pouco mais complexos, como \textit{backfitting} \REF. Para mais informações sobre esses procedimentos, consulte \cite{Hastie1990} e \cite{Hastie2008}.
+
+%A expressão (\ref{gam}) considera que a associação com todos os preditores será estimada a partir de funções não-lineares. No entanto, em muitos casos, pode ser interessante considerar o alisamento de apenas algumas variáveis explicativas. Em estudos de poluição, costuma-se alisar os preditores cuja associação com a variável resposta suspeita-se ser não-linear, como o tempo e algumas variáveis climáticas. 
+
+A seguir, introduziremos os conceitos de \textit{splines} e regressão local, e apresentaremos os principais aspectos em torno do ajuste dessas técnicas.
+
+%Nesta abordagem, a escolha dos parâmetros de suavização é crucial. Em geral, os algoritmos de estimação permitem que os próprios dados determinem os parâmetros que melhor se ajustam aos dados. No entanto, há casos em que a estrutura dos dados (sazonal, por exemplo) pede que esses valores sejam fixados. Uma visão geral deste tópico será apresentada na Seção \ref{gam-parametros}.
+
+%Por fim, na Seção \ref{gam-omissos}, discutiremos os problemas gerados pela presença de dados faltantes no processo de estimação, assim como formas de contornar esse problema.
+
+\subsection{Splines e regressão local}
+\label{sec:gam-splines}
+
+Para introduzir o conceito de \textit{splines} e regressão local, vamos considerar novamente o modelo mais simples, com apenas uma variável explicativa
+
+\begin{equation}
+	Y_t = \beta_0 + \beta_1 X_t + \epsilon_t, \quad t = 1, ..., t.
+	\label{mod:gam-simples}
+\end{equation}
+A principal ideia por trás dos modelos aditivos generalizados está na utilização de \textit{funções bases}. Essa abordagem considera uma família de funções ou transformações $b_1(X), b_2(X), ..., b_k(X)$, fixadas e conhecidas, no lugar de $X$ em (\ref{mod:gam-simples}). Assim, o modelo ajustado passa a ser
+
+\begin{equation}
+Y_t = \beta_0 + \beta_1b_1(X_t) + \beta_2b_2(X_t) + ... + \beta_kb_k(X_t) + \epsilon_t, \quad t = 1, ..., t,
+\label{mod:gam-base}
+\end{equation}
+representando diversas classes de associações não-lineares entre $X$ e $Y$. Note que o modelo polinomial apresentado na Seção \ref{sec:linearidade} é um caso particular de (\ref{mod:gam-base}), com $b_j(X_t) = X^j_t$.  
+
+Como uma tentativa para aumentar a flexibilidade da curva ajustada, podemos segmentar $X$ e ajustar diferentes polinômios de grau $d$ em cada um dos intervalos\footnote{Em contrapartida ao modelo polinomial, que ajusta um único polinômio sobre todo o intervalo de variação de $X$.}. Cada ponto de segmentação é chamado de \textit{nó}, e uma segmentação com $k$ nós gera $k+1$ polinômios. 
+
+Se considerarmos, por exemplo, $d$ igual a 3 e apenas um nó em um valor arbitrário $c$, a expressão (\ref{mod:gam-base}) ficaria na forma
+
+\begin{displaymath}
+	Y_t = \left\{
+	\begin{array}{lc}
+	\beta_{01} + \beta_{11}X_t + \beta_{21}X^2_t + \beta_{31}X_t^3 + \epsilon_t, & \textnormal{se } X_t < c; \\
+	\beta_{02} + \beta_{12}X_t + \beta_{22}X^2_t + \beta_{32}X_t^3 + \epsilon_t, & \textnormal{se } X_t \geq c.
+ 	\end{array}
+ 	\right.
+\end{displaymath}
+Repare que as funções base $b_1(X), b_2(X), ..., b_k(X)$ nesse caso seriam construídas com a ajuda de funções indicadoras. Esse modelo é conhecido como modelo polinomial cúbico segmentado.
+
+A partir dessa construção, definimos um \textit{spline} de grau $d$ como um polinômio segmentado de grau $d$ com as $d-1$ primeiras derivadas contínuas em cada nó. Essa restrição acerca das derivadas é importante para garantir a continuidade (ausência de saltos) e suavidade (ausência de vértices) da curva. 
+
+Utilizando a representação por bases (\ref{mod:gam-base}), um \textit{spline} cúbico com $k$ nós pode ser modelado por
+
+\begin{displaymath}
+	Y_t = \beta_0 + \beta_1b_1(X_t) + \beta_2b_2(X_t) + ... + \beta_{k+3}b_{k+3}(X_t) + \epsilon_t, \quad t = 1, ..., t,
+\end{displaymath}
+para uma escolha apropriada de funções $b_1(X), b_2(X), ..., b_{k+3}(X)$. Usualmente, essas funções envolvem três termos polinomiais --- $X$, $X^2$ e $X^3$, mais precisamente --- e $k$ termos $h(X, c_1), \dots, h(X, c_k)$ da forma
+
+\begin{displaymath}
+h(X, c_j) = (x - c_j)^3_+ = \left\{
+\begin{array}{cl}
+(x - c_j)^3, & \textnormal{se } x < c_j, \\
+0, & \textnormal{em caso contrário,}
+\end{array}
+\right.
+\end{displaymath}
+sendo $c_1, \dots, c_k$ os $k$ nós. Assim, incluindo o termo $\beta_0$, o ajuste de um \textit{spline} cúbico com $k$ nós envolve a estimação de $k+4$ parâmetros e, portanto, utiliza $k+4$ graus de liberdade. Mais detalhes sobre a construção dessas restrições podem ser encontrados em \cite{Hastie2008} e \cite{James2013}.
+
+Além das restrições sobre as derivadas, podemos adicionar \textit{restrições de fronteira}, exigindo que a função seja linear na região de $X$ abaixo do menor nó e acima do maior nó. Essas restrições diminuem a variância nos extremos do proditor, produzindo estimativas mais estáveis. Um \textit{spline} cúbico com restrições de fronteira é chamado de \textit{spline natural}.
+
+No ajuste de \textit{splines} cúbicos ou naturais, o número de nós determina o grau de suavidade da curva, e a sua escolha ser feita por \textit{validação cruzada} \citep{James2013}. De uma forma geral, a maior parte dos nós é posicionada nas regiões do preditor com mais informação, isto é, mais observações. Por pragmatismo, para modelos com mais de um preditor, costuma-se adotar o mesmo número de nós para todos os preditores.
+
+Os \textit{splines suavizados} constituem uma classe de funções suavizadoras que não utilizam a abordagem por funções bases. De maneira resumida, um \textit{spline} suavizado é a função $f$ que minimiza a seguinte expressão
+
+\begin{equation}
+	\sum_{i = 1}^n (Y_i - f(X_i))^2 + \lambda \int f''(u)^2 du.
+\end{equation}
+O primeiro termo dessa expressão garante que $f$ se ajustará bem aos dados, enquanto o segundo penaliza a sua variabilidade, isto é, controla o quanto $f$ será suave. A suavidade é regulada pelo parâmetro $\lambda$, sendo que $f$ se torna mais suave conforme $\lambda$ cresce. A escolha desse parâmetro é geralmente feita por validação cruzada \citep{James2013}.
+
+Uma outra forma para ajustar funções não-lineares entre $X$ e $Y$ é a regressão local. Essencialmente, essa técnica consiste em ajustar modelos de regressão simples em regiões de pontos ao redor de cada observação $x_0$ do preditor $X$. Essas regiões são formadas pelos $k$ pontos mais próximos de $x_0$, sendo que o parâmetro $s = k/n$, determina o quão suave ou rugosa será a curva ajustada. O ajuste é feito por mínimos quadrados ponderados, e os pesos são inversamente proporcionais à distância do ponto em relação a $x_0$. Assim, os pontos na vizinhança de $x_0$ mais afastados recebem peso menor. Para mais informações, consultar \cite{James2013}.
+
+%\hl{Na prática, os \textit{splines} naturais, os \textit{splines} suavizados e a regressão local são as funções usualmente escolhidas para o ajuste dos modelos aditivos. [...]}
+
+\section{Modelos ARIMA e extensões}
+
+Muitas vezes, a série $Y$ pode ser explicada por valores defasados no tempo da própria variável (autocorrelação) ou dos preditores $X_{1}, \dots, X_{p}$ (correlação cruzada). Como os modelos de regressão apresentados até aqui permitem que $Y$ seja influenciada apenas por valores contemporâneos das variáveis explicativas, eles não contemplam essa correlação temporal, podendo ser insuficientes para explicar toda a dinâmica presente em uma série. 
+
+Nesta Seção, vamos introduzir a classe de modelos ARIMA \citep{Box1970}, que contemplam a correlação gerada por relações lineares entre observações defasadas no tempo da própria variável. A associação entre a variável resposta e valores defasados no tempo de covariáveis não será tratada aqui, mas são contemplados por modelos de regressão defasada (\textit{lagged regression}), discutidos nas Seções 4.10 e 5.6 de \cite{Shumway2006}. 
+
+\subsection{Modelos autorregressivos (AR)}
+
+Modelos autorregressivos se baseiam na ideia de que $Y_t$ pode ser explicada como uma função de $p$ valores passados $Y_{t-1}, \dots, Y_{t-p}$, sendo $p$ o número de passos no passado necessários para prever o valor no instante $t$. Se $Y_t$ é uma série estacionária, o modelo autorregressivo de ordem $P$, abreviado como AR($p$), é definido como
+
+\begin{equation}
+	Y_t = \phi_1 Y_{t-1} + \cdots + \phi_p Y_{t-p} + w_t,
+\label{mod:AR}
+\end{equation}
+sendo $\phi_1, \dots, \phi_p$ constantes com $\phi_p \neq 0$ e $w_t \sim N(0, \sigma^2_w)$, $t \geq 0$. . Sem perda de generalidade, assume-se que a média de $Y_t$ é zero\footnote{Se a média de $Y_t$ é $\mu \neq 0$, então o modelo é definido para $Y_t - \mu$, o que equivale a acrescentar um intercepto $\alpha = \mu(1 - \phi_1 - \dots \phi_p)$ ao modelo (\ref{mod:AR}).}.
+
+Os modelos AR($p$) são muito utilizados na Economia, onde é natural pensar o valor de alguma variável no instante $t$ como função de seus valores defasados, e em algumas áreas da física e geofísica, onde os estimadores auto-regressivos são utilizados para estimar o espectro de certos processos. 
+
+\subsection{Modelos autorregressivos e de médias móveis (ARMA)}
+
+Uma alternativa para o modelo AR($p$), no qual supomos que a série $Y_t$ em (\ref{mod:AR}) é uma combinação linear de seus últimos $p$ valores defasados, é o modelo de médias móveis de ordem $q$. Esse modelo assume que $Y_t$ é gerado a partir de uma combinação linear dos erros $w_t, w_{t-1}, \dots, w_{t-q}$. Formalmente, o modelo de médias móveis de ordem $q$, MA($q$), é definido como
+
+\begin{equation}
+Y_t = w_t + \theta_1 w_{t-1} + \cdots + \theta_q w_{t-q},
+\label{mod:MA}
+\end{equation}
+sendo $\theta_1, \dots, \theta_q$ constantes com $\theta_q \neq 0$ e $w_t \sim N(0, \sigma^2_w)$, $t \geq 0$. 
+
+Ao contrário dos modelos auto-regressivos, representar um processo por um modelo de médias móveis puro parece não ser intuitivo.
+
+A utilização de modelos com termos auto-regressivos e de médias móveis pode ser uma boa alternativa para muitas séries encontradas na prática, pois eles normalmente requerem um menor número de parâmetros para explicar a autocorrelação da série \citep{Morettin2004}. Nesse sentido, dizemos que uma série temporal $Y_t$ é ARMA($p$, $q$) se ela é estacionária e se
+
+\begin{equation}
+Y_t = \phi_1 Y_{t-1} + \cdots + \phi_p Y_{t-p} + w_t + \theta_1 w_{t-1} + \cdots + \theta_q Y_{t-q},
+\label{mod:ARMA}
+\end{equation}
+com $\phi_p \neq 0$, $\theta_q \neq 0$ e $\sigma^2_w > 0$.
+
+Repare que os modelos AR($p$) e MA($q$) são casos especiais do ARMA($p$, $q$), com $q = 0$ e $p = $ respectivamente.
+
+A estimação dos parâmetros $(\phi_1, \dots, \phi_p)$ e $(\theta_1, \dots, \theta_q)$ pode ser feita por máxima verossimilhança ou pelo método de mínimos quadrados. Para mais informações, consulte a seção 3.6 de \cite{Shumway2006}.
+
+As três classes de modelos apresentadas até aqui consideram que a série $Y_t$ é estacionária, o que normalmente não acontece na prática. Para flexibilizar essa restrição, apresentaremos a seguir os modelos ARIMA($p$, $d$, $q$), uma extensão da classe ARMA que considera a diferenciação de grau $d$ da série para eliminar a não-estacionariedade.
+
+\subsection{Modelos autorregressivos integrados e de médias móveis (ARIMA)} 
+
+Vimos na Seção \ref{sec:tend-sazon} que séries não-estacionárias podem ser diferenciadas para se alcançar a estacionariedade. De maneira geral, essa estratégia é válida para séries que não apresentam \textit{comportamento explosivo} ou, em outros termos, que apresentam alguma homogeneidade em seu comportamento não-estacionário. \cite{Morettin2004} enquadram séries dessa natureza, chamadas de \textit{séries não-estacionárias homogêneas}, em dois grupos:
+
+\begin{itemize}
+	\item séries que oscilam ao redor de um nível médio durante algum tempo e depois saltam para outro nível temporário; e
+	\item séries que oscilam em uma direção por algum tempo e depois mudam para outra direção temporária.
+\end{itemize}
+O primeiro tipo requer apenas uma diferença para torná-las estacionária, enquanto o segundo requer duas. Dessa forma, a série não-estacionária homogênea $Y_t$ é dita ser ARIMA($p$, $d$, $q$) se $\Delta^d Y_t$, como definido em (\ref{def:diff}), é ARMA($p$, $q$).
+
+Como muito bem discutido na seção 3.8 de \cite{Shumway2006} e no capítulo 6 de \cite{Morettin2004}, precisamos seguir alguns passos essenciais no ajuste de modelos ARIMA:
+
+\begin{enumerate}
+	\item Construir o gráfico da série.
+	\item Transformar a série, se preciso.
+	\item Identificar a ordem de dependência do modelo.
+	\item Estimar os parâmetros.
+	\item Diagnóstico.
+	\item Selecionar o melhor modelo.
+\end{enumerate}
+
+No primeiro passo, podemos encontrar anomalias, como heteroscedasticidade, a partir da gráfico da série contra o tempo. No passo 2, corrigimos essas anomalias utilizando alguma transformação. 
+
+No passo 3, precisamos identificar as ordens $p$, $d$ e $q$ do modelo. O próprio gráfico da série irá sugerir se alguma diferenciação será necessária. Se alguma diferenciação for realizada, calculamos $\Delta Y_t$, $t = 2, \dots, n$, e checamos no gráfico da série  $\Delta Y_t$
+contra o tempo $t$ se outra diferenciação é necessária. Continuamos esse processo, sempre checando os gráficos da série diferenciada contra o tempo\footnote{Cuidado para não introduzir dependência onde não existe. Por exemplo, $Y_t = w_t$ é serialmente não-correlacionada, mas $\Delta Y_t = w_t - w_{t-1}$ é MA(1).}.
+
+Com o valor de $d$ selecionado, observamos o gráfico da função de autocorrelação amostral e da função de autocorrelação parcial amostral de $\Delta^d Y_t$. Sugestões para os valores de $p$ e $q$ podem ser encontrados segundo os critérios apresentados na Tabela \ref{tab:behavior_ACF_PACF_ARMA}.
+
+\begin{table}
+	\centering
+	\caption{Critérios para a escolha da ordem de modelos ARIMA.}
+	\begin{tabular}{c|c|c|c}
+		\hline 
+		& AR($p$) & MA($q$) & ARMA($p$, $q$) \\ 
+		\hline 
+		ACF & Calda longa & Desaparece após o \textit{lag} $q$ & Calda longa \\ 
+		PACF & Desaparece após o \textit{lag} $p$ & Calda longa  & Calda longa  \\ 
+		\hline 	
+	\end{tabular}
+\label{tab:behavior_ACF_PACF_ARMA}
+\end{table}
+
+A ideia nesse passo é, a partir dos gráficos da função de autocorrelação e autocorrelação parcial, escolher alguns valores para $p$, $d$ e $q$ e, no passo 4, ajustar os respectivos modelos. Assim, a partir da análise de diagnóstico realizada no passo 5, selecionar o modelo que melhor se ajustou aos dados no passo 6.
+
+A classe ARIMA pode ser generalizada para incluir o ajuste da sazonalidade. Essa nova classe, conhecida como SARIMA, inclui termos autoregressivos e de médias móveis para termos separados por \textit{lags} de tamanho $s$. Para mais informações, recomendamos a leitura do Capítulo 10 de \cite{Morettin2004} e da Seção 3.9 de \cite{Shumway2006}.  
+
+%\subsection{Modelos de função de transferência}
+
+%Em muitos estudos de séries temporais, não conseguimos explicar a variabilidade de uma variável apenas pelos seus próprios valores defasados no tempo. A classe ARIMA apresentada nas últimas seções não contempla a inclusão de covariáveis, o que pode ser um grande impeditivo para o uso desses modelos.
+
+%Modelos de função de transferência descrevem a relação entre os preditores e a variável resposta de um fenômeno usando uma razão de polinômios, sendo a ordem do modelo igual à ordem do polinômio do denominador.
+
+\subsection{Modelos GARCH}
+
+Os modelos para séries temporais apresentados até aqui são utilizados para modelar a média condicional de um processo quando a variância condicional (volatilidade) é constante. Em muitos problemas, contudo, a suposição de homoscedasticidade pode não ser verdadeira. \Ex
+
+Os modelos autoregressivos com heteroscedasticidade condicional (ARCH), propostos por \cite{Engle1982}, foram desenvolvidos para contemplar mudanças da volatilidade da série. Se $\epsilon_t \sim N(0, 1)$, o modelo ARCH($q$) é definido por
+
+\[
+Y_t = f(\mathbf{X}, \mathbf{Y}) + \sigma_t\epsilon_t
+\]
+\begin{equation}	
+	\sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \dots \epsilon_q \epsilon_{t-q}^2,
+	\label{mod:ARCH}
+\end{equation}
+com $\alpha_0 > 0$ e $\alpha_i \geq 0$, $i > 0$, sendo $f(\mathbf{X}, \mathbf{Y})$ uma função dos preditores $\{(X_{1i}, \dots, X_{pi}),  i \leq t\}$ e das variáveis defasadas $(Y_1, \dots, Y_{t-1})$. Repare a primeira expressão de (\ref{mod:ARCH}) permite o ajuste de diversas classes de modelo para a média condicional de $Y_t$, como modelos de regressão linear, modelos ARIMA e modelos de função de transferência, enquanto a segunda impõe um modelo autorregressivo de ordem $p$ para a volatilidade do processo.
+
+\cite{Bollerslev1986} estendeu a classe ARCH, propondo os GARCH (\textit{generalized} ARCH). Essa nova classe permite o ajuste de um modelo ARMA para a variância do erro ($\sigma^2$), modelando a volatilidade da série com menos parâmetros que um modelo ARCH \citep{Morettin2004}.
+
+\[
+Y_t = f(\mathbf{X}, \mathbf{Y}) + \sigma_t\epsilon_t
+\]
+\begin{equation}
+	\sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \dots \alpha_q \epsilon_{t-q}^2 + \beta_1 \sigma^2_{t-1} + \dots + \beta_p \sigma^2_{t-p},
+	\label{mod:GARCH}
+\end{equation}
+sendo $f(\mathbf{X}, \mathbf{Y})$ definida como anteriormente.
+
+Por ser um modelo com muitos parâmetros, a especificação do modelo GARCH($p$, $q$), geralmente é dividida em três passos:
+
+\begin{enumerate}
+	\item Estimar do melhor modelo AR($q$):
+	\[
+	Y_t = a_0 + a_1 Y_{t-1} + \cdots a_q Y_{t-q} + \epsilon_t
+	\]
+	\item Calcular e construir o gráfico das autocorrelações de $\epsilon^2$, dadas por
+	\[
+	\rho_i = \frac{\sum_{t = i + 1}^T (\hat{\epsilon}_t^2 - \hat{\sigma}_t^2)(\hat{\epsilon}_{t-1}^2 - \hat{\sigma}_{t-1}^2)}{\sum_{t = 1}^T(\hat{\epsilon}_t^2 - \hat{\sigma}_t^2)^2},
+	\]
+	sendo $T$ o tamanho amostral.
+	\item Avaliar valores de $\rho_i$ maiores que $1/\sqrt{T}$.
+\end{enumerate}
+
+A estimação desses modelos pode ser conduzida da mesma forma que para os modelos ARMA, discutida na Seção 3.6 de \cite{Shumway2006}.

@@ -1,0 +1,63 @@
+id,stationname,initial_date
+65,Mauá ,01/01/1998 
+66,Cubatão-V.Parisi ,01/01/1998 
+67,Sorocaba ,01/01/1998 
+73,Congonhas ,01/01/1998 
+87,Cubatão-Centro ,01/01/1998 
+88,S.José Campos ,01/01/1998 
+89,Campinas-Centro ,01/01/1998 
+91,Cerqueira César ,01/01/1998 
+92,Diadema ,01/01/1998 
+95,Cid.Universitária-USP-Ipen ,01/01/1998 
+96,N.Senhora do Ó ,01/01/1998 
+63,Santana ,01/01/1998 
+103,Taboão da Serra ,01/01/1998 
+100,S.André-Capuava ,01/01/1998 
+120,Osasco ,01/01/1998 
+83,Ibirapuera ,03/01/1998 
+85,Mooca ,03/01/1998 
+99,Pinheiros ,01/09/1999 
+117,Paulínia ,01/03/2000 
+72,Parque D.Pedro II ,01/11/2004 
+119,Cubatão-Vale do Mogi ,05/04/2006 
+98,Parelheiros ,22/06/2007 
+97,Itaquera ,09/08/2007 
+86,São Caetano do Sul ,13/12/2007 
+112,Paulínia-Sul ,04/03/2008 
+116,São José do Rio Preto ,23/04/2008 
+111,Marília ,30/04/2008 
+108,Bauru ,11/05/2008 
+114,Presidente Prudente ,15/05/2008 
+105,Americana ,19/05/2008 
+106,Araraquara ,11/07/2008 
+107,Araçatuba ,22/08/2008 
+113,Piracicaba ,02/09/2008 
+110,Jaú ,25/09/2008 
+109,Jundiaí ,17/10/2008 
+102,S.Bernardo-Paulicéia ,16/12/2008 
+248,Catanduva ,15/04/2009 
+64,Santo Amaro ,09/06/2009 
+254,S.André-Paço Municipal ,23/06/2009 
+256,Tatuí ,01/01/2011 
+259,Jacareí ,01/01/2011 
+258,Santos ,07/06/2011 
+260,Santos-Ponta da Praia ,18/11/2011 
+262,Interlagos ,27/02/2012 
+263,Carapicuíba ,27/02/2012 
+264,Guarulhos-Paço Municipal ,27/02/2012 
+266,Itaim Paulista ,03/07/2012 
+269,Capão Redondo ,01/09/2012 
+270,Marg.Tietê-Pte Remédios ,01/09/2012 
+272,S.Bernardo-Centro ,02/04/2014 
+273,Santa Gertrudes ,24/07/2014 
+275,Campinas-V.União ,03/02/2015 
+276,Campinas-Taquaral ,29/05/2015 
+277,S.José Campos-Jd.Satelite ,02/06/2015 
+278,S.José Campos-Vista Verde ,02/06/2015 
+279,Guarulhos-Pimentas ,03/06/2015 
+280,Taubaté ,01/10/2015 
+281,Limeira ,01/01/2016 
+284,Pico do Jaraguá ,20/07/2016 
+288,Ribeirão Preto-Centro ,07/12/2016 
+289,Guaratinguetá ,01/01/2017 
+287,Mogi das Cruzes ,24/02/2017 

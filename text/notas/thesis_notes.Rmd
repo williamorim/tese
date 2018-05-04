@@ -1,0 +1,22 @@
+---
+title: "Thesis notes"
+output: html_notebook
+---
+
+# Quotes
+
+> “There are no routine statistical questions, only questionable statistical routines.” — Sir David Cox
+
+> “Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise.” — John Tukey
+
+# Análise exploratória
+
+Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. The goal of data exploration is to generate many promising leads that you can later explore in more depth.
+
+In exploratory data analysis, you’ll combine visualisation and transformation with your curiosity and scepticism to ask and answer interesting questions about data.
+
+EDA is not a formal process with a strict set of rules. More than anything, EDA is a state of mind. During the initial phases of EDA you should feel free to investigate every idea that occurs to you. Some of these ideas will pan out, and some will be dead ends. As your exploration continues, you will home in on a few particularly productive areas that you’ll eventually write up and communicate to others.
+
+> O que procurar no gráfico da série?
+
+If you think of variation as a phenomenon that creates uncertainty, covariation is a phenomenon that reduces it.

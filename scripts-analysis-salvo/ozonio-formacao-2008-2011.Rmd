@@ -1,0 +1,180 @@
+---
+title: "Formação do ozônio (2008-2011)"
+author: "William Amorim"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+Aprendemos na escola ou ouvimos nos noticiários a importância da camada de ozônio, sobre como ela filtra grande parte da radiação solar nociva à vida na Terra.
+
+Essa camada corresponde a uma região entre aproximadamente 10 e 50 km da superfície, na estratosfera. Lá, o ozônio empenha o papel de herói.
+
+Mas esse mesmo gás pode atuar como vilão. Quando o ozônio aparece mais próximo de nós, no ar que respiramos, ele causa diversos prejuízos ambientais e à saúde humana. O ozônio troposférico\footnote{A camada mais baixa da atmosfera.} é considerado um poluente.
+
+A exposição ao ozônio está associada ao risco de morte por doenças respiratórias, além do aumento de casos de asma, bronquite e ataques cardíacos.
+
+Ao contrário de outros gases, como os óxidos de nitrogênio, o ozônio não é emitido diretamente pelas fontes poluentes, mas sim gerado na atmosfera pela reação de alguns compostos na presença de radiação solar.
+
+Assim, na tentativa de reduzir a concentração do ozônio troposférico, é fundamental entendermos o processo gerador desse gás.
+
+O objetivo deste post é apresentar o ciclo diário do ozônio, comparando o conhecimento teórico com dados da cidade de São Paulo.
+
+## Um pouco de qúimica
+
+De forma bem simplificada, a formação do ozônio troposférico depende de três componentes: óxidos de nitrogênio, compostos orgânicos voláteis (VOC) e luz solar.
+
+Os óxidos de nitrogênio, NO e NO$_2$, são lançados na atmosfera pelos
+processos de combustão (veicular e industrial). Já os compostos orgânicos voláteis são emitidos por processos evaporativos, da queima incompleta de combustíveis
+automotivos e em processos industriais.
+
+O processo pode ser resumido pelo fluxo a seguir:
+
+```{r, eval=TRUE}
+knitr::include_graphics("img/fluxograma_ozonio_1.png")
+```
+
+Note que, ignornado outros fatores, esse processo é cíclico, isto é, começa com a fotólise do NO$_2$, que também é o produto final. Se não fosse a interação de outros processos químicos, essa estacionariedade deveria impedir que a concentração de ozônio subisse muito ao longo do dia.
+
+Um desses processos descreve a geração de NO$_2$ a partir dos compostos orgânicos voláteis (VOC). 
+
+```{r, eval=TRUE}
+knitr::include_graphics("img/fluxograma_ozonio_2.png")
+```
+
+Observe que esse processo consome COV e NO e gera NO$_2$. É razoável supor que a interação entre esses dois processos quebra o ciclo de formação de ozônio, de tal forma que:
+
+1. O NO que reagiria com o ozônio passa também a reagir com peroxi radicais (RO$_2$°), gerando mais NO$_2$.
+
+2. Sob a luz solar, mais NO$_2$ é fotolisado, gerando mais radicais Oº e, consequetentemente, mais ozônio.
+
+3. Esse ozônio extra tem menos NO para reagir, devido ao item 1.
+
+Dessa forma, a interação entre os dois processos geraria um aumento da concentração de ozônio troposférico.
+
+Para estudar essa dinâmica, vamos analisar a relação entre os óxidos de nitrogênio e o O3 na cidade de São Paulo de 2008 a 2011. Infelizmente, não temos dados de VOC.
+
+## Ciclo do ozônio em São Paulo
+
+Vamos utilizar os dados disponibilidados pelos pesquisadores Alberto Salvo e Franz Geiger no artigo *Reduction in local ozone levels in urban São Paulo due to a shift from ethanol to gasoline use*. Os dados originais podem ser acessados pelo link bit.do/salvo_geiger_data.
+
+### Importanto e manipulando os dados
+
+Vamos carregar os dados originais.
+
+```{r}
+df <- readr::read_csv("../data/salvo-geiger/bd_original.csv")
+```
+
+O código abaixo gera uma versão enxuta da base, utilizada neste post. Essa versão está disponível [aqui](https://github.com/williamorim/Rpollution-blog/tree/master/content/blog).
+
+```{r}
+df %>%
+  mutate(date = lubridate::ymd(stringr::str_c(year, monthofyear, dayofmonth, sep = "-"))) %>% 
+  select(date, year, monthofyear, dayofweek, hour, dv_week_reg,
+         stationno, 
+         O3, NO2, NO) %>% 
+  write_rds(path = "data/df_poluentes_2008_2011.rds")
+```
+
+```{r}
+df_poluentes <- readr::read_rds("data/df_poluentes_2008_2011.rds")
+```
+
+### Análise exploratória
+
+Os dados apresentam informações de diversas estações de monitoramento. Vamos focar, inicialmente, na estação "Dom Pedro II".
+
+```{r}
+library(magrittr)
+
+df_DPII <- df_poluentes %>%
+  dplyr::filter(stationno == 1)
+```
+
+Vamos visualizar o gráfico da série:
+
+```{r}
+library(ggplot2)
+
+df_DPII %>%
+  tidyr::gather(poluente, concentracao, O3, NO, NO2) %>% 
+  ggplot(aes(x = date, y = concentracao)) +
+  geom_line() +
+  facet_wrap( ~ poluente, ncol = 1, scales = "free_y") + 
+  geom_smooth() +
+  theme_bw()
+
+df_DPII %>%
+  tidyr::gather(poluente, concentracao, O3, NO) %>% 
+  ggplot(aes(x = date, y = concentracao)) +
+  geom_line() +
+  facet_wrap( ~ poluente, ncol = 1, scales = "free_y") + 
+  geom_smooth() +
+  theme_bw() +
+  labs(y = expression(paste("Concentração", " (", mu, "g/", m^3, ")")),
+       x = "Ano")
+ggsave("../img_tese/cap2/O3_NO.pdf", width = 8, height = 5)
+```
+
+Em 2009 e no final de 2010, há períodos em que altas de NO coincidem com baixas concentrações de ozônio.
+
+Vamos ver como esses gases se comportam ao longo do dia.
+
+```{r}
+df_DPII %>%
+  tidyr::gather(pollutant, concentration, O3, NO, NO2) %>% 
+  dplyr::group_by(hour, pollutant) %>% 
+  dplyr::summarise(concentration = mean(concentration, na.rm = TRUE)) %>% 
+  ggplot(aes(x = hour, y = concentration, color = pollutant, group = pollutant)) +
+  geom_line() +
+  theme_bw()
+```
+
+Os pontos sem informação se referem às horas em que os equipamentos de medidção são desligados para manutenção.
+
+Observamos que o aumento da concentração de ozônio coincide com a queda da concentração de NO e NO$_2$. O nível de NO decai drasticamente, indicando que esse poluente pode estar sendo consumido nos dois processos, gerando O$_3$ e NO$_2$. Observe que a queda da concentração de NO$_2$ é muito menor do que a do NO. Isso sugere que a suposição sobre a interação entre os dois processos é verdadeira.
+
+Vamos ver se esse comportamento se repete para outras estações. São 6 as estações que medem a informação dos 3 poluentes: Dom Pedro II, Ibirapuera, São caetano, Pinheiros, Parelheiros e IPEN. A estação de Itaquera também tem informação dos três poluentes, mas devido à grande taxa de observações faltantes para NO e NO$_2$ (64%), eu optei não incluí-la na análise.
+
+```{r}
+df_poluentes %>%
+  dplyr::mutate(stationname =  
+           forcats::lvls_revalue(as.factor(stationno),
+                        c("Dom Pedro II", "Santana", "Mooca", "Ibirapuera", 
+                          "Nossa Senhora do O", "Sao Caetano", "Congonhas", 
+                          "Cerqueira Cesar", "Centro", "Guarulhos",
+                          "Diadema", "Santo Amaro", "Osasco", "Santo Andre 1", 
+                          "Sao Bernardo", "Taboao", "Maua", "Pinheiros", 
+                          "Parelheiros", "IPEN", "Santo Andre 2", "Itaquera"))) %>% 
+  dplyr::filter(stationno %in% c(1, 5, 7, 27, 29, 31)) %>% 
+  tidyr::gather(pollutant, concentration, O3, NO, NO2) %>% 
+  dplyr::group_by(hour, pollutant, stationname) %>% 
+  dplyr::summarise(concentration = mean(concentration, na.rm = TRUE)) %>% 
+  ggplot(aes(x = hour, y = concentration, color = pollutant, group = pollutant)) +
+  facet_wrap(~stationname) +
+  geom_line() +
+  theme_bw()
+```
+
+O padrão é muito parecido em cada uma das estações. A maior diferença fica nos níveis de NO, que varia provavelmente pela diferença no trânsito local. Nas estações Ibirapuera e IPEN, onde a concentração média de NO é menor durante a manhã, a concentração média de ozônio é maior à tarde.
+
+Nos próximos posts, vamos estudar com mais detalhes a série do ozônio, vendo seu comportamento ao longo da semana e do ano. Além disso, vamos relacioná-la com variáveis climáticas e de trânsito.
+
+## Referências
+
+### Ozônio, meio ambiente e saúde
+
+Health Aspects of Air Pollution with Particulate Matter, Ozone and Nitrogen Dioxide. WHO-Europe report 13–15 January 2003 (PDF)
+
+"Rising Ozone Levels Pose Challenge to U.S. Soybean Production, Scientists Say". NASA Earth Observatory. 2003-07-31. Retrieved 2006-05-10.
+
+Mutters, Randall (March 1999). "Statewide Potential Crop Yield Losses From Ozone Exposure". California Air Resources Board. Archived from the original on 2004-02-17. Retrieved 2006-05-10.
+
+### Ozônio na cidade de São Paulo
+
+Relatório CETESB (2000) - [Estudo do comportamento do ozônio na Região Metropolitana de São Paulo](http://cetesb.sp.gov.br/qualidade-ar/wp-content/uploads/sites/28/2013/12/ozonio_rmsp.zip)
+
+Salvo e Geiger (2014). "Reduction in local ozone levels in urban São Paulo due to a shift from ethanol to gasoline use". Nature geoscience. Vol 7.

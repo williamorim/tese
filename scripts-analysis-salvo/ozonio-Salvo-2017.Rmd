@@ -1,0 +1,55 @@
+---
+title: "Ozônio e clima (2008-2013)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r, echo = FALSE}
+library(tidyverse)
+```
+
+## Dados
+
+```{r}
+df_salvo <- read_rds("data/df_salvo_2017.rds")
+```
+
+## Modelo linear
+
+Modificando banco de dados para rodar o modelo e gerando formula.
+
+```{r}
+df_modelo <- df_salvo %>% 
+  mutate_at(
+    vars(dayofweek, week, dv_ti_0to199m_9am, dv_ti_200to499m_9am,
+         dv_beltway_open),
+    funs(as.factor)
+  ) %>%
+  mutate(pp_m = ifelse(pp_m == 0, 0, 1),
+         pp_m = as.factor(pp_m),
+         pp = ifelse(pp == 0, 0, 1),
+         pp = as.factor(pp))
+
+formula <- df_modelo %>%
+  select(-dv_ti_0to199m, -dv_ti_200to499m, -date, -month, - o3_mass_conc) %>%
+  names() %>% 
+  stringr::str_c(collapse = " + ") %>% 
+  stringr::str_c("o3_mass_conc ~ ", .) %>%
+  stringr::str_c("+ dv_beltway_open*stationname") %>%
+  stringr::str_c("+ trend*stationname") %>%
+  as.formula()
+```
+
+Modelo linear 
+
+```{r}
+fit <- lm(formula, data = df_modelo)
+summary(fit)
+fit$coefficients %>% length
+```
+

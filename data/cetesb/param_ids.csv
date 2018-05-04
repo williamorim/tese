@@ -1,0 +1,21 @@
+id,param_abbrev,param
+61,BEN,Benzeno
+16,CO,Monóxido de Carbono
+23,DV,Direção do Vento
+21,DVG,Direção do Vento Global
+19,ERT,Enxofre Reduzido Total
+59,HCNM,Hidrocarbonetos Totais menos Metano
+12,MP10,Partículas Inaláveis
+57,MP2.5,Partículas Inaláveis Finas
+17,NO,Monóxido de Nitrogênio
+15,NO2,Dióxido de Nitrogênio
+18,NOx,Óxidos de Nitrogênio
+63,O3,Ozônio
+29,PRESS,Pressão Atmosférica
+26,RADG,Radiação Solar Global
+56,RADUV,Radiação Ultra-violeta
+13,SO2,Dióxido de Enxofre
+25,TEMP,Temperatura do Ar
+62,TOL,Tolueno
+28,UR,Umidade Relativa do Ar
+24,VV,Velocidade do Vento
