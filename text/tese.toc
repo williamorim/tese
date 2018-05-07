@@ -1,0 +1,59 @@
+\select@language {brazil}
+\contentsline {chapter}{Lista de Figuras}{ix}{chapter*.5}
+\contentsline {chapter}{Lista de Tabelas}{xiii}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}An\'alise explorat\'oria}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Gr\'aficos}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}O gr\'afico da s\'erie}{6}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Gr\'aficos de dispers\~ao}{8}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Gr\'aficos de distribui\c c\~ao}{11}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Componentes temporais}{11}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Tend\^encia}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Sazonalidade}{14}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Autocorrela\c c\~ao}{15}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Fun\c c\~ao de correla\c c\~ao cruzada}{18}{subsection.2.2.4}
+\contentsline {chapter}{\numberline {3}Modelos para dados de polui\c c\~ao}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Regress\~ao linear}{22}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Especifica\c c\~ao do modelo}{23}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Incorporando tend\^encia e sazonalidade}{24}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Tratando erros correlacionados}{26}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Contornado a suposi\c c\~ao de homoscedasticidade}{27}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Contornado a suposi\c c\~ao de linearidade}{27}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Contornado a suposi\c c\~ao de aditividade}{29}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.7}Avaliando a qualidade do ajuste}{30}{subsection.3.1.7}
+\contentsline {section}{\numberline {3.2}Modelos lineares generalizados}{31}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Especifica\c c\~ao do modelo}{31}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Modelos para dados positivos assim\'etricos}{32}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Modelos para dados de contagem}{34}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Modelos aditivos generalizados}{34}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Especifica\c c\~ao do modelo}{35}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Splines e regress\~ao local}{35}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Modelos ARIMA e extens\~oes}{37}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Modelos autorregressivos (AR)}{37}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Modelos autorregressivos e de m\'edias m\'oveis (ARMA)}{38}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{38}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Modelos GARCH}{39}{subsection.3.4.4}
+\contentsline {chapter}{\numberline {4}Outras t\'ecnicas de aprendizado estat\IeC {\'\i }stico}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}M\'etodos de reamostragem}{41}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Valida\c c\~ao cruzada}{41}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Bootstrap}{42}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Sele\c c\~ao de modelos e regulariza\c c\~ao}{42}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Sele\c c\~ao de vari\'aveis}{42}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Regress\~ao ridge e LASSO}{42}{subsection.4.2.2}
+\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{43}{chapter.5}
+\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{43}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Dimensionando o problema}{44}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}An\'alise explorat\'oria}{45}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}A an\'alise conduzida por \cite {Salvo2017}}{51}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Estrat\'egia I: regress\~ao linear}{52}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Estrat\'egia II: modelo aditivo generalizado}{52}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Estrat\'egia III: LASSO}{52}{subsection.5.1.6}
+\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{55}{chapter.6}
+\contentsline {chapter}{\numberline {7}Previs\~ao}{57}{chapter.7}
+\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{59}{chapter.8}
+\contentsline {section}{\numberline {8.1}Dados no Brasil}{59}{section.8.1}
+\contentsline {section}{\numberline {8.2}Dados nos EUA}{59}{section.8.2}
+\contentsline {section}{\numberline {8.3}Dados na Europa}{59}{section.8.3}
+\contentsline {chapter}{\numberline {9}Discuss\~ao}{61}{chapter.9}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{63}{appendix*.44}
+\contentsfinish 

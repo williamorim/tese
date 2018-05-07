@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: tese.aux
+The style file: plainnat-ime.bst
+format.pages is an unknown function---line 558 of file plainnat-ime.bst
+format.pages is an unknown function---line 588 of file plainnat-ime.bst
+format.pages is an unknown function---line 596 of file plainnat-ime.bst
+format.pages is an unknown function---line 725 of file plainnat-ime.bst
+format.pages is an unknown function---line 873 of file plainnat-ime.bst
+format.pages is an unknown function---line 889 of file plainnat-ime.bst
+Database file #1: ../../Latex/Bibs/atlas.bib.bib
+Warning--there's a number but no volume in Beer2011
+Warning--empty publisher Em Gilberto2013
+You've used 46 entries,
+            2743 wiz_defined-function locations,
+            941 strings with 15038 characters,
+and the built_in function-call counts, 22245 in all, are:
+= -- 1912
+> -- 1665
+< -- 25
++ -- 566
+- -- 519
+* -- 1837
+:= -- 3642
+add.period$ -- 162
+call.type$ -- 46
+change.case$ -- 255
+chr.to.int$ -- 45
+cite$ -- 94
+duplicate$ -- 794
+empty$ -- 1529
+format.name$ -- 585
+if$ -- 4553
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 55
+newline$ -- 258
+num.names$ -- 184
+pop$ -- 586
+preamble$ -- 1
+purify$ -- 219
+quote$ -- 0
+skip$ -- 593
+stack$ -- 0
+substring$ -- 715
+swap$ -- 49
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 446
+warning$ -- 2
+while$ -- 169
+width$ -- 0
+write$ -- 736
+(There were 6 error messages)

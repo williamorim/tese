@@ -1,12 +1,16 @@
 ---
 title: "Ozônio e clima (2008-2013)"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      message = FALSE,
-                      warning = FALSE)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
 ```
 
 ```{r, echo = FALSE}
@@ -16,7 +20,7 @@ library(tidyverse)
 ## Dados
 
 ```{r}
-df_salvo <- read_rds("data/df_salvo_2017.rds")
+df_salvo <- read_rds("../data/artaxo-salvo-geiger/data-asg.rds")
 ```
 
 ## Modelo linear
@@ -24,32 +28,69 @@ df_salvo <- read_rds("data/df_salvo_2017.rds")
 Modificando banco de dados para rodar o modelo e gerando formula.
 
 ```{r}
-df_modelo <- df_salvo %>% 
-  mutate_at(
-    vars(dayofweek, week, dv_ti_0to199m_9am, dv_ti_200to499m_9am,
-         dv_beltway_open),
-    funs(as.factor)
-  ) %>%
-  mutate(pp_m = ifelse(pp_m == 0, 0, 1),
-         pp_m = as.factor(pp_m),
-         pp = ifelse(pp == 0, 0, 1),
-         pp = as.factor(pp))
+df_model <- df_salvo %>%
+  filter(dv_o3 == 1, !month %in% 6:9) %>%
+  group_by(stationname) %>%
+  mutate(trend = 1:n()) %>%
+  ungroup() %>%
+  mutate(
+    week = as.factor(week),
+    dv_day_ = case_when(
+      dayofweek %in% 1:5 & dv_yearendvacation == 1 ~ "week_vac",
+      dayofweek == 0 & dv_yearendvacation == 1 ~ "sun_vac",
+      dayofweek == 6 & dv_yearendvacation == 1 ~ "sat_vac",
+      dayofweek == 0 & dv_yearendvacation == 0 ~ "sun_reg",
+      dayofweek == 1 & dv_yearendvacation == 0 ~ "mon_reg",
+      dayofweek == 2 & dv_yearendvacation == 0 ~ "tue_reg",
+      dayofweek == 3 & dv_yearendvacation == 0 ~ "wed_reg",
+      dayofweek == 4 & dv_yearendvacation == 0 ~ "thu_reg",
+      dayofweek == 5 & dv_yearendvacation == 0 ~ "fri_reg",
+      dayofweek == 6 & dv_yearendvacation == 0 ~ "sat_reg"
+    ),
+    dv_kmcity_am = case_when(
+      congestion_city <= 20 ~ "_0_20",
+      between(congestion_city, 20, 50) ~ "_20_50",
+      between(congestion_city, 50, 80) ~ "_50_80",
+      TRUE ~ "_80_max"
+    ),
+    dv_kmregion_am = case_when(
+      congestion_region <= 4 ~ "_0_4",
+      between(congestion_region, 4, 11) ~ "_4_11",
+      between(congestion_region, 11, 18) ~ "_11_18",
+      TRUE ~ "_18_max"
+    ),
+    dv_pp = case_when(
+      pp == 0 ~ "_0_0",
+      between(pp, 0, 5) ~ "_0_5",
+      between(pp, 5, 20) ~ "_5_20",
+      TRUE ~ "_20_max"
+    )
+  )
 
-formula <- df_modelo %>%
-  select(-dv_ti_0to199m, -dv_ti_200to499m, -date, -month, - o3_mass_conc) %>%
-  names() %>% 
-  stringr::str_c(collapse = " + ") %>% 
+formula <- df_model %>%
+  select(
+    -date, -o3_mass_conc, -dayofweek,
+    -congestion_city, -congestion_region,
+    -pp,
+    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation, -dv_o3
+  ) %>%
+  names() %>%
+  stringr::str_c(collapse = " + ") %>%
   stringr::str_c("o3_mass_conc ~ ", .) %>%
+  stringr::str_c("+ trend:stationname") %>%
   stringr::str_c("+ dv_beltway_open*stationname") %>%
-  stringr::str_c("+ trend*stationname") %>%
   as.formula()
+
+# Validation
+ncol(model.matrix(formula, df_model)) == 96
 ```
 
 Modelo linear 
 
 ```{r}
-fit <- lm(formula, data = df_modelo)
+fit <- lm(formula, data = df_model)
 summary(fit)
-fit$coefficients %>% length
+fit$coefficients %>% length()
 ```
+
 

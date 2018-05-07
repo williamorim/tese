@@ -19,6 +19,22 @@ Nesta Seção, utilizaremos os dados disponibilizados por \cite{Salvo2017} para ex
 
 \subsection{Dimensionando o problema}
 
+\vspace{4mm}
+\begin{flushright}
+	\textcolor{gray}{
+		\begin{tabular}{r}
+			Far better an approximate answer \\ 
+			to the right question, which is often vague, \\
+			than an exact answer to the wrong question, \\
+			which can always be made precise. \\
+		    --- John Tukey
+		\end{tabular} 
+	}	
+\end{flushright}
+\vspace{5mm}
+
+
+
 Dimensionar o problema significa diminuir a complexidade da análise. Muitas vezes, quando o fenômeno sob estudo é complicado e temos muitas variáveis para analisar, é possível reduzir a dimensão dos dados sem perder informação relevante para responder a pergunta de interesse.
 
 O objetivo no nosso exemplo é investigar como o uso do etanol pode ajudar a explicar a variação da concentração de ozônio. De maneira geral, queremos descobrir qual é relação entre a variável resposta e um dos preditores ou, em outras palavras, entender melhor o mecanismo escondido dentro da caixa preta em \REF.
@@ -159,23 +175,104 @@ O modelo final apresentado por \cite{Salvo2017} foi o modelo de regressão linear
 	\end{tabular}
 \\
 \vspace{1mm}
-\scriptsize{*95 parâmetros relacionados aos preditores + 1 parâmetro do intercepto.}
+\scriptsize{*95 parâmetros dos preditores + 1 parâmetro do intercepto.}
 \label{tab:variaveis-modelo-salvo-2017}
 \end{table}
 
 A estimativa reportada para o parâmetro referente à proporção de carros rodando a gasolina foi -8.3 $\pm$ 5.0 (mais ou menos dois desvios-padrão)\footnote{Esse foi o resultado de um dos modelos, no qual foi utilizo mínimos quadrados ordinários para estimação dos parâmetros e bootstrap para o cálculo do erro padrão das estimativas.}, o indica que o aumento da proporção estimada de carros rodando a gasolina na cidade está associada à diminuição da concentração de ozônio. Como medida de qualidade de ajuste, os autores reportaram o R$^2$ do modelo (70,7\%).
 
-Nas estratégias adotadas a seguir, consideramos algumas mudanças em relação ao modelo considerado por \cite{Salvo2017}. Primeiro, considerar tanto a amostra reduzida (sem os meses frios) quanto a amostra completa. Apesar de as concentrações de ozônio serem menores no inverno, gostaríamos de tentar explicar a relação entre as variáveis ao longo de todo o ano. Segundo, não vamos juntar as observações de cada estação. 
-Ainda que seja a mesma variável medida em todas as estações, o mecanismo gerador do ozônio pode ser diferente em cada local da cidade. O efeito do vento ou da chuva, por exemplo, pode variar de localidade para localidade, e, para contemplar essas relações, precisaríamos incluir diversos termos de interação, o que deixaria o modelo mais complexo e difícil de ser interpretado. Em vez disso, vamos adotar uma estratégia mais simples e ajustar um modelo para cada estação. Assim, podemos comparar os 12 resultados e levantar hipóteses para explicar possíveis diferenças. Por fim, consideraremos as mesmas variáveis que os autores, com exceção dos preditores específicos de estação, totalizando xx parâmetros.
+Nas estratégias adotadas a seguir, consideramos algumas mudanças em relação ao modelo considerado por \cite{Salvo2017}. Primeiro, vamos considerar tanto a amostra reduzida (sem os meses frios) quanto a amostra completa. Apesar de as concentrações de ozônio serem menores no inverno, gostaríamos também de tentar explicar a relação entre as variáveis ao longo de todo o ano. 
+
+Segundo, vamos ajustar um modelo para cada estação. Ainda que seja a mesma variável medida em todas as estações, o mecanismo gerador do ozônio pode ser diferente em cada local da cidade. O efeito do vento ou da chuva, por exemplo, pode variar de localidade para localidade, e, para contemplar essas relações, precisaríamos incluir diversos termos de interação, o que deixaria o modelo mais complexo e difícil de ser interpretado. Em vez disso, vamos adotar uma estratégia mais simples e ajustar um modelo para cada estação. Assim, podemos comparar os 12 resultados e levantar hipóteses para explicar possíveis diferenças. 
+
+Em relação aos preditores, consideraremos os mesmos que os autores, com as seguintes exceções:
+
+\begin{itemize}
+	\item como as categorias da variável de congestionamento local foram construídas pelos autores com base na amostra agregada, utilizaremos os valores numéricos dessa variável, assim como a de congestionamento total na cidade;
+	\item como estamos ajustando um modelo para cada estação, não incluiremos preditores específicos de estação.
+\end{itemize}
+Com essas mudanças, o número de parâmetros passou de 96 para 76.
+
+Por fim, separaremos as observações em uma amostra de treino (70\%) e uma amostra de teste (30\%) para estimar o erro preditivo (raiz do erro quadrático médio) do modelo. O erro preditivo será usado como uma forma de comparar a qualidade do ajuste dos diferentes modelos considerados as seguir.
 
 \subsection{Estratégia I: regressão linear}
 
-Como primeira estratégia de análise, vamos ajustar o modelo de regressão linear apresentado em (\ref{mod:linear}). O principal desafio aqui consiste em decidir quais variáveis devem entrar no modelo.
+Como primeira estratégia de análise, vamos ajustar o modelo de regressão linear apresentado em (\ref{mod:linear}).
+
+\begin{table}[h!]
+	\centering
+	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo de regressão linear.}
+	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
+		\hline
+		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
+		\hline
+		Diadema	& -18.01 & & \\			
+		Dom Pedro II & -23.30 & & \\			
+		Ibirapuera & -10.59	& &  \\		
+		IPEN & 5.15	& &  \\		 
+		Mauá & -25.23 & & \\			
+		Mooca & -60.63 &  & \\			
+		Nossa Senhora do Ó & -32.92 &  & \\			
+		Parelheiros & -21.20 & & \\			
+		Pinheiros & -23.04 & &  \\			
+		Santana & -16.99 & &  \\
+		Santo André & -23.13 & & \\
+		São Caetano do Sul & 39.86 & & \\
+		\hline
+\end{tabular}
+\label{tab:cap-comb-ozone-estimativas-reg-linear}
+\end{table}
 
 \subsection{Estratégia II: modelo aditivo generalizado}
 
+\begin{table}[h!]
+	\centering
+	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo aditivo generalizado.}
+	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
+		\hline
+		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
+		\hline
+		Diadema	&  & & \\			
+		Dom Pedro II &  & & \\			
+		Ibirapuera & 	& &  \\		
+		IPEN & 	& &  \\		 
+		Mauá &  & & \\			
+		Mooca &  &  & \\			
+		Nossa Senhora do Ó &  &  & \\			
+		Parelheiros &  & & \\			
+		Pinheiros &  & &  \\			
+		Santana &  & &  \\
+		Santo André &  & & \\
+		São Caetano do Sul &  & & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-ozone-estimativas-gam}
+\end{table}
+
 \subsection{Estratégia III: LASSO}
 
-
+\begin{table}[h!]
+	\centering
+	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo com LASSO.}
+	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
+		\hline
+		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
+		\hline
+		Diadema	&  & & \\			
+		Dom Pedro II &  & & \\			
+		Ibirapuera & 	& &  \\		
+		IPEN & 	& &  \\		 
+		Mauá &  & & \\			
+		Mooca &  &  & \\			
+		Nossa Senhora do Ó &  &  & \\			
+		Parelheiros &  & & \\			
+		Pinheiros &  & &  \\			
+		Santana &  & &  \\
+		Santo André &  & & \\
+		São Caetano do Sul &  & & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-ozone-estimativas-lasso}
+\end{table}
 
 

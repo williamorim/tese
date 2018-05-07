@@ -13,7 +13,7 @@ fit_linear_reg <- function(df, station, formula) {
   resid_lm <- residuals(model_lm)
   
   pred_lm <- predict(model_lm, test)
-  rmse <- sqrt(mean((pred_lm - test$o3_mass_conc)^2))
+  rmse <- sqrt(mean((pred_lm - test$o3_mass_conc)^2, na.rm = TRUE))
   
   return(
     list(

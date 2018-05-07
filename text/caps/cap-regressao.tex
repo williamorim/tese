@@ -4,17 +4,20 @@
 
 %Há duas formas de atacar esse problema utilizando modelagem estatística. A primeira é assumir um modelo interpretável para o mecanismo gerador do fenômeno e estimar os parâmetros que caracterizam esse modelo. Se o modelo utilizado for uma boa representação da natureza, as suas estimativas trarão informação sobre a relação entre as variáveis. A segunda maneira é utilizar modelos não-interpretáveis em conjunto com alguma técnica para interpretação do modelo. Vamos reproduzir aqui as duas alternativas, começando com a primeira.
 
-\begin{center}
+\begin{flushright}
 	\textcolor{gray}{
-		\begin{tabular}{||c}
-			Data will often point with almost equal emphasis on several possible models, and it is \\ 
-			important that the statistician recognize and accept this. --- McCullah and Nelder (1989)
+		\begin{tabular}{r}
+			Data will often point with almost \\
+			equal emphasis on several possible\\
+			models, and it is important that the \\
+			statistician recognize and accept this.\\ 
+			--- McCullah and Nelder (1989)
 		\end{tabular} 
-	}
-\end{center}
+	}	
+\end{flushright}
 \vspace{5mm}
 
-O grande objetivo da Estatística é usar dados para gerar conhecimento sobre um fenômeno de interesse. Como ilustrado na Figura \ref{fig:cap-modelos-black-box}, podemos pensar nos dados como o resultado de um mecanismo da natureza, desconhecido e complexo, no qual um conjunto de variáveis explicativas $\mathbf{X}$ são transformadas em uma variável resposta $Y$\footnote{Também podemos ter o caso multivariado, em que são geradas um conjunto de variáveis respostas $\mathbf{Y}$.} \citep{Breiman2001}.
+O grande objetivo da Estatística é usar dados para gerar conhecimento sobre um fenômeno de interesse. Podemos pensar nesse fenômeno como um mecanismo da natureza, desconhecido e complexo, no qual um conjunto de variáveis explicativas $\mathbf{X}$ são transformadas em uma variável resposta $Y$\footnote{Também podemos ter o caso multivariado, em que são geradas um conjunto de variáveis respostas $\mathbf{Y}$.} (Figura \ref{fig:cap-modelos-black-box}). Os dados são o resultado desse processo \citep{Breiman2001}.  
 
 \begin{figure}[h]
 	\centering
@@ -24,17 +27,27 @@ O grande objetivo da Estatística é usar dados para gerar conhecimento sobre um f
 \end{figure}
 
 
-No contexto da modelagem estatística supervisionada\footnote{No qual uma variável resposta \textit{supervisiona} a estimação dos parâmetros do modelo. Na prática, são os casos em que temos acesso a uma amostra da variável resposta.} \citep{Hastie2008}, dada uma variável $Y$ e um vetor de variáveis explicativas $\mathbf{X} = (X_{1}, \dots, X_{p})$, queremos encontrar funções $f$'s tais que
+No contexto da modelagem estatística supervisionada\footnote{No qual uma variável resposta \textit{supervisiona} a estimação dos parâmetros do modelo. Na prática, são os casos em que temos acesso a uma amostra da variável resposta.} \citep{Hastie2008}, dada a variável resposta $Y$ e o vetor de variáveis explicativas $\mathbf{X} = (X_{1}, \dots, X_{p})$, queremos encontrar funções $f$'s tais que
 
 \begin{equation}
 Y \approx f(\mathbf{X}),
 \label{mod:y-appr-X}
 \end{equation}
-isto é, queremos uma função $f()$ que descreva o mecanismo gerador dos dados da forma mais precisa possível. Dessa forma, podemos tanto fazer predições --- descobrir qual é o novo valor de $Y$ para novos vetores $\mathbf{X}$ --- quanto inferência --- investigar como $\mathbf{X}$ e $Y$ estão relacionadas.
+isto é, queremos uma função $f(\cdot)$ que descreva o mecanismo gerador dos dados da forma mais precisa possível. A partir dessa função, poderíamos tanto fazer predições --- descobrir qual é o novo valor de $Y$ para novos vetores $\mathbf{X}$ --- quanto inferência --- investigar como as variáveis $\mathbf{X}$ e $Y$ estão relacionadas.
 
-[...]
+A expressão (\ref{mod:y-appr-X}) representa diversas classes de modelos, a depender da escolha de $f(\cdot)$. Podemos reescrevê-la, já no contexto de séries temporais, como
 
-A relação \ref{mod:y-appr-X} implica que parte da variabilidade de $Y_t$ pode ser explicada pelo componente sistemático $f(\X)$. Em outras palavras, $f$ representa a informação sistemática que $\X$ nos fornece sobre $Y_t$. Modelos estatísticos são simplificações da realidade. Quando modelamos a série de um poluente, estamos supondo que a sua concentração pode ser aproximada por uma função matemática, que depende de variáveis observáveis. Por ser uma aproximação, todo modelo está sujeito a um erro, que descreve o quanto a nossa simplificação se afasta da realidade. Parte desse erro é irredutível e se deve a impedimentos práticos, como erros de medida, variáveis que não podem ser observadas e desconhecimento de outros fatores que influenciam o fenômeno. No entanto, o erro total pode ser minimizado pela escolha adequada do modelo a ser utilizado, o que torna essencial o desenvolvimento de estratégias de modelagem que contemplem as idiossincrasias do problema sobre análises.
+\begin{equation}
+Y_t = f(\X) + \epsilon_t,
+\label{mod:y-equal-X-e}
+\end{equation}
+sendo $\epsilon$ um erro aleatório, isto é, um componente que absorve toda a informação não disponível sobre o processo gerador de $Y_t$. Mais precisamente, esse termo representa a variabilidade de $Y_t$ não explicada por $\X$. Apesar de a expressão (\ref{mod:y-appr-X}) ser mais intuitiva, (\ref{mod:y-equal-X-e}) é mais conveniente para a formulação teórica dos modelos estatísticos.
+
+De uma forma geral, há duas abordagens para utilizadas para encontrar a função $f(\cdot)$. A primeira consiste em supor um modelo probabilístico para o fenômeno sob estudo, de tal forma que a função $f(\cdot)$ seja interpretável. A segunda permite que os próprios dados definam uma estrutura para $f(\cdot)$, geralmente não interpretável devido à sua complexidade, mas possivelmente mais próxima ao mecanismo gerador dos dados. Devido a interpretabilidade do modelo, a primeira abordagem é geralmente utilizada para inferência, enquanto a segunda, dado que não há o interesse de estudar a relação entre as variáveis, é geralmente utilizada para previsão.
+
+%A relação (\ref{mod:y-appr-X}) implica que parte da variabilidade de $Y$ pode ser explicada pelo componente sistemático $f(\X)$. Em outras palavras, $f(\cdot)$ representa a informação que $\mathbf{X}$ nos fornece sobre $Y$. 
+
+Independentemente da abordagem escolhida, modelos estatísticos são simplificações da realidade e, por isso, estão sujeitos a erros. Quando modelamos a série de um poluente, por exemplo, estamos supondo que a sua concentração ao longo do tempo pode ser aproximada por uma função matemática. O erro do modelo descreve então o quanto a nossa aproximação se afasta da realidade. Parte desse erro é irredutível e se deve a impedimentos práticos, como erros de medida, variáveis que não podem ser observadas e desconhecimento de outros fatores que influenciam o fenômeno. No entanto, o erro total pode ser minimizado pela escolha adequada do modelo utilizado, o que torna essencial o desenvolvimento de estratégias de modelagem que contemplem as particularidades de cada estudo.
 
 %\textsc{\hl{Este trabalho tem os seguintes objetivos:}
 
@@ -44,17 +57,7 @@ A relação \ref{mod:y-appr-X} implica que parte da variabilidade de $Y_t$ pode se
 %\end{enumerate}
 %Essa aproximação exige a utilização de modelos interpretáveis, ao contrário dos modelos conhecidos como ``caixa-preta'', usualmente aplicados para predição. %No Capítulo \inter, discutiremos com mais detalhes as diferenças entre as duas abordagens.}
 
-A expressão (\ref{mod:y-appr-X}) representa diversas classes de modelos, a depender da escolha de $f$. Podemos reescrevê-la como
-
-\begin{equation}
-Y_t = f(\X) + \epsilon_t,
-\label{mod:y-equal-X-e}
-\end{equation}
-sendo $\epsilon$ um erro aleatório, isto é, o componente que absorve toda a informação não disponível sobre o processo gerador de $Y_t$. Mais precisamente, esse termo representa a variabilidade de $Y_t$ não explicada por $\X$. Apesar de a expressão (\ref{mod:y-appr-X}) ser mais intuitiva, (\ref{mod:y-equal-X-e}) é mais conveniente para a formulação teórica dos modelos estatísticos.
-
-
-
-Neste capítulo, introduziremos os principais modelos utilizados na literatura para análise de dados de poluição do ar. Apresentaremos diversos modelos de regressão, como o modelo linear, o modelo linear generalizado e o modelo aditivo generalizado. Também abordaremos modelos para séries temporais, com ênfase nos modelos espaço-estado. Nos próximos capítulos, avaliaremos a utilização desses modelos em estudos recorrentes de poluição atmosférica.
+Neste capítulo, introduziremos os principais modelos utilizados na literatura para análise de dados de poluição do ar. Apresentaremos diversos modelos de regressão, como o modelo linear, o modelo linear generalizado, o modelo aditivo generalizado e modelos para séries temporais.
 
 \section{Regressão linear}
 \label{cap:modelo-linear}

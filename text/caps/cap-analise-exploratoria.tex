@@ -2,14 +2,12 @@
 \chapter{Análise exploratória}
 \label{cap:analise-exploratoria}
 
-\begin{center}
-	\textcolor{gray}{
-		\begin{tabular}{||c}
-			The greatest value of a picture is when it forces us to notice what we nerver \\ 
-			expected to see. --- John Tukey
-		\end{tabular} 
-	}
-\end{center}
+\textcolor{gray}{
+	\begin{tabular}{||l}
+		The greatest value of a picture is when it forces us to notice what we nerver expected to \\
+		see. --- John Tukey
+	\end{tabular} 
+}
 \vspace{5mm}
 
 A análise exploratória é a primeira tentativa de se extrair informação dos dados. Seu objetivo é gerar conhecimento acerca do fenômeno sob estudo para guiar as próximas etapas da análise. Existem diversas maneiras de conduzir uma análise exploratória, e a estratégia aplicada a cada problema depende do tipo de variável com que estamos trabalhando.
@@ -56,31 +54,31 @@ Apesar de ser uma ferramenta de fácil construção e interpretação, quando o volum
 
 Como exemplo de como explorar os dados utilizando o gráfico da série, vamos analisar a concentração horária de ozônio medida na Grande São Paulo, no período de 2008 a 2013.
 
-A base de dados contém medições de ozônio de 12 estações de monitoramento espalhadas pela cidade. A princípio, vamos analisar o gráfico de apenas uma delas, por exemplo, a estação Dom Pedro II (Figura \ref{fig:cap2_O3_DPII}). Podemos observar alguns períodos sem observação e, com a ajuda da série suavizada (por \textit{splines} cúbicos, ver Seção \ref{sec:gam-splines}), uma sazonalidade anual, com picos no início de cada ano.
+A base de dados contém medições de ozônio de 12 estações de monitoramento espalhadas pela cidade. A princípio, vamos analisar o gráfico de apenas uma delas, por exemplo, a estação Dom Pedro II (Figura \ref{fig:cap-analise-explo-O3-DPII}). Podemos observar alguns períodos sem observação e, com a ajuda da série suavizada (por \textit{splines} cúbicos, ver Seção \ref{sec:gam-splines}), uma sazonalidade anual, com picos no início de cada ano.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/O3_DPII.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-O3-DPII.pdf}
 	\caption{Série da concentração de ozônio para a estação Dom Pedro II, na cidade de São Paulo, no período de 2008 a 2013. Em azul, a série suavizada usando \textit{splines} cúbicos.}
-	\label{fig:cap2_O3_DPII}
+	\label{fig:cap-analise-explo-O3-DPII}
 \end{figure}
 
-Como a série é horária, o grande volume de observações pode ocultar alguns padrões. Para avaliar o comportamento da concentração de ozônio ao longo do dia, vamos analisar a concentração média horária dentro do período analisado (Figura \ref{fig:O3_DPII_media_horaria}). Observamos que o pico de ozônio, em geral, acontece no começo da tarde, entre o meio-dia e as 16 horas.
+Como a série é horária, o grande volume de observações pode ocultar alguns padrões. Para avaliar o comportamento da concentração de ozônio ao longo do dia, vamos analisar a concentração média horária dentro do período analisado (Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}). Observamos que o pico de ozônio, em geral, acontece no começo da tarde, entre o meio-dia e as 16 horas.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/O3_DPII_media_horaria.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-O3-DPII-media-horaria.pdf}
 	\caption{Série da concentração média de ozônio ao longo do dia para a estação Dom Pedro II, na cidade de São Paulo, no período de 2008 a 2013. Não existe informação para as 6 da manhã pois é o horário em que o equipamento sofre manutenção.}
-	\label{fig:O3_DPII_media_horaria}
+	\label{fig:cap-analise-explo-O3-DPII-media-horaria}
 \end{figure}
 
-Podemos então considerar a média diária dentro desse período para avaliar apenas o horário em que a concentração de ozônio geralmente está alta. Observe pela Figura \ref{fig:O3_DPII_media_diaria} que fica mais fácil observar o padrão sazonal. O padrão parece não ser o mesmo em 2009, mas essa diferença provavelmente se deve à falta de informação no período. Como indicado na Figura \ref{fig:O3_todas_estacoes_media_diaria}, esse padrão se repete para todas as 12 estações.
+Podemos então considerar a média diária dentro desse período para avaliar apenas o horário em que a concentração de ozônio geralmente está alta. Observe pela Figura \ref{fig:cap-analise-explo-O3-DPII-media-diaria} que fica mais fácil observar o padrão sazonal. O padrão parece não ser o mesmo em 2009, mas essa diferença provavelmente se deve à falta de informação no período. Como indicado na Figura \ref{fig:cap-analise-explo-O3-todas-estacoes-media-diaria}, esse padrão se repete para todas as 12 estações.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/O3_DPII_media_diaria.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-O3-DPII-media-diaria.pdf}
 	\caption{Série diária da concentração média de ozônio medido no começo da tarde para a estação Dom Pedro II, na cidade de São Paulo, no período de 2008 a 2013. Em azul, a série suavizada usando \textit{splines} cúbicos.}
-	\label{fig:O3_DPII_media_diaria}
+	\label{fig:cap-analise-explo-O3-DPII-media-diarias}
 \end{figure}
 
 
@@ -89,18 +87,18 @@ Note que conduzir a análise exploratória na direção de casos particulares facili
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/O3_todas_estacoes_media_diaria.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-O3-todas-estacoes-media-diaria.pdf}
 	\caption{Série diária da concentração média de ozônio medido no começo da tarde para todas as estações, na cidade de São Paulo, no período de 2008 a 2013. Em azul, as séries suavizadas usando \textit{splines} cúbicos.}
-	\label{fig:O3_todas_estacoes_media_diaria}
+	\label{fig:cap-analise-explo-O3-todas-estacoes-media-diaria}
 \end{figure}
 
 Muitas vezes, também temos interesse em estudar a relação entre duas séries. Os gráficos dessas séries, avaliadas em um mesmo período, podem então ser construídos na mesma figura como uma tentativa de encontrar padrões no comportamento conjunto das duas curvas. Na Figura \ref{fig:O3_NO}, construímos gráficos das séries horárias de ozônio e de óxido de nitrogênio (NO), ambos medidos na estação Dom Pedro II, em São Paulo, no período de 2008 a 2011. Podemos observar que períodos de menor concentração de ozônio parecem estar associados a períodos de maior concentração de NO.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/O3_NO.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-O3-NO.pdf}
 	\caption{Série diária da concentração média de ozônio medido no começo da tarde para todas as estações, na cidade de São Paulo, no período de 2008 a 2013. Em azul, as séries suavizadas usando \textit{splines} cúbicos.}
-	\label{fig:O3_NO}
+	\label{fig:cap-analise-explo-O3-NO}
 \end{figure}
 
 Gráficos da série trazem bastante intuição sobre o comportamento do fenômeno sob estudo, mas seria interessante dispormos medidas mais objetivas. Nas próximas seções, discutiremos os conceitos de estacionariedade e autocorrelação e como identificar essas características. Além disso, apresentaremos estratégias para conduzir a análise na presença de tendência e sazonalidade.
@@ -194,13 +192,13 @@ No caso geral, definimos a diferenciação de ordem $n$ como
 \end{equation}
 Na prática, dificilmente encontramos séries com tendência quadrática ou de grau mais elevado, então a diferença de primeiro grau é geralmente suficiente para alcançar a estacionariedade.
 
-Como exemplo, observe a Figura \ref{fig:cap2_asg_o3_trend}. No painel (a), temos a série da concentração de ozônio diária média, em que podemos observar uma leve tendência linear positiva, isto é, a concentração média parece crescer com o tempo. No painel (b), apresentamos o gráfico da série de diferenças (primeira ordem). Podemos observar que a série já não apresenta qualquer tendência linear.
+Como exemplo, observe a Figura \ref{fig:cap-analise-explo-asg-O3-trend}. No painel (a), temos a série da concentração de ozônio diária média, em que podemos observar uma leve tendência linear positiva, isto é, a concentração média parece crescer com o tempo. No painel (b), apresentamos o gráfico da série de diferenças (primeira ordem). Podemos observar que a série já não apresenta qualquer tendência linear.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/cap2_asg_o3_trend.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-asg-O3-trend.pdf}
 	\caption{Série da concentração de ozônio diária média, medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2011, das 12h às 16h.}
-	\label{fig:cap2_asg_o3_trend}
+	\label{fig:cap-analise-explo-asg-O3-trend}
 \end{figure}
 
 Quando o modelo ajustado não assume estacionariedade, podemos incorporar um termo de tendência diretamente no modelo. Discutiremos esse tópico no Capítulo \ref{cap:regressao}.
@@ -211,13 +209,13 @@ Em geral, o gráfico da série é suficiente para a identificação de sazonalidade N
 
 Toda série temporal pode ser decomposta em uma soma de ondas senoidais, com frequências e amplitudes diferentes \citep{Shumway2006}. Para um conjunto de ondas de frequências diferentes e fixadas a priori, podemos calcular quais são as amplitudes de cada uma dessas ondas para que a soma delas gere a série original. Podemos então definir uma medida de associação linear entre a série original e cada uma das ondas senoidais. Essa medida, chamada de \textit{densidade espectral}, é proporcional à amplitude calculada para cada onda. Assim, quanto maior a densidade espectral associada a uma determinada frequência, maior será a importância dessa frequência para explicar a periodicidade da série. O periodograma é justamente um gráfico da densidade espectral em função das frequências.
 
-Na Figura \ref{fig:periodograma}, apresentamos o periodograma da série horária de ozônio da cidade de São Paulo de 2008 a 2013. Podemos observar que o período\footnote{O período é o inverso da frequência.} mais importante para explicar a periodicidade da série corresponde a um dia, isto é, o periodograma aponta sazonalidade diária, o que é esperado se observarmos a Figura \ref{fig:O3_DPII_media_horaria}.
+Na Figura \ref{fig:cap-analise-explo-periodograma}, apresentamos o periodograma da série horária de ozônio da cidade de São Paulo de 2008 a 2013. Podemos observar que o período\footnote{O período é o inverso da frequência.} mais importante para explicar a periodicidade da série corresponde a um dia, isto é, o periodograma aponta sazonalidade diária, o que é esperado se observarmos a Figura  \ref{fig:cap-analise-explo-O3-DPII-media-horaria}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/periodograma.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-periodograma.pdf}
 	\caption{Periodogramas para a concentração horária de ozônio medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2013. Dados disponibilizados por \cite{Salvo2014}. No painel (a), apresentamos a densidade espectral contra a frequência. No painel (b), resumimos a densidade espectral por período, apresentado em dias.}
-	\label{fig:periodograma}
+	\label{fig:cap-analise-explo-periodograma}
 \end{figure}
 
 %Também existem testes para a identificação de tendência e sazonalidade --- teste de Friedman.
@@ -256,26 +254,26 @@ sendo
 \end{equation}
 a função de autocovariância amostral, $y_t$ o valor observado no instante $t$ e $\bar{y} = \frac{1}{n}\sum_{t=1}^{n}y_t$ a média amostral.
 
-Na Figura \ref{fig:cap2_acf_ozonio}, apresentamos a função de autocorreção da concentração de ozônio medida na estação Dom Pedro II. Podemos observar que a autocorrelação é sempre positiva e não decai para o zero, indicando que a série apresenta tendência. Se a série fosse estacionárias, esperaríamos que apenas as observações próximas fossem correlacionadas, e então a função de autocorrelação convergiria rapidamente para zero conforme aumentássemos o valor de $h$.
+Na Figura \ref{fig:cap-analise-explo-acf-O3-DPII}, apresentamos a função de autocorreção da concentração de ozônio medida na estação Dom Pedro II. Podemos observar que a autocorrelação é sempre positiva e não decai para o zero, indicando que a série apresenta tendência. Se a série fosse estacionárias, esperaríamos que apenas as observações próximas fossem correlacionadas, e então a função de autocorrelação convergiria rapidamente para zero conforme aumentássemos o valor de $h$.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/cap2_acf_o3_dpII.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-acf-O3-DPII.pdf}
 	\caption{Função de autocorreção da concentração de ozônio diária média, medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2011, das 12h às 16h. Dados disponibilizados por \cite{Salvo2014}. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significantemente diferentes de zero.}
-	\label{fig:cap2_acf_ozonio}
+	\label{fig:cap-analise-explo-acf-O3-DPII}
 \end{figure}
 
 %Como vem sendo enfatizado até aqui, a função de autocorrelação captura a associação linear entre as observações de uma série. Para desmascarar possíveis relações não-lineares, podemos construir uma \textit{matriz de dispersão} de valores defasados.
 
 Note que se as observações $Y_t$ e $Y_{t-1}$ são correlacionadas, e da mesma forma as observações $Y_{t-1}$ e $Y_{t-2}$, parte da correlação entre $Y_t$ e $Y_{t-2}$ pode ser explicada por $Y_{t-1}$. Como a função de autocorrelação nos dá a correlação total entre $Y_t$ e $Y_{t-2}$, independentemente do fato de parte dela poder ser explicada por $Y_{t-1}$, se quisermos encontrar apenas a variabilidade explicada por $Y_{t-2}$ precisamos utilizar a \textit{função de autocorrelação parcial}. No caso geral, essa função mede a correlação entre as observações $Y_t$ e $Y_{t-m}$, controlando pelas observações intermediárias $Y_{t-1}, Y_{t-2}, \dots, Y_{t-m+1}$.
 
-Na Figura \ref{fig:cap2_pacf_ozonio}, apresentamos a função de autocorreção parcial da concentração de ozônio, como no exemplo anterior. Podemos observar agora que a maioria das defasagens são não significativas. Mesmo assim, ainda encontramos algumas defasagens altas significativos, indicando que a série realmente não é estacionária.
+Na Figura \ref{fig:cap-analise-explo-pacf-O3-DPII}, apresentamos a função de autocorreção parcial da concentração de ozônio, como no exemplo anterior. Podemos observar agora que a maioria das defasagens são não significativas. Mesmo assim, ainda encontramos algumas defasagens altas significativos, indicando que a série realmente não é estacionária.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{../analise-poluicao/img_tese/cap2/cap2_pacf_o3_dpII.pdf}
+	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-pacf-O3-DPII.pdf}
 	\caption{Função de autocorreção parcial da concentração de ozônio diária média, medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2011, das 12h às 16h. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significantemente diferentes de zero.}
-	\label{fig:cap2_pacf_ozonio}
+	\label{fig:cap-analise-explo-pacf-O3-DPII}
 \end{figure}
 
 Até agora discutimos como avaliar a correlação entre observações defasadas de uma mesma série. A seguir, vamos discutir como avaliar a associação entre observações de duas ou mais séries.
