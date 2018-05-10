@@ -29,13 +29,50 @@ Mais precisamente, discutiremos métodos de reamostragem, seleção de variáveis e 
 
 \subsection{Validação cruzada}
 
-- Introdução
+Uma forma de avaliar a qualidade do ajuste de um modelo é observar o seu \textit{erro de teste}. O erro de teste é o erro médio resultante da utilização do modelo escolhido para prever a resposta em novas observações, que não foram utilizadas para estimar os parâmetros do modelo \citep{James2013}.
 
-- Amostra de validação
+Como na maioria dos estudos não é possível obter facilmente novas observações, podemos calcular o erro de teste dividindo a amostra principal em duas partes: uma utilizada para o ajuste do modelo e a outra para o cálculo do erro de teste, como se fosse um conjunto de novas observações. Essa técnica é conhecida como \textit{validação cruzada} \citep{James2013}. Há diversos tipos de validação cruzada, que variam a depender da forma utilizada para dividir a amostra. Nesta seção, apresentaremos os principais tipos de validação cruzada e discutiremos as vantagens e desvantagens de cada uma.
 
-- LOOCV
+|%Quando precisamos escolher valores para hiperparâmetros do modelo, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), podemos dividir a amostra em ainda mais uma parte: uma amostra de validação. Nesses casos, os modelos são treinados com a amostra de teste e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro com menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Repare que a amostra de teste nunca é utilizada para ajustar o modelo.
 
-- k-fold cross validation
+
+
+\subsubsection{Amostra de validação}
+
+A amostra de validação é a forma mais simples de validação cruzada. A estratégia aqui consiste em dividir aleatoriamente as observações em uma amostra de treino e uma amostra de validação. A proporção de observações em cada uma depende do tamanho amostral. Costuma-se utilizar 30\% da amostra para validação, mas esse número pode ser menor em amostras muito grandes (mais de 100 mil observações, por exemplo).
+
+Conforme discutido em \cite{James2013}, a amostra de validação tem duas desvantagens em potencial:
+
+\begin{itemize}
+	\item a estimativa do erro de teste pode ter alta variância, dependendo de quais observações ficaram na amostra de treino e quais fiaram na amostra de validação;
+	\item como a acurácia de modelos estatísticos é menor quando ajustados com menos observações e apenas parte das observações são utilizadas no modelo final, a estimativa do erro de teste pode superestimada. 
+\end{itemize}
+
+A seguir, apresentamos um tipo de validação cruzada que não possui essas limitações.
+
+\subsubsection{LOOCV}
+
+Considere uma amostra com $n$ observações. A validação cruzada \textit{leave-one-out} (LOOCV) consiste em rodar o modelo escolhido $n$ vezes, sendo que em cada ajuste nós deixamos a $i$-ésima observação de fora, $i = 1, \dots, n$, e a utilizamos para calcular o erro de teste. A estimativa final do erro de teste será então a média das $n$ estimativas parciais. 
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figuras/cap-aprend-estat-loocv.png}
+	\caption{Esquematização da validação cruzada \textit{leave-one-out}.}
+	\label{cap-aprend-estat-loocv}
+\end{figure}
+
+Repare que com essa estratégia, todas as observações são utilizadas no ajuste do modelo, o que elimina as limitações da amostra de validação. No entanto, uma desvantagem aqui é a necessidade de ajustar o modelo $n$ vezes. Quando $n$ é muito grande, a LOOCV pode exigir um alto tempo de computação. Apresentamos a seguir uma generalização do LOOCV que é mais adequada para grandes amostras.
+
+\subsubsection{K-fold}
+
+Podemos generalizar a LOOCV dividindo a amostra em $k$ grupos com aproximadamente a mesma quantidade de observações e então ajustando o modelo $k$ vezes, sendo que em cada ajuste selecionamos um grupo diferente como amostra de validação. Essa abordagem é chamada de \textit{validação cruzada k-fold}. Note que a LOOCV é o caso especial em que $k = n$.
+
+A maior vantagem da validação cruzada \textit{k-fold} sobre a LOOCV é computacional. Em vez de ajustarmos o modelo $n$ vezes, ajustamos apenas $k$, sendo que $k << n$. E como estamos utilizando todas as observações para treinar o modelo, não temos as limitações de se utilizar uma única amostra de validação.
+
+Muitas vezes, quando a classe de modelos escolhida exige a escolha de hiperparâmetros, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), é comum separarmos a amostra em três partes: uma amostra de treino, uma amostra de validação e uma amostra de teste. Nesse caso, os modelos são treinados com a amostra de treino e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro que leva ao menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Geralmente utiliza-se LOOOCV ou \textit{k-fold} para a validação e uma amostra separada para o teste. Essa estratégia é utilizada para garantir que o erro de teste não seja calculado em observações utilizadas no ajuste do modelo e reflita o erro que obteríamos ao aplicá-lo no mundo real.
+
+Como discutimos até agora, a validação cruzada utiliza reamostragem para avaliar a qualidade do ajuste realizado. A seguir, apresentaremos uma técnica de reamostragem para obter informações sobre as estimativas do modelo.
 
 \subsection{Bootstrap}
 
@@ -51,4 +88,11 @@ Mais informações sobre o bootstrap podem ser encontradas em \cite{James2013}.
 
 \subsection{Seleção de variáveis}
 
-\subsection{Regressão ridge e LASSO}
+
+
+\subsection{Regressão ridge}
+\label{sec:ridge}
+
+
+\subsection{LASSO}
+\label{sec:lasso}

@@ -38,20 +38,21 @@
 \BOOKMARK [2][]{subsection.4.1.2}{Bootstrap}{section.4.1}% 38
 \BOOKMARK [1][]{section.4.2}{Sele\347\343o de modelos e regulariza\347\343o}{chapter.4}% 39
 \BOOKMARK [2][]{subsection.4.2.1}{Sele\347\343o de vari\341veis}{section.4.2}% 40
-\BOOKMARK [2][]{subsection.4.2.2}{Regress\343o ridge e LASSO}{section.4.2}% 41
-\BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 42
-\BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 43
-\BOOKMARK [2][]{subsection.5.1.1}{Dimensionando o problema}{section.5.1}% 44
-\BOOKMARK [2][]{subsection.5.1.2}{An\341lise explorat\363ria}{section.5.1}% 45
-\BOOKMARK [2][]{subsection.5.1.3}{A an\341lise conduzida por Salvo2017}{section.5.1}% 46
-\BOOKMARK [2][]{subsection.5.1.4}{Estrat\351gia I: regress\343o linear}{section.5.1}% 47
-\BOOKMARK [2][]{subsection.5.1.5}{Estrat\351gia II: modelo aditivo generalizado}{section.5.1}% 48
-\BOOKMARK [2][]{subsection.5.1.6}{Estrat\351gia III: LASSO}{section.5.1}% 49
-\BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 50
-\BOOKMARK [0][]{chapter.7}{Previs\343o}{}% 51
-\BOOKMARK [0][]{chapter.8}{Obtendo dados de polui\347\343o}{}% 52
-\BOOKMARK [1][]{section.8.1}{Dados no Brasil}{chapter.8}% 53
-\BOOKMARK [1][]{section.8.2}{Dados nos EUA}{chapter.8}% 54
-\BOOKMARK [1][]{section.8.3}{Dados na Europa}{chapter.8}% 55
-\BOOKMARK [0][]{chapter.9}{Discuss\343o}{}% 56
-\BOOKMARK [0][]{appendix*.44}{Refer\352ncias Bibliogr\341ficas}{}% 57
+\BOOKMARK [2][]{subsection.4.2.2}{Regress\343o ridge}{section.4.2}% 41
+\BOOKMARK [2][]{subsection.4.2.3}{LASSO}{section.4.2}% 42
+\BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 43
+\BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 44
+\BOOKMARK [2][]{subsection.5.1.1}{Dimensionando o problema}{section.5.1}% 45
+\BOOKMARK [2][]{subsection.5.1.2}{An\341lise explorat\363ria}{section.5.1}% 46
+\BOOKMARK [2][]{subsection.5.1.3}{A an\341lise conduzida por Salvo2017}{section.5.1}% 47
+\BOOKMARK [2][]{subsection.5.1.4}{Estrat\351gia I: regress\343o linear}{section.5.1}% 48
+\BOOKMARK [2][]{subsection.5.1.5}{Estrat\351gia II: modelo aditivo generalizado}{section.5.1}% 49
+\BOOKMARK [2][]{subsection.5.1.6}{Estrat\351gia III: LASSO}{section.5.1}% 50
+\BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 51
+\BOOKMARK [0][]{chapter.7}{Previs\343o}{}% 52
+\BOOKMARK [0][]{chapter.8}{Obtendo dados de polui\347\343o}{}% 53
+\BOOKMARK [1][]{section.8.1}{Dados no Brasil}{chapter.8}% 54
+\BOOKMARK [1][]{section.8.2}{Dados nos EUA}{chapter.8}% 55
+\BOOKMARK [1][]{section.8.3}{Dados na Europa}{chapter.8}% 56
+\BOOKMARK [0][]{chapter.9}{Discuss\343o}{}% 57
+\BOOKMARK [0][]{appendix*.48}{Refer\352ncias Bibliogr\341ficas}{}% 58
