@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------- %%
-\chapter{Outras técnicas de aprendizado estatístico}
+\chapter{Técnicas de aprendizado estatístico}
 \label{cap:aprendizado_estatistico}
 
 \begin{flushright}
@@ -33,9 +33,7 @@ Uma forma de avaliar a qualidade do ajuste de um modelo é observar o seu \textit
 
 Como na maioria dos estudos não é possível obter facilmente novas observações, podemos calcular o erro de teste dividindo a amostra principal em duas partes: uma utilizada para o ajuste do modelo e a outra para o cálculo do erro de teste, como se fosse um conjunto de novas observações. Essa técnica é conhecida como \textit{validação cruzada} \citep{James2013}. Há diversos tipos de validação cruzada, que variam a depender da forma utilizada para dividir a amostra. Nesta seção, apresentaremos os principais tipos de validação cruzada e discutiremos as vantagens e desvantagens de cada uma.
 
-|%Quando precisamos escolher valores para hiperparâmetros do modelo, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), podemos dividir a amostra em ainda mais uma parte: uma amostra de validação. Nesses casos, os modelos são treinados com a amostra de teste e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro com menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Repare que a amostra de teste nunca é utilizada para ajustar o modelo.
-
-
+%Quando precisamos escolher valores para hiperparâmetros do modelo, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), podemos dividir a amostra em ainda mais uma parte: uma amostra de validação. Nesses casos, os modelos são treinados com a amostra de teste e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro com menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Repare que a amostra de teste nunca é utilizada para ajustar o modelo.
 
 \subsubsection{Amostra de validação}
 
@@ -84,11 +82,60 @@ Mais informações sobre o bootstrap podem ser encontradas em \cite{James2013}.
 
 %Essa técnica pode ser utilizada, por exemplo, para estimar o erro-padrão dos coeficientes de um modelo de regressão.
 
-\section{Seleção de modelos e regularização}
+\section{Seleção de variáveis}
 
-\subsection{Seleção de variáveis}
+É muito comum na modelagem estatística incluirmos no modelo preditores que, na verdade, não estão associados com o fenômeno de interesse. Essas variáveis irrelevantes geram uma complexidade desnecessária no modelo resultante, sendo apropriado retirá-las da análise para obtermos um modelo mais fácil de interpretar.
 
+Uma forma de selecionar variáveis é, a partir de algum critério, definir qual subconjunto dos preditores deve permanecer no modelo. Nesta seção, apresentaremos estratégias para decidir quais variáveis devem ficar ou ser retiradas do modelo.
 
+\subsection{Selecionando o melhor subconjunto de preditores}
+
+Para selecionar o melhor subconjunto entre $p$ preditores, ajustamos o modelo para todos os subconjuntos possíveis de variáveis e escolhemos o melhor segundo alguma métrica, geralmente erro preditivo, R$^2$ ajustado, AIC ou BIC. Para mais informações sobre essas quantidades, consultar \cite{James2013}. Observe que devemos usar uma métrica que penalize o modelo pelo número de parâmetros, pois, caso contrário, selecionaríamos sempre o modelo com mais preditores.
+
+Na Tabela \ref{tab:3-preditores-selecao-melhor-subconjunto} apresentamos os 7 modelos que precisaríamos ajustar no caso de 3 preditores, $X_1$, $X_2$ e$X_3$, e um modelo de regressão linear (Seção \ref{sec:modelo-linear}). Para um número relativamente pequeno de variáveis, selecionar o melhor subconjunto de preditores é uma estratégia conceitualmente simples e de fácil execução. No entanto, conforme $p$ cresce, essa técnica pode se tornar computacionalmente inviável. Para $p = 20$, por exemplo, precisaríamos rodar mais de um milhão de modelos. A seguir, apresentamos algumas estratégias computacionalmente eficientes para aplicarmos em problemas com muitos preditores.
+
+\begin{table}[h!]
+	\centering
+	\caption{Modelos de regressão linear que devem ser ajustados para selecionar o melhor subconjunto de variáveis no caso com 3 preditores.}
+	\begin{tabular}{c|c|c}
+		\hline 
+		Uma variável & Duas variáveis & Três variáveis \\ 
+		\hline 
+		$Y = \beta_0 + \beta_1 X_1 + \epsilon$ & $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon$ &  \multirow{3}{5.5cm}{$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 +  \epsilon$} \\  
+		$Y = \beta_0 + \beta_1 X_2 + \epsilon$ & $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_3 + \epsilon$  \\
+		$Y = \beta_0 + \beta_1 X_3 + \epsilon$ & $Y = \beta_0 + \beta_1 X_2 + \beta_2 X_3 + \epsilon$ \\ 
+		\hline 
+	\end{tabular}
+    \label{tab:3-preditores-selecao-melhor-subconjunto}	
+\end{table}
+
+\subsection{Stepwise}
+
+Os métodos \textit{stepwise} são algoritmos de seleção de variáveis que visam encontrar o melhor sub-conjunto de preditores dentro de um conjunto restrito de combinações em vez de ajustar todos os 2$^p$ modelos possíveis. 
+
+A diferença entre cada método \textit{stepwise} está em como as variáveis são adicionas ou retiradas do modelo em cada passo. Os mais utilizados são o \textit{foward stepwise} e o \textit{backward stepwise}.
+
+O \textit{foward stepwise} consiste na execução dos seguintes passos:
+
+\begin{enumerate}
+	\item Ajuste o modelo nulo ($M_0$), sem preditores.
+	\item Ajuste todos os $p$ modelos com 1 preditor e escolha o melhor\footnote{Maior $R^2$, por exemplo.} ($M_1$).
+	\item Ajuste todos os $p-1$ modelos com 2 preditores que contenham o preditor selecionado no passo anterior e escolha o melhor ($M_2$).
+	\item De forma análoga, ajuste os modelos com 3, 4, ..., $p$ preditores, mantendo sempre como base o modelo obtido anteriormente, e em cada passo escolha o melhor ($M_3$, $M_4$, \dots, $M_p$).
+	\item Escolha o melhor modelo entre $M_0$, $M_1$, \dots, $M_p$ utilizando erro preditivo, AIC, BIC ou $R^2$ ajustado.
+\end{enumerate}
+
+Repare que o \textit{foward stepwise} diminui o número de modelos ajustados de $2^p$ para $1 + p(p + 1)/2$. Para $p = 20$, o número de modelos diminui de 1.048.576 para 211.  
+
+A ideia do método \textit{backward stepwise} é parecida com a do \textit{foward}. A diferença é que começamos no passo 1 com o modelo completo ($M_p$), com todos os preditores, e nos passo seguintes retiramos cada um dos preditores e ajustamos os modelos correspondentes, selecionando sempre aquele com maior $R^2$ ($M_{p-1}, M_{p-2}, \dots, M_0$). Ao fim, escolhemos o melhor entre os modelos $M_0$, $M_1$, \dots, $M_p$ utilizando erro preditivo, AIC, BIC ou $R^2$ ajustado. O número de modelos ajustados nesse caso é igual ao do \textit{foward stepwise}.
+
+Ainda existem métodos \textit{stepwise} híbridos, nos quais os preditores são adicionados sequencialmente, assim como no \textit{foward stepwise}, mas em cada etapa é avaliado se um dos preditores já incluídos deve ou não sair do modelo. Essa estratégia tenta considerar mais modelos, chegando mais próximo da seleção do melhor sub-conjunto discutida na seção anterior. Para mais informações, consultar \cite{Nelder1972}.
+
+\section{Regularização}
+
+Os métodos de seleção de sub-conjuntos de preditores apresentados nas seções anteriores envolvem o ajuste de diversos modelos e a escolha do melhor segundo alguma métrica. Uma alternativa, seria ajustar um único modelo contendo todos os preditores e utilizar técnicas que limita ou regulariza as estimativas dos coeficientes, encolhendo seus valores na direção do zero.
+
+Essas técnicas são chamadas de técnicas de regularização e serão o tema dessa seção.
 
 \subsection{Regressão ridge}
 \label{sec:ridge}

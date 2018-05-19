@@ -33,31 +33,33 @@
 \contentsline {subsection}{\numberline {3.4.2}Modelos autorregressivos e de m\'edias m\'oveis (ARMA)}{38}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{38}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Modelos GARCH}{39}{subsection.3.4.4}
-\contentsline {chapter}{\numberline {4}Outras t\'ecnicas de aprendizado estat\IeC {\'\i }stico}{41}{chapter.4}
+\contentsline {chapter}{\numberline {4}T\'ecnicas de aprendizado estat\IeC {\'\i }stico}{41}{chapter.4}
 \contentsline {section}{\numberline {4.1}M\'etodos de reamostragem}{41}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Valida\c c\~ao cruzada}{41}{subsection.4.1.1}
 \contentsline {subsubsection}{Amostra de valida\c c\~ao}{42}{section*.32}
 \contentsline {subsubsection}{LOOCV}{42}{section*.33}
 \contentsline {subsubsection}{K-fold}{42}{section*.35}
 \contentsline {subsection}{\numberline {4.1.2}Bootstrap}{43}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Sele\c c\~ao de modelos e regulariza\c c\~ao}{44}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Sele\c c\~ao de vari\'aveis}{44}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Regress\~ao ridge}{44}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}LASSO}{44}{subsection.4.2.3}
-\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{45}{chapter.5}
-\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{45}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Dimensionando o problema}{46}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}An\'alise explorat\'oria}{47}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}A an\'alise conduzida por \cite {Salvo2017}}{53}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Estrat\'egia I: regress\~ao linear}{54}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}Estrat\'egia II: modelo aditivo generalizado}{54}{subsection.5.1.5}
-\contentsline {subsection}{\numberline {5.1.6}Estrat\'egia III: LASSO}{54}{subsection.5.1.6}
-\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{57}{chapter.6}
-\contentsline {chapter}{\numberline {7}Previs\~ao}{59}{chapter.7}
-\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{61}{chapter.8}
-\contentsline {section}{\numberline {8.1}Dados no Brasil}{61}{section.8.1}
-\contentsline {section}{\numberline {8.2}Dados nos EUA}{61}{section.8.2}
-\contentsline {section}{\numberline {8.3}Dados na Europa}{61}{section.8.3}
-\contentsline {chapter}{\numberline {9}Discuss\~ao}{63}{chapter.9}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{65}{appendix*.48}
+\contentsline {section}{\numberline {4.2}Sele\c c\~ao de vari\'aveis}{44}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Selecionando o melhor subconjunto de preditores}{44}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Stepwise}{44}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Regulariza\c c\~ao}{45}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Regress\~ao ridge}{45}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}LASSO}{45}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{47}{chapter.5}
+\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{47}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Dimensionando o problema}{48}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}An\'alise explorat\'oria}{49}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}A an\'alise conduzida por \cite {Salvo2017}}{55}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Estrat\'egia I: regress\~ao linear}{56}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Estrat\'egia II: modelo aditivo generalizado}{56}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Estrat\'egia III: LASSO}{56}{subsection.5.1.6}
+\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{59}{chapter.6}
+\contentsline {chapter}{\numberline {7}Previs\~ao}{61}{chapter.7}
+\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{63}{chapter.8}
+\contentsline {section}{\numberline {8.1}Dados no Brasil}{63}{section.8.1}
+\contentsline {section}{\numberline {8.2}Dados nos EUA}{63}{section.8.2}
+\contentsline {section}{\numberline {8.3}Dados na Europa}{63}{section.8.3}
+\contentsline {chapter}{\numberline {9}Discuss\~ao}{65}{chapter.9}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{67}{appendix*.49}
 \contentsfinish 

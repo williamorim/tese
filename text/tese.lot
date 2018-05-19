@@ -4,11 +4,12 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Crit\'erios para a escolha da ordem de modelos ARIMA.\relax }}{39}{table.caption.31}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Modelos de regress\~ao linear que devem ser ajustados para selecionar o melhor subconjunto de vari\'aveis no caso com 3 preditores.\relax }}{44}{table.caption.36}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{53}{table.caption.44}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{54}{table.caption.45}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo aditivo generalizado.\relax }}{55}{table.caption.46}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo com LASSO.\relax }}{55}{table.caption.47}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{55}{table.caption.45}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{56}{table.caption.46}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo aditivo generalizado.\relax }}{57}{table.caption.47}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo com LASSO.\relax }}{57}{table.caption.48}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
