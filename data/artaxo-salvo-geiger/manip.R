@@ -55,7 +55,7 @@ morning_vars <- df %>%
 
 afternoon_vars <- df %>% 
   filter(hour %in% 12:16) %>% 
-  select(date, stationname, o3_mass_conc, share_gas, rd:ws) %>% 
+  select(date, stationname, o3_mass_conc, share_gas, rd:ws, trend) %>% 
   group_by(date, stationname) %>% 
   summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
   ungroup()
