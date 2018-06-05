@@ -17,7 +17,7 @@
 \end{flushright}
 \vspace{5mm}
 
-O grande objetivo da Estatística é usar dados para gerar conhecimento sobre um fenômeno de interesse. Podemos pensar nesse fenômeno como um mecanismo da natureza, desconhecido e complexo, no qual um conjunto de variáveis explicativas $\mathbf{X}$ são transformadas em uma variável resposta $Y$\footnote{Também podemos ter o caso multivariado, em que são geradas um conjunto de variáveis respostas $\mathbf{Y}$.} (Figura \ref{fig:cap-modelos-black-box}). Os dados são o resultado desse processo \citep{Breiman2001}.  
+O grande objetivo de uma análise estatística é usar um conjunto de dados para gerar conhecimento sobre um fenômeno de interesse. Podemos pensar nesse fenômeno como um mecanismo da natureza, desconhecido e complexo, no qual um conjunto de variáveis explicativas $\mathbf{X}$ são transformadas em uma variável resposta $Y$\footnote{Também podemos ter o caso multivariado, em que são geradas um conjunto de variáveis respostas $\mathbf{Y}$.} (Figura \ref{fig:cap-modelos-black-box}). Os dados são o resultado desse processo \citep{Breiman2001}.  
 
 \begin{figure}[h]
 	\centering
@@ -33,7 +33,7 @@ No contexto da modelagem estatística supervisionada\footnote{No qual uma variáve
 Y \approx f(\mathbf{X}),
 \label{mod:y-appr-X}
 \end{equation}
-isto é, queremos uma função $f(\cdot)$ que descreva o mecanismo gerador dos dados da forma mais precisa possível. A partir dessa função, poderíamos tanto fazer predições --- descobrir qual é o novo valor de $Y$ para novos vetores $\mathbf{X}$ --- quanto inferência --- investigar como as variáveis $\mathbf{X}$ e $Y$ estão relacionadas.
+isto é, queremos uma função $f(\cdot)$ que descreva o mecanismo gerador dos dados da forma mais precisa possível. A partir dessa função, poderíamos tanto fazer predições --- descobrir qual é o novo valor de $Y$ para novas observações $\mathbf{X}$ --- quanto inferência --- investigar como as variáveis $\mathbf{X}$ e $Y$ estão relacionadas.
 
 A expressão (\ref{mod:y-appr-X}) representa diversas classes de modelos, a depender da escolha de $f(\cdot)$. Podemos reescrevê-la, já no contexto de séries temporais, como
 
@@ -41,33 +41,28 @@ A expressão (\ref{mod:y-appr-X}) representa diversas classes de modelos, a depen
 Y_t = f(\X) + \epsilon_t,
 \label{mod:y-equal-X-e}
 \end{equation}
-sendo $\epsilon$ um erro aleatório, isto é, um componente que absorve toda a informação não disponível sobre o processo gerador de $Y_t$. Mais precisamente, esse termo representa a variabilidade de $Y_t$ não explicada por $\X$. Apesar de a expressão (\ref{mod:y-appr-X}) ser mais intuitiva, (\ref{mod:y-equal-X-e}) é mais conveniente para a formulação teórica dos modelos estatísticos.
+sendo $\epsilon$ um erro aleatório, isto é, um componente que representa toda a informação de $Y$ que não pode ser explicada pelos preditores $\mathbf{X}$. Apesar de a expressão (\ref{mod:y-appr-X}) ser mais intuitiva, (\ref{mod:y-equal-X-e}) é mais conveniente para a formulação dos modelos estatísticos.
 
-De uma forma geral, há duas abordagens para utilizadas para encontrar a função $f(\cdot)$. A primeira consiste em supor um modelo probabilístico para o fenômeno sob estudo, de tal forma que a função $f(\cdot)$ seja interpretável. A segunda permite que os próprios dados definam uma estrutura para $f(\cdot)$, geralmente não interpretável devido à sua complexidade, mas possivelmente mais próxima ao mecanismo gerador dos dados. Devido a interpretabilidade do modelo, a primeira abordagem é geralmente utilizada para inferência, enquanto a segunda, dado que não há o interesse de estudar a relação entre as variáveis, é geralmente utilizada para previsão.
+Na prática, há duas abordagens bastante utilizadas na especificação da função $f(\cdot)$. A primeira consiste em supor um modelo probabilístico para o fenômeno sob estudo, de tal forma que $f(\cdot)$ seja uma função dos parâmetros de alguma distribuição conhecida, que podem ser estimados a partir dos dados. Essa estratégia geralmente produz modelos interpretáveis, que trazem informação sobre a relação da variável resposta e os preditores, e por isso é preferível quando o interesse é fazer inferência. 
+
+A segunda abordagem é mais flexível e permite que os próprios dados definam uma estrutura para $f(\cdot)$. Essa estratégia dificilmente gera modelos interpretáveis, pois a complexidade do mecanismo gerador dos dados é refletida na função resultante. Por outro lado, a maior flexibilidade leva a uma maior precisão desses modelos, sendo muito utilizados para predição.
+
+A abordagem escolhida deve atender os objetivos do estudo. Nesta tese, exploraremos exemplos de ambos os casos.
 
 %A relação (\ref{mod:y-appr-X}) implica que parte da variabilidade de $Y$ pode ser explicada pelo componente sistemático $f(\X)$. Em outras palavras, $f(\cdot)$ representa a informação que $\mathbf{X}$ nos fornece sobre $Y$. 
 
-Independentemente da abordagem escolhida, modelos estatísticos são simplificações da realidade e, por isso, estão sujeitos a erros. Quando modelamos a série de um poluente, por exemplo, estamos supondo que a sua concentração ao longo do tempo pode ser aproximada por uma função matemática. O erro do modelo descreve então o quanto a nossa aproximação se afasta da realidade. Parte desse erro é irredutível e se deve a impedimentos práticos, como erros de medida, variáveis que não podem ser observadas e desconhecimento de outros fatores que influenciam o fenômeno. No entanto, o erro total pode ser minimizado pela escolha adequada do modelo utilizado, o que torna essencial o desenvolvimento de estratégias de modelagem que contemplem as particularidades de cada estudo.
+Independentemente da abordagem escolhida, modelos estatísticos são simplificações da realidade e, por isso, estão sujeitos a erros. Quando modelamos a série de um poluente, por exemplo, estamos supondo que a sua concentração ao longo do tempo pode ser aproximada por uma função matemática. Neste caso, o erro do modelo quantifica o quanto a nossa função se afasta do verdadeiro mecanismo gerador do poluente. Parte desse erro é irredutível e se deve a impedimentos práticos, como erros de medida, variáveis que não podem ser observadas e desconhecimento de outros fatores que influenciam o fenômeno. No entanto, o erro total pode ser minimizado pela escolha adequada do modelo utilizado, o que torna essencial o desenvolvimento de estratégias de modelagem que contemplem as particularidades de cada estudo. 
 
-%\textsc{\hl{Este trabalho tem os seguintes objetivos:}
-
-%\begin{enumerate}
-%	\item Quais preditores estão associados com a resposta?
-%	\item Qual é a relação entre a resposta e cada preditor?
-%\end{enumerate}
-%Essa aproximação exige a utilização de modelos interpretáveis, ao contrário dos modelos conhecidos como ``caixa-preta'', usualmente aplicados para predição. %No Capítulo \inter, discutiremos com mais detalhes as diferenças entre as duas abordagens.}
-
-Neste capítulo, introduziremos os principais modelos utilizados na literatura para análise de dados de poluição do ar. Apresentaremos diversos modelos de regressão, como o modelo linear, o modelo linear generalizado, o modelo aditivo generalizado e modelos para séries temporais.
+Neste capítulo, introduziremos os principais modelos interpretáveis utilizados na literatura para análise de dados de poluição do ar, como o modelo de regressão linear e modelos para séries temporais. No Capítulo \ref{cap:aprendizado_estatistico}, discutiremos técnicas focadas em predição, como validação cruzada e regularização, mas que muitas vezes também podem ser utilizadas para inferência.
 
 \section{Regressão linear}
 \label{sec:modelo-linear}
 
-O modelo de regressão linear corresponde à aproximação (\ref{mod:y-appr-X}) mais simples e bem estabelecida dentro da modelagem estatística. Mesmo com um elevado poderio computacional e a introdução de modelos mais flexíveis, essa classe de modelos ainda é bastante utilizada hoje em dia, especialmente por se ajustar bem a diversos problemas reais, pela facilidade de interpretação dos resultados e por estar disponível nos principais \textit{softwares} estatísticos.
+O modelo de regressão linear corresponde à aproximação (\ref{mod:y-appr-X}) mais simples e bem estabelecida dentro da modelagem estatística. Mesmo com a disponibilidade de modelos mais flexíveis, essa classe de modelos ainda é bastante utilizada hoje em dia, principalmente por se ajustar bem a diversos problemas reais, facilidade de interpretação dos resultados e estar disponível nos principais programas estatísticos.
 
 Em estudos de poluição do ar, modelos de regressão linear podem ser ajustados para investigar a relação entre variáveis explicativas e uma variável resposta, seja a concentração de poluentes ou dados epidemiológicos. \cite{Saldiva1995}, por exemplo, utilizou esses modelos para estudar o efeito de alguns poluentes nas taxas de mortalidade de idosos, controlando por condições climáticas e sazonais. Já \cite{Salvo2017} utilizou para associar os níveis de material particulado com a proporção de carros a álcool e gasolina.
 
-Apesar da sua popularidade, a autocorrelação característica em séries temporais pode desabilitar o modelo de regressão linear como a opção mais adequada para o ajuste de dados de poluição. Pela sua facilidade de implementação e interpretação, é uma boa ferramenta para uma análise preliminar ou inicial, mas nunca deve ser considerado o modelo final sem antes ser investigado se suas suposições estão sendo satisfeitas.
-
+Apesar da sua popularidade, a complexidade presente nos estudos de poluição atmosférica, como relações não-lineares e autocorrelação, pode desqualificar o modelo de regressão linear como a opção mais adequada para o ajuste dos dados. Pela sua facilidade de implementação e interpretação, ele é uma boa ferramenta para uma análise preliminar.
 
 Nas próximas seções, especificaremos o modelo de regressão linear, discutiremos as suas restrições e apresentaremos as maneiras mais utilizadas para tratar séries com tendência, sazonalidade e autocorrelação.
 
@@ -81,32 +76,29 @@ Seja $Y_t$ a variável resposta,  $\X = (X_{1t}, ..., X_{pt})$ um vetor de variáv
 Y_t = \alpha + \beta_1 X_{1t} + ... + \beta_p X_{pt} + \epsilon_t, \quad t = 1, ..., n.
 \label{mod:linear}
 \end{equation}
-Em geral, supomos que os erros $(\epsilon_1, ..., \epsilon_n)$ tenham média zero, variância constante (homoscedasticidade) e sejam não-correlacionados\footnote{A suposição de distribuição Normal também é feita em alguns casos. Essa suposição é relevante na construção de intervalos de confiança e testes de hipóteses para os coeficientes do modelo. No entanto, para amostras grandes, característica comum em estudos de poluição do ar, existem resultados assintóticos \REF que garantem a validade do teste.}. Além disso, a especificação (\ref{mod:linear}) impõe que a relação entre a resposta $Y_t$ e os preditores $\X$ seja linear e aditiva.
+Em geral, supomos que os erros $(\epsilon_1, ..., \epsilon_n)$ tenham média zero, variância constante (homoscedasticidade) e sejam não-correlacionados\footnote{A suposição de distribuição Normal também é feita em alguns casos. Essa suposição é relevante na construção de intervalos de confiança e testes de hipóteses para os coeficientes do modelo. No entanto, para amostras grandes, característica comum em estudos de poluição do ar, existem resultados assintóticos \citep{Casella2001} que garantem a validade do teste.}. Além disso, a especificação (\ref{mod:linear}) impõe que a relação entre a resposta $Y_t$ e os preditores $\X$ seja linear e aditiva.
 
-A suposição de linearidade estabelece que a variação esperada em $Y_t$ causada pelo acréscimo de uma unidade em $X_{it}$, mantidos. A interpretação dos coeficientes será discutida com mais detalhes na Seção \ref{sec:linearidade} e nas aplicações dos próximos capítulos. Conceitos mais gerais podem ser encontrados em \cite{Hastie2008} e \cite{James2013}.
+A suposição de linearidade estabelece que a variação esperada em $Y_t$ causada pelo acréscimo de uma unidade em $X_{it}$, mantidos fixados os outros preditores, é constante e não depende do valor de $X_{it}$. A interpretação dos coeficientes será discutida com mais detalhes na Seção \ref{sec:linearidade} e nas aplicações dos Capítulos \ref{cap:combustiveis} e ??. Conceitos mais gerais podem ser encontrados em \cite{Hastie2008} e \cite{James2013}.
 
 %O coeficiente $\alpha$ representa a concentração média do poluente quando todas as variáveis do modelo valem zero e, por essa razão, não costuma ter interpretação prática em estudos desta natureza.
 
-A suposição de aditividade estabelece que a variação esperada em $Y_t$ causada por uma mudança no preditor $X_{it}$ é independe do valor (fixado) dos outros preditores. Essa suposição pode ser relaxada com a introdução de termos de interação (ver Seção 3.3 de \cite{James2013}), que abordaremos na Seção \ref{sec:aditividade}.
+A suposição de aditividade estabelece que a variação esperada em $Y_t$ causada por uma mudança no preditor $X_{it}$ independe do valor (fixado) dos outros preditores. Essa suposição pode ser relaxada com a introdução de termos de interação (ver Seção 3.3 de \cite{James2013}), que abordaremos na Seção \ref{sec:aditividade}.
 
-Daqui em diante, quando não houver ambiguidade, omitiremos o índice $t$ das quantidades $Y_t$ e $\X$.
+Na prática, os coeficientes $\beta_1, ..., \beta_p$ são desconhecidos e precisam ser estimados. O procedimento de estimação mais utilizado é o método de mínimos quadrados \citep{Hastie2008}. Outro método bastante utilizado é a estimação por máxima verossimilhança \citep{Casella2001}. Sob a suposição de normalidade, as duas abordagens são equivalentes.
 
-Na prática, os coeficientes $\beta_1, ..., \beta_p$ são desconhecidos e precisam ser estimados. O procedimento de estimação mais utilizado é o método de mínimos quadrados \citep{Hastie2008}. Outro método bastante utilizado é a estimação por máxima verossimilhança \REF. Sob a suposição de normalidade, as duas abordagens são equivalentes. %Com a recente difusão do \textit{machine learning}, algoritmos como o \textit{gradient descent} e suas extensões \REF passaram a ser bastante utilizados. 
-No R, os modelos de regressão linear podem ser ajustados via mínimos quadrados com a função \texttt{lm()} do pacote \texttt{stats}.
+Como o instante em que as observações omissas ocorrem não é relevante no processo de estimação, o modelo linear é uma alternativa para avaliar a associação de séries com ``buracos'' ou grandes períodos sem informação, apesar de a identificação da estrutura de tendência e sazonalidade ser mais difícil em dados com essa característica. 
 
-A adequação do modelo é avaliada a partir de medidas de qualidade de ajuste, como o $R^2$ e o erro quadrático médio, e da \textit{análise de resíduos}. De (\ref{mod:linear}), para $t = 1, ..., n$, podemos definir os resíduos como
+A adequação do modelo é avaliada a partir de medidas de qualidade de ajuste, como o $R^2$ e o erro quadrático médio, e da \textit{análise de resíduos}. A partir da expressão (\ref{mod:linear}), para $t = 1, ..., n$, podemos definir os resíduos como
 
 \begin{equation}
 	r_t = Y_t - \widehat{Y}_t,
 	\label{RLN-residuos}
 \end{equation}
-em que $\hat{Y}_t$ representa o valor predito de $Y_t$ com base nas estimativas dos coeficientes do modelo. Os resíduos medem o quanto os valores preditos se afastam dos valores observados, sendo muito úteis para avaliar a qualidade do ajuste e a violação das suposições do modelo.
+em que $\hat{Y}_t$ representa o valor predito de $Y_t$ com base nas estimativas dos coeficientes do modelo. Os resíduos medem o quanto os valores preditos se afastam dos valores observados, sendo muito úteis para avaliar a qualidade do ajuste e a violação das suposições do modelo. Esse tópico será discutido com mais detalhes na Seção \ref{sec:reg-quali-mod}.
 
-Como o instante em que as observações omissas ocorrem não é relevante no processo de estimação, o modelo linear é uma alternativa para avaliar a associação de séries com ``buracos'' ou grandes períodos sem informação, apesar de a identificação da estrutura de tendência e sazonalidade ser mais difícil em dados com essa característica. 
+No R, os modelos de regressão linear podem ser ajustados via mínimos quadrados com a função \texttt{lm()} do pacote \texttt{stats} ou utilizando o pacote \texttt{caret}, que traz um \textit{framework} padronizado para o ajuste de modelos estatísticos.
 
-No R, o modelo de regressão linear pode ser ajustado com a função \texttt{lm()} do pacote \texttt{stats}.
-
-A seguir, abordaremos como modelar tendência e sazonalidade no modelo de regressão linear.
+A seguir, abordaremos como modelar tendência e sazonalidade utilizando o modelo de regressão linear.
 
 %Em alguns casos, as variáveis respostas podem ser medidas em diferentes locais de uma região. \cite{Salvo2014}, por exemplo, mediram a concentração de ozônio (e outras medidas meteorológicas e de tráfego) em diversas estações ao longo da cidade de São Paulo. Como esse componente espacial pode ser um fator de confundimento, ele deve ser considerado pelo modelo. Na Seção \ref{RLN-comp-espacial}, será abordada a incorporação de componentes espaciais no modelo linear para controlar a associação entre observações coletadas em localidades próximas.
 
@@ -297,7 +289,7 @@ A interação de duas variáveis pode ser contemplada pelo modelo de regressão line
 Termos de interação bastante utilizados em estudos de poluição do ar são aqueles entre as variáveis meteorológicas. Em geral, além de controlarmos o efeito marginal da temperatura, umidade, precipitação, radiação, vento etc., precisamos também incluir o efeito conjunto dessas variáveis.
 
 \subsection{Avaliando a qualidade do ajuste}
-\label{sec:linear-qualidade-ajuste}
+\label{sec:reg-quali-mod}
 
 Além de verificarmos se o modelo escolhido viola as suposições pré-estabelecidas, também precisamos avaliar o quão bem ele se ajusta aos dados. Para os modelos de regressão linear, isso pode ser feito a partir do erro-padrão residual ($RSE$) e do coeficiente de determinação ($R^2$).
 

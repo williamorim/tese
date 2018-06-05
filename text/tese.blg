@@ -11,45 +11,45 @@ format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
 Warning--there's a number but no volume in Beer2011
 Warning--empty publisher Em Gilberto2013
-You've used 46 entries,
+You've used 47 entries,
             2743 wiz_defined-function locations,
-            941 strings with 15038 characters,
-and the built_in function-call counts, 22245 in all, are:
-= -- 1912
-> -- 1665
-< -- 25
-+ -- 566
-- -- 519
-* -- 1837
-:= -- 3642
-add.period$ -- 162
-call.type$ -- 46
-change.case$ -- 255
-chr.to.int$ -- 45
-cite$ -- 94
-duplicate$ -- 794
-empty$ -- 1529
-format.name$ -- 585
-if$ -- 4553
+            946 strings with 15141 characters,
+and the built_in function-call counts, 22580 in all, are:
+= -- 1939
+> -- 1686
+< -- 26
++ -- 573
+- -- 525
+* -- 1856
+:= -- 3697
+add.period$ -- 165
+call.type$ -- 47
+change.case$ -- 258
+chr.to.int$ -- 46
+cite$ -- 96
+duplicate$ -- 811
+empty$ -- 1557
+format.name$ -- 594
+if$ -- 4623
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 55
-newline$ -- 258
-num.names$ -- 184
-pop$ -- 586
+missing$ -- 57
+newline$ -- 263
+num.names$ -- 188
+pop$ -- 599
 preamble$ -- 1
-purify$ -- 219
+purify$ -- 222
 quote$ -- 0
-skip$ -- 593
+skip$ -- 605
 stack$ -- 0
-substring$ -- 715
-swap$ -- 49
+substring$ -- 717
+swap$ -- 50
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 446
+type$ -- 452
 warning$ -- 2
-while$ -- 169
+while$ -- 172
 width$ -- 0
-write$ -- 736
+write$ -- 750
 (There were 6 error messages)

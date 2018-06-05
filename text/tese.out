@@ -33,15 +33,15 @@
 \BOOKMARK [2][]{subsection.3.4.3}{Modelos autorregressivos integrados e de m\351dias m\363veis \(ARIMA\)}{section.3.4}% 33
 \BOOKMARK [2][]{subsection.3.4.4}{Modelos GARCH}{section.3.4}% 34
 \BOOKMARK [0][]{chapter.4}{T\351cnicas de aprendizado estat\355stico}{}% 35
-\BOOKMARK [1][]{section.4.1}{M\351todos de reamostragem}{chapter.4}% 36
-\BOOKMARK [2][]{subsection.4.1.1}{Valida\347\343o cruzada}{section.4.1}% 37
-\BOOKMARK [2][]{subsection.4.1.2}{Bootstrap}{section.4.1}% 38
-\BOOKMARK [1][]{section.4.2}{Sele\347\343o de vari\341veis}{chapter.4}% 39
-\BOOKMARK [2][]{subsection.4.2.1}{Selecionando o melhor subconjunto de preditores}{section.4.2}% 40
-\BOOKMARK [2][]{subsection.4.2.2}{Stepwise}{section.4.2}% 41
-\BOOKMARK [1][]{section.4.3}{Regulariza\347\343o}{chapter.4}% 42
-\BOOKMARK [2][]{subsection.4.3.1}{Regress\343o ridge}{section.4.3}% 43
-\BOOKMARK [2][]{subsection.4.3.2}{LASSO}{section.4.3}% 44
+\BOOKMARK [1][]{section.4.1}{Sobreajuste e o trade-off entre vi\351s e vari\342ncia}{chapter.4}% 36
+\BOOKMARK [1][]{section.4.2}{Estimando a performance do modelo}{chapter.4}% 37
+\BOOKMARK [1][]{section.4.3}{M\351todos de reamostragem}{chapter.4}% 38
+\BOOKMARK [2][]{subsection.4.3.1}{Valida\347\343o cruzada}{section.4.3}% 39
+\BOOKMARK [2][]{subsection.4.3.2}{Bootstrap}{section.4.3}% 40
+\BOOKMARK [1][]{section.4.4}{Sele\347\343o de vari\341veis}{chapter.4}% 41
+\BOOKMARK [2][]{subsection.4.4.1}{Selecionando o melhor subconjunto de preditores}{section.4.4}% 42
+\BOOKMARK [2][]{subsection.4.4.2}{Stepwise}{section.4.4}% 43
+\BOOKMARK [1][]{section.4.5}{Regulariza\347\343o}{chapter.4}% 44
 \BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 45
 \BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 46
 \BOOKMARK [2][]{subsection.5.1.1}{Dimensionando o problema}{section.5.1}% 47
@@ -57,4 +57,4 @@
 \BOOKMARK [1][]{section.8.2}{Dados nos EUA}{chapter.8}% 57
 \BOOKMARK [1][]{section.8.3}{Dados na Europa}{chapter.8}% 58
 \BOOKMARK [0][]{chapter.9}{Discuss\343o}{}% 59
-\BOOKMARK [0][]{appendix*.49}{Refer\352ncias Bibliogr\341ficas}{}% 60
+\BOOKMARK [0][]{appendix*.51}{Refer\352ncias Bibliogr\341ficas}{}% 60

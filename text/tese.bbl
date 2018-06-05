@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{47}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -60,6 +60,11 @@ David~C. Carslaw, Sean~D. Beevers e James~E. Tate.
   generalised additive modelling approach.
 \newblock \emph{Atmospheric Environment}, 41: \penalty0 5289--5299.
   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Casella e Berger(2001)]{Casella2001}{\bf Casella e Berger(2001)}
+George Casella e Roger~L. Berger.
+\newblock \emph{Statistical Inference}.
+\newblock Duxbury Press; 2nd edition.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Chang {\rm{\em et~al.}}(2017)Chang, Vizuete, Serre, Vennam, Omary,
   Isakov, Breen, e Arunachalam]{Chang2017}{\bf Chang {\rm{\em et~al.}}(2017)}
