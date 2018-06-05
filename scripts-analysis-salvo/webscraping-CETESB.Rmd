@@ -40,7 +40,7 @@ res <- POST(
   url, 
   body = list(
     cetesb_login = "thewilliam89@gmail.com",
-    cetesb_password = "wouldy0ukindly?",
+    cetesb_password = "",
     enviar = "OK"
   ), 
   encode = "form",

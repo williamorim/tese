@@ -1,0 +1,49 @@
+---
+title: "Série do monóxido de carbônico"
+output: html_output
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r, echo = FALSE}
+library(tidyverse)
+```
+
+# Getting data
+
+```{r}
+stations <- c(
+  "Parque D.Pedro II",
+  "Mooca",
+  "Ibirapuera",
+  "São Caetano do Sul",
+  "Congonhas",
+  "Cerqueira César",
+  "Osasco",
+  "Taboão da Serra",
+  "Pinheiros",
+  "Parelheiros",
+  "Cid.Universitária-USP-Ipen"
+  )
+
+stations_ids <- filter(koffing::cetesb_station_ids, stationname %in% stations)
+
+carbon_id <- 
+  koffing::cetesb_param_ids %>%
+  filter(param_abbrev == "CO") %>% 
+  select(id) %>% 
+  purrr::flatten_dbl()
+
+
+Rpollution::scraper_CETESB(
+  station = stations_ids$id[1],
+  parameter = carbon_id,
+  star = ""
+  
+)
+```
+
