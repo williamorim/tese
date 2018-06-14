@@ -92,4 +92,21 @@ Y_t = a_tU_t + v_t
 U_t = \phi U_{t-1} + w_t,
 \label{mod:espaco-estado}
 \end{equation}
-sendo $a_t$ e $\phi$ parâmetros do modelo e $w_t \sim N(0, \sigma_w)$. A primeira equação em (\ref{mod:espaco-estado}) é chamada de \textit{equação de estado}, enquanto a segunda é chamada de \textit{equação de observação}. 
+sendo $a_t$ e $\phi$ parâmetros do modelo e $w_t \sim N(0, \sigma_w)$. A primeira equação em (\ref{mod:espaco-estado}) é chamada de \textit{equação de estado}, enquanto a segunda é chamada de \textit{equação de observação}.
+
+
+%% Normalidade
+
+%\subsection{Normalidade}
+%
+%A distribuição Normal assume que a variável aleatória está definida na reta real, isto é, pode assumir valores positivos e negativos, e é simétrica em relação a sua média. Intuitivamente, não há motivos para acreditar que essa distribuição se ajustaria bem a dados naturalmente positivos e assimétricos, como a concentração de poluentes e número de casos de uma doença ou mortalidade. Mesmo assim, pela facilidade de implementação e interpretação, o modelo normal é muitas vezes utilizado como uma primeira tentativa na estratégia de análise, de tal forma que, se os dados não se afastarem muito desta distribuição, pequenos vieses podem ser negligenciado em favor de um modelo mais simples.
+%
+%Como mencionado anteriormente, o método de mínimos quadrados não supõe normalidade no processo de estimação. Apesar de essa suposição ser feita na construção de intervalos de confiança e testes de hipóteses para os parâmetros, para amostras grandes\footnote{Comum em estudos de poluição do ar.}, a teoria assintótica garante estimadores com distribuição aproximadamente normal \REF. No entanto, como a velocidade dessa convergência depende da natureza (desconhecida) da variável sob estudo, não temos como quantificar o que é uma ``amostra grande'', o que justifica a importância de se avaliar a qualidade do ajuste em relação à suposição de normalidade. 
+%
+%Uma primeira ideia para checar essa suposição seria construir o histograma da variável resposta e avaliar se ele se aproxima de uma distribuição normal. Contudo, a suposição de normalidade se refere à variável $Y|\mathbf{X}, \mathbf{Z}$ e não a $Y$ simplesmente. Seria necessário construir histogramas para cada combinação de valores de $\mathbf{X}$ e $\mathbf{Z}$, o que é quase sempre impossível.
+%
+%Gráficos Q-Q (quantil-quantil) e envelopes \REF são técnicas muito úteis para investigar possíveis desvios da suposição de normalidade. Eles se baseiam nos resíduos studentizados \REF e avaliam o quanto a distribuição empírica desses resíduos se afasta da distribuição teórica. \Ex
+%
+%%Atkinson, A. C. (1985). Plots, Transformations and Regressions. Oxford Statistical Science Series, Oxford.
+%
+%A transformação da variável $Y$ pode ser uma alternativa para casos em que a suposição de normalidade não é válida. As transformações $\log Y$ e $\sqrt{Y}$ são as mais utilizadas. Na Seção \ref{cap:glm}, veremos como generalizar o modelo linear para outras distribuições.

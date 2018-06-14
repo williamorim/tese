@@ -1,4 +1,4 @@
-\begin{thebibliography}{47}
+\begin{thebibliography}{52}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -53,6 +53,13 @@ Leo Breiman.
 \newblock \emph{Statistical Science}, 16\penalty0 (3): \penalty0 199--231.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Breiman e Friedman(1985)]{Breiman1985}{\bf Breiman e Friedman(1985)}
+Leo Breiman e J.~H. Friedman.
+\newblock Estimating optimal transformations for multiple regression and
+  correlations (with discussion).
+\newblock \emph{Journal of the American Statistical Association}, 80\penalty0
+  (391): \penalty0 580--619.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Carslaw {\rm{\em et~al.}}(2007)Carslaw, Beevers, e
   Tate]{Carslaw2007}{\bf Carslaw {\rm{\em et~al.}}(2007)}
 David~C. Carslaw, Sean~D. Beevers e James~E. Tate.
@@ -99,6 +106,11 @@ Gleice~M.S. Concei{\c{c}}{\~a}o, Paulo Hil{\'a}rio~Nascimento Saldiva e Julio
   introdu{\c{c}}{\~a}o baseada em dados da cidade de {S}{\~a}o {P}aulo.
 \newblock \emph{Revista Brasileira de Epidemiologia}, 4\penalty0 (3): \penalty0
   206--219.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Demidenko(2013)]{Demidenko2013}{\bf Demidenko(2013)}
+E.~Demidenko.
+\newblock \emph{Mixed models: theory and applications with R}.
+\newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Dobson(1990)]{Dobson1990}{\bf Dobson(1990)}
 A.~J. Dobson.
@@ -212,6 +224,11 @@ C.~A. Lin, M.~A. Martins, S.~C. Farhat, C.~A. Pope, G.~M. Concei{\c{c}}{\~a}o,
 \newblock \doi{10.1046/j.1365-3016.1999.00210.x}.
 \newblock URL \url{http://dx.doi.org/10.1046/j.1365-3016.1999.00210.x}.
   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
+C.~E. McCulloch e S.~R. Searle.
+\newblock \emph{Generalized, linear, and mixed models}.
+\newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Morettin e Toloi(2004)]{Morettin2004}{\bf Morettin e Toloi(2004)}
 Pedro~A. Morettin e Clelia~M.C. Toloi.
@@ -358,6 +375,14 @@ Robert~H. Shumway e David~S. Stoffer.
 \newblock Springer Texts in Statistics. Springer, New York, 2\textordfeminine{
   }edi\c{c}\~{a}o.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Singer {\rm{\em et~al.}}(2012)Singer, Nobre, e Rocha]{Singer2012}{\bf
+  Singer {\rm{\em et~al.}}(2012)}
+J.M. Singer, J.S. Nobre e F.M.M. Rocha.
+\newblock \emph{An{\'a}lise de Dados Longitudinais (vers{\~a}o parcial
+  preliminar)}.
+\newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize
+  Citado na p\'{a}g.}
+
 \bibitem[Wickham e Grolemund(2017)]{R4DS2017}{\bf Wickham e Grolemund(2017)}
 Hadley Wickham e Garrett Grolemund.
 \newblock \emph{R for Data Science}.
@@ -376,6 +401,13 @@ A.~D. Williams.
   case deletion.
 \newblock \emph{Applied Statistics}, 36: \penalty0 181--191.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Wood(2006)]{Simon2006}{\bf Wood(2006)}
+Simon~N. Wood.
+\newblock \emph{Generalized Additive Models: An Introduction with R}.
+\newblock Chapman \& Hall/CRC Texts in Statistical Science. Chapman and
+  Hall/CRC, 1\textordfeminine{ }edi\c{c}\~{a}o.   {\scriptsize Citado na
+  p\'{a}g.}
 
 \bibitem[Yoon {\rm{\em et~al.}}(2009)Yoon, Ha, Roh, e Lee]{Yoon2009}{\bf Yoon
   {\rm{\em et~al.}}(2009)}
