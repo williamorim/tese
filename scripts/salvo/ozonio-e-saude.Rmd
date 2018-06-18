@@ -1,0 +1,64 @@
+---
+title: "Ozônio e saúde pública"
+author: "William Amorim"
+date: "March 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Segundo a Organização Mundial da Saúde (OMS), os níveis de ozônio (média móvel de 8 horas) devem ser mantidos abaixo de 100 $\mu g/m^3$. No estado de São Paulo, adotou-se em 2013 o padrão de 140 $\mu g/m^3$, com metas para chegar no valor referido pela OMS nos anos subsequentes. O padrão de 2013 continua sendo o valor vigente. Para mais informações sobre os padrões de qualidade do ar, acesse http://cetesb.sp.gov.br/ar/padroes-de-qualidade-do-ar/.
+
+Usando esses valores como referência, podemos avaliar quantos dias o ozônio alcançou concentrações acima dos limites recomendados.
+
+```{r}
+df_tarde_DPII %>% 
+  mutate(OMS = ifelse(o3_mass_conc > 100, "Yes", "No"),
+         SP = ifelse(o3_mass_conc > 140, "Yes", "No")) %>%
+  gather(standard, over_limit, OMS, SP) %>% 
+  group_by(standard) %>%
+  na.omit %>% 
+  count(over_limit)
+```
+
+De 2008 a 2013, tivemos 202 dias (13,4%) com concentração de ozônio acima do limite estabelecido pela OMS e 31 dias (2%) acima do limite estabelecido pelo governo de SP.
+
+Podemos pensar agora em que meses ocorrem essas máximas e também quais dias da semana elas são mais frequentes.
+
+```{r}
+df_DPII %>% 
+  select(date, month) %>%
+  distinct(date, .keep_all = TRUE) %>% 
+  inner_join(df_tarde_DPII, by = "date") %>% 
+  mutate(OMS = ifelse(o3_mass_conc > 100, "Yes", "No"),
+         SP = ifelse(o3_mass_conc > 140, "Yes", "No")) %>%
+  gather(standard, over_limit, OMS, SP) %>%
+  mutate(month = as.factor(month)) %>% 
+  filter(over_limit == "Yes") %>% 
+  na.omit %>% 
+  ggplot(aes(x = month, fill  = standard)) +
+  geom_bar(position = "dodge")
+  
+```
+
+As maiores incidências ocorrem nos meses de setembro a novembro. As menores, de abril a julho.
+
+Agora em relação ao dia da semana.
+
+```{r}
+df_DPII %>% 
+  select(date, dayofweek) %>%
+  distinct(date, .keep_all = TRUE) %>% 
+  inner_join(df_tarde_DPII, by = "date") %>% 
+  mutate(OMS = ifelse(o3_mass_conc > 100, "Yes", "No"),
+         SP = ifelse(o3_mass_conc > 140, "Yes", "No")) %>%
+  gather(standard, over_limit, OMS, SP) %>%
+  mutate(dayofweek = as.factor(dayofweek)) %>% 
+  filter(over_limit == "Yes") %>% 
+  na.omit %>% 
+  ggplot(aes(x = dayofweek, fill  = standard)) +
+  geom_bar(position = "dodge")
+```
+
+Mais uma vez, vemos que sábado e domingo são os dias mais críticos.

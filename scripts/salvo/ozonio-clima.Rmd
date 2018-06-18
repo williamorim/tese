@@ -1,0 +1,217 @@
+---
+title: "Ozônio e clima (2008-2013)"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r, echo = FALSE}
+library(tidyverse)
+```
+
+## Problema
+
+Investigar a relação entre ozõnio e clima na cidade de São Paulo usando dados de 2008 a 2013.
+
+## Dados {.smaller}
+
+```{r, eval = FALSE, include=FALSE}
+# Filtra a base original
+readr::read_csv("../data/artaxo-salvo-geiger/dados_originais.csv") %>% 
+  dplyr::mutate(date = lubridate::ymd(stringr::str_c(year, month, day, sep = "-"))) %>% 
+  dplyr::select(date, hour, 
+         siteid, 
+         o3_mass_conc,
+         tp, hm, rd, ws, pp,
+         dv_ti_0to199m_9am, dv_ti_200to499m_9am) %>% 
+  readr::write_rds(path = "data/df_O3_clima_2008_2013.rds", compress = "gz")
+```
+
+Vamos utilizar a média diária de ozônio medido entre 12h e 17h, focando inicialmente na estação Dom Pedro II.
+
+```{r, message=FALSE}
+df_O3 <- readr::read_rds("data/df_O3_clima_2008_2013.rds")
+
+df_tarde_DPII <- df_O3 %>%
+  dplyr::filter(siteid == 1, hour %in% 12:16) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(o3_mass_conc, tp, rd, hm, ws, pp,
+                                   dv_ti_0to199m_9am, dv_ti_200to499m_9am),
+                      .funs = funs(mean),
+                      na.rm = TRUE) %>%  
+  dplyr::ungroup()
+```
+
+## Dados {.smaller}
+
+Vamos adicionar agora as médias no período da manhã (6h-10h). 
+
+```{r}
+medidas_manha <- df_O3 %>%
+  dplyr::filter(siteid == 1, hour %in% 6:10) %>% 
+  dplyr::group_by(date) %>%
+  dplyr::summarise_at(.vars = vars(tp, rd, hm, ws, pp),
+                      .funs = funs(mean),
+                      na.rm = TRUE)  %>%
+  rename(morning_tp = tp,
+         morning_rd = rd,
+         morning_hm = hm,
+         morning_ws = ws,
+         morning_pp = pp)
+
+df_tarde_DPII <- df_tarde_DPII %>%  
+  left_join(medidas_manha, by = "date")
+```
+
+
+## Temperatura
+
+```{r, echo = FALSE}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, 
+                `Afternoon Temperature` = tp,
+                `Moorning Temperature` = morning_tp) %>% 
+  tidyr::gather(serie, value, O3, 
+                `Afternoon Temperature`, `Moorning Temperature`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw() +
+  labs(x = "Year", y = "Value")
+```
+
+## Temperatura (ridge graph) {.smaller}
+
+```{r}
+library(ggridges)
+
+df_tarde_DPII %>% 
+  dplyr::select(date,
+                `Afternoon Temperature` = tp,
+                `Moorning Temperature` = morning_tp) %>% 
+  tidyr::gather(serie, value,
+                `Afternoon Temperature`, 
+                `Moorning Temperature`) %>%
+  mutate(month = lubridate::month(date),
+         month = as.factor(month)) %>% 
+ggplot(aes(x = value, y = month, fill = month)) + 
+  geom_density_ridges(show.legend = FALSE) +
+  facet_wrap(~serie, ncol = 2, scales = "free") +
+  labs(y = "Month", x = "Celsius") +
+  theme_bw()
+```
+
+
+## Radiação {.smaller}
+
+```{r, echo = FALSE}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, 
+                `Afternoon Radiation` = rd,
+                `Moorning Radiation` = morning_rd) %>% 
+  tidyr::gather(serie, value, O3, 
+                `Afternoon Radiation`, `Moorning Radiation`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw() +
+  labs(x = "Year", y = "Value")
+```
+
+## Chuva {.smaller}
+
+```{r, echo = FALSE}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, 
+                `Afternoon Precipitation` = pp,
+                `Moorning Precipitation` = morning_pp) %>% 
+  tidyr::gather(serie, value, O3, 
+                `Afternoon Precipitation`, `Moorning Precipitation`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw() +
+  labs(x = "Year", y = "Value")
+```
+
+## Dados
+
+```{r, echo=FALSE}
+df_tarde_DPII <- df_tarde_DPII %>% 
+mutate(pp = ifelse(pp == 0, "Não", "Sim"),
+         morning_pp = ifelse(morning_pp == 0, "Não", "Sim"))
+```
+
+
+## Chuva {.smaller}
+
+```{r, echo=FALSE}
+df_tarde_DPII %>%
+  select(date, o3_mass_conc, pp, morning_pp) %>% 
+  na.omit %>% 
+  gather(period, precipitation, pp, morning_pp) %>% 
+  ggplot(aes(x = period, y = o3_mass_conc, fill = precipitation)) +
+  geom_boxplot() +
+  theme_bw() +
+  labs(fill = "Precipitation", y = "Ozone", x = "Period") +
+  scale_x_discrete(labels = c("Morning", "Afternoon"))
+```
+
+## Velocidade do vento {.smaller}
+
+
+```{r, echo = FALSE}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, 
+                `Afternoon Wind speed` = ws,
+                `Moorning Wind speed` = morning_ws) %>% 
+  tidyr::gather(serie, value, O3, 
+                `Afternoon Wind speed`, `Moorning Wind speed`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw() +
+  labs(x = "Year", y = "Value")
+```
+
+
+## Umidade {.smaller}
+
+```{r, echo = FALSE}
+df_tarde_DPII %>% 
+  dplyr::select(date, O3 = o3_mass_conc, 
+                `Afternoon Humidity` = hm,
+                `Moorning Humidity` = morning_hm) %>% 
+  tidyr::gather(serie, value, O3, 
+                `Afternoon Humidity`, `Moorning Humidity`) %>% 
+  ggplot(aes(x = date, y = value)) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~serie, nrow = 3, scales = "free_y") +
+  theme_bw() +
+  labs(x = "Year", y = "Value")
+```
+
+## Inversão térmica
+
+```{r, echo = FALSE}
+df_tarde_DPII %>%
+  select(date, o3_mass_conc, dv_ti_0to199m_9am, dv_ti_200to499m_9am) %>% 
+  na.omit %>% 
+  gather(period, inversao, dv_ti_0to199m_9am, dv_ti_200to499m_9am) %>%
+  mutate(inversao = as.factor(inversao)) %>% 
+  ggplot(aes(x = period, y = o3_mass_conc, fill = inversao)) +
+  geom_boxplot() +
+  theme_bw() +
+  labs(fill = "Thermal inversion", y = "Ozone", x = "Period") +
+  scale_x_discrete(labels = c("Morning", "Afternoon")) +
+  scale_fill_discrete(labels = c("No", "Yes"))
+```
