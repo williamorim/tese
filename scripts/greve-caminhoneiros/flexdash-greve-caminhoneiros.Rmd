@@ -1,0 +1,179 @@
+---
+title: "Poluição do ar durante a greve dos caminhoneiros"
+output: 
+  flexdashboard::flex_dashboard
+---
+
+```{r, include=FALSE}
+source("preamble.R")
+```
+
+CO
+=====================================  
+
+Column {data-width=500} {.tabset}
+-------------------------------------
+    
+### Média diária das 7h-11h
+    
+```{r}
+df %>%
+  filter(!dayofweek %in% c("sáb","dom")) %>% 
+  make_grid_plot("CO", 7:11)
+```
+
+
+### Média diária das 18h-24h
+
+```{r}
+df %>% 
+  filter(!dayofweek %in% c("sáb","dom")) %>% 
+  make_grid_plot("CO", 18:24)
+```
+
+Column {data-width=500} {.tabset}
+-------------------------------------
+
+### Mediana das médias diárias das 7h-11h
+    
+```{r}
+make_bar_plot(df, "CO", 7:11)
+```
+
+
+### Mediana das médias diárias das 18h-24h
+
+```{r}
+make_bar_plot(df, "CO", 18:24)
+```
+
+O3
+=====================================  
+
+Column {data-width=500} 
+-------------------------------------
+
+### Média diária das 12h-17h
+
+```{r}
+df %>%
+  filter(!stationname == "Osasco") %>% 
+  make_grid_plot("O3", 12:17)
+```
+
+Column {data-width=500} 
+-------------------------------------
+
+### Mediana das médias diárias das 12h-17h
+
+```{r}
+make_bar_plot(df, "O3", 12:17)
+```
+
+NO
+=====================================
+
+Column {data-width=500} 
+-------------------------------------
+
+### Média diária das 7h-11h
+
+```{r}
+df %>% 
+  filter(!dayofweek %in% c("dom")) %>% 
+  make_grid_plot("NO", 7:11)
+```
+
+Column {data-width=500} 
+-------------------------------------
+
+### Mediana das médias diárias das 7h-11h
+
+```{r}
+make_bar_plot(df, "NO", 7:11)
+```
+
+
+NO2
+=====================================
+
+Column {data-width=500} 
+-------------------------------------
+
+### Média diária das 8h-20h
+
+```{r}
+df %>% 
+  filter(!dayofweek %in% c("sab", "dom")) %>% 
+  make_grid_plot("NO2", 8:20)
+```
+
+Column {data-width=500} 
+-------------------------------------
+
+### Mediana das médias diárias das 8h-20h
+
+```{r}
+make_bar_plot(df, "NO2", 12:17)
+```
+
+
+PM2.5
+=====================================
+
+Column {data-width=500} {.tabset}
+-------------------------------------
+
+### Média diária das 1h-9h
+
+```{r}
+df %>% 
+  filter(!dayofweek %in% c("dom")) %>% 
+  make_grid_plot("MP2.5", c(1:9))
+```
+
+### Média diária das 19h-24h
+
+```{r}
+df %>% 
+  filter(!dayofweek %in% c("dom")) %>% 
+  make_grid_plot("MP2.5", c(19:24))
+```
+
+Column {data-width=500} {.tabset}
+-------------------------------------
+
+### Mediana das médias diárias das 19h-24h
+
+```{r}
+make_bar_plot(df, "MP2.5", c(1:9))
+```
+
+### Mediana das médias diárias das 19h-24h
+
+```{r}
+make_bar_plot(df, "MP2.5", c(19:24))
+```
+
+PM10
+=====================================  
+
+Column {data-width=500} 
+-------------------------------------
+
+### Média diária das 5h-24h
+
+```{r}
+df %>%
+  filter(!stationname == "Ibirapuera") %>% 
+  make_grid_plot("MP10", 5:24)
+```
+
+Column {data-width=500} 
+-------------------------------------
+
+### Mediana das médias diárias das 5h-24h
+
+```{r}
+make_bar_plot(df, "MP10", c(5:24))
+```

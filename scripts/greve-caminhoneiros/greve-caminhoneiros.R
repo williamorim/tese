@@ -40,7 +40,7 @@ make_series_plot <- function(df, pollutant, year_, hours) {
       linetype = 2,
       color = "red"
     ) +
-    facet_grid(~stationname, scales = "free_y") +
+    facet_grid(year ~ stationname, scales = "free_y") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
     labs(x = "Dia", y = pollutant)
@@ -79,7 +79,8 @@ df %>%
   ggplot(aes(x = hour, y = conc)) +
   geom_line() +
   facet_grid(polluent ~ dayofweek, scales = "free_y") +
-  theme_bw()
+  theme_bw() +
+  labs(x = "Hora", y = "Concentração")
 
 # Série CO ----------------------------------------------------------------
 
@@ -134,15 +135,33 @@ df %>%
 
 # Médias período anterior -------------------------------------------------
 
-df %>% 
-  mutate(period = case_when(
-    date > dmy("09-05-2018") & date < dmy("16-05-2018") ~ 1,
-    date > dmy("23-05-2018") & date < dmy("30-05-2018") ~ 2,
-    TRUE ~ 0
-  )) %>%
-  filter(period != 0) %>% 
-  gather(pollutant, conc, CO:O3) %>% 
-  group_by(pollutant, stationname, period) %>% 
-  summarise(conc = median(conc, na.rm = TRUE)) %>% View
+# Série CO - 7h às 11h
+
+make_bar_plot(df, "CO", 7:11)
+
+# 18h às 24h
+
+make_bar_plot("CO", 18:24)
+
+# Série O3 - 12h às 17h
+make_bar_plot("O3", 12:17)
+
+
+# Série NO - 7h às 11h
+make_bar_plot("NO", 7:11)
+
+
+# Série NO2 - 8h às 20h
+make_bar_plot("NO2", 8:20)
+
+# PM 2.5 - !10h às 18h
+make_bar_plot("MP2.5", c(1:9, 19:24))
+
+
+# PM 10 - 5h às 24h
+make_bar_plot("MP10", c(5:24))
+
+
+
 
 
