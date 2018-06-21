@@ -1,0 +1,328 @@
+------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  F:\Dropbox\fuel mix and air quality follow on\data_repository\NatComm_O
+> zone_William_FromPublishedData.log
+  log type:  text
+ opened on:  20 Jun 2018, 18:41:44
+
+. 
+. use "F:\Dropbox\fuel mix and air quality follow on\data_repository\archived_data_n
+> atcomm_salvo_brito_artaxo_geiger.dta", clear
+
+ 
+. * more time variables or indicators
+. gen trend=(date-date("1-Nov-08","DM20Y"))/365.25
+
+. foreach var of numlist 2(1)52 {
+  2.         gen dv_week_`var'=(week==`var')
+  3.         }
+
+. capture gen dv_beltway_open=(date>=date("31-Mar-10","DM20Y"))
+
+. capture gen dayofweek=dow(date)
+
+. * "regular" weekdays, i.e., weekdays that are not public holidays nor do they fall
+>  on yearend vacation period
+. * "vacation" weekdays, i.e., weekdays that are not public holidays but do fall on 
+> yearend vacation period
+. * I do not consider July to be a "(school) vacation" period since traffic does not
+>  seem to change much according to the traffic authority; the last time the Rodizio
+>  was lifted for certain weeks of July was 2007
+. gen dv_week_reg=(dayofweek>=1 & dayofweek<=5 & dv_pubhol==0 & dvyearendvacations==
+> 0)
+
+. gen dv_mon_reg=(dv_week_reg==1 & dayofweek==1)
+
+. gen dv_tue_reg=(dv_week_reg==1 & dayofweek==2)
+
+. gen dv_wed_reg=(dv_week_reg==1 & dayofweek==3)
+
+. gen dv_thu_reg=(dv_week_reg==1 & dayofweek==4)
+
+. gen dv_fri_reg=(dv_week_reg==1 & dayofweek==5)
+
+. assert dv_mon_reg+dv_tue_reg+dv_wed_reg+dv_thu_reg+dv_fri_reg==dv_week_reg
+
+. gen dv_week_vac=(dayofweek>=1 & dayofweek<=5 & dv_pubhol==0 & dvyearendvacations==
+> 1)
+
+. gen dv_sat_reg=(dayofweek==6 & dv_pubhol==0 & dvyearendvacations==0)
+
+. gen dv_sat_vac=(dayofweek==6 & dv_pubhol==0 & dvyearendvacations==1)
+
+. gen dv_sun_reg=(dayofweek==0 & dv_pubhol==0 & dvyearendvacations==0)
+
+. gen dv_sun_vac=(dayofweek==0 & dv_pubhol==0 & dvyearendvacations==1)
+
+. assert dv_week_reg+dv_week_vac+dv_sat_reg+dv_sat_vac+dv_sun_reg+dv_sun_vac+dv_pubh
+> ol==1
+
+. gen dv_sun_or_pubhol=(dayofweek==0 | dv_pubhol==1)
+
+. assert dv_mon_reg+dv_tue_reg+dv_wed_reg+dv_thu_reg+dv_fri_reg+dv_week_vac+dv_sat_r
+> eg+dv_sat_vac+dv_sun_or_pubhol==1
+
+. 
+. * use traffic in the morning rush hours 07:00 to 11:00; also thermal inversion dat
+> a recorded at 9am
+. foreach var in congestion_city congestion_region {
+  2.         capture drop temp
+  3.         gen temp=`var' if hour>=7&hour<=11
+  4.         bysort siteid date: egen `var'_am=mean(temp)
+  5.         }
+(381,444 missing values generated)
+(381,444 missing values generated)
+
+. /*      
+> foreach var in dv_ti_0to199m dv_ti_200to499m {
+>         capture drop temp
+>         gen temp=`var' if hour==9
+>         bysort siteid date: egen `var'_9am=mean(temp)
+>         }
+> */
+. 
+. gen dv_congestion_city_am_0_20=(congestion_city_am>=0&congestion_city_am<20)
+
+. gen dv_congestion_city_am_20_50=(congestion_city_am>=20&congestion_city_am<50)
+
+. gen dv_congestion_city_am_50_80=(congestion_city_am>=50&congestion_city_am<80)
+
+. gen dv_congestion_city_am_80_200=(congestion_city_am>=80&congestion_city_am<200)
+
+. assert dv_congestion_city_am_0_20+dv_congestion_city_am_20_50+dv_congestion_city_a
+> m_50_80+dv_congestion_city_am_80_200==1 if (month>=10|month<=5) & o3_mass_conc~=.
+
+. 
+. gen dv_congestion_region_am_0_4=(congestion_region_am>=0&congestion_region_am<4)
+
+. gen dv_congestion_region_am_4_11=(congestion_region_am>=4&congestion_region_am<11)
+
+. gen dv_congestion_region_am_11_18=(congestion_region_am>=11&congestion_region_am<1
+> 8)
+
+. gen dv_congestion_region_am_18_60=(congestion_region_am>=18&congestion_region_am<6
+> 0)
+
+. assert dv_congestion_region_am_0_4+dv_congestion_region_am_4_11+dv_congestion_regi
+> on_am_11_18+dv_congestion_region_am_18_60==1 if (month>=10|month<=5) & o3_mass_con
+> c~=.
+
+. 
+. keep if $hoursforreg
+(381,444 observations deleted)
+
+. 
+. collapse (mean) o3_mass_conc share_gas trend dv_week_2-dv_week_52 dv_mon_reg dv_tu
+> e_reg dv_wed_reg dv_thu_reg dv_fri_reg dv_week_vac dv_sat_reg dv_sat_vac dv_sun_va
+> c dv_pubhol ///
+>          rd tp hm ws pp dv_ti_0to199m_9am dv_ti_200to499m_9am dv_congestion_*_am_*
+> _* dv_beltway_open month, by(date siteid)
+
+. 
+. gen dv_pp_0_0=(pp==0) if pp~=.
+(12 missing values generated)
+
+. gen dv_pp_0_5=(pp>0&pp<.5) if pp~=.
+(12 missing values generated)
+
+. gen dv_pp_5_20=(pp>=.5&pp<2) if pp~=.
+(12 missing values generated)
+
+. gen dv_pp_20_150=(pp>=2&pp<15) if pp~=.
+(12 missing values generated)
+
+. 
+. reg o3_mass_conc share_gas i.siteid##c.trend dv_week_2-dv_week_52 dv_mon_reg dv_tu
+> e_reg dv_wed_reg dv_thu_reg dv_fri_reg dv_week_vac dv_sat_reg dv_sat_vac dv_sun_va
+> c dv_pubhol ///
+>         rd tp hm ws dv_pp_*_* dv_ti_0to199m_9am dv_ti_200to499m_9am dv_congestion_
+> city_am_*_* dv_congestion_region_am_*_* i.siteid##i.dv_beltway_open if (month>=10|
+> month<=5), robust cluster(date)
+note: dv_week_23 omitted because of collinearity
+note: dv_week_24 omitted because of collinearity
+note: dv_week_25 omitted because of collinearity
+note: dv_week_26 omitted because of collinearity
+note: dv_week_27 omitted because of collinearity
+note: dv_week_28 omitted because of collinearity
+note: dv_week_29 omitted because of collinearity
+note: dv_week_30 omitted because of collinearity
+note: dv_week_31 omitted because of collinearity
+note: dv_week_32 omitted because of collinearity
+note: dv_week_33 omitted because of collinearity
+note: dv_week_34 omitted because of collinearity
+note: dv_week_35 omitted because of collinearity
+note: dv_week_36 omitted because of collinearity
+note: dv_week_37 omitted because of collinearity
+note: dv_week_38 omitted because of collinearity
+note: dv_week_39 omitted because of collinearity
+note: dv_pp_20_150 omitted because of collinearity
+note: dv_congestion_city_am_80_200 omitted because of collinearity
+note: dv_congestion_region_am_18_60 omitted because of collinearity
+
+Linear regression                               Number of obs     =     13,203
+                                                F(95, 1177)       =     131.87
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.7065
+                                                Root MSE          =     19.672
+
+                                    (Std. Err. adjusted for 1,178 clusters in date)
+-----------------------------------------------------------------------------------
+                  |               Robust
+     o3_mass_conc |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+        share_gas |  -16.65661   4.424613    -3.76   0.000    -25.33762   -7.975602
+                  |
+           siteid |
+               2  |   8.584548   .9973995     8.61   0.000     6.627669    10.54143
+               3  |   7.921394   .9058443     8.74   0.000     6.144144    9.698643
+               5  |   16.33153    .915992    17.83   0.000     14.53437    18.12869
+               6  |   2.038999   1.157524     1.76   0.078    -.2320407     4.31004
+               7  |   23.95201   1.255016    19.09   0.000     21.48969    26.41433
+              15  |  -.7354527   1.106046    -0.66   0.506    -2.905495    1.434589
+              18  |   9.439122   1.624113     5.81   0.000     6.252641     12.6256
+              22  |   7.542719   1.497445     5.04   0.000     4.604761    10.48068
+              27  |  -2.432383   1.091712    -2.23   0.026    -4.574301   -.2904646
+              29  |  -6.766918   1.472221    -4.60   0.000    -9.655389   -3.878448
+              31  |   21.41032   1.061883    20.16   0.000     19.32692    23.49371
+                  |
+            trend |  -.1286734     .76203    -0.17   0.866    -1.623762    1.366415
+                  |
+   siteid#c.trend |
+               2  |   1.718867    .421068     4.08   0.000     .8927391    2.544994
+               3  |   2.624714    .570543     4.60   0.000     1.505319    3.744109
+               5  |    1.61708   .5324207     3.04   0.002     .5724807     2.66168
+               6  |   3.288527   .5277889     6.23   0.000     2.253015     4.32404
+               7  |  -6.268287   .6262592   -10.01   0.000    -7.496997   -5.039578
+              15  |   .1048608    .655899     0.16   0.873    -1.182001    1.391722
+              18  |   2.088912   .7662306     2.73   0.007     .5855815    3.592242
+              22  |   1.892135   .8201878     2.31   0.021     .2829412    3.501328
+              27  |  -2.021733   .6115366    -3.31   0.001    -3.221556   -.8219093
+              29  |   1.490835   .7902983     1.89   0.059    -.0597157    3.041386
+              31  |  -4.323479    .624814    -6.92   0.000    -5.549353   -3.097606
+                  |
+        dv_week_2 |   2.323886   4.762898     0.49   0.626    -7.020832     11.6686
+        dv_week_3 |   3.323678   4.358918     0.76   0.446    -5.228439    11.87579
+        dv_week_4 |   3.918589   4.636809     0.85   0.398    -5.178745    13.01592
+        dv_week_5 |   7.213274   4.916036     1.47   0.143    -2.431897    16.85845
+        dv_week_6 |   4.343955   4.598381     0.94   0.345    -4.677984    13.36589
+        dv_week_7 |   4.688969   4.194805     1.12   0.264    -3.541161     12.9191
+        dv_week_8 |   13.44205   4.610869     2.92   0.004      4.39561    22.48849
+        dv_week_9 |   8.800797   4.927299     1.79   0.074    -.8664724    18.46807
+       dv_week_10 |   9.839744   4.616907     2.13   0.033     .7814578    18.89803
+       dv_week_11 |   7.597716   4.259503     1.78   0.075    -.7593509    15.95478
+       dv_week_12 |   2.379949   4.185007     0.57   0.570    -5.830957    10.59086
+       dv_week_13 |   4.613851   4.158049     1.11   0.267    -3.544165    12.77187
+       dv_week_14 |   2.473282   4.381566     0.56   0.573    -6.123271    11.06983
+       dv_week_15 |  -.5374546   4.445704    -0.12   0.904    -9.259844    8.184934
+       dv_week_16 |   5.633925   4.164674     1.35   0.176    -2.537087    13.80494
+       dv_week_17 |   3.297739   4.475579     0.74   0.461    -5.483265    12.07874
+       dv_week_18 |    10.2394    4.69829     2.18   0.030      1.02144    19.45736
+       dv_week_19 |   3.505469   4.567827     0.77   0.443    -5.456522    12.46746
+       dv_week_20 |   5.699312   4.744561     1.20   0.230    -3.609429    15.00805
+       dv_week_21 |  -3.476134   4.511057    -0.77   0.441    -12.32674    5.374476
+       dv_week_22 |  -2.471672   5.059729    -0.49   0.625    -12.39877    7.455422
+       dv_week_23 |          0  (omitted)
+       dv_week_24 |          0  (omitted)
+       dv_week_25 |          0  (omitted)
+       dv_week_26 |          0  (omitted)
+       dv_week_27 |          0  (omitted)
+       dv_week_28 |          0  (omitted)
+       dv_week_29 |          0  (omitted)
+       dv_week_30 |          0  (omitted)
+       dv_week_31 |          0  (omitted)
+       dv_week_32 |          0  (omitted)
+       dv_week_33 |          0  (omitted)
+       dv_week_34 |          0  (omitted)
+       dv_week_35 |          0  (omitted)
+       dv_week_36 |          0  (omitted)
+       dv_week_37 |          0  (omitted)
+       dv_week_38 |          0  (omitted)
+       dv_week_39 |          0  (omitted)
+       dv_week_40 |   22.70456   5.146815     4.41   0.000     12.60661    32.80252
+       dv_week_41 |   23.80355   4.462628     5.33   0.000     15.04796    32.55914
+       dv_week_42 |   21.31926   4.233441     5.04   0.000     13.01332    29.62519
+       dv_week_43 |   20.21103   4.494543     4.50   0.000     11.39282    29.02924
+       dv_week_44 |   20.95682    4.53256     4.62   0.000     12.06402    29.84962
+       dv_week_45 |   19.78246   5.231012     3.78   0.000     9.519306     30.0456
+       dv_week_46 |   8.882937   4.255954     2.09   0.037     .5328341    17.23304
+       dv_week_47 |   11.48987   4.187291     2.74   0.006     3.274482    19.70526
+       dv_week_48 |   11.49263   4.149168     2.77   0.006     3.352038    19.63322
+       dv_week_49 |   11.66493   4.255091     2.74   0.006     3.316523    20.01334
+       dv_week_50 |   11.95263   4.191595     2.85   0.004     3.728797    20.17646
+       dv_week_51 |    12.6897   4.678867     2.71   0.007     3.509845    21.86955
+       dv_week_52 |   5.700113   3.250349     1.75   0.080    -.6770113    12.07724
+       dv_mon_reg |  -13.16978   3.349574    -3.93   0.000    -19.74158   -6.597974
+       dv_tue_reg |  -13.26562    3.27638    -4.05   0.000    -19.69382   -6.837426
+       dv_wed_reg |  -12.06929   3.262951    -3.70   0.000    -18.47113   -5.667436
+       dv_thu_reg |  -14.21485   3.263083    -4.36   0.000    -20.61696   -7.812741
+       dv_fri_reg |  -12.57439    3.41109    -3.69   0.000    -19.26688   -5.881893
+      dv_week_vac |  -3.224478    4.16042    -0.78   0.438    -11.38715    4.938189
+       dv_sat_reg |   -.865667   1.803574    -0.48   0.631    -4.404245    2.672911
+       dv_sat_vac |   4.570952   5.282061     0.87   0.387    -5.792354    14.93426
+       dv_sun_vac |   7.802505   6.434905     1.21   0.226    -4.822659    20.42767
+        dv_pubhol |  -.5667023   2.299514    -0.25   0.805    -5.078307    3.944902
+               rd |    .041705   .0036419    11.45   0.000     .0345597    .0488503
+               tp |   3.094179   .2151545    14.38   0.000      2.67205    3.516308
+               hm |  -.4910184   .0631095    -7.78   0.000    -.6148381   -.3671988
+               ws |  -13.15436   1.054909   -12.47   0.000    -15.22407   -11.08465
+        dv_pp_0_0 |   2.036812   3.829906     0.53   0.595    -5.477393    9.551018
+        dv_pp_0_5 |  -.4359123   3.804684    -0.11   0.909    -7.900632    7.028807
+       dv_pp_5_20 |   .9403632   4.051246     0.23   0.816    -7.008107    8.888833
+     dv_pp_20_150 |          0  (omitted)
+dv_ti_0to199m_9am |   .9135226   2.265017     0.40   0.687    -3.530398    5.357443
+dv_ti_200to499m~m |   3.777729   1.202965     3.14   0.002     1.417533    6.137924
+dv_congestion_~20 |  -8.849355   3.322242    -2.66   0.008    -15.36753   -2.331178
+dv_congestion_~50 |   -6.16289   2.010671    -3.07   0.002    -10.10779    -2.21799
+dv_congestion_~80 |  -1.068314   1.574117    -0.68   0.497    -4.156703    2.020076
+dv_congestion~200 |          0  (omitted)
+dv_congestion_r~4 |   1.294627   1.192263     1.09   0.278    -1.044571    3.633825
+dv_congestion_~11 |  -.7211994   1.001644    -0.72   0.472    -2.686406    1.244007
+dv_congestion_~18 |   -.623317   .8776482    -0.71   0.478    -2.345247    1.098612
+dv_congestion_~60 |          0  (omitted)
+1.dv_beltway_open |   6.617638   2.063274     3.21   0.001     2.569532    10.66574
+                  |
+           siteid#|
+  dv_beltway_open |
+             2 1  |  -8.580209   1.274343    -6.73   0.000    -11.08045   -6.079971
+             3 1  |  -9.792284   1.658665    -5.90   0.000    -13.04655   -6.538014
+             5 1  |   8.401633   1.564682     5.37   0.000     5.331755    11.47151
+             6 1  |  -9.703149   1.588921    -6.11   0.000    -12.82058   -6.585715
+             7 1  |   16.00754   1.929586     8.30   0.000     12.22173    19.79335
+            15 1  |   7.671854   1.850115     4.15   0.000     4.041962    11.30175
+            18 1  |  -5.755782   2.127199    -2.71   0.007    -9.929306   -1.582257
+            22 1  |   2.295921   2.392937     0.96   0.338    -2.398977    6.990819
+            27 1  |   12.37789   1.827907     6.77   0.000     8.791568    15.96421
+            29 1  |   2.418816   2.392235     1.01   0.312    -2.274705    7.112338
+            31 1  |   13.10743   1.769286     7.41   0.000     9.636123    16.57874
+                  |
+            _cons |   16.96054   12.25759     1.38   0.167    -7.088625    41.00971
+-----------------------------------------------------------------------------------
+
+. summ o3_mass_conc if e(sample)
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+o3_mass_conc |     13,203    72.16164     36.1792         .6      279.4
+
+.         
+. * impact of share of Gasoline E20/E25 in the flex fleet rising from 30 to 80% (poi
+> nt estimate and standard error)
+. disp _b[share_gas]*(.8-.3)
+-8.3283054
+
+. disp _se[share_gas]*(.8-.3)
+2.2123064
+
+. 
+. * note to William: these standard errors are too low; you need to account for samp
+> ling variation in the predicted gasoline share using the published bootstrap sampl
+> es
+.         
+. 
+. log close
+      name:  <unnamed>
+       log:  F:\Dropbox\fuel mix and air quality follow on\data_repository\NatComm_O
+> zone_William_FromPublishedData.log
+  log type:  text
+ closed on:  20 Jun 2018, 18:41:54
+------------------------------------------------------------------------------------

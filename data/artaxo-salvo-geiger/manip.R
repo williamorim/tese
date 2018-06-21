@@ -2,11 +2,7 @@
 
 # Libraries ---------------------------------------------------------------
 
-library(readr)
-library(magrittr)
-library(dplyr)
-library(forcats)
-library(stringr)
+library(tidyverse)
 library(lubridate)
 
 
@@ -55,16 +51,16 @@ morning_vars <- df %>%
 
 afternoon_vars <- df %>% 
   filter(hour %in% 12:16) %>% 
-  select(date, stationname, o3_mass_conc, share_gas, rd:ws, pp) %>% 
+  select(date, stationname, o3_mass_conc, share_gas, rd:ws) %>% 
   group_by(date, stationname) %>% 
   summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
   ungroup()
 
-# afternoon_pp <- df %>%
-#   filter(hour %in% 12:16) %>%
-#   group_by(date, stationname) %>%
-#   summarise(pp = mean(pp, na.rm = TRUE)) %>%
-#   ungroup()
+afternoon_pp <- df %>%
+  filter(hour %in% 12:16) %>%
+  group_by(date, stationname) %>%
+  summarise(pp = mean(pp, na.rm = TRUE)) %>%
+  ungroup()
 
 other_vars <- df %>% 
   select(
@@ -77,8 +73,11 @@ other_vars <- df %>%
   summarise_all(.funs = funs(first)) %>% 
   ungroup()
 
-df <- inner_join(morning_vars, afternoon_vars, by = c("date", "stationname")) %>% 
-  inner_join(other_vars, by = c("date", "stationname"))
+
+df <- 
+  inner_join(morning_vars, afternoon_vars, by = c("date", "stationname")) %>% 
+  inner_join(other_vars, by = c("date", "stationname")) %>% 
+  inner_join(afternoon_pp, by = c("date", "stationname"))
 
 
 # Validation

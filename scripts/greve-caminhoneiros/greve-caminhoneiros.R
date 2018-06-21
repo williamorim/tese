@@ -159,9 +159,63 @@ make_bar_plot("MP2.5", c(1:9, 19:24))
 
 
 # PM 10 - 5h às 24h
-make_bar_plot("MP10", c(5:24))
+make_bar_plot("MP10", 5:24)
 
 
+# Diminuição relativa -----------------------------------------------------
 
+make_rel_table <- function(df, pollutant_, hours) {
+  
+  df %>% 
+    mutate(period = case_when(
+      date > dmy("09-05-2018") & date < dmy("16-05-2018") ~ 1,
+      date > dmy("23-05-2018") & date < dmy("30-05-2018") ~ 2,
+      date > dmy("06-06-2018") & date < dmy("14-06-2018") ~ 3,
+      TRUE ~ 0
+    )) %>%
+    filter(period != 0) %>% 
+    gather(pollutant, conc, CO:O3) %>%
+    group_by(pollutant, stationname, period) %>%
+    filter(pollutant == pollutant_, hour %in% hours) %>% 
+    summarise(conc = median(conc, na.rm = TRUE)) %>% 
+    spread(period, conc, sep = "_") %>% 
+    mutate(
+      aux = mean(c(period_1, period_3)),
+      rel = (period_2-aux)/aux
+    ) %>% 
+    select(-starts_with("period"), -aux) %>% 
+    ungroup() %>% 
+    mutate(
+      pollutant = ifelse(
+        pollutant_ == "CO" & hours[1] == 7,  
+        "CO (manhã)", 
+        pollutant
+      ),
+      pollutant = ifelse(
+        pollutant_ == "CO" & hours[1] == 18,  
+        "CO (noite)", 
+        pollutant
+      )
+    )
+  
+  
+}
 
-
+rel_table <- 
+  map2_dfr(
+    c("CO", "CO", "O3", "NO", "NO2", "MP2.5", "MP10"),
+    list(7:11, 18:24, 12:17, 7:11, 8:20, c(1:9, 19:24), 5:24),
+    make_rel_table,
+    df = df
+  ) %>%  
+  mutate(
+    rel = round(rel, 4)*100,
+    rel = str_c(rel, "%")
+  ) %>%
+  spread(stationname, rel) %>% 
+  mutate(
+    Ibirapuera = ifelse(is.na(Ibirapuera), "N/A", Ibirapuera),
+    Osasco = ifelse(is.na(Osasco), "N/A", Osasco)
+  )
+  
+  

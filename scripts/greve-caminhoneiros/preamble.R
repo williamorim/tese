@@ -83,7 +83,7 @@ make_bar_plot <- function(df, pollutant_, hours) {
     gather(pollutant, conc, CO:O3) %>% 
     group_by(pollutant, stationname, period) %>%
     filter(hour %in% hours, pollutant == pollutant_) %>% 
-    summarise(conc = median(conc, na.rm = TRUE)) %>%
+    summarise(conc = mean(conc, na.rm = TRUE)) %>%
     ggplot(aes(x = stationname, y = conc, fill = as.factor(period))) +
     geom_bar(stat = "identity", position = "dodge") +
     labs(y = pollutant_, fill = "Período", x = "Estação") +
