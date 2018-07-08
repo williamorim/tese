@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------- %%
-\chapter{Técnicas de aprendizado estatístico}
+\chapter{Estratégias de modelagem preditiva}
 \label{cap:aprendizado_estatistico}
 
 \begin{flushright}
@@ -13,7 +13,7 @@
 	\vspace{5mm}
 \end{flushright}
 
-No capítulo anterior, apresentamos diversas classes úteis para fazer inferência em estudos de poluição do ar. A utilização desses modelos depende de suposições sobre a forma como as variáveis explicativas e as variável resposta estão relacionadas. De uma forma geral, essas suposições são feitas a partir de um modelo probabilístico para $Y$, cuja parametrização dependerá de alguma função das variáveis $\mathbf{X}$. O modelo de regressão linear (\ref{mod:linear}), por exemplo, assume as seguintes hipóteses:
+No capítulo anterior, apresentamos diversas classes de modelos úteis para fazer inferência em estudos de poluição do ar. A utilização desses modelos depende de suposições sobre a forma como as variáveis explicativas e as variável resposta estão relacionadas. De uma forma geral, essas suposições são feitas a partir de um modelo probabilístico para $Y$, cuja parametrização dependerá de alguma função das variáveis $\mathbf{X}$. O modelo de regressão linear (\ref{mod:linear}), por exemplo, assume as seguintes hipóteses:
 
 \begin{itemize}
 	\item a média de $Y$ depende das variáveis $\mathbf{X}$ a partir da relação $\beta_0 + \beta_1X_1 + \dots \beta_pX_p$ (linearidade e aditividade);
@@ -21,131 +21,145 @@ No capítulo anterior, apresentamos diversas classes úteis para fazer inferência 
 \end{itemize}
 Essas suposições, embora potencialmente restritivas, permitem que o modelo seja interpretável, isto é, ao estimarmos os coeficientes $\beta_0, \beta_1, \dots, \beta_p$, podemos avaliar como a variável $Y$ é influenciada por cada preditor $X_1, \dots, X_p$.
 
-Nos últimos anos, um novo \textit{framework} de análise de dados se tornou muito popular, principalmente pela sua eficiência na resolução de problemas de predição, como detecção de imagens, transcrição de áudio e sistemas de recomendação. A chamada \textit{aprendizagem estatística}\footnote{Também conhecida como modelagem preditiva, aprendizagem automática ou \textit{machine learning}.} envolve um conjunto de técnicas que visam gerar a estimativa mais precisa possível para uma quantidade ou fenômeno. Apesar desse \textit{framework} focar no ajuste de modelos preditivos, muitas das estratégias adotadas por ele também podem ser aplicadas em problemas de inferência, cujo interesse é entender a relação entre as variáveis.
+Nos últimos anos, um novo \textit{framework} de análise de dados se tornou muito popular, principalmente pela sua eficiência na resolução de problemas de predição, como detecção de imagens, transcrição de áudio e sistemas de recomendação. A chamada \textit{modelagem preditiva}\footnote{Também conhecida como aprendizado estatístico, aprendizagem automática ou aprendizado de máquina \textit{machine learning}.} envolve um conjunto de técnicas que visam gerar a estimativa mais precisa possível para uma quantidade ou fenômeno. Embora esse \textit{framework} foque no ajuste de modelos preditivos, muitas das estratégias adotadas por ele também podem ser aplicadas em problemas de inferência, cujo interesse é entender a relação entre as variáveis.
 
 %TODO: escrever sobre modelos preditivos (árvores e redes neurais)
 
-Neste capítulo, discutiremos com mais detalhes o conceito de \textit{over-fitting} e apresentaremos métodos de reamostragem, seleção de variáveis e regularização. Em seguida, introduziremos alguns modelos muito utilizados no contexto de aprendizagem estatística.
+Neste capítulo, discutiremos as principais técnicas dentro da modelagem preditiva, como o conceito de sobreajuste (\textit{over-fitting}), os métodos de reamostragem, seleção de variáveis e regularização. Em seguida, introduziremos alguns modelos mais utilizados dentro desse contexto.
 
 
 %Os métodos de reamostragem geralmente são utilizados para avaliar a performance de um modelo ou prover medidas de acurácia para as estimativas dos parâmetros. Dada uma classe de modelos, os métodos de seleção de variáveis e regularização permitem aumentarmos o poder preditivo e a interpretabilidade do modelo.
 
 \section{Sobreajuste e o \textit{trade-off} entre viés e variância}
+\label{sec:trade-off}
 
-Ao utilizarmos um modelo estatístico para predição, estamos sujeitos a dois tipos de erro: um erro redutível e outro irredutível. No contexto apresentado na introdução do Capítulo \ref{cap:regressao}, dificilmente vamos conseguir uma estimativa ótima da função $f$, e essa imprecisão introduz erro nas predições do modelo. Esse erro é chamado de \textit{redutível}, pois sempre podemos encontrar uma $\hat{f}$ mais próxima da verdadeira $f$. No entanto, como $Y$ depende também do termo $\epsilon$ (\ref{mod:y-equal-X-e}), mesmo se pudêssemos estimar $f$ com 100\% de precisão, ainda teríamos um erro associado. O termo $\epsilon$ termo representa a variação em $Y$ que não podemos explicar pelas variáveis $\mathbf{X}$, e como a imprecisão gerada por ele não pode ser reduzida, independentemente de como estimarmos a função $f$, esse erro é chamado de \textit{irredutível}.
+Ao utilizarmos um modelo estatístico para predição, estamos sujeitos a dois tipos de erro: um erro redutível e outro irredutível. No contexto apresentado na introdução do Capítulo \ref{cap:regressao}, dificilmente vamos conseguir uma estimativa perfeita para a função $f$, e essa imprecisão introduz erro nas predições do modelo. Esse erro é chamado de \textit{redutível}, pois sempre podemos encontrar uma candidata $\hat{f}$ mais próxima da verdadeira $f$. No entanto, como $Y$ depende também do termo $\epsilon$ (\ref{mod:y-equal-X-e}), mesmo se pudêssemos estimar $f$ com 100\% de precisão, ainda teríamos um erro associado. Por construção, o termo $\epsilon$ representa a variação em $Y$ que não pode ser explicada pelos preditores $\mathbf{X}$, e como essa imprecisão não pode ser reduzida, independentemente de qual $\hat{f}$ nós escolhermos, esse erro é chamado de \textit{irredutível}.
 
-O nosso papel na hora de ajustar um modelo aos dados é encontrar uma candidata para $f$ que minimize o erro redutível, isto é, utilizando os dados que temos disponíveis, queremos encontrar um modelo que gere as estimativas o mais precisas possível sobre o fenômeno ou quantidade sob estudo. Para cumprir esse objetivo, precisamos definir os conceitos de \textit{viés} e \textit{variância} de um modelo.
+O grande desafio na hora de ajustar um modelo aos dados é encontrar uma $\hat{f}$ que minimize o erro redutível, isto é, queremos encontrar um modelo que, utilizando os dados disponíveis, gere as estimativas o mais precisas possível sobre o fenômeno sob estudo. Dentro da modelagem preditiva, essa tarefa é equivalente a minimizar duas quantidades do modelo: o \textit{viés} e a \textit{variância}.
 
-Imagine que precisamos ajustar um modelo para os dez pontos apresentados na Figura \ref{cap-aprend-estat-trade-off} (a). Podemos começar ajustando um modelo de regressão linear simples (\ref{mod:linear-simples}) e calcular a raiz do erro quadrático médio (Seção \ref{sec:reg-quali-mod}) para avaliar o quanto a reta ajustada se afasta dos pontos. Na Tabela \ref{tab:cap-aprend-estat-trade-off-10-obs}, apresentamos o RMSE obtido para o modelo de regressão linear simples e para os modelos de regressão polinomial de até nono grau. Observe que, conforme aumentamos a complexidade do modelo (grau do polinômio), o RMSE diminui, até chegar em 0 para o polinômio de grau 9. Se tomarmos puramente o RMSE como medida da performance do modelo, escolheríamos justamente esse polinômio como modelo final. No entanto, pela Figura \ref{cap-aprend-estat-trade-off} (b), observamos que esse modelo está claramente mal ajustado aos dados.
+Para entender melhor o que essas quantidades representam, imagine que precisamos ajustar um modelo para os dez pontos apresentados na Figura \ref{cap-aprend-estat-trade-off} (a). Podemos começar ajustando um modelo de regressão linear simples,
+
+\begin{displaymath}
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i, \quad i = 1, \dots, 10,
+\end{displaymath}
+e calcular a raiz do erro quadrático médio (definido na Seção \ref{sec:reg-quali-mod}) para avaliar o quanto a reta ajustada se afasta dos pontos. Uma forma de tentar melhorar o ajuste seria acrescentar um termo quadrático e verificar se o RMSE diminui. Podemos repetir esse procedimento acrescentando termos de graus cada vez maior\footnote{Esses são os modelos polinomiais apresentados na Seção \ref{sec:linearidade}.}, até encontrarmos o menor RMSE.
+
+Na Tabela \ref{tab:cap-aprend-estat-trade-off-10-obs}, apresentamos o RMSE obtido para os modelos de regressão polinomial até o nono grau\footnote{O modelo de regressão linear simples é um modelo polinomial de grau 1.}. Observe que, conforme aumentamos a complexidade do modelo (grau do polinômio), o RMSE diminui, até chegar em 0 para o polinômio de grau 9. Se utilizarmos puramente o RMSE como medida da performance do modelo, escolheríamos justamente esse polinômio como modelo final. No entanto, pela Figura \ref{cap-aprend-estat-trade-off} (b), observamos que esse modelo está claramente mal ajustado aos dados.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figuras/cap-aprend-estat-trade-off.pdf}
-	\caption{Exemplo do \textit{trade-off} entre viés e variância. (a) Conjunto de 10 pontos que gostaríamos de ajustar. (b) Modelos de regressão polinomial de graus 1 (vermelho), 2 (amarelo) e 9 (azul) ajustado aos 10 pontos. (c) Amostra de 100 novas observações plotadas juntas dos modelos polinomiais ajustados nas 10 observações iniciais. (d) Modelos de regressão polinomial de graus 1 (vermelho), 2 (amarelo) e 9 (azul) ajustados aos 100 novos pontos.}
+	\caption{Exemplo do \textit{trade-off} entre viés e variância. (a) Conjunto de 10 pontos que gostaríamos de ajustar. (b) Modelo de regressão linear simples (vermelho), modelo de regressão polinomial de grau 2 (amarelo) e modelo de regressão polinomial de grau 9 (azul), ajustados aos 10 pontos. (c) Amostra de 100 novas observações plotadas juntas dos modelos polinomiais ajustados nas 10 observações iniciais. (d) Modelos de regressão polinomial de graus 1 (vermelho), 2 (amarelo) e 9 (azul) ajustados aos 100 novos pontos.}
 	\label{cap-aprend-estat-trade-off}
 \end{figure}
 
-\begin{table}
+\begin{table}[h!]
 	\centering
 	\caption{Raiz do erro quadrático médio (RMSE) para os modelos polinomiais de grau 1 a 9 ajustados com 10 e 110 observações no exemplo da Figura \ref{cap-aprend-estat-trade-off}.}
 	\begin{tabular}{M{2cm}|M{3cm}|M{3cm} N}
 		\hline
 		Grau do polinômio & RMSE (10 obs.) & RMSE (100 obs.) & \\
 		\hline
-		1 & 0.204 & 0.206 & \\[10pt]
+		1 & 0.204 & 0.360 & \\[10pt]
 		\hline
-		2 & 0.149 & 0.089 & \\[10pt]
+		2 & 0.149 & 0.226 & \\[10pt]
 		\hline
-		3 & 0.140 & 0.089 & \\[10pt]
+		3 & 0.140 & 0.199 & \\[10pt]
 		\hline
-		4 & 0.140 & 0.089 & \\[10pt]
+		4 & 0.140 & 0.198 & \\[10pt]
 		\hline
-		5 & 0.102 & 0.089 & \\[10pt]
+		5 & 0.102 & 0.289 & \\[10pt]
 		\hline
-		6 & 0.086 & 0.089 & \\[10pt]
+		6 & 0.086 & 0.360 & \\[10pt]
 		\hline
-		7 & 0.063 & 0.087 & \\[10pt]
+		7 & 0.063 & 0.320 & \\[10pt]
 		\hline
-		8 & 0.031 & 0.087 & \\[10pt]
+		8 & 0.031 & 1.152 & \\[10pt]
 		\hline
-		9 & 0.000 & 0.087 & \\[10pt]
+		9 & 0.000 & 3.904 & \\[10pt]
 		\hline
 	\end{tabular}
 	\label{tab:cap-aprend-estat-trade-off-10-obs}
 \end{table}
 
-Considere agora, nesse mesmo exemplo, que conseguimos uma nova amostra com mais 100 observações geradas pelo mesmo fenômeno das 10 primeiras. A Figura \ref{cap-aprend-estat-trade-off} (c) ratifica o quanto o modelo polinomial de grau 9 se ajustou mal aos dados, enquanto os modelos de grau 1 e 2 parecem escolhas mais razoáveis. Podemos observar ainda na Tabela \ref{tab:cap-aprend-estat-trade-off-10-obs} que o RMSE do modelo de grau 9 calculado nas 100 novas observações\footnote{Aqui, os modelos não foram reajustados. Foram considerados os modelos ajustados apenas com as 10 primeiras observações} é muito maior que o dos outros. Por fim, observe na Figura \ref{cap-aprend-estat-trade-off} (d) como a curva desse modelo muda quando o ajustamos agora usando as 100 novas observações.
+Considere agora, nesse mesmo exemplo, que conseguimos uma nova amostra com mais 100 observações geradas pelo mesmo fenômeno que gerou as 10 primeiras. A Figura \ref{cap-aprend-estat-trade-off} (c) ratifica o quanto o modelo polinomial de grau 9 se ajustou mal aos dados, enquanto os modelos de grau 1 e 2 parecem escolhas mais razoáveis. Podemos observar ainda na Tabela \ref{tab:cap-aprend-estat-trade-off-10-obs} que o RMSE do modelo polinomial de grau nove calculado nas 100 novas observações\footnote{Aqui, os modelos não foram reajustados. Foram considerados os modelos ajustados apenas com as 10 primeiras observações} é o maior entre todos os candidatos. Por fim, observe na Figura \ref{cap-aprend-estat-trade-off} (d) como a curva desse modelo muda quando o ajustamos agora usando as 100 novas observações.
 
-Durante a modelagem, estamos sempre em busca de modelos que se ajustem bem aos dados, mas que possam ser generalizados para a população. Nesse sentido, chamaremos de \textit{viés} o erro induzido por aproximar um fenômeno real, que pode pode ser extremamente complicado, por um modelo muito mais simples e de \textit{variância} o quanto as estimativas dos parâmetros mudariam se nós os estimarmos usando uma base diferente. Assim, dizemos que modelos que não se ajustam bem à amostra apresentam alto viés e modelos que apresentam alto erro preditivo em novas observações apresentam alta variância. 
+Durante a modelagem, estamos sempre em busca de modelos que se ajustem bem à amostra, mas que também possam ser generalizados para a população. Nesse sentido, chamamos de \textit{viés} o quanto o modelo ajustado está distante dos dados da amostra e de \textit{variância} o quanto o modelo erra ao utilizarmos para prever novas observações. O viés representa o erro induzido por aproximar um fenômeno real, que pode pode ser extremamente complicado, por um modelo muito mais simples e a \textit{variância} o quanto as estimativas dos parâmetros do modelo mudariam se nós tivéssemos usado uma amostra diferente. Assim, dizemos que modelos mal ajustados apresentam alto viés e modelos que erram muito na predição de novas observações apresentam alta variância. 
 
-É muito comum nos preocuparmos apenas em minimizar o viés dos nossos modelos, introduzindo complexidade para que eles se ajustem cada vez melhor aos dados. No exemplo apresentado, o polinômio de grau 9 ilustra, de forma bem simplificada, o conceito de sobreajuste (ou \textit{over-fitting}, em inglês). O sobreajuste ocorre quando o modelo absorve de forma inadequada comportamentos da amostra que não são generalizáveis para a população em geral. Modelos sobreajustados apresentam baixo viés, mas alta variância, não sendo apropriados para representar o fenômeno de interesse. Como podemos verificar, conforme aumentamos a complexidade do modelo, estamos diminuindo o seu viés, já que ele se ajustará melhor aos dados, porém, a partir de um ponto, também estaremos aumentando a sua variância, pois ele se tornará cada vez menos generalizável. Controlar esse \textit{trade-off} entre viés e variância é um dos maiores desafios da modelagem supervisionada.
+É muito comum utilizarmos estratégias que se preocupam apenas com a minimização do viés. Essas estratégias geram modelos mais complexos, visando um ajuste cada vez melhor aos dados, sem levar em conta o quanto isso será representativo em um contexto mais geral. No exemplo anterior, isso fica claro com o ajuste de polinômios de grau cada vez maior aos dados. Além disso, o polinômio de grau 9 ilustra, de forma bem simplificada, o conceito de sobreajuste, que ocorre quando o modelo absorve de forma inadequada comportamentos da amostra que não são generalizáveis para a população. Modelos sobreajustados apresentam baixo viés, mas alta variância, não sendo apropriados para representar o fenômeno de interesse. Controlar o \textit{trade-off} entre o viés e a variância é um dos maiores desafios da modelagem preditiva.
 
-Como na prática nem sempre é fácil identificar o sobreajuste, precisamos de medidas que quantifiquem o viés e a variância do modelo. Na próxima seção, apresentaremos estratégias para estimar essas quantidades.
+Na presença de muitos preditores, não é possível visualizar graficamente o sobreajuste, como mostrado no exemplo. Por isso, na prática, nem sempre é trivial identificar um modelo sobreajustado. Para contornar esse problema, apresentaremos na próxima seção medidas utilizadas para quantificar o viés e a variância de um modelo.
 
 \section{Estimando a performance do modelo}
 
-Na Seção \ref{sec:reg-quali-mod}, vimos que o R$^2$ e a raiz do erro quadrático médio (RMSE) podem ser utilizados para avaliar a qualidade do ajuste de um modelo de regressão linear. Em modelos para classificação, vimos na Seção ?? que a proporção de acerto é uma estimativa razoável da performance do modelo. Na prática, a métrica utilizada para estimar a performance do modelo vai depender do objetivo do estudo. Em estudos de previsão, por exemplo, podemos dar pesos maiores para erros acima de algum padrão de qualidade do ar, dando preferência a modelos que errem menos em valores extremos (grandes).
+Na Seção \ref{sec:reg-quali-mod}, vimos que o R$^2$ e a raiz do erro quadrático médio (RMSE) podem ser utilizados para avaliar a qualidade do ajuste de um modelo de regressão linear. Embora o $R^2$ seja utilizado apenas nessa classe de modelos, o RMSE pode ser calculado em qualquer contexto. Em alguns casos, podemos querer utilizar o erro absoluto médio (MAE), que dá menos peso para erros em valores muito altos da variável resposta. Em outros, pode ser razoável penalizar mais justamente os valores mais altos, e então construímos uma medida que distribui os pesos dessa maneira. 
 
-De uma maneira geral, utilizaremos a RMSE para avaliar a performance de modelos cuja resposta é quantitativa. Ao calcular essa medida nas variáveis que utilizamos para ajustar os dados, temos uma estimativa do viés do modelo, isto é, o quanto a curva ajustada está distante dos pontos. Vimos na seção anterior que, além do viés, precisamos levar em conta também a variância do modelo, já que um modelo que se ajusta perfeitamente à amostra dificilmente será generalizável para o resto da população.
+A escolha da métrica de performance vai depender sempre do objetivo do estudo. Independentemente da medida escolhida, ao calculá-la para as próprias observações utilizadas no ajuste, temos uma estimativa do viés do modelo, isto é, o quanto o modelo escolhido se ajusta bem à amostra. Essa quantidade é chamada de \textit{erro de treino}. Para obtermos uma estimativa da variância, precisamos calcular a medida de performance para observações não utilizadas no ajuste, que representem uma nova amostra do fenômeno sob estudo. Essa quantidade é chamada de \textit{erro de teste}.
 
-No exemplo da seção anterior, estimamos a variância do modelo calculando o RMSE para conjunto de novas observações. Na prática, nem sempre teremos à disposição uma nova base de dados para proceder com essa estratégia. Uma alternativa é utilizar técnicas de reamostragem para separar a base em observações de \textit{treino}, utilizadas para ajustar o modelo, e observações de \textit{teste}, utilizadas para estimar a variância do modelo. Essas técnicas, mais especificamente a validação cruzada e bootstrap, serão o tópico da próxima seção.
+Na prática, nem sempre teremos à disposição uma nova base de dados para a estimação da variância. Uma alternativa nesses casos é utilizar técnicas de validação cruzada, que permite separar a base em observações utilizadas para \textit{treinar} o modelo e observações para estimar sua performance. Essas técnicas serão o tema da próxima seção.
 
 \section{Métodos de reamostragem}
 
-Os métodos de reamostragem são técnicas para gerar novas amostras a partir de uma base principal. Elas são utilizadas para estimar quantidades de interesse sobre o modelo ou seus coeficientes que necessitariam de uma nova base de observações não utilizadas no ajuste.
+A reamostragem consiste na técnica de gerar novas amostras a partir de uma base principal. As técnicas de reamostragem mais utilizadas são a validação cruzada e o \textit{bootstraping}. 
 
-Nessa seção, falaremos sobre a validação cruzada e o bootstrap.
 
 \subsection{Validação cruzada}
 
-Uma forma de avaliar a qualidade do ajuste de um modelo é observar o seu \textit{erro de teste}. O erro de teste é o erro médio resultante da utilização do modelo escolhido para prever a resposta em novas observações, que não foram utilizadas para estimar os parâmetros do modelo \citep{James2013}.
-
-Como na maioria dos estudos não é possível obter facilmente novas observações, podemos calcular o erro de teste dividindo a amostra principal em duas partes: uma utilizada para o ajuste do modelo e a outra para o cálculo do erro de teste, como se fosse um conjunto de novas observações. Essa técnica é conhecida como \textit{validação cruzada} \citep{James2013}. Há diversos tipos de validação cruzada, que variam a depender da forma utilizada para dividir a amostra. Nesta seção, apresentaremos os principais tipos de validação cruzada e discutiremos as vantagens e desvantagens de cada uma.
+Como na maioria dos estudos não é possível obter facilmente novas observações, podemos calcular o erro de teste, a estimativa da variância do modelo, dividindo a amostra original em duas partes: uma utilizada para o ajuste do modelo (amostra de treino) e a outra para o cálculo do erro (amostra de teste), essa última agindo como se fosse um conjunto de novas observações. Essa técnica é conhecida como \textit{validação cruzada} \citep{James2013}. Há diversos tipos de validação cruzada, que variam a depender da forma utilizada para dividir a amostra. Nesta seção, apresentaremos os principais tipos de validação cruzada e discutiremos as vantagens e desvantagens de cada um.
 
 %Quando precisamos escolher valores para hiperparâmetros do modelo, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), podemos dividir a amostra em ainda mais uma parte: uma amostra de validação. Nesses casos, os modelos são treinados com a amostra de teste e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro com menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Repare que a amostra de teste nunca é utilizada para ajustar o modelo.
 
 \subsubsection{Amostra de validação}
 
-A amostra de validação é a forma mais simples de validação cruzada. A estratégia aqui consiste em dividir aleatoriamente as observações em uma amostra de treino e uma amostra de validação. A proporção de observações em cada uma depende do tamanho amostral. Costuma-se utilizar 30\% da amostra para validação, mas esse número pode ser menor em amostras muito grandes (mais de 100 mil observações, por exemplo).
+A amostra de validação é a forma mais simples de validação cruzada. A estratégia consiste em dividir aleatoriamente as observações em um conjunto de treino, usado para ajustar o modelo, e outro de teste, utilizado exclusivamente para estimar o erro de teste. 
 
-Conforme discutido em \cite{James2013}, a amostra de validação tem duas desvantagens em potencial:
+A proporção de observações em cada uma depende do tamanho amostral. Costuma-se utilizar 30\% da amostra original no conjunto de teste, mas esse número pode ser menor para amostras muito grandes (mais de 100 mil observações, por exemplo).
+
+As maiores vantagens dessa técnica é a sua simplicidade e a necessidade de se ajustar o modelo uma única vez. No entanto, conforme discutido em \cite{James2013}, a amostra de validação apresenta duas potenciais desvantagens:
 
 \begin{itemize}
-	\item a estimativa do erro de teste pode ter alta variância, dependendo de quais observações ficaram na amostra de treino e quais fiaram na amostra de validação;
-	\item como a acurácia de modelos estatísticos é menor quando ajustados com menos observações e apenas parte das observações são utilizadas no modelo final, a estimativa do erro de teste pode superestimada. 
+	\item a estimativa do erro de teste pode apresentar alta variabilidade, dependendo de quais observações ficaram na amostra de treino e quais fiaram na amostra de validação;
+	\item como a acurácia de modelos estatísticos é menor quando ajustados com menos observações, e apenas parte das observações são utilizadas para treinar o modelo, o  erro de teste pode estar sendo superestimado. 
 \end{itemize}
 
-A seguir, apresentamos um tipo de validação cruzada que não possui essas limitações.
+A seguir, apresentaremos o LOOCV, um método de validação cruzada que não possui essas limitações.
 
 \subsubsection{LOOCV}
 
-Considere uma amostra com $n$ observações. A validação cruzada \textit{leave-one-out} (LOOCV) consiste em rodar o modelo escolhido $n$ vezes, sendo que em cada ajuste nós deixamos a $i$-ésima observação de fora, $i = 1, \dots, n$, e a utilizamos para calcular o erro de teste. A estimativa final do erro de teste será então a média das $n$ estimativas parciais. 
+Considere uma amostra com $n$ observações. A validação cruzada \textit{leave-one-out} (LOOCV) consiste em rodar o modelo escolhido $n$ vezes, sendo que, em cada ajuste, deixamos de fora a $i$-ésima observação, $i = 1, \dots, n$, e a utilizamos para calcular o erro de teste. A estimativa final do erro de teste será então a média das $n$ medidas parciais. Uma esquematização dessa técnica está representada na Figura \ref{cap-aprend-estat-loocv}.
 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figuras/cap-aprend-estat-loocv.png}
+	\includegraphics[width=0.5\linewidth]{figuras/cap-aprend-estat-esquema-loocv.png}
 	\caption{Esquematização da validação cruzada \textit{leave-one-out}.}
 	\label{cap-aprend-estat-loocv}
 \end{figure}
 
-Repare que com essa estratégia, todas as observações são utilizadas no ajuste do modelo, o que elimina as limitações da amostra de validação. No entanto, uma desvantagem aqui é a necessidade de ajustar o modelo $n$ vezes. Quando $n$ é muito grande, a LOOCV pode exigir um alto tempo de computação. Apresentamos a seguir uma generalização do LOOCV que é mais adequada para grandes amostras.
+Repare que, neste caso, todas as observações são utilizadas no ajuste do modelo e na estimativa do erro de teste, o que elimina as limitações da amostra de validação. No entanto, uma desvantagem aqui é a necessidade de ajustar o modelo $n$ vezes. Quando $n$ é muito grande, a LOOCV pode exigir muito esforço computacional, inviabilizando a sua utilização em muitos casos. A seguir, apresentamos validação cruzada \textit{k-fold}, uma generalização da LOOCV que não possui essa contrapartida computacional.
 
 \subsubsection{K-fold}
 
-Podemos generalizar a LOOCV dividindo a amostra em $k$ grupos com aproximadamente a mesma quantidade de observações e então ajustando o modelo $k$ vezes, sendo que em cada ajuste selecionamos um grupo diferente como amostra de validação. Essa abordagem é chamada de \textit{validação cruzada k-fold}. Note que a LOOCV é o caso especial em que $k = n$.
+Podemos generalizar a LOOCV dividindo a amostra original aleatoriamente em $k$ grupos com aproximadamente a mesma quantidade de observações. Então ajustando o modelo $k$ vezes, sendo que em cada ajuste selecionamos um grupo diferente como amostra de teste. Essa abordagem é chamada de \textit{k-fold}. Note que a LOOCV é o caso especial em que $k = n$. Na prática, escolhemos valores de $k$ entre 3 e 10, sendo que $k = 5$ é o mais utilizado (Figura \ref{cap-aprend-estat-esquema-k-fold-cv}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-esquema-k-fold-cv.png}
+	\caption{Esquematização da validação cruzada \textit{k-fold}, com $k = 5$.}
+	\label{cap-aprend-estat-esquema-k-fold-cv}
+\end{figure}
 
 A maior vantagem da validação cruzada \textit{k-fold} sobre a LOOCV é computacional. Em vez de ajustarmos o modelo $n$ vezes, ajustamos apenas $k$, sendo que $k << n$. E como estamos utilizando todas as observações para treinar o modelo, não temos as limitações de se utilizar uma única amostra de validação.
 
-Muitas vezes, quando a classe de modelos escolhida exige a escolha de hiperparâmetros, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), é comum separarmos a amostra em três partes: uma amostra de treino, uma amostra de validação e uma amostra de teste. Nesse caso, os modelos são treinados com a amostra de treino e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro que leva ao menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Geralmente utiliza-se LOOOCV ou \textit{k-fold} para a validação e uma amostra separada para o teste. Essa estratégia é utilizada para garantir que o erro de teste não seja calculado em observações utilizadas no ajuste do modelo e reflita o erro que obteríamos ao aplicá-lo no mundo real.
+Como discutimos até agora, a validação cruzada é geralmente utilizada para avaliar a performance do modelo. A seguir, apresentaremos uma técnica de reamostragem muito utilizada também para a estimação de quantidades acerca dos parâmetros do modelo.
 
-Como discutimos até agora, a validação cruzada utiliza reamostragem para avaliar a qualidade do ajuste realizado. A seguir, apresentaremos uma técnica de reamostragem para obter informações sobre as estimativas do modelo.
+\subsection{Bootstrapping}
 
-\subsection{Bootstrap}
+O \textit{bootstrapping} é uma poderosa ferramenta estatística utilizada para quantificar incertezas associadas a estimadores e modelos estatísticos. Ela consiste em gerar $m$ novas amostras a partir de sorteios com reposição da amostra original. Para cada uma das amostras geradas, ajustamos o modelo escolhido e guardamos as estimativas dos parâmetros. Ao repetirmos esse processo para as $m$ amostras, teremos $m$ estimativas diferentes para cada parâmetro do modelo. Assim, para cada parâmetro, podemos, por exemplo, calcular o desvio-padrão dessas $m$ estimativas e utilizar essa medida como o erro-padrão associado ao coeficiente. Repare que as estimativas dos parâmetros do modelo devem ser estimadas usualmente, utilizando a amostra original. Nesse exemplo, o \textit{bootstrapping} seria usado apenas para estimar a variabilidade dos coeficientes.
 
-\textit{Bootstrap} é uma poderosa ferramenta estatística utilizada para quantificar incertezas associadas a estimadores e modelos estatísticos. \cite{Salvo2014} e \cite{Salvo2017}, por exemplo, utilizaram essa técnica para estimar o erro-padrão dos coeficientes do modelo de regressão linear ajustado para associar a concentração de ozônio na cidade de São Paulo com a proporção estimada de veículos bicombustíveis rodando a gasolina. Segundo os autores, o bootstrap foi utilizado para contemplar a variação causada pelo erro de medida presente na estimação da proporção de carros rodando a gasolina e na medição das condições climáticas.
+Essa técnica é utilizada principalmente quando não conhecemos a distribuição dos estimadores do modelo ou quando precisamos controlar outras fontes de variabilidade. \cite{Salvo2014} e \cite{Salvo2017}, por exemplo, utilizaram o \textit{bootstrapping} para estimar o erro-padrão dos coeficientes do modelo de regressão linear ajustado para associar a concentração de ozônio na cidade de São Paulo com a proporção estimada de veículos bicombustíveis rodando a gasolina. Segundo os autores, essa estratégia foi utilizada para contemplar a variação causada pelo erro de medida presente na estimação da proporção de carros rodando a gasolina e na medição das condições climáticas.
 
-O bootstrap consiste em gerar novas amostras sorteando repetidamente novas observações do conjunto de dados original. Para cada amostra, podemos ajustar o modelo escolhido, obtendo assim uma amostra dos coeficientes. A estimativa de bootstrap do erro-padrão de cada coeficiente, por exemplo, é dada pelo desvio-padrão das estimativas obtidas.
+O \textit{bootstrapping} também pode ser para a estimação da performance do modelo. Neste caso, cada uma das $m$ amostras é utilizada como conjunto de treino e as observações que foram sorteadas em cada amostra é utilizada com conjunto de teste. Assim como na LOOCV, se $m$ for muito grande, essa estratégia pode gerar um esforço computacional muito alto.
 
 Mais informações sobre o bootstrap podem ser encontradas em \cite{James2013}.
 
@@ -153,15 +167,24 @@ Mais informações sobre o bootstrap podem ser encontradas em \cite{James2013}.
 
 \section{Seleção de variáveis}
 
-É muito comum na modelagem estatística incluirmos no modelo preditores que, na verdade, não estão associados com o fenômeno de interesse. Essas variáveis irrelevantes geram uma complexidade desnecessária no modelo resultante, sendo apropriado retirá-las da análise para obtermos um modelo mais fácil de interpretar.
+Muitas vezes, na construção do modelo, incluímos variáveis que não são associadas com o fenômeno sob estudo. Isso acontece principalmente quando temos pouco conhecimento sobre o mecanismo gerador do fenômeno ou quando estamos justamente investigando quais fatores estão associados a ele. 
 
-Uma forma de selecionar variáveis é, a partir de algum critério, definir qual subconjunto dos preditores deve permanecer no modelo. Nesta seção, apresentaremos estratégias para decidir quais variáveis devem ficar ou ser retiradas do modelo.
+Como essas variáveis irrelevantes geram uma complexidade desnecessária no modelo, é apropriado pesarmos em estratégias para retirá-las da análise, aumentando assim a interpretabilidade dos resultados.
+
+Nesta seção, apresentaremos algumas técnicas de seleção de variáveis que podem ser utilizadas em qualquer classe de modelos estatísticos.
 
 \subsection{Selecionando o melhor subconjunto de preditores}
 
-Para selecionar o melhor subconjunto entre $p$ preditores, ajustamos o modelo para todos os subconjuntos possíveis de variáveis e escolhemos o melhor segundo alguma métrica, geralmente erro preditivo, R$^2$ ajustado, AIC ou BIC. Para mais informações sobre essas quantidades, consultar \cite{James2013}. Observe que devemos usar uma métrica que penalize o modelo pelo número de parâmetros, pois, caso contrário, selecionaríamos sempre o modelo com mais preditores.
+A maneira mais simples que podemos pensar para selecionar variáveis em um modelo é ajustar todas as possíveis combinações dos $p$ preditores e avaliar qual produz o melhor ajuste segundo alguma métrica. Essa estratégia é chamada de \textit{melhor subconjunto de preditores} (\textit{best subset selection}, em inglês) e seu procedimento de seleção pode ser resumido pelos passo abaixo:
 
-Na Tabela \ref{tab:3-preditores-selecao-melhor-subconjunto} apresentamos os 7 modelos que precisaríamos ajustar no caso de 3 preditores, $X_1$, $X_2$ e$X_3$, e um modelo de regressão linear (Seção \ref{sec:modelo-linear}). Para um número relativamente pequeno de variáveis, selecionar o melhor subconjunto de preditores é uma estratégia conceitualmente simples e de fácil execução. No entanto, conforme $p$ cresce, essa técnica pode se tornar computacionalmente inviável. Para $p = 20$, por exemplo, precisaríamos rodar mais de um milhão de modelos. A seguir, apresentamos algumas estratégias computacionalmente eficientes para aplicarmos em problemas com muitos preditores.
+\begin{enumerate}
+	\item Ajustar o modelo nulo, sem nenhum preditor.
+	\item Para $k = 1, \dots, p$, ajustar todos os modelos com k preditores e escolher o melhor entre eles, isto é, aquele com menor RSME ou maior $R^2$ por exemplo.
+	\item Para cada um dos $p+1$ modelos escolhidos, selecionar o melhor usando o $R^2$ ajustado, RMSE calculado por validação cruzada (erro de teste), AIC ou BIC\footnote{O AIC e o BIC são medidas da qualidade do ajuste penalizadas pelo número de parâmetros do modelo. Mais informações, consultar \cite{James2013}}.
+\end{enumerate}
+Observe que a métrica utilizada para selecionar o modelo final deve ser penalizada pelo número de parâmetros, pois, caso contrário, escolheríamos sempre o modelo com mais preditores.
+
+Para um número relativamente pequeno de variáveis, selecionar o melhor subconjunto de preditores é uma estratégia conceitualmente simples e de fácil execução. No entanto, conforme $p$ cresce, essa técnica pode se tornar computacionalmente inviável. Na Tabela \ref{tab:3-preditores-selecao-melhor-subconjunto} apresentamos os 7 modelos que precisaríamos ajustar se tivéssemos 3 preditores, $X_1$, $X_2$ e$X_3$, e um modelo de regressão linear (Seção \ref{sec:modelo-linear}). Para $p = 20$, por exemplo, precisaríamos rodar mais de um milhão de modelos, o que poderia inviabilizar a execução dessa estratégia.
 
 \begin{table}[h!]
 	\centering
@@ -177,6 +200,8 @@ Na Tabela \ref{tab:3-preditores-selecao-melhor-subconjunto} apresentamos os 7 mo
 	\end{tabular}
     \label{tab:3-preditores-selecao-melhor-subconjunto}	
 \end{table}
+
+A seguir, apresentamos algumas estratégias computacionalmente eficientes para aplicarmos em problemas com muitos preditores.
 
 \subsection{Stepwise}
 
@@ -202,32 +227,39 @@ Ainda existem métodos \textit{stepwise} híbridos, nos quais os preditores são ad
 
 \section{Regularização}
 
-Os métodos de seleção de sub-conjuntos de preditores apresentados nas seções anteriores envolvem o ajuste de diversos modelos e a escolha do melhor segundo alguma métrica. Uma alternativa, seria ajustar um único modelo contendo todos os preditores e utilizar técnicas que limita ou regulariza as estimativas dos coeficientes, encolhendo seus valores na direção do zero.
+Os métodos de seleção de sub-conjuntos de preditores apresentados nas seções anteriores envolvem o ajuste de diversos modelos e a escolha do melhor segundo alguma métrica. Uma outra forma de selecionar variáveis é a partir das \textit{técnicas de regularização}. Essas técnicas, a princípio, envolvem o ajuste de um único modelo e introduzem no processo de estimação penalizações que limitam as estimativas dos coeficientes, as encolhendo na direção do zero.
 
-Essas técnicas, chamadas de de regularização, podem levar a uma redução substancial da variância das predições ao custo de um pequeno aumento de viés. Apresentaremos nesta seção as formas mais utilizadas de regularização: a regressão ridge e o LASSO. 
+A utilização da regularização pode levar a uma redução substancial da variância do modelo ao custo de um pequeno aumento no viés. Apresentaremos nesta seção as formas mais utilizadas de regularização: a regressão ridge e o LASSO. 
 
+\subsubsection{Regressão Ridge}
 
-A regressão ridge \citep{James2013} consiste em acrescentar a seguinte penalização à função de perda
+De uma forma geral, o processo de estimação dos parâmetros de um modelo consiste na minimização de uma função de perda $L(y, f(x))$ que depende dos dados observados $(x, y)$ e do modelo escolhido $(f(\cdot))$. As técnicas de regularização consistem em adicionar uma penalidade nessa função de perda, de tal forma que os coeficientes dos preditores pouco associados a variável resposta sejam encolhidos na direção do zero.
 
-\begin{displaymath}
-	\lambda \sum_{j=1}^p \beta_j^2,
-\end{displaymath}
-em que $\lambda$ é um hiperparâmetro que controla o impacto da penalização nas estimativas dos coeficientes. Quando $\lambda = 0$, o termo é anulado e as estimativas são calculadas sem penalização. Conforme $\lambda \longrightarrow \infty$, valores altos dos coeficientes $\beta_j$ são penalizados, forçando que seus valores sejam encolhidos na direção do zero. A vantagem desse comportamento está enraizada no \textit{trade-off} entre o viés e a variância do modelo. O encolhimento dos coeficientes força que o modelo seja menos flexível, aumentando um pouco o viés, e possivelmente gerando uma redução significativa na variância.
-
-No caso da regressão ridge, é possível mostrar que $\beta_i = 0$ apenas se $\lambda = \infty$. Isso significa não estamos fazendo seleção de variáveis, isto é, sempre obteremos um modelo com todos os preditores. Em alguns casos, isso pode não ser o ideal, pois, apesar de estarmos diminuindo a variância do modelo, podemos ter um modelo desnecessariamente mais complexo.
-
-Uma alternativa é utilizar o LASSO (\textit{least absolute shrinkage and selection operator}). Essa técnica é análoga à regressão ridge, mas a penalização imposta ao processo de estimação é dada por
+No caso da regressão ridge \citep{James2013}, essa penalização é dada por
 
 \begin{displaymath}
-\lambda \sum_{j=1}^p |\beta_j|.
+	L(y, f(x)) + \lambda \sum_{j=1}^p \beta_j^2,
 \end{displaymath}
-Para $\lambda$ grande o suficiente, essa penalização força que alguns dos coeficientes sejam estimados exatamente como zero. Assim, ao utilizarmos o LASSO, estamos ao mesmo tempo diminuindo a variância do modelo e executando seleção de variáveis.
+sendo $\beta_1, \dots, \beta_p$ os parâmetros do modelo $f(\cdot)$ e $\lambda$ um hiperparâmetro\footnote{Hiperparâmetros são parâmetros que não são estimados diretamente pelos dados.} que controla o impacto da penalização nas estimativas dos coeficientes. Quando $\lambda = 0$, o termo é anulado e as estimativas são calculadas sem penalização. Conforme $\lambda \longrightarrow \infty$, os coeficientes $\beta_j$ passam a ser penalizados, encolhendo seus valores na direção do zero. A vantagem desse comportamento está na potencial redução da variância do modelo, em troca de um pequeno aumento do viés, já que os coeficientes menos importantes recebem cada vez menos peso. Assim, a regularização é uma alternativa para lidarmos com o \textit{trade-off} entre viés e variância discutido na Seção \ref{sec:trade-off}.
 
-Um ponto importante sobre a aplicação das técnicas de regularização é a escala dos preditores. A maioria dos processos de estimação usuais são invariantes à escala em que os preditores foram medidos, isto é, ajustar o modelo usando o preditor $X_1$ ou $cX_1$, $c$ uma constante qualquer, não mudará a interpretação dos resultados. No caso da regressão ridge e do LASSO, a escala dos preditores influenciam não só a estimativa dos próprios coeficientes, mas também a estimativa dos outros parâmetros do modelo. Dessa forma, um passo importante de se realizar antes de aplicar essas técnicas é a padronização dos preditores. A padronização pode ser feita a partir da fórmula
+No caso da regressão ridge, é possível mostrar que, para qualquer $i = 1, \dots, p$,  $\beta_i = 0$ apenas se $\lambda = \infty$. Isso significa que não estamos fazendo seleção de variáveis, isto é, o modelo ajustado sempre terá todos os preditores. Apesar de estarmos melhorando a performance do modelo diminuindo o peso dos preditores menos importantes, isso pode não ser o ideal quando quisermos de fato eliminar variáveis do modelo. Nesses casos, uma boa alternativa é utilizar o LASSO.
+
+\subsubsection{LASSO}
+
+O LASSO (\textit{least absolute shrinkage and selection operator}) é uma técnica análoga à regressão ridge, mas com penalização dada por
+
+\begin{displaymath}
+	L(y, f(x)) +\lambda \sum_{j=1}^p |\beta_j|.
+\end{displaymath}
+Para $\lambda$ grande o suficiente, essa penalização força que alguns dos coeficientes sejam estimados exatamente como 0 e os preditores associados serão eliminados do ajuste. Assim, ao utilizarmos o LASSO, estamos ao mesmo tempo reduzindo a variância do modelo e executando seleção de variáveis.
+
+Um ponto importante sobre a aplicação das técnicas de regularização é a escala dos preditores. A maioria dos processos de estimação usuais são invariantes à escala em que os preditores foram medidos, isto é, ajustar o modelo usando o preditor $X_1$ ou $cX_1$, $c$ uma constante qualquer, não mudará a interpretação dos resultados. No caso da regressão ridge e do LASSO, a escala dos preditores influenciam não só a estimativa dos próprios coeficientes, mas também a estimativa dos outros parâmetros do modelo. Dessa forma, um passo importante anterior à aplicação dessas técnicas é a padronização dos preditores, de tal forma que todos fiquem com a mesma média e variância. Essa padronização pode ser feita a partir da fórmula
 
 \begin{equation}
-	\tilde{X}_{ij} = \frac{X_{ij}}{\sqrt{\frac{1}{n}\sum_{i =1}^n (X_{ij} - \bar{X}_j)^2}}, 	
+	\tilde{X}_{ij} = \frac{X_{ij} - \bar{X}_j}{\sqrt{\frac{1}{n}\sum_{i =1}^n (X_{ij} - \bar{X}_j)^2}}, 	
 \end{equation}
-sendo o denominador dessa expressão a estimativa do desvio-padrão do $j$-ésimo preditor. Consequentemente, todos os preditores terão desvio-padrão igual a 1.
+sendo o denominador dessa expressão a estimativa do desvio-padrão do $j$-ésimo preditor. Consequentemente, todos os preditores terão média 0 desvio-padrão igual a 1.
+
+Outra questão sobre a utilização da regularização é a estimação do erro-padrão dos coeficientes. Ainda há pouca literatura sobre como essas quantidades devem ser estimadas. \REF Uma boa alternativa nesse caso é calcular o erro-padrão por meio do \textit{bootstrapping}.
 
 Para uma discussão mais aprofundada sobre a interpretação da regressão ridge e do LASSO, consulte o Capítulo 6 de \cite{James2013}. Para o desenvolvimento matemático dessas técnicas, o Capítulo 5 de \cite{Hastie2008} é uma ótima referência.

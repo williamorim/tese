@@ -110,3 +110,8 @@ sendo $a_t$ e $\phi$ parâmetros do modelo e $w_t \sim N(0, \sigma_w)$. A primei
 %%Atkinson, A. C. (1985). Plots, Transformations and Regressions. Oxford Statistical Science Series, Oxford.
 %
 %A transformação da variável $Y$ pode ser uma alternativa para casos em que a suposição de normalidade não é válida. As transformações $\log Y$ e $\sqrt{Y}$ são as mais utilizadas. Na Seção \ref{cap:glm}, veremos como generalizar o modelo linear para outras distribuições.
+
+
+%%% VALIDAÇÃO CRUZADA
+
+Muitas vezes, quando a classe de modelos escolhida exige a escolha de hiperparâmetros, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), é comum separarmos a amostra em três partes: uma amostra de treino, uma amostra de validação e uma amostra de teste. Nesse caso, os modelos são treinados com a amostra de treino e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro que leva ao menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Geralmente utiliza-se LOOOCV ou \textit{k-fold} para a validação e uma amostra separada para o teste. Essa estratégia é utilizada para garantir que o erro de teste não seja calculado em observações utilizadas no ajuste do modelo e reflita o erro que obteríamos ao aplicá-lo no mundo real.

@@ -18,7 +18,7 @@ Apesar de diversos trabalhos, além do senso comum, considerarem o etanol como um
 
 Nesta Seção, utilizaremos os dados disponibilizados por \cite{Salvo2017} para explorar análises cujo objetivo é entender o mecanismo de formação dos poluentes a partir da relação entre as variáveis associadas.
 
-\subsection{Dimensionando o problema}
+\subsection{Dimensionando a análise}
 \label{sec:combustiveis-dimensionando}
 
 
@@ -38,38 +38,38 @@ Nesta Seção, utilizaremos os dados disponibilizados por \cite{Salvo2017} para ex
 
 
 
-Dimensionar o problema significa diminuir a complexidade da análise. Muitas vezes, quando o fenômeno sob estudo é complicado e temos muitas variáveis para analisar, é possível reduzir a dimensão dos dados sem perder informação relevante para responder a pergunta de interesse.
+Dimensionar a análise significa entender a complexidade do problema a ser resolvido. Embora pareça uma tarefa simples, é muito comum nos perdermos durante a modelagem quando o objetivo do estudo não está muito bem definido. Essa deve ser sempre a primeira etapa da modelagem e cumpri-la envolve conhecimento sobre o fenômeno de interesse e, principalmente, pensamento crítico. 
 
-O objetivo no nosso exemplo é investigar como o uso do etanol pode ajudar a explicar a variação da concentração de ozônio. De maneira geral, queremos descobrir qual é relação entre a variável resposta e um dos preditores ou, em outras palavras, entender melhor o mecanismo escondido dentro da caixa preta em \REF.
+Conforme discutido no Capítulo \ref{cap:regressao}, o mecanismo por trás do fenômeno sob estudo pode ser muito complexo. Muitas vezes não conseguimos nem mesmo identificar todas as variáveis envolvidas no processo. A formação do ozônio troposférico certamente é um exemplo disso. É um processo espaço-temporal que depende de reações químicas complicadas e um grande número de variáveis, a maior parte delas difícil de ser medida com precisão.
 
-Conforme discutido no Capítulo \ref{cap:regressao}, o mecanismo gerador do fenômeno sob estudo pode ser muito complexo, não sendo possível em algumas situações nem mesmo discriminar as variáveis envolvidas. A formação do ozônio troposférico certamente é um exemplo disso. É um processo espaço-temporal que depende de reações químicas complicadas e um grande número de variáveis, a maior parte delas difícil de ser medida com precisão.
-
-Diante um cenários complicados, dois cuidados devem ser tomados durante a análise:
+Diante cenários complicados, devemos ter cuidado para:
 
 \begin{enumerate}
-	\item A depender dos dados disponíveis, reduzir a dimensão do problema àquela necessária para responder a pergunta de interesse.
-	\item Não escolher um modelo muito restritivo para descrever a associação entre as variáveis.	
+	\item não escolher um modelo muito complexo para responder uma pergunta que poderia ser respondida por uma análise mais simples;
+	\item não escolher um modelo muito simples para descrever associações complexas entre as variáveis.	
 \end{enumerate}
-Mostraremos aqui exemplos de como dimensionar o problema e como isso interfere diretamente na escolha da estratégia de análise. O segundo item será discutido ao longo de toda a Seção. 
+Essa medida de complexidade reflete o \textit{trade-off} entre viés e variância discutido na Seção \ref{sec:trade-off}. No primeiro caso, teríamos problema com a interpretabilidade do modelo e, no segundo, um problema de baixa precisão. Dimensionar a análise está não só ligada com a interpretação correta do estudo, mas também interfere diretamente na escolha do modelo a ser ajustado.
 
-O ponto chave para dimensionar problema é entender bem o objetivo do estudo. Os dados disponibilizados por \cite{Salvo2017} contêm informação horária da concentração de ozônio e das variáveis climáticas e de trânsito. Uma ideia inicial seria propor um modelo para as observações horárias. Idealmente, esse modelo deve contemplar a correlação das observações medidas no mesmo dia, o que pode ser feito, por exemplo, com a inclusão termos aleatórios. No entanto, analisando a variável que representa o uso de etanol, verificamos que ela varia, no máximo, de um dia para o outro, nunca assumindo dois valores dentro do mesmo dia. Assim, sem perda de informação, podemos diminuir a dimensão dos dados utilizando a média diária da concentração de ozônio, eliminando o problema da correlação dentro de cada dia.
+O objetivo do estudo feito por \cite{Salvo2017}, tomado como exemplo neste capítulo, é investigar como a proporção de carros rodando a gasolina em relação àqueles rodando a etanol pode ajudar a explicar a variabilidade da concentração de ozônio. De maneira geral, queremos descobrir qual é relação entre a variável resposta e um dos preditores, isto é, entender melhor o mecanismo escondido dentro da caixa preta apresentada na Figura \ref{fig:cap-modelos-black-box}. Os dados disponibilizados pelos autores, além de variáveis de calendário e da proporção estimada de carros rodando a gasolina na cidade de São Paulo, contêm informação horária da concentração de ozônio, clima e trânsito. Uma ideia inicial seria propor um modelo para relacionar as observações horárias do ozônio com os preditores. Idealmente, esse modelo deveria contemplar a correlação das observações medidas no mesmo dia, o que pode ser feito, por exemplo, usando um modelo misto. No entanto, se examinarmos a proporção estimada de carros rodando a gasolina, verificamos que ela varia, no máximo, de um dia para o outro. Isso significa que, para responder a pergunta do estudo, não precisamos modelar a relação entre as variáveis dentro de cada dia, já que o principal preditor não apresenta essa granularidade.
 
-\cite{Salvo2017}, além de considerarem a média diária, excluíram da análise os meses frios de junho a setembro. Para a análise de partículas ultrafinas, os autores excluíram também os finais de semana e os feriados\footnote{Essa estratégia também foi adota para a análise do ozônio em  \cite{Salvo2014}.}. Isso implica em manter na amostra apenas dias parecidos em relação ao clima e trânsito. Repare que, nessa abordagem, apesar de estarmos simplificando o problema, estamos perdendo informação, pois não poderemos tirar conclusões sobre a relação entre o uso de etanol e a concentração de ozônio nos dias mais frios. Outra consequência está na escolha do modelo. Removendo esses dias da amostra, não teremos mais um problema de série temporal usual, já que as medidas não são mais equidistantes no tempo. Discutiremos nas próximas seções como modelar tanto a série completa quanto essa amostra reduzida.   
+Uma boa estratégia nesse caso é agregar as observações feitas no mesmo dia, utilizando, por exemplo, a média ou máxima diária. Dessa forma, eliminamos necessidade de modelar a correlação entre as medidas feitas no mesmo dia. \cite{Salvo2017}, além de considerarem a média diária, excluíram da análise os meses de junho a setembro, período no qual a concentração de ozônio é menor devido às baixas temperaturas. Repare que retirar os meses frios também diminui a complexidade do problema, já que estamos eliminando um forte componente sazonal, que precisaria ser modelado. No entanto, neste caso, essa escolha restringe a inferência do modelo, que não poderá ser generalizada para a temporada de inverno. Como o maior interesse em estudos de poluição está na redução dos índices mais altos, é razoável limitar a conclusão da análise apenas ao período de maiores concentrações.
 
-As abordagens apresentadas até aqui levam em conta apenas o objetivo do estudo e conhecimento prévio sobre as variáveis disponíveis. Podemos continuar reduzindo a complexidade do problema, além de criar \textit{insight} para a escolha de modelos adequados, extraindo mais informação dos dados a partir de uma análise exploratória.
+Outra consequência da exclusão desses meses está na escolha do modelo. Removendo esses dias da amostra, não teremos mais um problema de série temporal usual, já que as medidas não são mais equidistantes no tempo. Nesse sentido, modelos de regressão se tornam mais atraentes para modelar os dados. 
+
+As estratégias apresentadas até aqui consideram apenas o objetivo do estudo e conhecimento prévio sobre as variáveis disponíveis. Podemos continuar reduzindo a complexidade do problema, além de melhorarmos nossa intuição sobre o modelo mais adequado, extraindo informação dos dados a partir de uma análise exploratória.
 
 
 \subsection{Análise exploratória}
 
-A partir da análise exploratória, vamos estudar o comportamento dos preditores e entender como eles se relacionam com a concentração de ozônio.
+O objetivo desta análise exploratória é investigar o comportamento dos preditores e entender como eles se relacionam com a concentração de ozônio.
 
-Por pragmatismo, apresentaremos aqui apenas a análise exploratória para a estação Dom Pedro II. A maior parte dos resultados são compartilhados entre as outras estações. a análise exploratória completa pode ser visualizada em \href{https://rpollution.com}{https://rpollution.com}.
+Por pragmatismo, apresentaremos aqui apenas a análise exploratória para a estação Dom Pedro II. A maior parte dos resultados são compartilhados entre as outras estações. a análise exploratória completa pode ser visualizada em \href{https://goo.gl/3fzNga}{https://rpollution.com/categories/ozônio}.
 
-Na Seção \ref{sec:grafico-da-serie}, nós começamos a explorar a série de ozônio. Pela Figura \ref{fig:O3_DPII_media_horaria}, observamos como a concentração média do poluente se comporta ao longo do dia. Como no período da manhã o ozônio ainda está sendo gerado e no final do dia o ozônio já foi quase inteiramente consumido, é razoável analisarmos apenas a média diária no intervalo de pico, entre o meio-dia e as 17 horas. Isso significa que vamos relacionar o uso de etanol com o pico diário do ozônio, o que nos faz perde informação sobre a velocidade de formação e dissipação do poluente, mas é suficiente para gerar informação relevante sobre a pergunta de interesse.
+Na Seção \ref{sec:grafico-da-serie}, nós começamos a explorar a série de ozônio. Pela Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}, observamos como a concentração diária média do poluente se comporta ao longo do dia. Como no período da manhã o ozônio ainda está sendo gerado e, no final do dia, ele já foi quase inteiramente consumido, é razoável analisarmos apenas a média diária no intervalo de pico, entre o meio-dia e as 17 horas. Isso significa que vamos relacionar o uso de etanol com o pico diário do ozônio, o que é suficiente para responder a pergunta de interesse.
 
-No entanto, mesmo considerando apenas a concentração de ozônio medida entre o meio-dia e as 17 horas, as condições climáticas e de tráfego no período da manhã são fatores importantes na formação do poluente. Assim, além das médias dessas variáveis no período da tarde, consideraremos também os valores médios pela manhã (entre 8 e 11 horas).
+Mesmo considerando apenas a concentração de ozônio medida entre o meio-dia e as 17 horas, as condições climáticas e de tráfego no período da manhã são fatores importantes na formação do poluente. Assim, além das médias dessas variáveis no período da tarde, poderíamos considerar também os valores médios pela manhã (entre 8 e 11 horas).
 
-Primeiro, vamos investigar a associação entre a concentração de ozônio e a proporção estimada de carros à gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia próximo ao 50\%. Analisando o gráfico de dispersão apresentado na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
+Vamos investigar inicialmente a associação entre a concentração de ozônio e a proporção estimada de carros à gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia próximo ao 50\%. Analisando o gráfico de dispersão apresentado na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
 
 \begin{figure}
 	\centering
@@ -148,9 +148,9 @@ Devido à complexidade do problema e ao grande número de variáveis, a análise exp
 
 \subsection{A análise conduzida por \cite{Salvo2017}}
 
-Antes de discutir as diferentes estratégias que adotamos para tentar explicar a relação entre o ozônio e o uso de etanol, vamos apresentar os resultados da análise feita por \cite{Salvo2017}.
+Antes de discutir as diferentes estratégias que adotamos para investigar a relação entre a concentração de ozônio e o uso de gasolina/etanol, vamos apresentar os resultados da análise feita por \cite{Salvo2017}.
 
-Como discutido anteriormente, os autores optaram por remover da análise os dias meses de junho a setembro, optando por uma amostra mais homogênea em relação às condições climáticas. Além disso, eles juntaram as observações de todas as 12 estações de monitoramento, formando uma única amostra.
+Como discutido anteriormente, os autores optaram por remover da análise os dias meses de junho a setembro, optando por uma amostra mais homogênea em relação às condições climáticas. Além disso, eles juntaram as observações de todas as 12 estações de monitoramento, formando uma única amostra em que cada linha da base representa as medidas de um dia para uma das estações.
 
 O modelo final apresentado por \cite{Salvo2017} foi o modelo de regressão linear \ref{mod:linear}, considerando as variáveis apresentadas na Tabela \ref{tab:variaveis-modelo-salvo-2017}.
 
@@ -161,13 +161,13 @@ O modelo final apresentado por \cite{Salvo2017} foi o modelo de regressão linear
 		\hline 
 		Tipo & Variáveis & Número de parâmetros & \\[10pt]
 		\hline 
-		Etanol & Proporção de carros a gasolina. & 1 & \\[10pt]
+		Etanol & Proporção estimada de carros a gasolina. & 1 & \\[10pt]
 		\hline
 		Estação & Indicador de estação. & 11 & \\[10pt] 
 		\hline
 		Calendário & Indicadores de dia da semana, semana do ano, férias e feriados públicos. &  44 & \\[10pt] 
 		\hline 
-		Tendência & Tendência geral e tendência específica para cada estação. &  12 & \\[10pt] 
+		Tendência & Termo de tendência geral e específica para cada estação. &  12 & \\[10pt] 
 		\hline 
 		Clima & Temperatura, radiação, umidade, velocidade do vento e indicadores de precipitação e de inversão térmica. & 9 & \\[10pt]
 		\hline 
@@ -182,25 +182,71 @@ O modelo final apresentado por \cite{Salvo2017} foi o modelo de regressão linear
 \label{tab:variaveis-modelo-salvo-2017}
 \end{table}
 
-A estimativa reportada para o parâmetro referente à proporção de carros rodando a gasolina foi -8.3 $\pm$ 5.0 (mais ou menos dois desvios-padrão)\footnote{Esse foi o resultado de um dos modelos, no qual foi utilizo mínimos quadrados ordinários para estimação dos parâmetros e bootstrap para o cálculo do erro padrão das estimativas.}, o indica que o aumento da proporção estimada de carros rodando a gasolina na cidade está associada à diminuição da concentração de ozônio. Como medida de qualidade de ajuste, os autores reportaram o R$^2$ do modelo (70,7\%).
+A estimativa reportada para o parâmetro referente à proporção de carros rodando a gasolina foi -16.66 $\pm$ 10.01 (mais ou menos dois desvios-padrão)\footnote{Esse foi o resultado de um dos modelos, no qual foi utilizado mínimos quadrados ordinários para estimação dos parâmetros e \textit{bootstrapping} para o cálculo do erro padrão das estimativas.}, o que indica que o aumento da proporção estimada de carros rodando a gasolina na cidade está associada com a diminuição da concentração de ozônio. Como medida de qualidade de ajuste, os autores reportaram a proporção da variância da concentração de ozônio explicada pelo modelo (R$^2$): 70.65\%.
 
-Nas estratégias adotadas a seguir, consideramos algumas mudanças em relação ao modelo considerado por \cite{Salvo2017}. Primeiro, vamos considerar tanto a amostra reduzida (sem os meses frios) quanto a amostra completa. Apesar de as concentrações de ozônio serem menores no inverno, gostaríamos também de tentar explicar a relação entre as variáveis ao longo de todo o ano. 
+Adicionalmente, calculamos o erro de teste do modelo, usando validação cruzada (\textit{5-fold}) e o RMSE como métrica. Essa medida para o modelo de regressão linear ajustado pelos autores foi 19.74. Utilizamos também o valor da estatística do teste t de cada coeficiente como medida de importância dos preditores. Os cinco preditores mais importantes foram: temperatura, velocidade do vento, radiação, umidade e variável indicadora para a estação São Caetano do Sul. A variável correspondente à proporção estimada de carros a gasolina foi considerada apenas a décima quinta mais importante.
 
-Segundo, vamos ajustar um modelo para cada estação. Ainda que seja a mesma variável medida em todas as estações, o mecanismo gerador do ozônio pode ser diferente em cada local da cidade. O efeito do vento ou da chuva, por exemplo, pode variar de localidade para localidade, e, para contemplar essas relações, precisaríamos incluir diversos termos de interação, o que deixaria o modelo mais complexo e difícil de ser interpretado. Em vez disso, vamos adotar uma estratégia mais simples e ajustar um modelo para cada estação. Assim, podemos comparar os 12 resultados e levantar hipóteses para explicar possíveis diferenças. 
+Em seguida, vamos comparar o resultado obtido pelos autores com outras estratégias de análise. Inicialmente, vamos apenas utilizar as mesmas variáveis para ajustar explorar outros modelos, menos restritos que o modelo de regressão linear. Em seguida, vamos testar novos preditores e formas de dimensionar os dados, em busca de mais informações sobre a relação entre a concentração de ozônio e o uso de etanol.
 
-Em relação aos preditores, consideraremos os mesmos que os autores, com as seguintes exceções:
+%Nas estratégias adotadas a seguir, consideramos algumas mudanças em relação ao modelo considerado por \cite{Salvo2017}. Primeiro, vamos considerar tanto a amostra reduzida (sem os meses frios) quanto a amostra completa. Apesar de as concentrações de ozônio serem menores no inverno, gostaríamos também de tentar explicar a relação entre as variáveis ao longo de todo o ano. 
 
-\begin{itemize}
-	\item como as categorias da variável de congestionamento local foram construídas pelos autores com base na amostra agregada, utilizaremos os valores numéricos dessa variável, assim como a de congestionamento total na cidade;
-	\item como estamos ajustando um modelo para cada estação, não incluiremos preditores específicos de estação.
-\end{itemize}
-Com essas mudanças, o número de parâmetros passou de 96 para 76.
+%Segundo, vamos ajustar um modelo para cada estação. Ainda que seja a mesma variável medida em todas as estações, o mecanismo gerador do ozônio pode ser diferente em cada local da cidade. O efeito do vento ou da chuva, por exemplo, pode variar de localidade para localidade, e, para contemplar essas relações, precisaríamos incluir diversos termos de interação, o que deixaria o modelo mais complexo e difícil de ser interpretado. Em vez disso, vamos adotar uma estratégia mais simples e ajustar um modelo para cada estação. Assim, podemos comparar os 12 resultados e levantar hipóteses para explicar possíveis diferenças. 
 
-Por fim, separaremos as observações em uma amostra de treino (70\%) e uma amostra de teste (30\%) para estimar o erro preditivo (raiz do erro quadrático médio) do modelo. O erro preditivo será usado como uma forma de comparar a qualidade do ajuste dos diferentes modelos considerados as seguir.
 
-\subsection{Estratégia I: regressão linear}
+\subsection{Ajustando outros modelos}
 
-Como primeira estratégia de análise, vamos ajustar o modelo de regressão linear apresentado em (\ref{mod:linear}).
+O modelo de regressão linear, embora muito utilizado pela sua simplicidade e interpretabilidade, pode ser muito restritivo, já que faz muitas suposições sobre a geração do fenômeno sob estudo. Para avaliar se modelos mais flexíveis são mais adequados para descrever a relação entre a concentração de ozônio e a proporção estimada de carros rodando a gasolina, vamos ajustar modelos aditivos generalizados, o modelo de regressão linear com regularização e uma \textit{randon forest}. A variável resposta e os preditores serão os mesmos utilizados por \cite{Salvo2017}. As performances serão comparadas a partir do erro de teste, calculado usando validação cruzada 5-\textit{fold} e o RMSE. Também discutiremos como interpretar cada modelo, e se as interpretações obtidas por ele são suficientes para responder a pergunta de interesse.
+
+\subsubsection{Modelos aditivos generalizados}
+
+Conforme a especificação em (\ref{mod:gam}), ajustamos três modelos aditivos generalizados, um considerando a distribuição Normal, o segundo com distribuição Gama e o terceiro com distribuição Normal Inversa. As funções não-lineares foram atribuídas a todos os preditores quantitativos: proporção estimada de carros rodando à gasolina, temperatura, radiação, umidade, velocidade do vento e tendência. Os demais preditores entraram no modelo de forma linear. \textit{Splines} suavizados foram utilizados na estimação das funções e o grau de suavização foi escolhida automaticamente por meio de validação cruzada. Nos três modelos, a proporção estimada de carros a gasolina foi considerada estatisticamente significante para explicar a concentração de ozônio. A performance de cada modelo está descrita na Tabela \ref{tab:cap-comb-resultados-gam}.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite{Salvo2017}.}
+	\begin{tabular}{M{2cm}|M{1cm}|M{2cm}|M{6cm} N}
+		\hline
+		Distribuição & RMSE & \% var. explicada & Variáveis mais importantes &\\
+		\hline
+		Normal & 19.81 & 70.50 & Temperatura, vento, umidade, radiação e tendência &\\
+		Gama & 20.07 & 69.50 & Temperatura, vento, umidade, radiação e tendência  &\\
+		Normal inversa & & & &\\
+		\hline
+\end{tabular}
+\label{tab:cap-comb-resultados-gam}
+\end{table}
+
+Os resultados ficaram muito próximos do modelo de regressão linear ajustado pelos autores, mas nenhum dos modelos aditivos generalizados foi superior. Observamos que, para esses modelos, a tendência entrou como uma das cinco variáveis mais importantes para explicar a variabilidade da concentração de ozônio, o que não aconteceu para o modelo de regressão linear. Isso provavelmente se deve pela maior flexibilidade que os modelos aditivos possuem para representar a não-linearidade desse componente temporal. No modelo com distribuição normal, a proporção estimada de carros rodando a gasolina foi considerada a décima terceira mais importante, no modelo Gama foi a nona mais importante e no modelo Normal inversa foi a ... mais importante.
+
+A maneira usual de interpretar os modelos aditivos generalizados é construir gráficos de cada preditor pela sua função não-linear estimada\footnote{Os preditores que entraram no modelo de forma linear podem ser interpretados de maneira análoga a um modelo de regressão linear.}. Na Figura \ref{fig:comb-gam-plot}, apresentamos esse gráfico para o preditor referente à proporção estimada de carros à gasolina utilizando o modelo com distribuição Normal. O gráfico indica que conforme a proporção de carros à gasolina aumenta, a concentração de ozônio tende a diminuir, mesma conclusão encontrada no modelo de regressão linear.  
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-gam-plot.pdf}
+	\caption{Função não-linear estimada pelo modelo aditivo generalizado com distribuição Normal para a proporção estimada de carros rodando a gasolina. A área cinza em volta da curva representa o intervalo de confiança com 2 erros-padrão para cima e para baixo.}
+	\label{fig:comb-gam-plot}
+\end{figure}
+
+Para avaliar a variabilidade das estimativas, criamos 200 amostras de \textit{bootstraping} e ajustamos o modelo aditivo generalizado com distribuição Normal (que apresentou o melhor desempenho) para cada uma delas. Na Figura \ref{fig:comb-gam-plot-bs}, apresentamos o resultado para a função estimada da variável referente à proporção estimada de carros à gasolina. As curvas cinzas são as 200 funções estimadas, uma para cada amostra de \textit{bootstrapping}, e representam a variabilidade da função apresentada na Figura \ref{fig:comb-gam-plot}. A curva azul é a curva suavizada por \textit{splines} cúbicos. Podemos notar que a tendência de diminuição da concentração de ozônio conforme a proporção de carros a gasolina aumenta é consistente para o modelo aditivo generalizado. Podemos observar também que há uma maior variabilidade nos extremos desse preditor. Isso acontece porque temos poucos dias nos quais a proporção de carros a gasolina foi estimada muito baixa ou muito alta (Figura \ref{fig:cap-comb-series-share-ozone}). 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-gam-plot-bs.pdf}
+	\caption{Em cinza, as funções estimadas da variável referente à proporção estimada de carros à gasolina para cada uma das 200 amostras de \textit{bootstrapping}. Em azul, a curva suavizada por \textit{splines} cúbicos.}
+	\label{fig:comb-gam-plot-bs}
+\end{figure}
+
+\subsubsection{LASSO}
+
+
+
+\subsubsection{Random Forest}
+
+\subsection{Transformando a variável resposta}
+
+\subsection{Ajustando a máxima diária}
+
+\subsection{Ajustanto cada estação separadamente}
 
 \begin{table}[h!]
 	\centering
@@ -226,56 +272,6 @@ Como primeira estratégia de análise, vamos ajustar o modelo de regressão linear 
 \label{tab:cap-comb-ozone-estimativas-reg-linear}
 \end{table}
 
-\subsection{Estratégia II: modelo aditivo generalizado}
 
-\begin{table}[h!]
-	\centering
-	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo aditivo generalizado.}
-	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
-		\hline
-		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
-		\hline
-		Diadema	&  & & \\			
-		Dom Pedro II &  & & \\			
-		Ibirapuera & 	& &  \\		
-		IPEN & 	& &  \\		 
-		Mauá &  & & \\			
-		Mooca &  &  & \\			
-		Nossa Senhora do Ó &  &  & \\			
-		Parelheiros &  & & \\			
-		Pinheiros &  & &  \\			
-		Santana &  & &  \\
-		Santo André &  & & \\
-		São Caetano do Sul &  & & \\
-		\hline
-	\end{tabular}
-	\label{tab:cap-comb-ozone-estimativas-gam}
-\end{table}
-
-\subsection{Estratégia III: LASSO}
-
-\begin{table}[h!]
-	\centering
-	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo com LASSO.}
-	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
-		\hline
-		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
-		\hline
-		Diadema	&  & & \\			
-		Dom Pedro II &  & & \\			
-		Ibirapuera & 	& &  \\		
-		IPEN & 	& &  \\		 
-		Mauá &  & & \\			
-		Mooca &  &  & \\			
-		Nossa Senhora do Ó &  &  & \\			
-		Parelheiros &  & & \\			
-		Pinheiros &  & &  \\			
-		Santana &  & &  \\
-		Santo André &  & & \\
-		São Caetano do Sul &  & & \\
-		\hline
-	\end{tabular}
-	\label{tab:cap-comb-ozone-estimativas-lasso}
-\end{table}
 
 

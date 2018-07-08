@@ -1,0 +1,23 @@
+stationname,BEN,CO,ERT,MP10,MP2.5,NO,NO2,Nox,O3,SO2,TOL,DV,DVG,PRESS,RADG,RADUV,TEMP,UR,VV,address,lat,long
+Osasco,no,yes ,no,yes ,yes ,yes ,yes ,yes ,hist,yes ,no,yes ,yes ,no,no,no,no,no,yes ,"Avenida dos Autonomistas, s/nº, Esquina com Rua São Mauricio, Vila Quitaúna, Osasco ",7397028,317045
+Cambuci ,no,no,no,hist ,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,"Avenida Dom Pedro I, 100, IV COMAR, Vila Monumento, São Paulo ",7392707,335456
+Capão Redondo ,no,no,no,yes ,no,yes ,yes ,yes ,yes ,no,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,yes ,"Estrada de Itapecerica, 5859, no interior do Instituto Adventista de Ensino - UNASP, Capão Redondo, São Paulo ",7381358,318469
+Centro ,no,hist ,no,hist ,no,hist ,hist ,hist ,no,hist ,no,no,no,no,no,no,no,no,no,"Rua da Consolação, 94, Bibliot. Mun. Mário de Andrade, Consolação, São Paulo ",7394876,332354
+Cerqueira César ,no,yes ,no,yes ,no,yes ,yes ,yes ,no,yes ,no,no,no,no,no,no,no,no,no,"Avenida Doutor Arnaldo, 725, Faculdade de Saúde Pública, Sumaré, São Paulo ",7394205,329269
+Cid.Universitária-USP-Ipen ,no,hist ,no,no,yes ,yes ,yes ,yes ,yes ,no,no,no,no,no,no,no,no,no,no,"Avenida Professor Lineu Prestes, 2242, Cidade Universitária, Butantã, São Paulo ",7392709,322680
+Congonhas ,no,yes ,no,yes ,yes ,yes ,yes ,yes ,hist ,yes ,no,no,no,no,no,no,no,no,no,"Alameda dos Tupiniquins, 1571, E.M.Prof.J.C. da Silva Borges, Planalto Paulista, São Paulo ",7387264,330293
+Ibirapuera ,no,yes ,no,hist ,yes ,yes ,yes ,yes ,yes ,hist ,no,yes ,yes ,yes ,hist ,hist ,yes ,yes ,yes ,"Parque do Ibirapuera, s/nº, Setor 25, Prq Ibirapuera, São Paulo ",7389978,330545
+Interlagos ,no,no,no,yes ,no,yes ,yes ,yes ,yes ,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,yes ,"Rua Domingas Galleteri Blotta, 171, Jd Santa Cruz, São Paulo ",7380142,329195
+Itaim Paulista ,no,no,no,yes ,yes ,no,no,no,yes ,no,no,no,no,no,no,no,no,no,no,"Rua Jaguar, 225, Vila Curuçá, São Paulo ",7400240,354934
+Itaquera ,no,no,no,hist ,no,hist ,hist ,hist ,yes ,no,no,hist ,hist ,no,no,no,hist ,hist ,hist ,"Avenida Fernando do Espírito Santo Alves de Mattos, 1000, SESC Itaquera, Prq do Carmo, São Paulo ",7391504,350334
+Lapa ,no,hist ,no,hist ,no,hist ,hist ,hist ,hist ,no,no,hist ,hist ,no,no,no,no,no,hist ,"Avenida Embaixador Macedo Soares, 7995, AR - Lapa, Vila Anastácio, São Paulo ",7399059,326263
+Marg.Tietê-Pte Remédios ,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,no,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,yes ,"Avenida Embaixador Macedo Soares, 12889, No Gab. treinamento do Comando de Pol. Rodov. da Polícia Militar, Vl Ribeiro de Barros, São Paulo ",7397977,322013
+Mooca ,no,yes ,no,yes ,yes ,no,no,no,yes ,no,no,yes ,yes ,no,no,no,no,no,yes ,"Rua Bresser, 2341, Administração Regional da Moóca e Centro Esportivo Municipal, Moóca, São Paulo ",7394711,336644
+N.Senhora do Ó ,no,no,no,yes ,no,no,no,no,yes ,no,no,no,no,no,no,no,yes ,yes ,no,"Rua Capitão José Amaral, 80, E.E. Cacilda Becker, Vila Portuguesa, São Paulo ",7402315,327198
+Parelheiros ,no,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,no,no,no,no,no,no,no,yes ,yes ,no,"Avenida Paulo Guilguer Reimberg, 2448, E.E. Pres. Tancredo A. Neves, Jd Novo Horizonte, São Paulo ",7369511,327086
+Parque D.Pedro II ,no,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,yes ,yes ,"Parque Dom Pedro II, s/nº, Palácio das Indústrias, Centro, São Paulo ",7395221,333855
+Pico do Jaraguá ,no,no,no,no,yes ,yes ,yes ,yes ,yes ,no,no,yes ,yes ,no,no,no,yes ,yes ,yes ,"Estrada Turística do Jaraguá, s/nº, Altura do n. 9000, em frente a rotatória Cabo Leão., Vila Jaraguá, São Paulo ",7404863,319602
+Pinheiros ,yes ,yes ,no,yes ,yes ,yes ,yes ,yes ,yes ,hist ,yes ,yes ,yes ,no,no,no,yes ,yes ,yes ,"Avenida Professor Frederico Herman Júnior, 345, CETESB, Alto de Pinheiros, São Paulo ",7393293,326287
+S.Miguel Paulista ,no,no,no,hist ,no,hist ,hist ,hist ,hist ,no,no,hist ,hist ,no,no,no,hist ,hist ,hist ,"Rua Diego Calado, 112, Escola de Educação Infantil An, Vl São Silvestre, São Paulo ",7400550,352473
+Santana ,no,no,no,hist ,yes ,no,no,no,yes ,no,no,yes ,yes ,no,no,no,no,no,yes ,"Avenida Santos Dumont, 1019, Parque de Material Aeronáutico, Santana, São Paulo ",7399522,333675
+Santo Amaro ,no,yes ,no,yes ,no,no,no,no,yes ,no,no,yes ,yes ,no,no,no,no,no,yes ,"Rua Padre José Maria, 555, Acesso pela Rua Humboldt - Centro Ed.Esp.Mun.Joerg Brüder, Santo Amaro, São Paulo ",7382927,325596

@@ -5,7 +5,6 @@
 library(tidyverse)
 library(lubridate)
 
-
 # Transformations ---------------------------------------------------------
 
 df <- read_rds("data/artaxo-salvo-geiger/dados_originais.rds")
@@ -65,7 +64,8 @@ afternoon_pp <- df %>%
 other_vars <- df %>% 
   select(
     date, 
-    stationname, 
+    stationname,
+    siteid,
     year:dayofweek, 
     starts_with("dv_")
   ) %>% 
@@ -74,25 +74,117 @@ other_vars <- df %>%
   ungroup()
 
 
-df <- 
+df_salvo <- 
   inner_join(morning_vars, afternoon_vars, by = c("date", "stationname")) %>% 
   inner_join(other_vars, by = c("date", "stationname")) %>% 
   inner_join(afternoon_pp, by = c("date", "stationname"))
 
 
-# Validation
 
-df_salvo <- df %>% 
+# Validation --------------------------------------------------------------
+
+df <- df_salvo %>% 
   filter(!month %in% 6:9) %>% 
   na.omit()
 
-nrow(df_salvo) == 13203 # Number of observations
-round(mean(df_salvo$o3_mass_conc), 1) == 72.2 # Mean ozone concentration
+nrow(df) == 13203 # Number of observations
+round(mean(df$o3_mass_conc), 1) == 72.2 # Mean ozone concentration
 
-# Saving
+
+# Saving df_salvo ---------------------------------------------------------
 
 write_rds(
-  df,
+  df_salvo,
   path = "data/artaxo-salvo-geiger/data-asg.rds", 
+  compress = "gz" 
+)
+
+
+# Transformin (df_model) --------------------------------------------------
+
+df_salvo <- read_rds("data/artaxo-salvo-geiger/data-asg.rds")
+
+df_model <- 
+  df_salvo %>%
+  filter(dv_o3 == 1) %>%
+  group_by(stationname) %>%
+  mutate(
+    trend = date - lubridate::ymd("2008-11-01"),
+    trend = as.numeric(trend)/365.25
+  ) %>%
+  ungroup() %>%
+  filter(!month %in% 6:9) %>% 
+  mutate(week = as.factor(week)) %>%
+  mutate(
+    dv_mon_reg = ifelse(dayofweek == 1 & dv_weekday_regular == 1, 1, 0),
+    dv_tue_reg = ifelse(dayofweek == 2 & dv_weekday_regular == 1, 1, 0),
+    dv_wed_reg = ifelse(dayofweek == 3 & dv_weekday_regular == 1, 1, 0),
+    dv_thu_reg = ifelse(dayofweek == 4 & dv_weekday_regular == 1, 1, 0),
+    dv_fri_reg = ifelse(dayofweek == 5 & dv_weekday_regular == 1, 1, 0),
+    dv_sat_reg = ifelse(
+      dayofweek == 6 & 
+        dv_publicholiday == 0 &
+        dv_yearendvacation == 0, 
+      yes = 1, 
+      no = 0
+    ),
+    dv_sun_reg = ifelse(
+      dayofweek == 0 & 
+        dv_publicholiday == 0 &
+        dv_yearendvacation == 0, 
+      yes = 1, 
+      no = 0
+    ),
+    dv_sun_vac = ifelse(
+      dayofweek == 0 & 
+        dv_yearendvacation == 1 &
+        dv_publicholiday == 0,
+      yes = 1, 
+      no = 0
+    ),
+    dv_sat_vac = ifelse(
+      dayofweek == 6 & 
+        dv_yearendvacation == 1 &
+        dv_publicholiday == 0,
+      yes = 1,
+      no = 0
+    ),
+    dv_week_vac = ifelse(
+      dayofweek %in% (1:5) & 
+        dv_yearendvacation == 1 &
+        dv_publicholiday == 0, 
+      yes = 1, 
+      no = 0
+    )
+  ) %>%
+  mutate(
+    dv_kmregion_am_0_4 = ifelse(congestion_region < 4, 1, 0),
+    dv_kmregion_am_4_11 = ifelse(congestion_region >= 4 & 
+                                   congestion_region < 11, 1, 0),
+    dv_kmregion_am_11_18 = ifelse(congestion_region >= 11 &
+                                    congestion_region < 18, 1, 0),
+    dv_kmregion_am_18_max = ifelse(congestion_region >= 18, 1, 0)
+  ) %>% 
+  mutate(
+    dv_kmcity_am_0_20 = ifelse(congestion_city < 20, 1, 0),
+    dv_kmcity_am_20_50 = ifelse(congestion_city >= 20 &
+                                  congestion_city < 50, 1, 0),
+    dv_kmcity_am_50_80 = ifelse(congestion_city >= 50 &
+                                  congestion_city < 80, 1, 0),
+    dv_kmcity_am_80_max = ifelse(congestion_city >= 80, 1, 0)
+  ) %>%
+  mutate(
+    dv_pp_0_0 = ifelse(pp == 0, 1, 0),
+    dv_pp_0_5 = ifelse(pp > 0 & pp < 0.5, 1, 0),
+    dv_pp_5_20 = ifelse(pp >= 0.5 & pp < 2, 1, 0),
+    dv_pp_20_150 = ifelse(pp >= 2, 1, 0)
+  ) %>% 
+  mutate(siteid = as.factor(siteid))
+
+# Saving df_model ---------------------------------------------------------
+
+write_rds(
+  df_model,
+  path = "data/artaxo-salvo-geiger/data-asg-model.rds", 
   compress = "gz" 
 )

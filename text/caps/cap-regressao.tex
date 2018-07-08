@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------- %%
-\chapter{Modelos para dados de poluição}
+\chapter{Estratégias usuais de modelagem}
 \label{cap:regressao}
 
 %Há duas formas de atacar esse problema utilizando modelagem estatística. A primeira é assumir um modelo interpretável para o mecanismo gerador do fenômeno e estimar os parâmetros que caracterizam esse modelo. Se o modelo utilizado for uma boa representação da natureza, as suas estimativas trarão informação sobre a relação entre as variáveis. A segunda maneira é utilizar modelos não-interpretáveis em conjunto com alguma técnica para interpretação do modelo. Vamos reproduzir aqui as duas alternativas, começando com a primeira.
@@ -284,7 +284,7 @@ Termos de interação bastante utilizados em estudos de poluição do ar são aqueles
 \subsection{Avaliando a qualidade do ajuste}
 \label{sec:reg-quali-mod}
 
-Como discutido na introdução deste capítulo, nossos modelos sempre estarão sujeitos a erros. Assim, além de  verificarmos se o modelo escolhido viola as suposições pré-estabelecidas, também precisamos avaliar a magnitude do erro que estamos cometendo ao utilizarmos suas estimativas para descrever o evento sob estudo. Para modelos de regressão linear, isso pode ser feito a partir da raiz do erro quadrático médio (RMSE, sigla para o termo em inglês \textit{root mean square error}) e do coeficiente de determinação ($R^2$).
+Como discutido na introdução deste capítulo, nossos modelos sempre estarão sujeitos a erros. Assim, além de  verificarmos se o modelo escolhido viola as suposições pré-estabelecidas, também precisamos avaliar a magnitude do erro que estamos cometendo ao utilizarmos suas estimativas para descrever o evento sob estudo. Para modelos de regressão linear, isso pode ser feito a partir da raiz do erro quadrático médio (RMSE\footnote{Sigla para o termo em inglês \textit{root mean square error}. Utilizaremos aqui a sigla em inglês porque ela é bastante comum na literatura e nos programas estatísticos.}) e do coeficiente de determinação ($R^2$).
 
 A raiz do erro quadrático médio é uma estimativa do desvio-padrão de $\epsilon$, uma medida do quanto, em média, a resposta $Y$ se desvia da verdadeira reta de regressão\footnote{No caso do modelo de regressão linear simples, por exemplo, a verdadeira reta de regressão é dada por $Y = \tilde{\beta}_0 + \tilde{\beta}_1X$, em que $\tilde{\beta}_0$ e $\tilde{\beta}_1$ representam os verdadeiros valores de $\beta_0$ e $\beta_1$. Na prática, $\tilde{\beta}_0$ e $\tilde{\beta}_1$ são desconhecidos e substituídos por valores estimados, como apresentado em (\ref{mod:reta-de-regressao-simples}).}. Valores baixos de RMSE significam que $\hat{Y_t} \approx Y_t$, para $t = 1, \dots, n$, sugerindo que o modelo está bem ajustado aos dados. Como essa medida depende da magnitude da variável resposta, não existem pontos de corte para definir o que é um RMSE pequeno.
 
@@ -407,7 +407,7 @@ Y_t|\mathbf{X_t} \stackrel{ind}{\sim} \mathcal{D}(\mu_t, \phi)
 \end{displaymath}
 \begin{equation}
 g(\mu_t) = \beta_0 + f_1(X_{1t}) + ... + f_p(X_{pt}),
-\label{gam}
+\label{mod:gam}
 \end{equation}
 sendo $\mathcal{D}$ uma distribuição pertencente à família exponencial e $f_i$, $i = 1, ..., p$, funções possivelmente não-lineares. No caso mais simples, assim como nos modelos lineares generalizados, supõe-se que as variáveis $Y_t$ são homoscedásticas, independentes e normalmente distribuídas.
 
