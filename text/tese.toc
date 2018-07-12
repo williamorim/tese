@@ -36,36 +36,39 @@
 \contentsline {chapter}{\numberline {4}Estrat\'egias de modelagem preditiva}{43}{chapter.4}
 \contentsline {section}{\numberline {4.1}Sobreajuste e o \textit {trade-off} entre vi\'es e vari\^ancia}{44}{section.4.1}
 \contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{46}{section.4.2}
-\contentsline {section}{\numberline {4.3}M\'etodos de reamostragem}{46}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Valida\c c\~ao cruzada}{46}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.3}M\'etodos de reamostragem}{47}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Valida\c c\~ao cruzada}{47}{subsection.4.3.1}
 \contentsline {subsubsection}{Amostra de valida\c c\~ao}{47}{section*.35}
 \contentsline {subsubsection}{LOOCV}{47}{section*.36}
 \contentsline {subsubsection}{K-fold}{48}{section*.38}
-\contentsline {subsection}{\numberline {4.3.2}Bootstrapping}{48}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}Bootstrapping}{49}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Sele\c c\~ao de vari\'aveis}{49}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}Selecionando o melhor subconjunto de preditores}{49}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Stepwise}{50}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}Regulariza\c c\~ao}{51}{section.4.5}
 \contentsline {subsubsection}{Regress\~ao Ridge}{51}{section*.41}
 \contentsline {subsubsection}{LASSO}{52}{section*.42}
-\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{53}{chapter.5}
-\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{53}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Dimensionando a an\'alise}{54}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}An\'alise explorat\'oria}{55}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}A an\'alise conduzida por \cite {Salvo2017}}{61}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Ajustando outros modelos}{62}{subsection.5.1.4}
-\contentsline {subsubsection}{Modelos aditivos generalizados}{62}{section*.52}
-\contentsline {subsubsection}{LASSO}{64}{section*.56}
-\contentsline {subsubsection}{Random Forest}{64}{section*.57}
-\contentsline {subsection}{\numberline {5.1.5}Transformando a vari\'avel resposta}{64}{subsection.5.1.5}
-\contentsline {subsection}{\numberline {5.1.6}Ajustando a m\'axima di\'aria}{64}{subsection.5.1.6}
-\contentsline {subsection}{\numberline {5.1.7}Ajustanto cada esta\c c\~ao separadamente}{64}{subsection.5.1.7}
-\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{65}{chapter.6}
-\contentsline {chapter}{\numberline {7}Previs\~ao}{67}{chapter.7}
-\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{69}{chapter.8}
-\contentsline {section}{\numberline {8.1}Dados no Brasil}{69}{section.8.1}
-\contentsline {section}{\numberline {8.2}Dados nos EUA}{69}{section.8.2}
-\contentsline {section}{\numberline {8.3}Dados na Europa}{69}{section.8.3}
-\contentsline {chapter}{\numberline {9}Discuss\~ao}{71}{chapter.9}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{73}{appendix*.59}
+\contentsline {section}{\numberline {4.6}Modelos de \'arvores}{53}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}\'Arvores de decis\~ao}{53}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Random Forest}{53}{subsection.4.6.2}
+\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{55}{chapter.5}
+\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{55}{section.5.1}
+\contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{56}{section.5.2}
+\contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{57}{section.5.3}
+\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{63}{section.5.4}
+\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{64}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{65}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}LASSO e regress\~ao ridge}{67}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Random Forest}{67}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Transformando a vari\'avel resposta}{69}{section.5.6}
+\contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{69}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ajustanto cada esta\c c\~ao separadamente}{69}{section.5.8}
+\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{71}{chapter.6}
+\contentsline {chapter}{\numberline {7}Previs\~ao}{73}{chapter.7}
+\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{75}{chapter.8}
+\contentsline {section}{\numberline {8.1}Dados no Brasil}{75}{section.8.1}
+\contentsline {section}{\numberline {8.2}Dados nos EUA}{75}{section.8.2}
+\contentsline {section}{\numberline {8.3}Dados na Europa}{75}{section.8.3}
+\contentsline {chapter}{\numberline {9}Discuss\~ao}{77}{chapter.9}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{79}{appendix*.60}
 \contentsfinish 

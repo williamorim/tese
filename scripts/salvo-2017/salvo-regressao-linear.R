@@ -11,6 +11,8 @@ library(caret)
 
 df_model <- read_rds("data/artaxo-salvo-geiger/data-asg-model.rds")
 
+source("scripts/salvo-2017/salvo-utils.R")
+
 # Formula -----------------------------------------------------------------
 
 formula <- df_model %>%
@@ -52,5 +54,15 @@ varImp(model)
 # MAE: 14.96
 # % var: 70.27%  
 # share_gas imp: 15º
+
+pred_obs_plot(
+  obs = na.omit(df_model)$o3_mass_conc,
+  pred = predict(model, newdata = na.omit(df_model))
+)
+ggsave(
+  filename = "text/figuras/cap-comb-lin-reg-pred-obs-plot.pdf", 
+  width = 6, 
+  height = 4
+)
 
 

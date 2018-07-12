@@ -7,8 +7,9 @@ library(tidyverse)
 library(mgcv)
 library(caret)
 library(recipes)
+library(patchwork)
 
-source("scripts/salvo-2017/gam-plot.R")
+source("scripts/salvo-2017/salvo-utils.R")
 
 # Dados -------------------------------------------------------------------
 
@@ -58,7 +59,7 @@ model <- train(
 )
 
 model
-# RMSE: 19.81
+# RMSE: 19.82
 # MAE: 14.91
 # % var: 70.50%  
 
@@ -71,6 +72,12 @@ gam_plot(
   xlab = "Proporção estimada de carros a gasolina"
 )
 ggsave(filename = "text/figuras/cap-comb-gam-plot.pdf", width = 6, height = 4)
+
+p1 <- pred_obs_plot(
+  obs = na.omit(df_model)$o3_mass_conc,
+  pred = predict(model, newdata = na.omit(df_model))
+) +
+  ggtitle("(a)")
 
 # GAMMA (log)
 
@@ -95,6 +102,19 @@ varImp(model$finalModel) %>%
   arrange(desc(Overall))
 
 
+p2 <- pred_obs_plot(
+  obs = na.omit(df_model)$o3_mass_conc,
+  pred = predict(model, newdata = na.omit(df_model))
+) +
+  ggtitle("(b)")
+
+p1 + p2
+ggsave(
+  filename = "text/figuras/cap-comb-gam-pred-obs-plot.pdf", 
+  width = 6, 
+  height = 4
+)
+
 # Normal Inversa (log)
 
 model <- train(
@@ -108,6 +128,9 @@ model <- train(
 model
 summary(model$finalModel)   # Precisa rodar
 varImp(model)
+# RMSE: 29.28
+# MAE: 16.88
+# % var: 45.30% 
 
 # Bootstrapping -----------------------------------------------------------
 

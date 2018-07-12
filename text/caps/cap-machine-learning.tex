@@ -13,7 +13,9 @@
 	\vspace{5mm}
 \end{flushright}
 
-No capítulo anterior, apresentamos diversas classes de modelos úteis para fazer inferência em estudos de poluição do ar. A utilização desses modelos depende de suposições sobre a forma como as variáveis explicativas e as variável resposta estão relacionadas. De uma forma geral, essas suposições são feitas a partir de um modelo probabilístico para $Y$, cuja parametrização dependerá de alguma função das variáveis $\mathbf{X}$. O modelo de regressão linear (\ref{mod:linear}), por exemplo, assume as seguintes hipóteses:
+Nos últimos anos, um novo \textit{framework} de análise de dados se tornou muito popular, principalmente pela sua eficiência na resolução de problemas de predição, como detecção de imagens, transcrição de áudio e sistemas de recomendação. A chamada \textit{modelagem preditiva}\footnote{Também conhecida como aprendizado estatístico, aprendizagem automática ou aprendizado de máquina \textit{machine learning}.} envolve um conjunto de técnicas que visam gerar a estimativa mais precisa possível para uma quantidade ou fenômeno.
+
+No capítulo anterior, apresentamos diversas classes de modelos úteis para fazer inferência em estudos de poluição do ar. A utilização desses modelos depende de suposições sobre a forma como as variáveis explicativas e as variável resposta estão relacionadas. De uma forma geral, essas suposições são feitas a partir de um modelo probabilístico para a variável resposta $Y$, cuja parametrização dependerá de alguma função dos preditores $\mathbf{X}$\footnote{Muita da literatura sobre modelagem preditiva vem da área da Ciência da Computação. Os computólogos, de uma maneira geral, denominam as variáveis respostas como variáveis de saída ou \textit{outputs} e os preditores como variáveis de entrada ou \textit{inputs}.}. O modelo de regressão linear (\ref{mod:linear}), por exemplo, assume as seguintes hipóteses:
 
 \begin{itemize}
 	\item a média de $Y$ depende das variáveis $\mathbf{X}$ a partir da relação $\beta_0 + \beta_1X_1 + \dots \beta_pX_p$ (linearidade e aditividade);
@@ -21,12 +23,11 @@ No capítulo anterior, apresentamos diversas classes de modelos úteis para fazer 
 \end{itemize}
 Essas suposições, embora potencialmente restritivas, permitem que o modelo seja interpretável, isto é, ao estimarmos os coeficientes $\beta_0, \beta_1, \dots, \beta_p$, podemos avaliar como a variável $Y$ é influenciada por cada preditor $X_1, \dots, X_p$.
 
-Nos últimos anos, um novo \textit{framework} de análise de dados se tornou muito popular, principalmente pela sua eficiência na resolução de problemas de predição, como detecção de imagens, transcrição de áudio e sistemas de recomendação. A chamada \textit{modelagem preditiva}\footnote{Também conhecida como aprendizado estatístico, aprendizagem automática ou aprendizado de máquina \textit{machine learning}.} envolve um conjunto de técnicas que visam gerar a estimativa mais precisa possível para uma quantidade ou fenômeno. Embora esse \textit{framework} foque no ajuste de modelos preditivos, muitas das estratégias adotadas por ele também podem ser aplicadas em problemas de inferência, cujo interesse é entender a relação entre as variáveis.
+As técnicas e modelos utilizados para modelagem preditiva deixam a interpretabilidade parcilamente de lado para focar na precisão dos modelos ajustados. Além disso, as estratégias dentro dessa abordagem têm uma preocupação especial o sobreajuste, que representa o quanto o modelo pode ser generalizado para além da amostra. Embora esse \textit{framework} esteja focado no ajuste de modelos preditivos, muitas das estratégias adotadas por ele também podem ser aplicadas em problemas de inferência.
 
 %TODO: escrever sobre modelos preditivos (árvores e redes neurais)
 
-Neste capítulo, discutiremos as principais técnicas dentro da modelagem preditiva, como o conceito de sobreajuste (\textit{over-fitting}), os métodos de reamostragem, seleção de variáveis e regularização. Em seguida, introduziremos alguns modelos mais utilizados dentro desse contexto.
-
+Neste capítulo, discutiremos com mais detalhes o conceito de sobreajuste (\textit{over-fitting}) e apresentaremos métodos de reamostragem, seleção de variáveis e regularização. Em seguida, introduziremos alguns modelos bastante utilizados dentro desse contexto.
 
 %Os métodos de reamostragem geralmente são utilizados para avaliar a performance de um modelo ou prover medidas de acurácia para as estimativas dos parâmetros. Dada uma classe de modelos, os métodos de seleção de variáveis e regularização permitem aumentarmos o poder preditivo e a interpretabilidade do modelo.
 
@@ -226,6 +227,7 @@ A ideia do método \textit{backward stepwise} é parecida com a do \textit{foward}
 Ainda existem métodos \textit{stepwise} híbridos, nos quais os preditores são adicionados sequencialmente, assim como no \textit{foward stepwise}, mas em cada etapa é avaliado se um dos preditores já incluídos deve ou não sair do modelo. Essa estratégia tenta considerar mais modelos, chegando mais próximo da seleção do melhor sub-conjunto discutida na seção anterior. Para mais informações, consultar \cite{Nelder1972}.
 
 \section{Regularização}
+\label{sec:regularizacao}
 
 Os métodos de seleção de sub-conjuntos de preditores apresentados nas seções anteriores envolvem o ajuste de diversos modelos e a escolha do melhor segundo alguma métrica. Uma outra forma de selecionar variáveis é a partir das \textit{técnicas de regularização}. Essas técnicas, a princípio, envolvem o ajuste de um único modelo e introduzem no processo de estimação penalizações que limitam as estimativas dos coeficientes, as encolhendo na direção do zero.
 
@@ -263,3 +265,9 @@ sendo o denominador dessa expressão a estimativa do desvio-padrão do $j$-ésimo p
 Outra questão sobre a utilização da regularização é a estimação do erro-padrão dos coeficientes. Ainda há pouca literatura sobre como essas quantidades devem ser estimadas. \REF Uma boa alternativa nesse caso é calcular o erro-padrão por meio do \textit{bootstrapping}.
 
 Para uma discussão mais aprofundada sobre a interpretação da regressão ridge e do LASSO, consulte o Capítulo 6 de \cite{James2013}. Para o desenvolvimento matemático dessas técnicas, o Capítulo 5 de \cite{Hastie2008} é uma ótima referência.
+
+\section{Modelos de árvores}
+
+\subsection{Árvores de decisão}
+
+\subsection{Random Forest}

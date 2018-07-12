@@ -7,21 +7,13 @@ library(tidyverse)
 library(caret)
 library(recipes)
 
+source("scripts/salvo-2017/salvo-utils.R")
+
 # Dados -------------------------------------------------------------------
 
 df_model <- read_rds("data/artaxo-salvo-geiger/data-asg-model.rds")
 
 # Formula -----------------------------------------------------------------
-
-df_model <- 
-  recipe(df_model) %>% 
-  step_dummy(stationname) %>% 
-  step_interact(
-    terms = ~ matches("^stationname"):trend +
-      matches("^stationname"):dv_beltway_open
-  ) %>% 
-  prep(training = df_model) %>% 
-  bake(newdata = df_model)
 
 formula <- df_model %>%
   select(
@@ -38,18 +30,55 @@ formula <- df_model %>%
   str_c("o3_mass_conc ~ ", .) %>%
   as.formula()
 
+rec <- 
+  df_model %>%
+  na.omit() %>% 
+  recipe(formula = formula) %>%
+  step_naomit(all_predictors(), all_outcomes()) %>% 
+  step_dummy(stationname, week, one_hot = TRUE) %>% 
+  step_interact(
+    terms = ~ matches("^stationname"):trend +
+      matches("^stationname"):dv_beltway_open
+  )
+
 # Model -------------------------------------------------------------------
 
-train_control <- trainControl(method="cv", number = 5)
+train_control <- trainControl(method = "cv", number = 5)
+
+tuning_grid <- expand.grid(
+  splitrule = "variance",
+  mtry = 48,
+  min.node.size = 1
+)
 
 # Caret
 
+set.seed(5893524)
+
 model <- train(
-  form = formula,
+  x = rec,
   data = na.omit(df_model),
-  trControl = train_control
+  method = "ranger",
+  trControl = train_control,
+  tuneGrid = tuning_grid,
+  importance = 'impurity'
 )
 
 model
+# RMSE: 14.07
+# MAE: 10.19
+# % var: 85.72%  
+# share_gas imp: 6ª
+
 model$finalModel
-# RmSE 14.28206
+varImp(model)
+
+pred_obs_plot(
+  obs = na.omit(df_model)$o3_mass_conc,
+  pred = predict(model, newdata = na.omit(df_model))
+)
+ggsave(
+  filename = "text/figuras/cap-comb-forest-pred-obs-plot.pdf", 
+  width = 6, 
+  height = 4
+)

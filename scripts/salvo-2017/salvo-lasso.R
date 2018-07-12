@@ -30,8 +30,8 @@ formula <- df_model %>%
   as.formula()
 
 rec <- 
-  df_model %>% 
-  na.omit %>% 
+  df_model %>%
+  na.omit() %>% 
   recipe(formula = formula) %>%
   step_naomit(all_predictors(), all_outcomes()) %>% 
   step_dummy(stationname, week) %>% 
@@ -41,15 +41,18 @@ rec <-
   ) %>% 
   step_center(all_predictors(), -all_nominal()) %>% 
   step_scale(all_predictors(), -all_nominal())
+
+# 5-fold cross-validation
+train_control <- trainControl(method="cv", number = 5)
   
 # Model -------------------------------------------------------------------
 
-# 5-fold cross-validation
-train_control <- trainControl(method="cv", number = 10)
+# LASSO
+set.seed(5893524)
 
 tuning_grid <- expand.grid(
   alpha = 1,
-  lambda = seq(0, 0.01, 0.001)
+  lambda = seq(0, 1, 0.1)
 )
 
 model <- train(
@@ -60,15 +63,33 @@ model <- train(
   trControl = train_control
 )
 
+model
+# Modelo sem penalização escolhido
 
-coef(model$finalModel, s = model$bestTune$lambda)
-lambda <- model$bestTune$lambda
+# RIDGE
+
+set.seed(5893524)
+
+tuning_grid <- expand.grid(
+  alpha = 0,
+  lambda = seq(0, 10, 1)
+)
+
+model <- train(
+  x = rec,
+  data = na.omit(df_model), 
+  method = "glmnet",
+  tuneGrid = tuning_grid,
+  trControl = train_control
+)
+
+model
 
 # Bootstrapping -----------------------------------------------------------
 
 source("scripts/salvo-2017/salvo-bootstrapping.R")
 
-fit_func <- function(data, rec, lambda, vars) {
+fit_func <- function(data, i, rec, lambda, vars) {
   
   model <- train(
     x = rec,
@@ -81,6 +102,8 @@ fit_func <- function(data, rec, lambda, vars) {
   coef(model$finalModel, s = lambda)[vars, ]
   
 }
+
+set.seed(5893524)
 
 coefs <- 
   map_dbl(
