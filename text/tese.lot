@@ -11,7 +11,8 @@
 \contentsline {table}{\numberline {5.2}{\ignorespaces Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite {Salvo2017}.\relax }}{65}{table.caption.53}
 \contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{68}{table.caption.57}
 \contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{69}{table.caption.60}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{70}{table.caption.62}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{70}{table.caption.62}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{71}{table.caption.64}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

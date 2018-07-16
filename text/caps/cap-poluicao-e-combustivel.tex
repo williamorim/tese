@@ -63,15 +63,15 @@ As estratégias apresentadas até aqui consideram apenas o objetivo do estudo e co
 
 O objetivo desta análise exploratória é investigar o comportamento dos preditores e entender como eles se relacionam com a concentração de ozônio.
 
-Por pragmatismo, apresentaremos aqui apenas a análise exploratória para a estação Dom Pedro II. A maior parte dos resultados são compartilhados entre as outras estações. a análise exploratória completa pode ser visualizada em \href{https://goo.gl/3fzNga}{https://rpollution.com/categories/ozônio}.
+Por pragmatismo e como a maior parte dos resultados são compartilhados pelas outras estações, apresentaremos aqui apenas a análise da estação Dom Pedro II. A análise exploratória completa pode ser visualizada em \href{https://goo.gl/3fzNga}{https://rpollution.com/categories/ozônio}.
 
-Na Seção \ref{sec:grafico-da-serie}, nós começamos a explorar a série de ozônio. Pela Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}, observamos como a concentração diária média do poluente se comporta ao longo do dia. Como no período da manhã o ozônio ainda está sendo gerado e, no final do dia, ele já foi quase inteiramente consumido, é razoável analisarmos apenas a média diária no intervalo de pico, entre o meio-dia e as 17 horas. Isso significa que vamos relacionar o uso de etanol com o pico diário do ozônio, o que é suficiente para responder a pergunta de interesse.
+Na Seção \ref{sec:grafico-da-serie}, vimos como a concentração média diária do ozônio se comporta ao longo do dia (Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}). Como no período da manhã o ozônio ainda está sendo gerado e, no final do dia, ele já foi quase inteiramente consumido, é razoável analisarmos apenas a média diária no intervalo de pico, entre o meio-dia e as 17 horas. Isso significa que vamos relacionar o uso de etanol com o pico diário do ozônio, o que é suficiente para responder a pergunta de interesse.
 
-Mesmo considerando apenas a concentração de ozônio medida entre o meio-dia e as 17 horas, as condições climáticas e de tráfego no período da manhã são fatores importantes na formação do poluente. Assim, além das médias dessas variáveis no período da tarde, poderíamos considerar também os valores médios pela manhã (entre 8 e 11 horas).
+Mesmo considerando apenas a concentração de ozônio medida entre meio-dia e 17 horas, as condições climáticas e de tráfego no período da manhã podem ser fatores importantes na formação do poluente. Assim, além das médias dessas variáveis no período da tarde, poderíamos considerar também valores médios pela manhã (entre 8 e 11 horas).
 
-Vamos investigar inicialmente a associação entre a concentração de ozônio e a proporção estimada de carros à gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia próximo ao 50\%. Analisando o gráfico de dispersão apresentado na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
+Vamos investigar inicialmente a associação entre a concentração de ozônio e a proporção estimada de carros à gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia pouco, próximo ao 50\%. Analisando o gráfico de dispersão na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-series-share-ozone.pdf}
 	\caption{Séries da concentração de ozônio diária média e da proporção estimada de carros a gasolina rodando na cidade. Dados da estação Dom Pedro II, de 2008 a 2013.}
@@ -112,10 +112,9 @@ Repetindo a mesma análise para as outras variáveis climáticas\footnote{Os gráfic
 
 \begin{itemize}
 	\item dias com maior radiação estão associados a maiores níveis de ozônio;
-	\item como a precipitação apresenta muitos valores iguais a zero, podemos pensar em categorizá-la como "Choveu no período" e "Não choveu no período"; 
-	\item considerando a variável precipitação categorizada, períodos com chuva estão associados a menores concentrações de ozônio;
+	\item categorizando a variável precipitação em ``Choveu no período'' e ``Não choveu no período''\footnote{A escolha pela categorização se deve ao alto número de zeros (dias sem chuva) que essa variável possui.}, os períodos sem chuva estão associados a maiores concentrações de ozônio;
 	\item umidade alta, principalmente à tarde, está associada com menores concentrações de ozônio; 
-	\item a relação enter a velocidade do vento, tanto de manhã quanto à tarde, e a concentração de ozônio não é muito clara; e
+	\item a relação entre a velocidade do vento, tanto de manhã quanto à tarde, e a concentração de ozônio não é muito clara; e
 	\item parece haver uma leve associação entre a ocorrência de inversões térmicas e maiores concentrações de ozônio.
 \end{itemize}
 
@@ -135,7 +134,7 @@ Analisando agora o trânsito diário médio na região da estação de monitoramento (
 	\label{fig:cap-comb-ozone-congestion-throughtout-week}
 \end{figure}
 
-Se essa relação for verdadeira, isso implica que, independentemente de qual for a relação entre o uso de etanol a concentração de ozônio, as emissões veiculares tendem a diminuir os níveis do poluente. Para melhor avaliar isso, vamos estudar a concentração de ozônio em dias com maior proporção de estimadas de carros rodando a álcool e em dias com maior proporção estimada de carros rodando a gasolina. Como podemos observar pela Figura \ref{fig:cap-comb-ozone-throughtout-week-by-share}, a concentração de ozônio é maior em dias de menor tráfego independentemente de qual combustível está sendo mais utilizado na cidade.
+Se essa relação for verdadeira, isso implica que, independentemente de qual for a relação entre o uso de etanol a concentração de ozônio, as emissões veiculares tendem a diminuir os níveis do poluente. Para avaliar essa hipótese melhor, vamos estudar a concentração de ozônio em dias com maior proporção estimada de carros rodando a álcool e em dias com maior proporção estimada de carros rodando a gasolina. Como podemos observar pela Figura \ref{fig:cap-comb-ozone-throughtout-week-by-share}, a concentração de ozônio é maior em dias de menor tráfego independentemente de qual combustível está sendo mais utilizado na cidade.
 
 \begin{figure}
 	\centering
@@ -144,7 +143,7 @@ Se essa relação for verdadeira, isso implica que, independentemente de qual for 
 	\label{fig:cap-comb-ozone-throughtout-week-by-share}
 \end{figure}
 
-Devido à complexidade do problema e ao grande número de variáveis, a análise exploratória pode continuar em diversas direções. Poderíamos, por exemplo, analisar a associação entre os preditores para buscar indícios de interação, investigar a concentração de ozônio fora e durante as férias escolares, avaliar também o congestionamento médio em toda cidade em vez de apenas o congestionamento na região da estação e, é claro, generalizar a análise para as outras estações de monitoramento. No entanto, como já apresentamos uma visão geral de como realizar a análise exploratória, vamos seguir em frente e ajustar alguns modelos aos dados.
+Devido à complexidade do problema e ao grande número de variáveis, a análise exploratória pode seguir em diversas direções. Poderíamos, por exemplo, analisar a associação entre os preditores para buscar indícios de interação, investigar a concentração de ozônio fora e durante as férias escolares, avaliar também o congestionamento médio em toda cidade em vez de apenas o congestionamento na região da estação e, é claro, generalizar a análise para as outras estações de monitoramento. No entanto, como o objetivo dessa seção era passar uma visão geral da análise exploratória, vamos prosseguir com o ajuste dos dados.
 
 \section{A análise conduzida por \cite{Salvo2017}}
 
@@ -322,8 +321,8 @@ Como tentativa de melhorar o ajuste do modelo ajustado por \cite{Salvo2017}, pod
 		\hline
 		Modelo  & Transformação & RMSE & \% var. explicada & Variáveis mais importantes & \\
 		\hline
-		Regressão linear & log  & 21.18 & 71.31 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caenato & \\
-		Regressão linear & Box-Cox & 19.48 & 74.02 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caenato & \\
+		Regressão linear & log  & 21.18 & 71.31 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caetano & \\
+		Regressão linear & Box-Cox & 19.48 & 74.02 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caetano & \\
 		Random Forest & Box-Cox & 14.04 & 86.87 & Temperatura, umidade, radiação, vento e tendência & \\
 		\hline
 	\end{tabular}
@@ -340,6 +339,35 @@ Como a \textit{random forest} não faz restrições sobre a distribuição da variáve
 \end{figure}
 
 \section{Ajustando a máxima diária}
+
+Para verificar se os resultados são flexíveis quanto à métrica escolhida para agregar os dados, vamos ajustar o modelo de regressão linear e a \textit{random forest} agora para a máxima diária da concentração de ozônio.
+
+Na Tabela \ref{tab:cap-comb-max-diaria-resultados}, apresentamos os resultados dos ajustes. Observamos uma queda considerável na performance dos modelos em relação aos resultados para a média diária, mostrando que, ou os preditores considerados não explicam muito bem a variabilidade da máxima diária, ou precisamos encontrar um modelo mais adequado para essa nova variável.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado dos modelos ajustados com a variável resposta transformada.}
+	\begin{tabular}{M{3cm}|M{1cm}|M{2cm}|M{6cm} N}
+		\hline
+		Modelo  &  RMSE & \% var. explicada & Variáveis mais importantes & \\
+		\hline
+		Regressão linear & 28.00 & 61.01 & Vento, radiação, temperatura e variáveis indicadoras das estações Ibirapuera e São Caetano & \\
+		Random Forest & 20.45 & 79.86 & Temperatura, radiação, umidade, vento e tendência & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-max-diaria-resultados}
+\end{table}
+
+Também observamos pela Figura \ref{fig:cap-comb-max-diaria-pred-obs-plot} que os modelos para essa nova variável também subestima valores altos da máxima diária.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-max-diaria-pred-obs-plot.pdf}
+	\caption{Gráficos dos valores da máxima diária da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear e, no painel do meio, a \textit{random forest}.}
+	\label{fig:cap-comb-max-diaria-pred-obs-plot}
+\end{figure}
+
+Apesar da redução na precisão dos modelos, os resultados obtidos apontam na mesma direção: a proporção de ozônio é estatisticamente significante para explicar variações na concentração de ozônio e mais carros a gasolina tende a diminuir os níveis do poluente.
 
 \section{Ajustanto cada estação separadamente}
 
