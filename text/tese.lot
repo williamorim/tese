@@ -2,7 +2,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Crit\'erios para a escolha da ordem de modelos ARIMA.\relax }}{40}{table.caption.32}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Crit\'erios para a escolha da ordem de modelos ARIMA.\relax }}{41}{table.caption.32}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Raiz do erro quadr\'atico m\'edio (RMSE) para os modelos polinomiais de grau 1 a 9 ajustados com 10 e 110 observa\c c\~oes no exemplo da Figura \ref {cap-aprend-estat-trade-off}.\relax }}{45}{table.caption.34}
 \contentsline {table}{\numberline {4.2}{\ignorespaces Modelos de regress\~ao linear que devem ser ajustados para selecionar o melhor subconjunto de vari\'aveis no caso com 3 preditores.\relax }}{50}{table.caption.40}
@@ -10,7 +10,8 @@
 \contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{63}{table.caption.51}
 \contentsline {table}{\numberline {5.2}{\ignorespaces Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite {Salvo2017}.\relax }}{65}{table.caption.53}
 \contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{68}{table.caption.57}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{69}{table.caption.59}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{69}{table.caption.60}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Estimativas do par\^ametro referente \`a propor\c c\~ao de carros rodando a gasolina do modelo de regress\~ao linear.\relax }}{70}{table.caption.62}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

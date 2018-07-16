@@ -302,6 +302,43 @@ Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na 
 
 \section{Transformando a variável resposta}
 
+Vimos na última seção que os modelos ajustados subestimam a concentração de ozônio quando tentamos predizer valores muito altos do poluente. A nossa suspeita é que existe alguma variável importante para explicar os valores esses níveis elevados de ozônio que não foi inserida na análise. No entanto, existem situações em que esse problema de ajuste se deve pelas restrições impostas pelo modelo.
+
+No caso do modelo de regressão linear, supomos que a associação entre a concentração de ozônio e cada um dos preditores era linear, o que pode não ser razoável, principalmente quando a variável resposta tem distribuição assimétrica (Figura \ref{fig:cap-comb-dist-ozonio6}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-dist-ozonio.pdf}
+	\caption{Distribuição da concentração de ozônio na amostra considerada por \cite{Salvo2017}.}
+	\label{fig:cap-comb-dist-ozonio}
+\end{figure}
+
+Como tentativa de melhorar o ajuste do modelo ajustado por \cite{Salvo2017}, podemos aplicar alguma transformação à concentração de ozônio na tentativa de reduzir a assimetria da variável. Na Tabela \ref{tab:cap-comb-var-trans-resultados}, apresentamos os resultados do modelo de regressão linear ajustado com as transformações \textit{log} e Box-Cox (com lambda = 0.51). Com a ajuda da Figura \ref{fig:cap-comb-lin-reg-transfor-pred-obs-plot}, observamos que, para o modelo de regressão linear, a transformação logarítmica melhora o ajuste dos valores mais elevados, mas causa um maior viés nos valores pequenos. Já a transformação de Box-Cox melhora o ajuste tanto dos valores baixos quanto dos altos, diminuindo o RMSE do modelo e aumento a porcentagem da variância explicada.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado dos modelos ajustados com a variável resposta transformada.}
+	\begin{tabular}{M{3cm}|M{3cm}|M{1cm}|M{2cm}|M{6cm} N}
+		\hline
+		Modelo  & Transformação & RMSE & \% var. explicada & Variáveis mais importantes & \\
+		\hline
+		Regressão linear & log  & 21.18 & 71.31 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caenato & \\
+		Regressão linear & Box-Cox & 19.48 & 74.02 & Temperatura, radiação, vento, umidade e var. indicadora da estação São Caenato & \\
+		Random Forest & Box-Cox & 14.04 & 86.87 & Temperatura, umidade, radiação, vento e tendência & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-var-trans-resultados}
+\end{table}
+ 
+Como a \textit{random forest} não faz restrições sobre a distribuição da variável resposta, o ganho encontrado ao transformamos a variável foi muito pequeno.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf}
+	\caption{Gráficos dos valores da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear com transformação \textit{log}. No painel do meio, modelo de regressão linear com transformação Box-Cox. No painel da direita, \textit{random forest} com transformação Box-Cox.}
+	\label{fig:cap-comb-lin-reg-transfor-pred-obs-plot}
+\end{figure}
+
 \section{Ajustando a máxima diária}
 
 \section{Ajustanto cada estação separadamente}
@@ -311,7 +348,7 @@ Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na 
 	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo de regressão linear.}
 	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
 		\hline
-		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) \\
+		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) & \\
 		\hline
 		Diadema	& -18.01 & & \\			
 		Dom Pedro II & -23.30 & & \\			
@@ -330,6 +367,6 @@ Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na 
 \label{tab:cap-comb-ozone-estimativas-reg-linear}
 \end{table}
 
-
+\section{Comentários}
 
 

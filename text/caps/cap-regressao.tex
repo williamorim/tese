@@ -176,7 +176,7 @@ O modelo de regressão linear supõe que os erros $(\epsilon_1, \dots, \epsilon_n)
 
 Uma forma de avaliar a violação dessa suposição é construir o gráfico dos resíduos do modelo em função do tempo. A presença de padrões na sequência de pontos, isto é, resíduos adjacentes com valores próximos, é um indício de correlação. Na Figura \ref{fig:exemplo-serie-correlacao}, apresentamos os resíduos de um modelo de regressão linear ajustado em dados auto-correlacionados e em dados não-correlacionados. Para o primeiro caso, observe que os pontos adjacentes tendem a permanecer em um mesmo lado da reta $y = 0$. Na ausência de correlação, temos uma sequência aleatória de valores positivos e negativos.
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/exemplo-serie-correlacao}
 	\caption{Comparação entre os gráficos dos resíduos de um modelo linear contra o tempo para dados auto-correlacionados e dados não correlacionados.}
@@ -185,9 +185,13 @@ Uma forma de avaliar a violação dessa suposição é construir o gráfico dos resídu
 
 Se as observações são muito correlacionadas, os erros-padrão estimados pelo modelo de regressão linear tenderão a subestimar os verdadeiros erros, o que comprometeria a inferência, já que os valores p associados seriam menores do que deveriam ser. Nesses casos, outras estratégias de modelagem devem ser adotadas.
 
+Outro tipo de correlação muito comum é a causada por observações que pertencem a um mesmo grupo. Indivíduos de uma mesma família, por exemplo, compartilham a mesma genética e tendem apresentar respostas correlacionadas em estudos epidemiológicos. A localidade também configura formação de grupos, já que pessoas que moram numa mesma região geralmente estão expostas às mesmas condições ambientais. Observações realizadas em diferentes localizações, mas no mesmo instante também podem apresentar correlação. \cite{Salvo2017} utilizaram concentrações horárias de alguns poluentes em diversos estações de monitoramento em São Paulo, e é natural supor que as medidas feitas na mesma hora ou no mesmo dia estão correlacionadas.
+
 A depender dos objetivos do estudo, agregar os dados pode ser boa uma alternativa para reduzir o efeito da correlação. Se estamos trabalhando com uma série horária e não temos o objetivo de investir a relação entre as variáveis ao longo do dia, podemos simplificar o problema utilizando a série de médias diárias (veja o exemplo discutido na Seção \ref{sec:combustiveis-dimensionando}). Assim, eliminamos a correlação gerada pelas medidas realizadas dentro do mesmo dia.
 
-Quando não for possível agregar os dados, a solução é considerar generalizações do modelo de regressão linear que contemplem a correlação dos dados, como os modelos mistos \citep{McCulloch2001, Demidenko2013}.
+Para reduzir o efeito da correlação na estimação da variabilidade dos coeficientes, \cite{Salvo2017} utilizaram métodos robustos para o cálculo do erro-padrão. Os chamados \textit{clustered standard errors} \citep{Cameron2015} são obtidos a partir de uma especificação da matriz de variâncias e covariâncias que contempla a correlação entre indivíduos de um mesmo grupo. Essa técnica tem como vantagem a necessidade de especificar um modelo para os dados agrupados, mas faz a suposição que o número de grupos tende ao infinito.
+
+Outra alternativa consiste na utilização de modelos que permitem a especificação das observações correlacionadas, como os modelos mistos \citep{McCulloch2001, Demidenko2013}.
 
 %Uma alternativa é utilizar variáveis indicadoras para a unidade de tempo em que as medidas foram realizadas, como hora do dia, dia da semana, semana do mês etc. \hl{Essas variáveis passam a explicar a variação da resposta entre as unidades de tempo, ajudando a reduzir o efeito da correlação.} \cite{Salvo2014}, por exemplo, utilizou variáveis indicadoras para a hora em que a concentração de ozônio foi medida (das 13 às 16 horas) e ajustou um modelo de regressão linear para explicar os níveis de ozônio em função da proporção de carros a gasolina na cidade de São Paulo. 
 
@@ -229,7 +233,7 @@ Ao estimarmos os parâmetros $\beta_0$ e $\beta_1$ (pelo método de mínimos quadra
 \end{equation}
 sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $\hat{\beta}_1$ as estimativas de $\beta_0$ e $\beta_1$ respectivamente. Note que (\ref{mod:reta-de-regressao-simples}) representa a equação de uma reta com intercepto $\hat{\beta}_0$ e coeficiente angular $\hat{\beta}_1$. Isso significa que essa reta cruza o eixo $y$ no ponto $\hat{\beta}_0$ e, se variamos o valor de $X_{t}$ em uma unidade, $\widehat{Y_t}$ vai variar $\hat{\beta}_1$ unidades, não importa qual seja o valor de $X_{t}$. Essa associação entre $\widehat{Y_t}$ e $X_{t}$ (ou $Y_t$ e $X_{t}$) é dita ser \textit{linear} com respeito aos parâmetros e está ilustrada na Figura \ref{fig:suposicao-linearidade}, para $\hat{\beta}_0$ igual a 0 e $\hat{\beta}_1$ igual a 10. Quando temos mais de um preditor, como no modelo (\ref{mod:linear}), a interpretação é análoga para cada par $(\widehat{Y_t}, X_{it})$, mantendo-se as outras variáveis fixadas.
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/suposicao-linearidade.pdf}
 	\caption{A estimativa $\hat{\beta}$ representa a variação em $Y$ quando acrescemos $X$ em uma unidade, não importando o valor de $X$.}
@@ -396,7 +400,10 @@ No R, o modelo Poisson pode ser ajustado com a função \texttt{glm()} do pacote \
 
 Os modelos lineares têm um papel muito importante na análise de dados, provendo técnicas de inferência e predição computacionalmente simples e de fácil interpretação. Contudo, em problemas reais, a relação entre a variável resposta e os preditores pode não ser linear, tornando os modelos lineares muito restritivos. No estudo de poluentes atmosféricos, por exemplo, o aspecto temporal dos dados gera efeitos sazonais cuja relação com a variável reposta é muito melhor representada por curvas senoidais do que por retas.
 
-Na Seção \ref{sec:linearidade}, introduzimos algumas estratégias que permitem o ajuste de relações não-lineares utilizando o modelo de regressão linear, como a transformação de variáveis e a regressão polinomial. Agora, apresentaremos os modelos aditivos generalizados \citep{Hastie2008} como um método integrado, automático e flexível para identificar e caracterizar a não-linearidade de preditores em estudos de poluição atmosférica.
+Os modelos aditivos generalizados \citep{Hastie2008} são um método integrado, automático e flexível para identificar e caracterizar relações não-lineares entre as variáveis. Ao contrário das estratégias discutidas na Seção \ref{sec:linearidade}, como transformação da variável e regressão polinomial, os modelos aditivos generalizados não são lineares nos parâmetros, permitindo a estimação de funções não-lineares entre os preditores e a resposta. \cite{Belusic2015}, por exemplo, utilizaram essa classe de modelos para avaliar quais as variáveis mais importantes para descrever a série de diversos poluentes em Zagreb, Croácia. O modelo ajustado apontou que as variáveis meteorológicas explicavam a maior proporção da variabilidade dos poluentes.
+
+Neste seção, vamos discutir o ajuste e interpretação dos modelos aditivos generalizados no contexto de estudos de poluição do ar.
+
 
 \subsection{Especificação do modelo}
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -59,6 +59,12 @@ Leo Breiman e J.~H. Friedman.
   correlations (with discussion).
 \newblock \emph{Journal of the American Statistical Association}, 80\penalty0
   (391): \penalty0 580--619.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Cameron e Miller(2015)]{Cameron2015}{\bf Cameron e Miller(2015)}
+A.~Colin Cameron e Douglas~L. Miller.
+\newblock A practitioner's guide to cluster-robust inference.
+\newblock \emph{J. Human Resources}, 50\penalty0 (2): \penalty0 317--372.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Carslaw {\rm{\em et~al.}}(2007)Carslaw, Beevers, e
   Tate]{Carslaw2007}{\bf Carslaw {\rm{\em et~al.}}(2007)}
@@ -172,6 +178,14 @@ Tarik Jasarevic, Glenn Thomas e Nada Osseiran.
   2014.
 \newblock [Online; acessado 13-03-2017].   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Javanmard e Montanari(2014)]{Adel2014}{\bf Javanmard e
+  Montanari(2014)}
+Adel Javanmard e Andrea Montanari.
+\newblock Hypothesis testing in high-dimensional regression under the gaussian
+  random design model: Asymptotic theory.
+\newblock \emph{arXiv:1301.4240v3 [stat.ME]}.   {\scriptsize Citado na
+  p\'{a}g.}
+
 \bibitem[Katsouyanni {\rm{\em et~al.}}(1996)Katsouyanni, Schwartz, Spix,
   Touloumi, Zmirou, Zanobetti, Wojtyniak, Vonk, Tobias, P{\"o}nk{\"a}, Medina,
   Bach{\'a}rov{\'a}, e Anderson]{Katsouyanni1996}{\bf Katsouyanni {\rm{\em
@@ -224,6 +238,13 @@ C.~A. Lin, M.~A. Martins, S.~C. Farhat, C.~A. Pope, G.~M. Concei{\c{c}}{\~a}o,
 \newblock \doi{10.1046/j.1365-3016.1999.00210.x}.
 \newblock URL \url{http://dx.doi.org/10.1046/j.1365-3016.1999.00210.x}.
   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Lockhart {\rm{\em et~al.}}(2014)Lockhart, Taylor, Tibshirani, e
+  Tibshirani]{Lockhart2014}{\bf Lockhart {\rm{\em et~al.}}(2014)}
+Richard Lockhart, Jonathan Taylor, Ryan~J. Tibshirani e Robert Tibshirani.
+\newblock A significance test for the lasso.
+\newblock \emph{Annals of Statistics}, \penalty0 (2).   {\scriptsize Citado na
+  p\'{a}g.}
 
 \bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
 C.~E. McCulloch e S.~R. Searle.

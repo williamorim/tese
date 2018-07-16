@@ -33,6 +33,20 @@ formula <- df_model %>%
 
 # Linear regression -------------------------------------------------------
 
+df_model %>% 
+  ggplot(aes(x = o3_mass_conc)) +
+  geom_histogram(fill = "#6d9eebff", color = "blue") +
+  labs(
+    x = expression(paste(O[3], " (", mu, "g/", m^3, ")")), 
+    y = "Frequência"
+  ) +
+  theme_bw()
+ggsave(
+  filename = "text/figuras/cap-comb-dist-ozonio.pdf",
+  width = 6,
+  height = 4
+)
+
 #LOG
 
 rec <- 
@@ -147,14 +161,7 @@ p2 <- pred_obs_plot(
   pred = predict(model, newdata = na.omit(df_model))
 )
 
-p <- p1 + p2
 
-ggsave(
-  filename = "text/figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf",
-  width = 6,
-  height = 4
-)
- 
 # BOX-COX & Random Forest
 
 rec <- 
@@ -169,18 +176,34 @@ rec <-
   ) %>% 
   step_BoxCox(all_outcomes())
 
-train_control <- trainControl(method = "cv", number = 5)
+summary_box <- function(data, lev = NULL, model = NULL) {
+  
+  metrics <- defaultSummary(data, lev, model)
+  
+  residuo <- inv_boxcox(data$obs) - inv_boxcox(data$pred)
+  metrics["RMSE"] <- sqrt(mean((residuo)^2))
+  metrics["MAE"] <- mean(abs(residuo))
+  
+  metrics
+}
+
+# 5-fold cross-validation
+train_control <- trainControl(
+  method = "cv", 
+  number = 5,
+  summaryFunction = summary_box
+)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = c(40, 45, 48, 50),
-  min.node.size = c(1, 5, 10)
+  mtry = c(44, 45, 47),
+  min.node.size = 1
 )
 
 set.seed(5893524)
 
 model <- train(
-  form = formula,
+  x = rec,
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -192,19 +215,22 @@ model
 model$finalModel
 varImp(model)
 
-# RMSE: 21.17
-# MAE: 15.41
-# % var: 70.92%  
+# RMSE: 14.04
+# MAE: 10.11
+# % var: 86.87%  
 # share_gas imp: 14º
 
 df_test <- prep(rec, training = df_model) %>% bake(newdata = df_model)
 
-pred_obs_plot(
+p3 <- pred_obs_plot(
   obs = df_test$o3_mass_conc,
   pred = predict(model, newdata = na.omit(df_model))
 )
-# ggsave(
-#   filename = "text/figuras/cap-comb-lin-reg-pred-obs-plot.pdf", 
-#   width = 6, 
-#   height = 4
-# )
+
+p <- p1 + p2 + p3
+
+ggsave(
+  filename = "text/figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf",
+  width = 6,
+  height = 4
+)

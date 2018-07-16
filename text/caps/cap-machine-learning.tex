@@ -262,9 +262,23 @@ Um ponto importante sobre a aplicação das técnicas de regularização é a escala d
 \end{equation}
 sendo o denominador dessa expressão a estimativa do desvio-padrão do $j$-ésimo preditor. Consequentemente, todos os preditores terão média 0 desvio-padrão igual a 1.
 
-Outra questão sobre a utilização da regularização é a estimação do erro-padrão dos coeficientes. Ainda há pouca literatura sobre como essas quantidades devem ser estimadas. \REF Uma boa alternativa nesse caso é calcular o erro-padrão por meio do \textit{bootstrapping}.
+Embora haja muita discussão sobre a validade de testes de hipóteses do tipo $\beta = 0$ para o LASSO, já que o algoritmo zera automaticamente os coeficientes menos importantes, alguns trabalhos vêm surgindo nos últimos anos sobre o calculo do erro-padrão e o desenvolvimento de testes paras as estimativas \citep{Adel2014, Lockhart2014}. Uma boa alternativa para avaliar a variabilidade das estimativas dos coeficientes é utilizar o \textit{bootstrapping}.
 
 Para uma discussão mais aprofundada sobre a interpretação da regressão ridge e do LASSO, consulte o Capítulo 6 de \cite{James2013}. Para o desenvolvimento matemático dessas técnicas, o Capítulo 5 de \cite{Hastie2008} é uma ótima referência.
+
+\section{Quantificando a importância dos preditores}
+
+Nas últimas seções, discutimos técnicas para removermos do modelo as variáveis que não ajudam a explicar a variabilidade da variável resposta. Em alguns casos, também gostaríamos de saber, entre os preditores que permaneceram no modelo, quais são os mais importantes.
+
+Os valores-p são amplamente utilizados para definir as variáveis estatisticamente significantes para explicar a variável resposta. Dado um coeficiente $\beta$, o valor-p associado representa uma medida de evidência a favor da hipótese $\beta = 0$ e pode ser utilizado tanto para seleção de variáveis quanto para quantificar a magnitude de uma associação. Podemos interpretar o valor-p como quanto a estimativa encontrada seria inverossímil caso o verdadeiro valor de $\beta$ fosse 0. Se o valor-p for muito baixo (próximo de zero), significa que a estimativa obtida teria baixa probabilidade caso $\beta$ fosse 0 e então rejeitamos a hipótese de que esse coeficiente é nulo. Caso contrário, se o valor-p for alto, significa que a estimativa obtida não é inverossímil em um cenário em que $\beta$ é zero, e então não rejeitamos a hipótese de que $\beta = 0$. 
+
+Ao cálculo do valor p está associado uma estatística de teste, que também pode ser usada para quantificar a importância dos preditores. No modelo de regressão linear, por exemplo, o valor da estatística do teste t pode ser utilizada, de tal forma que, quanto maior o valor absoluto da estatística, maior será a importância do preditor para explicar a variável resposta.
+
+Em alguns casos, a variação no erro preditivo quando um preditor é eliminado do modelo é utilizada como medida de importância. Essa métrica mais geral é bastante utilizada em modelos de regressão que envolvem funções suavizadoras, como os modelos aditivos generalizados.
+
+Já para para a regressão ridge ou o LASSO, em que padronizamos as variáveis explicativas, uma medida de importância pode ser o próprio valor do coeficiente.
+
+As métricas de importância vão depender sempre do modelo utilizado. De uma forma geral, os programas estatísticos já possuem métricas de importância implementadas. No R, a função \texttt{varImp()} do pacote \texttt{caret} calcula uma medida de importância para a maioria dos modelos disponíveis.
 
 \section{Modelos de árvores}
 
