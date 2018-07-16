@@ -169,18 +169,34 @@ rec <-
   ) %>% 
   step_BoxCox(all_outcomes())
 
-train_control <- trainControl(method = "cv", number = 5)
+summary_box <- function(data, lev = NULL, model = NULL) {
+  
+  metrics <- defaultSummary(data, lev, model)
+  
+  residuo <- inv_boxcox(data$obs) - inv_boxcox(data$pred)
+  metrics["RMSE"] <- sqrt(mean((residuo)^2))
+  metrics["MAE"] <- mean(abs(residuo))
+  
+  metrics
+}
+
+# 5-fold cross-validation
+train_control <- trainControl(
+  method = "cv", 
+  number = 5,
+  summaryFunction = summary_box
+)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = c(40, 45, 48, 50),
-  min.node.size = c(1, 5, 10)
+  mtry = c(47, 48, 49),
+  min.node.size = 1
 )
 
 set.seed(5893524)
 
 model <- train(
-  form = formula,
+  x = rec,
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -192,9 +208,9 @@ model
 model$finalModel
 varImp(model)
 
-# RMSE: 21.17
-# MAE: 15.41
-# % var: 70.92%  
+# RMSE: 14.07
+# MAE: 10.12
+# % var: 86.74%  
 # share_gas imp: 14º
 
 df_test <- prep(rec, training = df_model) %>% bake(newdata = df_model)
