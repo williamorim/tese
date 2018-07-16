@@ -47,6 +47,7 @@
 \contentsline {figure}{\numberline {5.13}{\ignorespaces Valores da concentra\c c\~ao de oz\^onio preditos pelo modelo \textit {random forest} contra os valores observados.\relax }}{68}{figure.caption.58}
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Distribui\c c\~ao da concentra\c c\~ao de oz\^onio na amostra considerada por \cite {Salvo2017}.\relax }}{69}{figure.caption.59}
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Gr\'aficos dos valores da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear com transforma\c c\~ao \textit {log}. No painel do meio, modelo de regress\~ao linear com transforma\c c\~ao Box-Cox. No painel da direita, \textit {random forest} com transforma\c c\~ao Box-Cox.\relax }}{70}{figure.caption.61}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Gr\'aficos dos valores da m\'axima di\'aria da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear e, no painel do meio, a \textit {random forest}.\relax }}{71}{figure.caption.63}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
