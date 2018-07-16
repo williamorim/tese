@@ -69,16 +69,10 @@ varImp(model)
 # % var: 61.01%  
 # share_gas imp: 11º
 
-pred_obs_plot(
+p1 <- pred_obs_plot(
   obs = na.omit(df_model)$o3_mass_conc,
   pred = predict(model, newdata = na.omit(df_model))
 )
-# ggsave(
-#   filename = "text/figuras/cap-comb-lin-reg-pred-obs-plot.pdf", 
-#   width = 6, 
-#   height = 4
-# )
-
 
 # Random Forest -----------------------------------------------------------
 
@@ -123,13 +117,16 @@ varImp(model)
 
 df_test <- prep(rec, training = df_model) %>% bake(newdata = df_model)
 
-pred_obs_plot(
+p2 <- pred_obs_plot(
   obs = df_test$o3_mass_conc,
   pred = predict(model, newdata = na.omit(df_model))
 )
-# ggsave(
-#   filename = "text/figuras/cap-comb-lin-reg-pred-obs-plot.pdf", 
-#   width = 6, 
-#   height = 4
-# )
+
+p <- p1 + p2
+
+ggsave(
+  filename = "text/figuras/cap-comb-max-diaria-pred-obs-plot.pdf",
+  width = 6,
+  height = 4
+)
 
