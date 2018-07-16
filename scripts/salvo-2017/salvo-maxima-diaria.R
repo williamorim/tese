@@ -97,14 +97,14 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = c(40, 45, 48, 50),
-  min.node.size = c(1, 5, 10)
+  mtry = 55,
+  min.node.size = 1
 )
 
 set.seed(5893524)
 
 model <- train(
-  form = formula,
+  x = rec,
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -116,10 +116,10 @@ model
 model$finalModel
 varImp(model)
 
-# RMSE: 21.17
-# MAE: 15.41
-# % var: 70.92%  
-# share_gas imp: 14º
+# RMSE: 20.45
+# MAE: 13.85
+# % var: 79.86%  
+# share_gas imp: 6º
 
 df_test <- prep(rec, training = df_model) %>% bake(newdata = df_model)
 
