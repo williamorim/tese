@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.7)  16 JUL 2018 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.7)  16 JUL 2018 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1613,23 +1613,12 @@ Overfull \hbox (2.98842pt too wide) in paragraph at lines 352--352
  []|\T1/cmr/m/n/10.95 RMSE| 
  []
 
-
-LaTeX Warning: File `figuras/cap-comb-max-diaria-pred-obs-plot.pdf' not found o
-n input line 365.
-
-
-! Package pdftex.def Error: File `figuras/cap-comb-max-diaria-pred-obs-plot.pdf
-' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.365 ...as/cap-comb-max-diaria-pred-obs-plot.pdf}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<figuras/cap-comb-max-diaria-pred-obs-plot.pdf, id=1891, 433.62pt x 289.08pt>
+File: figuras/cap-comb-max-diaria-pred-obs-plot.pdf Graphic file (type pdf)
+<use figuras/cap-comb-max-diaria-pred-obs-plot.pdf>
+Package pdftex.def Info: figuras/cap-comb-max-diaria-pred-obs-plot.pdf  used on
+ input line 365.
+(pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1650,12 +1639,13 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [71]
+ [71 <./figuras/cap-comb-max-diaria-pred-obs-plot.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [72
+
+[72
 
 ]
 Cap\'{\i }tulo 6.
@@ -1774,10 +1764,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
  ) 
 Here is how much of TeX's memory you used:
- 12157 strings out of 494903
- 187451 string characters out of 6179962
+ 12160 strings out of 494903
+ 187660 string characters out of 6179962
  313751 words of memory out of 5000000
- 14833 multiletter control sequences out of 15000+600000
+ 14837 multiletter control sequences out of 15000+600000
  32768 words of font info for 79 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  36i,13n,46p,1780b,539s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1818,10 +1808,10 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on tese.pdf (100 pages, 2568789 bytes).
+Output written on tese.pdf (100 pages, 2736507 bytes).
 PDF statistics:
- 3056 PDF objects out of 3580 (max. 8388607)
- 2064 compressed objects within 21 object streams
+ 3063 PDF objects out of 3580 (max. 8388607)
+ 2069 compressed objects within 21 object streams
  367 named destinations out of 1000 (max. 500000)
- 768 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 773 words of extra memory for PDF output out of 10000 (max. 10000000)
 
