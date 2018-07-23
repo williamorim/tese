@@ -16,19 +16,19 @@
 \contentsline {section}{\numberline {3.1}Regress\~ao linear}{22}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Especifica\c c\~ao do modelo}{23}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Incorporando tend\^encia e sazonalidade}{24}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Tratando erros correlacionados}{25}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.3}Tratando erros correlacionados}{26}{subsection.3.1.3}
 \contentsline {subsection}{\numberline {3.1.4}Contornado a suposi\c c\~ao de homoscedasticidade}{27}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}Contornado a suposi\c c\~ao de linearidade}{27}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}Contornado a suposi\c c\~ao de aditividade}{29}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.5}Contornado a suposi\c c\~ao de linearidade}{28}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Contornado a suposi\c c\~ao de aditividade}{30}{subsection.3.1.6}
 \contentsline {subsection}{\numberline {3.1.7}Avaliando a qualidade do ajuste}{30}{subsection.3.1.7}
 \contentsline {section}{\numberline {3.2}Modelos lineares generalizados}{31}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Especifica\c c\~ao do modelo}{32}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Modelos para dados positivos assim\'etricos}{33}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Modelos para dados de contagem}{34}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Modelos aditivos generalizados}{35}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Especifica\c c\~ao do modelo}{35}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.1}Especifica\c c\~ao do modelo}{36}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Splines e regress\~ao local}{36}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Modelos ARIMA e extens\~oes}{38}{section.3.4}
+\contentsline {section}{\numberline {3.4}Modelos ARIMA e extens\~oes}{39}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Modelos autorregressivos (AR)}{39}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Modelos autorregressivos e de m\'edias m\'oveis (ARMA)}{39}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{40}{subsection.3.4.3}
@@ -50,27 +50,27 @@
 \contentsline {subsubsection}{LASSO}{52}{section*.42}
 \contentsline {section}{\numberline {4.6}Quantificando a import\^ancia dos preditores}{53}{section.4.6}
 \contentsline {section}{\numberline {4.7}Modelos de \'arvores}{53}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{53}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Random Forest}{53}{subsection.4.7.2}
-\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{55}{chapter.5}
-\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{55}{section.5.1}
-\contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{56}{section.5.2}
-\contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{57}{section.5.3}
-\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{63}{section.5.4}
-\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{64}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{65}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}LASSO e regress\~ao ridge}{67}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Random Forest}{67}{subsection.5.5.3}
-\contentsline {section}{\numberline {5.6}Transformando a vari\'avel resposta}{68}{section.5.6}
-\contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{69}{section.5.7}
-\contentsline {section}{\numberline {5.8}Ajustanto cada esta\c c\~ao separadamente}{70}{section.5.8}
-\contentsline {section}{\numberline {5.9}Coment\'arios}{70}{section.5.9}
-\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{73}{chapter.6}
-\contentsline {chapter}{\numberline {7}Previs\~ao}{75}{chapter.7}
-\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{77}{chapter.8}
-\contentsline {section}{\numberline {8.1}Dados no Brasil}{77}{section.8.1}
-\contentsline {section}{\numberline {8.2}Dados nos EUA}{77}{section.8.2}
-\contentsline {section}{\numberline {8.3}Dados na Europa}{77}{section.8.3}
-\contentsline {chapter}{\numberline {9}Discuss\~ao}{79}{chapter.9}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{81}{appendix*.65}
+\contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{54}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Random Forests}{55}{subsection.4.7.2}
+\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{57}{chapter.5}
+\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{57}{section.5.1}
+\contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{58}{section.5.2}
+\contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{59}{section.5.3}
+\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{65}{section.5.4}
+\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{66}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{67}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}LASSO e regress\~ao ridge}{69}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Random Forest}{69}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Transformando a vari\'avel resposta}{70}{section.5.6}
+\contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{71}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ajustando cada esta\c c\~ao separadamente}{72}{section.5.8}
+\contentsline {section}{\numberline {5.9}Coment\'arios}{74}{section.5.9}
+\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{77}{chapter.6}
+\contentsline {chapter}{\numberline {7}Previs\~ao}{79}{chapter.7}
+\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{81}{chapter.8}
+\contentsline {section}{\numberline {8.1}Dados no Brasil}{81}{section.8.1}
+\contentsline {section}{\numberline {8.2}Dados nos EUA}{81}{section.8.2}
+\contentsline {section}{\numberline {8.3}Dados na Europa}{81}{section.8.3}
+\contentsline {chapter}{\numberline {9}Discuss\~ao}{83}{chapter.9}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{85}{appendix*.66}
 \contentsfinish 

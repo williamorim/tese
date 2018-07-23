@@ -369,32 +369,69 @@ Também observamos pela Figura \ref{fig:cap-comb-max-diaria-pred-obs-plot} que os
 
 Apesar da redução na precisão dos modelos, os resultados obtidos apontam na mesma direção: a proporção de ozônio é estatisticamente significante para explicar variações na concentração de ozônio e mais carros a gasolina tende a diminuir os níveis do poluente.
 
-\section{Ajustanto cada estação separadamente}
+\section{Ajustando cada estação separadamente}
+
+A estratégia adotada por \cite{Salvo2017} e por nós até aqui foi juntar as informações de todas as estações de monitoramento em uma única amostra, analisando os dados conjuntamente e incluindo variáveis indicadoras para controlar o efeito de cada estação.
+
+O mecanismo gerador do ozônio, assim como qualquer poluente, é altamente dependente da química atmosférica local. Para avaliar se os resultados encontrados são robustos em relação à posição geográfica de cada estação, podemos refazer a análise ajustando um modelo para cada uma das estações. 
+
+Na Tabela \ref{tab:cap-comb-ozone-resultados-cada-estacao}, apresentamos os resultados do modelo de regressão linear para cada uma das 12 estações medidoras de ozônio. O modelo ajustado foi o mesmo considerado pelos autores, com exceção das variáveis relacionadas à estação. Analisando as estimativas dos coeficientes da proporção de carros à gasolina, observamos que essa variável é positivamente associada com a concentração de ozônio nas estações IPEN e São Caetano do Sul\footnote{Para a estação IPEN, o coeficiente é marginalmente significativo significativo.}, contrariando a conclusão para as outras estações e para os resultados com a amostra agregada.
+
+Em relação à performance dos modelos, o RMSE para cada estação não difere muito do encontrado para o modelo global. A proporção da variabilidade explicada só está muito abaixo para a estação Parelheiros. De uma forma geral, as variáveis meteorológicas são as mais importantes para explicar a concentração de ozônio, sendo que a temperatura ficou entre as cinco primeiras em todos os modelos.
+
+Essa diferença levanta algumas questões que devem ser estudadas mais profundamente:
+
+\begin{itemize}
+	\item O modelo de regressão linear é o melhor para explicar a associação entre as variáveis?
+	\item Existem variáveis importantes para explicar a concentração de ozônio que não foram incluídas no estudo?
+	\item O efeito da proporção de carros rodando a gasolina na concentração de ozônio vai depender da região estudada, mesmo quando analisamos diferentes áreas de uma mesma cidade?
+\end{itemize}
+
+Pela análise realizada aqui, vimos que as conclusões do estudo parecem ser robustas em relação ao modelo adotado. Discutiremos melhor os demais pontos nos comentários da próxima seção.
 
 \begin{table}[h!]
 	\centering
-	\caption{Estimativas do parâmetro referente à proporção de carros rodando a gasolina do modelo de regressão linear.}
-	\begin{tabular}{M{4cm}|M{5cm}|M{5cm} N}
+	\caption{Resultados dos modelos para cada estação. A estimativa apresentada na segunda coluna se refere ao coeficiente da proporção de carros a gasolina rodando na cidade.}
+	\begin{tabular}{M{3cm}|M{3cm}|M{2cm}|M{2.5cm}|M{5cm} N}
 		\hline
-		Estação & \qquad Estimativa \newline (modelo com todos os meses) & \qquad Estimativa \newline (excluindo meses frios) & \\
+		Estação & Estimativa (erro-padrão) &  RMSE & \% var. explicada & Variáveis mais importantes & \\
 		\hline
-		Diadema	& -18.01 & & \\			
-		Dom Pedro II & -23.30 & & \\			
-		Ibirapuera & -10.59	& &  \\		
-		IPEN & 5.15	& &  \\		 
-		Mauá & -25.23 & & \\			
-		Mooca & -60.63 &  & \\			
-		Nossa Senhora do Ó & -32.92 &  & \\			
-		Parelheiros & -21.20 & & \\			
-		Pinheiros & -23.04 & &  \\			
-		Santana & -16.99 & &  \\
-		Santo André & -23.13 & & \\
-		São Caetano do Sul & 39.86 & & \\
+		Diadema & -15.46 (5.01) & 17.05 & 76.87 & Vento, temperatura, radiação, variável ind. para a abertura do anel viário e umidade & \\
+		\hline
+		Dom Pedro II & -18.78 (6.35) & 18.90 & 69.81 & Radiação, vento, temperatura, umidade e variável ind. para a semana 40 & \\
+		\hline
+		Ibirapuera & -5.84 (6.5) & 20.24 & 70.88 & Temperatura, vento, radiação, variável ind. para a abertura do anel viário e umidade & \\
+		\hline
+		IPEN & 12.7 (7.2) & 22.11 & 66.94 & Radiação, temperatura, vento, variável ind. para a abertura do anel viário e tendência & \\
+		\hline
+		Mauá & -28.09 (6.17) & 20.76 & 67.35 & Temperatura, vento, variável ind. para a abertura do anel viário, umidade, radiação & \\
+		\hline
+		Moóca & -60.02 (7.77) & 21.35 & 63.05 & Radiação, proporção de carros a gasolina, vento, temperatura e umidade & \\
+		\hline
+		Nossa Senhora do Ó & -32.6 (4.53) & 17.19 & 74.59 & Temperatura, radiação, vento, proporção de carros a gasolina, variável ind. para a semana 45 & \\
+		\hline
+		Parelheiros & -24.61 (5.57) & 18.28 & 59.64 & Vento, variável ind. para inversão térmica, umidade, radiação, temperatura & \\
+		\hline
+		Pinheiros & -24.41 (5.78) & 19.24 & 65.96 & radiação, variável ind. para a abertura do anel viário, vento, umidade, temperatura & \\
+		\hline
+		Santana & -21.91 (5.91) & 18.31 & 72.70 & Temperatura, vento, radiação, umidade, variável ind. para a semana 44 & \\
+		\hline
+		Santo André & -23.1 (6.45) & 20.20 & 67.52 & Temperatura, vento, radiação, umidade, proporção de carros a gasolina & \\
+		\hline
+		São Caetano do Sul & 38.37 (7.53) & 21.17 & 70.26 & Vento, tendência, radiação, variável ind. para a abertura do anel viário, temperatura & \\
 		\hline
 \end{tabular}
-\label{tab:cap-comb-ozone-estimativas-reg-linear}
+\label{tab:cap-comb-ozone-resultados-cada-estacao}
 \end{table}
 
 \section{Comentários}
 
+As análises realizadas neste capítulo indicaram uma associação negativa entre a proporção de carros rodando a gasolina e a concentração de ozônio na região metropolitana de São Paulo. Mostramos que os resultados são robustos à especificação do modelo, mas podem variar a depender das características da química atmosférica local.
 
+Embora essa associação pareça contra-intuitiva, dado o senso comum de que o etanol é uma opção menos poluente aos combustíveis fósseis, ela pode ser explicada se estudarmos com mais cuidado a formação do ozônio troposférico. Dentre outros fatores, o processo gerador desse poluente depende da presença de NO$_2$, gerado principalmente pela queima de gasolina, e VOCs (compostos orgânicos voláteis), gerado em maior quantidade por veículos a etanol. Como explicado com mais detalhes em \cite{SashaMadronich2014}, ambientes limitados em NO$_2$ tendem a gerar mais ozônio quando mais NO$_2$ é lançado no atmosfera e ambientes limitados em VOCs tendem a gerar mais ozônio quando mais VOCs é lançado. Os resultados encontrados sugerem que a atmosfera na cidade de São Paulo é, em grande parte, limitada em VOCs e, portanto, a formação de ozônio depende de mais veículos rodando a etanol. Além disso, a maior queima de gasolina (e diesel) pela manhã gera mais NO, que reage com o ozônio durante a tarde, diminuindo seus níveis. Por isso verificamos uma relação negativa entre congestionamento e concentração do poluente.
+
+Essa interpretação também pode explicar os resultados diferentes encontrados para as estações IPEN e São Caetano do Sul, sendo preciso estudar melhor a química atmosférica da região onde as estações estão para confirmar a existência de ambientes limitados em NO$_2$. 
+
+Um outro ponto importante a ser considerado é a relevância prática dos resultados. Usando a estimativa encontrada por \cite{Salvo2017}, quando a proporção de carros a gasolina sobe de 30\% para 80\%, mantendo todas as outras variáveis constantes, a concentração diária média de ozônio tende a diminuir 8.3 $\mu g/m^3$. Considerando a concentração média de ozônio em toda a amostra, uma redução média de 72.2 $\mu g/m^3$ para 63.9 $\mu g/m^3$ pode não ter relevante prática para a criação de políticas públicas para a redução de emissões de etanol.
+
+Para avaliar o real impacto da redução do ozônio, podemos estudar o efeito desse poluente no número de casos de doenças e mortes relacionadas com a poluição. Nesse sentido, apresentaremos no próximo capítulo algumas análises associando dados de poluição com dados epidemiológicos.

@@ -164,7 +164,11 @@ De uma maneira geral, podemos classificar a sazonalidade como \textit{determinís
 	\end{array}
 	\right.
 \end{equation}
-Com essa formulação, o mês de dezembro será tomado como referência, isto é, a interpretação dos coeficientes correspondentes aos meses será feita sempre em relação ao mês de dezembro. Para mais informações sobre a utilização de variáveis indicadoras em modelos de regressão, consultar a Seção 3.3.1 de \cite{James2013}.
+Com essa formulação, o mês de dezembro será tomado como referência, isto é, a interpretação dos coeficientes correspondentes aos meses será feita sempre em relação ao mês de dezembro. 
+
+A inclusão de variáveis indicadoras também pode ser feita para controlar o efeito de variáveis que não estão disponíveis na amostra. \cite{Belusic2015}, por exemplo, utilizaram variáveis indicadoras para a hora do dia com o objetivo de controlar o efeito do trânsito no monitoramento de diversos poluentes na cidade de Zagreb, na Croácia. Dessa forma, cada coeficiente explicará as condições específicas da hora do dia a que ele se refere. Uma desvantagem dessa estratégia é não podermos avaliar se o coeficiente de fato está capturando o efeito do trânsito ou e qualquer outra variável associada com a concentração dos poluentes que também varia a cada hora.
+
+Para mais informações sobre a utilização de variáveis indicadoras em modelos de regressão, consultar a Seção 3.3.1 de \cite{James2013}.
 
 Se a sazonalidade for estocástica, procedimentos um pouco mais sofisticados serão necessários para controlá-la. Não trataremos desse tópico neste trabalho. Mais informações podem ser encontradas em \cite{Shumway2006}.
 
@@ -240,9 +244,11 @@ sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $
 	\label{fig:suposicao-linearidade}
 \end{figure}
 
+Repare que a suposição de linearidade é mais forte do que apenas monotonicidade. Enquanto está última restringe que a associação entre as variáveis seja sempre crescente ou decrescente, a primeira também restringe o quanto a variável resposta varia quando o preditor aumenta ou diminui uma unidade. Essa diferença é importante, pois muitas vezes utilizamos modelos lineares na tentativa de explicar relações que são apenas monotônicas, o que pode levar a estimativas pouco confiáveis e conclusões equivocadas. Uma discussão mais detalhada sobre esse problema pode ser encontrada em \cite{Achen2005}.
+
 %A suposição de linearidade é restritiva pois a verdadeira relação entre $Y_t$ e $X_t$ pode ter outras formas. \Ex
 
-Os resíduos, definidos pela expressão (\ref{RLN-residuos}), podem ser utilizados para avaliar a suposição de linearidade. A ideia consiste em construir o gráfico dos resíduos contra os valores preditos e verificar se a nuvem de pontos apresenta algum padrão. Nuvens em forma de ``U'', por exemplo, mostram que o modelo não está bem ajustado para valores extremos de $Y$, indicando não-linearidade (veja Figura \ref{fig:exemplo-residuos-linearidade-forma-U}).
+Os resíduos, definidos pela expressão (\ref{RLN-residuos}), podem ser utilizados para avaliar se a suposição de linearidade é razoável. A ideia consiste em construir o gráfico dos resíduos contra os valores preditos e verificar se a nuvem de pontos apresenta algum padrão. Nuvens em forma de ``U'', por exemplo, mostram que o modelo não está bem ajustado para valores extremos de $Y$, indicando não-linearidade (veja Figura \ref{fig:exemplo-residuos-linearidade-forma-U}).
 
 \begin{figure}[h!]
 	\centering

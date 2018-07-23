@@ -3,12 +3,12 @@
 # Maio de 2018
 # William Nilson de Amorim
 
+
+# Exemplo trade-off viés/variancia ----------------------------------------
+
 library(tidyverse)
 library(patchwork)
 set.seed(7)
-
-
-# Exemplo trade-off viés/variancia ----------------------------------------
 
 dados <- data_frame(
   x = runif(10),
@@ -96,6 +96,27 @@ tibble(
   knitr::kable(format = "latex", align = c("c", "c", "c"))
 
 
+# Exemplos árvores de decisão ---------------------------------------------
 
+library(tidyverse)
+library(caret)
+library(rattle)
 
+dados <- 
+  read_rds("data/artaxo-salvo-geiger/data-asg-model.rds") %>%
+  filter(stationname == "Dom Pedro II") %>% 
+  select(o3_mass_conc, tp) %>% 
+  na.omit()
+  
+train_control <- trainControl(method = "cv", number = 5)
 
+model <- train(
+  form = o3_mass_conc ~ tp,
+  data = dados,
+  method = "rpart",
+  trControl = train_control
+)
+
+model
+fancyRpartPlot(model$finalModel, caption = "")
+rattle::savePlotToFile("text/figuras/cap-aprend-estat-arvore.pdf")

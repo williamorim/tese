@@ -45,7 +45,7 @@
 \BOOKMARK [1][]{section.4.6}{Quantificando a import\342ncia dos preditores}{chapter.4}% 45
 \BOOKMARK [1][]{section.4.7}{Modelos de \341rvores}{chapter.4}% 46
 \BOOKMARK [2][]{subsection.4.7.1}{\301rvores de decis\343o}{section.4.7}% 47
-\BOOKMARK [2][]{subsection.4.7.2}{Random Forest}{section.4.7}% 48
+\BOOKMARK [2][]{subsection.4.7.2}{Random Forests}{section.4.7}% 48
 \BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 49
 \BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 50
 \BOOKMARK [1][]{section.5.2}{Dimensionando a an\341lise}{chapter.5}% 51
@@ -57,7 +57,7 @@
 \BOOKMARK [2][]{subsection.5.5.3}{Random Forest}{section.5.5}% 57
 \BOOKMARK [1][]{section.5.6}{Transformando a vari\341vel resposta}{chapter.5}% 58
 \BOOKMARK [1][]{section.5.7}{Ajustando a m\341xima di\341ria}{chapter.5}% 59
-\BOOKMARK [1][]{section.5.8}{Ajustanto cada esta\347\343o separadamente}{chapter.5}% 60
+\BOOKMARK [1][]{section.5.8}{Ajustando cada esta\347\343o separadamente}{chapter.5}% 60
 \BOOKMARK [1][]{section.5.9}{Coment\341rios}{chapter.5}% 61
 \BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 62
 \BOOKMARK [0][]{chapter.7}{Previs\343o}{}% 63
@@ -66,4 +66,4 @@
 \BOOKMARK [1][]{section.8.2}{Dados nos EUA}{chapter.8}% 66
 \BOOKMARK [1][]{section.8.3}{Dados na Europa}{chapter.8}% 67
 \BOOKMARK [0][]{chapter.9}{Discuss\343o}{}% 68
-\BOOKMARK [0][]{appendix*.65}{Refer\352ncias Bibliogr\341ficas}{}% 69
+\BOOKMARK [0][]{appendix*.66}{Refer\352ncias Bibliogr\341ficas}{}% 69

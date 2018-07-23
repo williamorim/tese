@@ -282,7 +282,36 @@ As métricas de importância vão depender sempre do modelo utilizado. De uma forma
 
 \section{Modelos de árvores}
 
+Modelos baseados em árvores \citep{Hastie1990,James2013} são algoritmos bastante utilizados tanto para regressão quanto para classificação. Esses métodos envolvem a segmentação do espaço gerado pelas variáveis explicativas em algumas regiões mais simples, onde a média ou a moda da variável resposta são utilizadas como predição.
+
+As chamadas árvores de decisão são modelos conceitualmente e computacionalmente simples, bastante populares pela sua interpretabilidade, apesar da precisão inferior quando comparadas com modelos mais flexíveis. Generalizações desse modelos, como as \textit{random forests}, costumam apresentar alta precisão, mesmo quando comparadas a modelos lineares, porém são pouco interpretáveis.
+
+Nesta seção, introduziremos os principais conceitos por trás das árvores de decisão e das \textit{random forests}.
+
 
 \subsection{Árvores de decisão}
 
-\subsection{Random Forest}
+As árvores de decisão se baseiam no particionamento das variáveis explicativas, de tal forma que as regiões formadas gerem predições para a variável resposta com baixo erro segundo alguma métrica (geralmente RMSE para regressão, o foco deste trabalho). O particionamento é feito a partir de \textit{regras} que dividem o espeço gerado pelas variáveis explicativas. Cada regra é representada por um \textit{nó} e a cada partição criada podem ser acrescentadas mais regras.
+
+Na Figura \ref{fig:cap-aprend-estat-arvore}, apresentamos um exemplo de árvore de decisão para a concentração de ozônio explicada pela temperatura. Para interpretá-la, basta começarmos pelo primeiro nó (a caixa mais alta da figura) e seguir as regras de decisão até encontrarmos um nó final (uma das caixas no nível mais baixo). Cada nó final apresenta a estimativa para as observações que caíram naquela partição e o número de observações dentro da partição (absoluto e proporcional ao tamanho da amostra). A Figura \ref{fig:cap-aprend-estat-arvore} indica que dias com temperatura menor de 26° C serão preditos com concentração de ozônio igual a 38 $\mu/m^3$; dias com temperatura entre 27 e 29° C serão preditos com concentração de ozônio igual a 69 $\mu/m^3$; e dias com temperatura maior de 92° C serão preditos com temperatura igual a 92 $\mu/m^3$. Além de conseguirmos predizer facilmente o nível de ozônio a partir da temperatura, também podemos observar que a concentração de ozônio aumenta com a temperatura. Na prática, podemos utilizar as árvores de decisão com quantos preditores forem necessários, sendo que cada nó poderá conter uma regra com um preditor diferente.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-arvore.pdf}
+	\caption{Exemplo de uma árvore de decisão para a concentração de ozônio explicada pela temperatura.}
+	\label{fig:cap-aprend-estat-arvore}
+\end{figure}
+
+Observe que no exemplo temos 3 nós finais, mas, teoricamente, poderíamos continuar particionando a temperatura até cada possível valor ter o seu próprio nó. Esse seria um caso de árvore de decisão sobreajustada, apresentando pouco poder de generalização. A escolha do número de nós finais é feita a partir de uma técnica conhecida como \textit{poda}, que consiste em usar validação cruzada para definir a melhor altura para a árvore.
+
+As árvores de decisão copiam bem o processo de tomada de decisão do cérebro humano, e por isso são mais simples de interpretar até mesmo que o modelo de regressão linear. No entanto, elas apresentam baixo poder preditivo e raramente são utilizadas para descrever processos muito complexos. A seguir, apresentaremos as \textit{random forests}, que abrem mão da interpretabilidade em troca de um alto grau de precisão.
+
+\subsection{Random Forests}
+
+As chamadas \textit{random forests} utilizam diversas árvores de decisão para predizer o valor de uma observação. Em cada iteração do algoritmo, selecionamos uma amostra dos $p$ preditores e construímos uma árvore de decisão para esses $m$ preditores. Esse procedimento é repetido $M$ vezes, gerando $M$ árvores diferentes. A amostragem dos preditores garante que as árvores geradas não sejam muito correlacionadas e permite que o modelo aprenda também com preditores de menor peso. A predição final será então a média das predições de cada árvores. Geralmente, $m$ é escolhido como $\sqrt{p}$, mas esse hiperparâmetro pode ser definido utilizando validação cruzada. $M$ por volta de 200 costuma ser suficiente para gerar bons resultados\footnote{Para valores de $M$ muito altos (> 200), a amostragem dos preditores passa a criar árvores mais parecidas com as já existes, o que não gera maiores ganhos de precisão.}.
+
+Ao contrário das árvores de decisão, as \textit{random forests} não são diretamente interpretáveis, já que se baseiam nas estimativas de centenas de árvores. Medidas de importância das variáveis podem ser utilizadas para avaliar quais preditores são os mais relevantes para explicar a variável resposta. Em geral, usa-se a redução média do RMSE gerada por todas partições do preditor nas $M$ árvores.
+
+Uma outra técnica utilizada para interpretar modelos como as \textit{random forests} é o LIME \cite{}. Dado qualquer modelo estatístico, essa técnica consiste em explicar quais preditores foram responsáveis pela predição de uma observação específica. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não interpretáveis.
+
+Behind the workings of lime lies the (big) assumption that every complex model is linear on a local scale. While this is not justified in the paper it is not difficult to convince yourself that this is generally sound ? you usually expect two very similar observations to behave predictably even in a complex model. lime then takes this assumption to its natural conclusion by asserting that it is possible to fit a simple model around a single observation that will mimic how the global model behaves at that locality. The simple model can then be used to explain the predictions of the more complex model locally.

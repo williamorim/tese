@@ -1,9 +1,16 @@
-\begin{thebibliography}{55}
+\begin{thebibliography}{58}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Achen(2005)]{Achen2005}{\bf Achen(2005)}
+Christopher~H. Achen.
+\newblock Let's put garbage-can regressions and garbage-can probits where they
+  belong.
+\newblock \emph{Conflict Management and Peace Science}, 2: \penalty0 327--339.
+   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Barros {\rm{\em et~al.}}(2009)Barros, Paula, e Leiva]{Barros2009}{\bf
   Barros {\rm{\em et~al.}}(2009)}
@@ -155,6 +162,15 @@ Trevor Hastie, Robert Tibshirani e Jerome Friedman.
 \newblock Springer Series in Statistics. Springer.   {\scriptsize Citado na
   p\'{a}g.}
 
+\bibitem[Hoek {\rm{\em et~al.}}(2002)Hoek, Brunekreef, Goldbohm, Fischer, e
+  van~den Brandt]{Hoek2002}{\bf Hoek {\rm{\em et~al.}}(2002)}
+Gerard Hoek, Bert Brunekreef, Sandra Goldbohm, Paul Fischer e Piet~A van~den
+  Brandt.
+\newblock Association between mortality and indicators of traffic-related air
+  pollution in the netherlands: a cohort study.
+\newblock \emph{The Lancet}, 360: \penalty0 1203:1209.   {\scriptsize Citado na
+  p\'{a}g.}
+
 \bibitem[Jacobson(2007)]{Jacobson2007}{\bf Jacobson(2007)}
 Mark~Z. Jacobson.
 \newblock Effects of ethanol ({E}85) versus gasoline vehicles on cancer and
@@ -245,6 +261,12 @@ Richard Lockhart, Jonathan Taylor, Ryan~J. Tibshirani e Robert Tibshirani.
 \newblock A significance test for the lasso.
 \newblock \emph{Annals of Statistics}, \penalty0 (2).   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Madronich(2014)]{SashaMadronich2014}{\bf Madronich(2014)}
+Sacha Madronich.
+\newblock Ethanol and ozone.
+\newblock \emph{Nature Geoscience: news \& views}, 7: \penalty0 395--397.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
 C.~E. McCulloch e S.~R. Searle.
