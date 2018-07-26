@@ -6,6 +6,7 @@
 library(tidyverse)
 library(caret)
 library(recipes)
+library(lime)
 
 source("scripts/salvo-2017/salvo-utils.R")
 
@@ -82,3 +83,57 @@ ggsave(
   width = 6, 
   height = 4
 )
+
+
+# Lime --------------------------------------------------------------------
+
+explainer <- lime(
+  na.omit(df_model), 
+  model
+)
+
+
+# 10% mais poluídos
+
+test_days <- 
+  df_model %>% 
+  na.omit %>%
+  filter(stationname == "Pinheiros") %>%
+  top_n(n = 100, o3_mass_conc)
+
+explanation <- explain(
+  test_days, 
+  explainer,
+  n_features = 10
+)
+
+explanation %>% 
+  filter(feature == "share_gas") %>% 
+  mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
+  ggplot(aes(y = feature_weight, x = case, fill = color)) +
+  geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
+  coord_flip() +
+  facet_wrap(~feature_desc, scales = "free") 
+
+
+# 10% menos poluídos
+
+test_days <- 
+  df_model %>% 
+  na.omit %>%
+  filter(stationname == "Pinheiros") %>%
+  top_n(n = -100, o3_mass_conc)
+
+explanation <- explain(
+  test_days, 
+  explainer, 
+  n_features = 10
+)
+
+explanation %>% 
+  filter(feature == "share_gas") %>% 
+  mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
+  ggplot(aes(y = feature_weight, x = case, fill = color)) +
+  geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
+  coord_flip() +
+  facet_wrap(~feature_desc, scales = "free") 
