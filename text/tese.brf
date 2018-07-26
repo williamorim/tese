@@ -104,7 +104,8 @@
 \backcite {Leiva2008}{{34}{3.2.2}{figure.caption.30}}
 \backcite {Barros2009}{{34}{3.2.2}{figure.caption.30}}
 \backcite {Leiva2015}{{34}{3.2.2}{figure.caption.30}}
-\backcite {Gleice2001b}{{34}{3.2.3}{subsection.3.2.3}}
+\backcite {SchwartzDockery1992}{{34}{3.2.3}{subsection.3.2.3}}
+\backcite {Gleice2001b}{{35}{3.2.3}{subsection.3.2.3}}
 \backcite {Hastie2008}{{35}{3.3}{section.3.3}}
 \backcite {Belusic2015}{{35}{3.3}{section.3.3}}
 \backcite {Hastie1990}{{36}{3.3.1}{equation.3.3.10}}
@@ -114,11 +115,11 @@
 \backcite {Hastie2008}{{38}{3.3.2}{figure.caption.31}}
 \backcite {James2013}{{38}{3.3.2}{figure.caption.31}}
 \backcite {James2013}{{38}{3.3.2}{figure.caption.31}}
-\backcite {Hastie2008}{{38}{3.3.2}{equation.3.3.13}}
-\backcite {James2013}{{38}{3.3.2}{equation.3.3.13}}
+\backcite {Hastie2008}{{39}{3.3.2}{equation.3.3.13}}
+\backcite {James2013}{{39}{3.3.2}{equation.3.3.13}}
 \backcite {Box1970}{{39}{3.4}{section.3.4}}
 \backcite {Shumway2006}{{39}{3.4}{section.3.4}}
-\backcite {Morettin2004}{{39}{3.4.2}{equation.3.4.15}}
+\backcite {Morettin2004}{{40}{3.4.2}{equation.3.4.15}}
 \backcite {Shumway2006}{{40}{3.4.2}{equation.3.4.16}}
 \backcite {Morettin2004}{{40}{3.4.3}{subsection.3.4.3}}
 \backcite {Shumway2006}{{40}{3.4.3}{subsection.3.4.3}}
@@ -167,4 +168,5 @@
 \backcite {Salvo2017}{{72}{5.8}{section.5.8}}
 \backcite {SashaMadronich2014}{{75}{5.9}{section.5.9}}
 \backcite {Salvo2017}{{75}{5.9}{section.5.9}}
+\backcite {SchwartzDockery1992}{{77}{6}{chapter.6}}
 \backcite {Hoek2002}{{77}{6}{chapter.6}}
