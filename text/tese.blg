@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 513 of file tese.aux
+---line 516 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -14,51 +14,50 @@ format.pages is an unknown function---line 725 of file plainnat-ime.bst
 format.pages is an unknown function---line 873 of file plainnat-ime.bst
 format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
-Warning--I didn't find a database entry for ""
 Warning--there's a number but no volume in Beer2011
 You can't pop an empty literal stack for entry Adel2014
 while executing---line 1434 of file plainnat-ime.bst
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
-You've used 58 entries,
+You've used 59 entries,
             2743 wiz_defined-function locations,
-            1012 strings with 16840 characters,
-and the built_in function-call counts, 26812 in all, are:
-= -- 2312
-> -- 1927
+            1017 strings with 17016 characters,
+and the built_in function-call counts, 27203 in all, are:
+= -- 2345
+> -- 1957
 < -- 34
-+ -- 656
-- -- 597
-* -- 2154
-:= -- 4383
-add.period$ -- 199
-call.type$ -- 58
-change.case$ -- 301
-chr.to.int$ -- 57
-cite$ -- 119
-duplicate$ -- 1000
-empty$ -- 1905
-format.name$ -- 685
-if$ -- 5507
++ -- 666
+- -- 606
+* -- 2184
+:= -- 4448
+add.period$ -- 202
+call.type$ -- 59
+change.case$ -- 306
+chr.to.int$ -- 58
+cite$ -- 121
+duplicate$ -- 1017
+empty$ -- 1932
+format.name$ -- 695
+if$ -- 5586
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 72
-newline$ -- 318
-num.names$ -- 232
-pop$ -- 712
+missing$ -- 73
+newline$ -- 323
+num.names$ -- 236
+pop$ -- 724
 preamble$ -- 1
-purify$ -- 257
+purify$ -- 261
 quote$ -- 0
-skip$ -- 730
+skip$ -- 742
 stack$ -- 0
-substring$ -- 850
-swap$ -- 61
+substring$ -- 852
+swap$ -- 62
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 553
+type$ -- 564
 warning$ -- 3
-while$ -- 210
+while$ -- 213
 width$ -- 0
-write$ -- 916
+write$ -- 930
 (There were 8 error messages)

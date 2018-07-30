@@ -1,4 +1,4 @@
-\begin{thebibliography}{58}
+\begin{thebibliography}{59}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -322,6 +322,13 @@ Pedro~Afonso Pereira, Leilane Maria~B. Santos, Eliane~Teixeira Sousa e
 \newblock R Foundation for Statistical Computing, Vienna, Austria, 2016.
 \newblock URL \url{https://www.R-project.org/}.   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Ribeiro {\rm{\em et~al.}}(2016)Ribeiro, Singh, e
+  Guestrin]{Ribeiro2016}{\bf Ribeiro {\rm{\em et~al.}}(2016)}
+Marco~Tulio Ribeiro, Sameer Singh e Carlos Guestrin.
+\newblock ``why should i trust you?'' explaining the predictions of any
+  classifier.
+\newblock \emph{arXiv:1602.04938v3 [cs.LG]}.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Saldiva {\rm{\em et~al.}}(1994)Saldiva, Lichtenfels, Paiva, Barone,
   Martins, Massad, Pereira, Xavier, Singer, e Bohm]{Saldiva1994}{\bf Saldiva
