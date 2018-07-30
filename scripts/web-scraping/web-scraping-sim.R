@@ -12,7 +12,7 @@ get_sim_data <- function(base, uf, ano) {
     ".dbc"
   )
   
-  #download.file(url, destfile = "data/datasus-sim/temp.dbc")
+  download.file(url, destfile = "data/datasus-sim/temp.dbc")
   
   read.dbc::read.dbc(file = "data/datasus-sim/temp.dbc") %>% 
     readr::write_rds(
