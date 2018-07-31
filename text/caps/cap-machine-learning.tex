@@ -312,6 +312,20 @@ As chamadas \textit{random forests} utilizam diversas árvores de decisão para pr
 
 Ao contrário das árvores de decisão, as \textit{random forests} não são diretamente interpretáveis, já que se baseiam nas estimativas de centenas de árvores. Medidas de importância das variáveis podem ser utilizadas para avaliar quais preditores são os mais relevantes para explicar a variável resposta. Em geral, usa-se a redução média do RMSE gerada por todas partições do preditor nas $M$ árvores.
 
-Uma outra técnica utilizada para interpretar modelos como as \textit{random forests} é o LIME \cite{}. Dado qualquer modelo estatístico, essa técnica consiste em explicar quais preditores foram responsáveis pela predição de uma observação específica. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não interpretáveis.
+Uma outra técnica utilizada para interpretar modelos como as \textit{random forests} é o LIME \citep{Ribeiro2016}. Dado qualquer modelo estatístico, essa técnica consiste em explicar quais preditores foram responsáveis pela predição de uma observação específica. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não interpretáveis.
 
-Behind the workings of lime lies the (big) assumption that every complex model is linear on a local scale. While this is not justified in the paper it is not difficult to convince yourself that this is generally sound ? you usually expect two very similar observations to behave predictably even in a complex model. lime then takes this assumption to its natural conclusion by asserting that it is possible to fit a simple model around a single observation that will mimic how the global model behaves at that locality. The simple model can then be used to explain the predictions of the more complex model locally.
+Essa técnica assume que todo modelo complexo prevê valores parecidos para duas observações muito próximas, sendo possível ajustar um modelo simples ao redor de uma única observação para copiar o comportamento global do modelo complexo. Assim, a partir de um modelo interpretável podemos obter para cada observação uma explicação sobre a predição feita pelo modelo não-interpretável.
+
+O algoritmo consiste em:
+
+\begin{enumerate}
+	\item Para cada predição a ser explicada, permutar a observação $n$ vezes.
+	\item Predizer cada uma das observações permutadas usando o modelo complexo.
+	\item Calcular uma medida de similaridade entre as permutações e a observação original.
+	\item Selecionar as $m$ variáveis mais importantes utilizadas pelo modelo complexo para explicar os dados permutados.
+	\item Ajustar um modelo interpretável aos dados permutados, utilizando a predições do modelo complexo como variável resposta e as $m$ variáveis selecionadas no passo anterior como preditores, ponderando pela medida de similaridade com a observação original.
+	\item Usar as estimativas desse modelo simples como as explicações para o comportamento local do modelo complexo.	 
+\end{enumerate}
+
+A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \textit{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R. O texto pode ser acessado por este link: \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{https://goo.gl/Nu9ZsA}.
+
