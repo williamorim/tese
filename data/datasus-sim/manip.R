@@ -17,7 +17,12 @@ juntar_dfs <- function(ano) {
       idade = IDADE,
       sexo = SEXO,
       raca = RACACOR,
-      estado_civil = ESTCIV
+      municipio = CODMUNRES,
+      estado_civil = ESTCIV,
+      escolaridade = ESC,
+      obito_investigado = TPPOS,
+      causa_basica = CAUSABAS,
+      causa_basica_original = CAUSABAS_O
     ) %>% 
     mutate_all(.funs = funs(as.character))
 }
