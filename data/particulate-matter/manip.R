@@ -1,7 +1,9 @@
-# Consolidando os dados ---------------------------------------------------
+# Consolidando dados de PM baixados do Qualar
 
-files <- list.files(path = "data/cetesb-greve-caminhoneiros/")
-paths <- str_c("data/cetesb-greve-caminhoneiros/", files)
+library(tidyverse)
+
+files <- list.files(path = "data/particulate-matter/")
+paths <- str_c("data/particulate-matter/", files)
 paths <- paths[str_detect(paths, ".csv")]
 
 df <- map_dfr(
@@ -32,7 +34,7 @@ aux <- df %>%
 
 write_rds(
   aux,
-  path = "data/cetesb-greve-caminhoneiros/data-greve-caminhoneiros.rds",
+  path = "data/particulate-matter/pm.rds",
   compress = "gz"
 )
 
