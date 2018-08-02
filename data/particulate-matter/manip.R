@@ -5,38 +5,19 @@ library(tidyverse)
 files <- list.files(path = "data/particulate-matter/")
 paths <- str_c("data/particulate-matter/", files)
 paths <- paths[str_detect(paths, ".csv")]
+paths <- paths[file.info(paths)$size > 1700]
 
 df <- map_dfr(
   paths, 
-  read_csv,
-  col_types = str_c(rep("c", 17), collapse = "")
+  read_csv
 )
 
-aux <- df %>%
-  select(
-    parameter = `Nome Parâmetro`,
-    stationname = `Nome Estação`,
-    date = Data,
-    hour = Hora,
-    mass_conc = `Média Horária`
-  ) %>%
-  mutate(
-    mass_conc = str_replace(mass_conc, ",", "."),
-    mass_conc = as.numeric(mass_conc),
-    date = lubridate::dmy(date),
-    hour = str_sub(hour, start = 1, end = 2),
-    hour = as.numeric(hour),
-    dayofweek = lubridate::wday(date, label = TRUE),
-    mass_conc = ifelse(abs(mass_conc) == 9999999, NA, mass_conc),
-    parameter = str_replace_all(parameter, " [(].*", "")
-  ) %>% 
-  spread(parameter, mass_conc)
-
-write_rds(
-  aux,
-  path = "data/particulate-matter/pm.rds",
-  compress = "gz"
-)
+df %>% 
+  select(-time, -mass_conc_movel) %>% 
+  write_rds(
+    path = "data/particulate-matter/pm.rds",
+    compress = "gz"
+  )
 
 # Unidades de medida
 
