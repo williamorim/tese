@@ -117,16 +117,17 @@ p1 <- explanation %>%
     x = "Proporção de carros a gasolina",
     y = "Coeficiente no modelo simple"
   ) +
+  ggtitle("Maiores médias de ozônio")
   theme_bw()
 
-explanation %>% 
-  filter(feature == "share_gas") %>% 
-  mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
-  ggplot(aes(y = feature_weight, x = case, fill = color)) +
-  geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
-  coord_flip() +
-  facet_wrap(~feature_desc, scales = "free") +
-  theme_bw()
+# explanation %>% 
+#   filter(feature == "share_gas") %>% 
+#   mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
+#   ggplot(aes(y = feature_weight, x = case, fill = color)) +
+#   geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
+#   coord_flip() +
+#   facet_wrap(~feature_desc, scales = "free") +
+#   theme_bw()
 
 # 10% menos poluídos
 
@@ -151,22 +152,24 @@ p2 <- explanation %>%
     x = "Proporção de carros a gasolina",
     y = "Coeficiente no modelo simple"
   ) +
+  ggtitle("Menores médias de ozônio") +
   theme_bw()
 
-explanation %>% 
-  ggplot(aes(x = feature)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+# explanation %>% 
+#   ggplot(aes(x = feature)) +
+#   geom_bar() +
+#   theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+# 
+# explanation %>% 
+#   filter(feature == "share_gas") %>% 
+#   mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
+#   ggplot(aes(y = feature_weight, x = case, fill = color)) +
+#   geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
+#   coord_flip() +
+#   facet_wrap(~feature_desc, scales = "free") 
 
-explanation %>% 
-  filter(feature == "share_gas") %>% 
-  mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
-  ggplot(aes(y = feature_weight, x = case, fill = color)) +
-  geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
-  coord_flip() +
-  facet_wrap(~feature_desc, scales = "free") 
+p2 + p1
 
-p1 + p2
 ggsave(
   filename = "text/figuras/cap-comb-lime-pinheiros.pdf", 
   width = 6, 
