@@ -7,6 +7,7 @@ library(tidyverse)
 library(caret)
 library(recipes)
 library(lime)
+library(patchwork)
 
 source("scripts/salvo-2017/salvo-utils.R")
 
@@ -24,7 +25,7 @@ formula <- df_model %>%
     -dv_kmregion_am_18_max, -dv_kmcity_am_80_max,
     -pp, -dv_pp_20_150,
     -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation, -dv_o3
+    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
   ) %>%
   names() %>%
   str_c(collapse = " + ") %>%
@@ -66,8 +67,8 @@ model <- train(
 )
 
 model
-# RMSE: 14.07
-# MAE: 10.19
+# RMSE: 14.11
+# MAE: 10.20
 # % var: 85.72%  
 # share_gas imp: 6ª
 
@@ -107,14 +108,25 @@ explanation <- explain(
   n_features = 10
 )
 
+p1 <- explanation %>% 
+  filter(feature == "share_gas") %>%
+  mutate(feature_value = as.numeric(feature_value)) %>% 
+  ggplot(aes(x = feature_value, y = feature_weight)) +
+  geom_point() +
+  labs(
+    x = "Proporção de carros a gasolina",
+    y = "Coeficiente no modelo simple"
+  ) +
+  theme_bw()
+
 explanation %>% 
   filter(feature == "share_gas") %>% 
   mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
   ggplot(aes(y = feature_weight, x = case, fill = color)) +
   geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
   coord_flip() +
-  facet_wrap(~feature_desc, scales = "free") 
-
+  facet_wrap(~feature_desc, scales = "free") +
+  theme_bw()
 
 # 10% menos poluídos
 
@@ -130,6 +142,22 @@ explanation <- explain(
   n_features = 10
 )
 
+p2 <- explanation %>% 
+  filter(feature == "share_gas") %>%
+  mutate(feature_value = as.numeric(feature_value)) %>% 
+  ggplot(aes(x = feature_value, y = feature_weight)) +
+  geom_point() +
+  labs(
+    x = "Proporção de carros a gasolina",
+    y = "Coeficiente no modelo simple"
+  ) +
+  theme_bw()
+
+explanation %>% 
+  ggplot(aes(x = feature)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+
 explanation %>% 
   filter(feature == "share_gas") %>% 
   mutate(color = ifelse(feature_weight < 0, "0", "1")) %>% 
@@ -137,3 +165,10 @@ explanation %>%
   geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
   coord_flip() +
   facet_wrap(~feature_desc, scales = "free") 
+
+p1 + p2
+ggsave(
+  filename = "text/figuras/cap-comb-lime-pinheiros.pdf", 
+  width = 6, 
+  height = 4
+)
