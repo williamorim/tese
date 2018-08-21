@@ -179,7 +179,8 @@ df_model <-
     dv_pp_5_20 = ifelse(pp >= 0.5 & pp < 2, 1, 0),
     dv_pp_20_150 = ifelse(pp >= 2, 1, 0)
   ) %>% 
-  mutate(siteid = as.factor(siteid))
+  mutate(siteid = as.factor(siteid)) %>% 
+  select(-dv_o3)
 
 # Saving df_model ---------------------------------------------------------
 
