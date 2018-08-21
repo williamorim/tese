@@ -307,8 +307,9 @@ Observe que no exemplo temos 3 nós finais, mas, teoricamente, poderíamos continu
 As árvores de decisão copiam bem o processo de tomada de decisão do cérebro humano, e por isso são mais simples de interpretar até mesmo que o modelo de regressão linear. No entanto, elas apresentam baixo poder preditivo e raramente são utilizadas para descrever processos muito complexos. A seguir, apresentaremos as \textit{random forests}, que abrem mão da interpretabilidade em troca de um alto grau de precisão.
 
 \subsection{Random Forests}
+\label{sec:random-forest}
 
-As chamadas \textit{random forests} utilizam diversas árvores de decisão para predizer o valor de uma observação. Em cada iteração do algoritmo, selecionamos uma amostra dos $p$ preditores e construímos uma árvore de decisão para esses $m$ preditores. Esse procedimento é repetido $M$ vezes, gerando $M$ árvores diferentes. A amostragem dos preditores garante que as árvores geradas não sejam muito correlacionadas e permite que o modelo aprenda também com preditores de menor peso. A predição final será então a média das predições de cada árvores. Geralmente, $m$ é escolhido como $\sqrt{p}$, mas esse hiperparâmetro pode ser definido utilizando validação cruzada. $M$ por volta de 200 costuma ser suficiente para gerar bons resultados\footnote{Para valores de $M$ muito altos (> 200), a amostragem dos preditores passa a criar árvores mais parecidas com as já existes, o que não gera maiores ganhos de precisão.}.
+As chamadas \textit{random forests} utilizam diversas árvores de decisão para predizer o valor de uma observação. Em cada iteração do algoritmo, selecionamos uma amostra dos $p$ preditores e construímos uma árvore de decisão para esses $m$ preditores. Esse procedimento é repetido $M$ vezes, gerando $M$ árvores diferentes. A amostragem dos preditores garante que as árvores geradas não sejam muito correlacionadas e permite que o modelo aprenda também com preditores de menor peso. A predição final será então a média das predições de cada árvores. Geralmente, $m$ é escolhido como $\sqrt{p}$, mas esse hiperparâmetro pode ser definido utilizando validação cruzada. $M$ por volta de 200 costuma ser suficiente para gerar bons resultados\footnote{Para valores de $M$ muito altos (maior que 200), a amostragem dos preditores passa a criar árvores mais parecidas com as já existes, o que não gera maiores ganhos de precisão.}.
 
 Ao contrário das árvores de decisão, as \textit{random forests} não são diretamente interpretáveis, já que se baseiam nas estimativas de centenas de árvores. Medidas de importância das variáveis podem ser utilizadas para avaliar quais preditores são os mais relevantes para explicar a variável resposta. Em geral, usa-se a redução média do RMSE gerada por todas partições do preditor nas $M$ árvores.
 
@@ -323,7 +324,7 @@ O algoritmo consiste em:
 	\item Predizer cada uma das observações permutadas usando o modelo complexo.
 	\item Calcular uma medida de similaridade entre as permutações e a observação original.
 	\item Selecionar as $m$ variáveis mais importantes utilizadas pelo modelo complexo para explicar os dados permutados.
-	\item Ajustar um modelo interpretável aos dados permutados, utilizando a predições do modelo complexo como variável resposta e as $m$ variáveis selecionadas no passo anterior como preditores, ponderando pela medida de similaridade com a observação original.
+	\item Ajustar um modelo interpretável aos dados permutados, utilizando as predições do modelo complexo como variável resposta e as $m$ variáveis selecionadas no passo anterior como preditores, ponderando pela medida de similaridade com a observação original.
 	\item Usar as estimativas desse modelo simples como as explicações para o comportamento local do modelo complexo.	 
 \end{enumerate}
 

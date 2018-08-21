@@ -31,3 +31,9 @@ df <- map_dfr(2007:2016, juntar_dfs)
 
 write_rds(df, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
 
+
+cid <- foreign::read.dbf("data/datasus-sim/dic/CID10.DBF")
+View(cid)
+
+cidcap <- foreign::read.dbf("data/datasus-sim/dic/CIDCAP10.DBF")
+View(cidcap)

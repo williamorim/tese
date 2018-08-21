@@ -278,12 +278,12 @@ Em busca de resultados mais precisos, ajustamos também uma \textit{random forest
 		\hline
 		Tamanho mínimo dos nós  & Número de preditores em cada amostra & RMSE & \% var. explicada & Variáveis mais importantes & \\
 		\hline
-		1 & 48  & 14.07 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
+		1 & 48  & 14.11 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-comb-resultados-random-forest}
 \end{table}
-Observamos que a \textit{random forest} apresentou um menor erro de teste (RMSE = 14.35) do que o modelo de regressão linear, além de explicar uma maior porcentagem da variação da concentração de ozônio. Os cinco preditores mais importantes foram temperatura, umidade, radiação, vento e tendência, iguais aos encontrados nos modelos aditivos generalizados. A proporção estimada de carros a gasolina foi o sexto preditor mais importante.
+Observamos que a \textit{random forest} apresentou um menor erro de teste (RMSE = 14.11) do que o modelo de regressão linear, além de explicar uma maior porcentagem da variação da concentração de ozônio. Os cinco preditores mais importantes foram temperatura, umidade, radiação, vento e tendência, iguais aos encontrados nos modelos aditivos generalizados. A proporção estimada de carros a gasolina foi o sexto preditor mais importante.
 
 A Figura \ref{fig:cap-comb-forest-pred-obs-plot} apresenta o gráfico dos valores preditos contra os valores observados para a \textit{random forest}. Fica nítido, ao compararmos com os outros modelos, a redução da diferença entre os valores preditos e observados. No entanto, ainda observamos que os valores altos da concentração de ozônio tendem a ser subestimadas pelo modelo.
 
@@ -297,13 +297,13 @@ A Figura \ref{fig:cap-comb-forest-pred-obs-plot} apresenta o gráfico dos valores
 
 Apesar de termos um ajuste mais preciso, a partir deste modelo não conseguimos interpretar a diretamente a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio. Não sabemos se esse preditor é estatisticamente significativo e, em caso positivo, em qual direção ela está associada à resposta. Sem essa interpretação, não conseguimos responder a pergunta de interesse do estudo.
 
-Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção ???. 
+Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:random-forest}. Como exemplo, vamos avaliar as predições para os 100 dias com maiores níveis de ozônio e para os 100 dias com menores dias de ozônio. A Figura \ref{fig:cap-comb-lime-pinheiros} sugere que, para os dias com maiores médias de ozônio, o efeito protetor da proporção estimada de carros à gasolina só acontece quando a temos cerca de 50\% da frota ou mais rodando a gasolina. Já para os dias com menores médias de ozônio, ... . Esse comportamento reforça a relação não-linear encontrado evidenciada pelo modelo aditivo generalizado ajustado na seção anterior.
 
 \section{Transformando a variável resposta}
 
 Vimos na última seção que os modelos ajustados subestimam a concentração de ozônio quando tentamos predizer valores muito altos do poluente. A nossa suspeita é que existe alguma variável importante para explicar os valores esses níveis elevados de ozônio que não foi inserida na análise. No entanto, existem situações em que esse problema de ajuste se deve pelas restrições impostas pelo modelo.
 
-No caso do modelo de regressão linear, supomos que a associação entre a concentração de ozônio e cada um dos preditores era linear, o que pode não ser razoável, principalmente quando a variável resposta tem distribuição assimétrica (Figura \ref{fig:cap-comb-dist-ozonio6}).
+No caso do modelo de regressão linear, supomos que a associação entre a concentração de ozônio e cada um dos preditores era linear, o que pode não ser razoável, principalmente quando a variável resposta tem distribuição assimétrica (Figura \ref{fig:cap-comb-dist-ozonio}).
 
 \begin{figure}[h!]
 	\centering
