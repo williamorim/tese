@@ -1,4 +1,4 @@
-\begin{thebibliography}{59}
+\begin{thebibliography}{60}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -361,6 +361,11 @@ Alberto Salvo e Franz~M. Geiger.
   shift from ethanol to gasoline use.
 \newblock \emph{Nature Geoscience}, 7: \penalty0 450--458.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Salvo e Wang(2017)]{Salvo2017b}{\bf Salvo e Wang(2017)}
+Alberto Salvo e Yi~Wang.
+\newblock Ethanol-blended gasoline policy and ozone pollution in sao paulo.
+\newblock \emph{JAERE}, 4\penalty0 (3).   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Salvo {\rm{\em et~al.}}(2017)Salvo, Brito, Artaxo, e
   Geiger]{Salvo2017}{\bf Salvo {\rm{\em et~al.}}(2017)}

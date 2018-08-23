@@ -106,6 +106,7 @@
 \backcite {Leiva2015}{{34}{3.2.2}{figure.caption.30}}
 \backcite {SchwartzDockery1992}{{34}{3.2.3}{subsection.3.2.3}}
 \backcite {Gleice2001b}{{35}{3.2.3}{subsection.3.2.3}}
+\backcite {Saldiva1995}{{35}{3.2.3}{subsection.3.2.3}}
 \backcite {Hastie2008}{{35}{3.3}{section.3.3}}
 \backcite {Belusic2015}{{35}{3.3}{section.3.3}}
 \backcite {Hastie1990}{{36}{3.3.1}{equation.3.3.10}}
@@ -127,7 +128,7 @@
 \backcite {Morettin2004}{{41}{3.4.3}{table.caption.32}}
 \backcite {Shumway2006}{{41}{3.4.3}{table.caption.32}}
 \backcite {Engle1982}{{41}{3.4.4}{subsection.3.4.4}}
-\backcite {Bollerslev1986}{{41}{3.4.4}{equation.3.4.17}}
+\backcite {Bollerslev1986}{{42}{3.4.4}{equation.3.4.17}}
 \backcite {Morettin2004}{{42}{3.4.4}{equation.3.4.17}}
 \backcite {Shumway2006}{{42}{3.4.4}{Item.12}}
 \backcite {James2013}{{47}{4.3.1}{subsection.4.3.1}}
@@ -152,6 +153,7 @@
 \backcite {Jacobson2007}{{58}{5.1}{section.5.1}}
 \backcite {Salvo2014}{{58}{5.1}{section.5.1}}
 \backcite {Salvo2017}{{58}{5.1}{section.5.1}}
+\backcite {Salvo2017b}{{58}{5.1}{section.5.1}}
 \backcite {Salvo2017}{{58}{5.1}{section.5.1}}
 \backcite {Salvo2017}{{59}{5.2}{Item.28}}
 \backcite {Salvo2017}{{59}{5.2}{Item.28}}
@@ -160,14 +162,15 @@
 \backcite {Salvo2017}{{65}{5.4}{section.5.4}}
 \backcite {Salvo2017}{{65}{5.1}{table.caption.52}}
 \backcite {Salvo2017}{{66}{5.9}{figure.caption.53}}
-\backcite {Salvo2017}{{66}{5.5}{section.5.5}}
+\backcite {Salvo2017}{{67}{5.5}{section.5.5}}
 \backcite {Salvo2017}{{67}{5.2}{table.caption.54}}
 \backcite {Salvo2017}{{69}{5.5.2}{subsection.5.5.2}}
 \backcite {Salvo2017}{{70}{5.3}{table.caption.58}}
-\backcite {Salvo2017}{{71}{5.15}{figure.caption.61}}
 \backcite {Salvo2017}{{71}{5.6}{figure.caption.61}}
-\backcite {Salvo2017}{{73}{5.8}{section.5.8}}
-\backcite {SashaMadronich2014}{{74}{5.9}{section.5.9}}
-\backcite {Salvo2017}{{75}{5.9}{section.5.9}}
+\backcite {Salvo2017}{{72}{5.15}{figure.caption.61}}
+\backcite {Salvo2017}{{74}{5.8}{section.5.8}}
+\backcite {SashaMadronich2014}{{75}{5.9}{section.5.9}}
+\backcite {Salvo2017}{{76}{5.9}{section.5.9}}
 \backcite {SchwartzDockery1992}{{77}{6}{chapter.6}}
+\backcite {Saldiva1995}{{77}{6}{chapter.6}}
 \backcite {Hoek2002}{{77}{6}{chapter.6}}
