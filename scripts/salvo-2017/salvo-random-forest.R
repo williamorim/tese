@@ -88,37 +88,84 @@ ggsave(
 
 # Lime --------------------------------------------------------------------
 
+make_explanation <- function(explainer, station) {
+  
+  # 10% mais poluídos
+  
+  test_days <- 
+    df_model %>% 
+    na.omit %>%
+    filter(stationname == station) %>%
+    top_n(n = 100, o3_mass_conc)
+  
+  explanation <- explain(
+    test_days, 
+    explainer,
+    n_features = 10
+  )
+  
+  p1 <- explanation %>% 
+    filter(feature == "share_gas") %>%
+    mutate(feature_value = as.numeric(feature_value)) %>% 
+    ggplot(aes(x = feature_value, y = feature_weight)) +
+    geom_point() +
+    labs(
+      x = "Proporção de carros a gasolina",
+      y = "Coeficiente no modelo simple"
+    ) +
+    ggtitle("Maiores médias de ozônio") +
+    theme_bw()
+  
+  # 10% menos poluídos
+  
+  test_days <- 
+    df_model %>% 
+    na.omit %>%
+    filter(stationname == station) %>%
+    top_n(n = -100, o3_mass_conc)
+  
+  explanation <- explain(
+    test_days, 
+    explainer, 
+    n_features = 10
+  )
+  
+  p2 <- explanation %>% 
+    filter(feature == "share_gas") %>%
+    mutate(feature_value = as.numeric(feature_value)) %>% 
+    ggplot(aes(x = feature_value, y = feature_weight)) +
+    geom_point() +
+    labs(
+      x = "Proporção de carros a gasolina",
+      y = "Coeficiente no modelo simple"
+    ) +
+    ggtitle("Menores médias de ozônio") +
+    theme_bw()
+  
+  p <- p2 + p1
+  
+  ggsave(
+    plot = p,
+    filename = paste(
+      "scripts/salvo-2017/img/random-forest-explanations/explanation-",
+      station,
+      ".pdf"
+    ),
+    width = 6, 
+    height = 4
+  )
+}
+
 explainer <- lime(
   na.omit(df_model), 
   model
 )
 
+stations <- df_model %>% 
+  distinct(stationname) %>% 
+  flatten_chr()
 
-# 10% mais poluídos
-
-test_days <- 
-  df_model %>% 
-  na.omit %>%
-  filter(stationname == "Pinheiros") %>%
-  top_n(n = 100, o3_mass_conc)
-
-explanation <- explain(
-  test_days, 
-  explainer,
-  n_features = 10
-)
-
-p1 <- explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simple"
-  ) +
-  ggtitle("Maiores médias de ozônio")
-  theme_bw()
+walk(stations, make_explanation, explainer = explainer)
 
 # explanation %>% 
 #   filter(feature == "share_gas") %>% 
@@ -128,32 +175,6 @@ p1 <- explanation %>%
 #   coord_flip() +
 #   facet_wrap(~feature_desc, scales = "free") +
 #   theme_bw()
-
-# 10% menos poluídos
-
-test_days <- 
-  df_model %>% 
-  na.omit %>%
-  filter(stationname == "Pinheiros") %>%
-  top_n(n = -100, o3_mass_conc)
-
-explanation <- explain(
-  test_days, 
-  explainer, 
-  n_features = 10
-)
-
-p2 <- explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simple"
-  ) +
-  ggtitle("Menores médias de ozônio") +
-  theme_bw()
 
 # explanation %>% 
 #   ggplot(aes(x = feature)) +
@@ -167,11 +188,3 @@ p2 <- explanation %>%
 #   geom_bar(stat = "identity", show.legend = FALSE, position = "dodge") +
 #   coord_flip() +
 #   facet_wrap(~feature_desc, scales = "free") 
-
-p2 + p1
-
-ggsave(
-  filename = "text/figuras/cap-comb-lime-pinheiros.pdf", 
-  width = 6, 
-  height = 4
-)
