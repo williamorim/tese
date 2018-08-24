@@ -1,0 +1,65 @@
+---
+title: "Artigos Joel Schwartz"
+output: html_notebook
+---
+
+<br>
+
+Revisão de alguns artigos recentes do Joel Schwartz.
+
+<br>
+
+> The concentration-response between long-term PM2.5 exposure and mortality; A meta-regression approach.
+
+- Objetivo: estimar o risco de morte (por causa específica e geral) associado a níveis de PM2.5.
+
+- Método/modelo: meta-análise com todos os estudos associando longas exposições a PM2.5 e mortalidade. Foi utilizado um modelo de efeitos aleatórios.
+
+- Local: 39 estudos na América do Norte, 8 da Europa e 6 da Ásia.
+
+- Conclusões: 
+    - forte evidência do efeito adverso do PM2.5 na mortalidade;
+    - estudos com menores exposições têm estimativas com menor tamanho de efeito;
+    - os efeitos significantes foram menores que 10 $\mu$g/m$^3$.
+
+
+> Pregnancy exposure to atmospheric pollution and meteorological conditions and placental DNA methylation.
+
+- Objetivo: investigar se o NO$_2$, o PM10, a temperatura e a umidade durante a gravidez estão associados com diferenças nos níveis de metilação do DNA placentário. 
+
+- Local: França
+
+- Método/modelo: regressão linear robusta.
+
+- Conclusões: associação entre a metilação e os níveis de NO$_2$ e PM10.
+
+
+> The association between short and long-term exposure to PM2.5 and temperature and hospital admissions in New England and the synergistic effect of the short-term exposures.
+
+- Objetivo:
+
+- Local:
+
+- Método/modelo:
+
+- Conclusões:
+
+> Exposures to Air Pollution and Risk of Acute-onset Placental Abruption: A Case-crossover Study.
+
+- Objetivo:
+
+- Local:
+
+- Método/modelo:
+
+- Conclusões:
+
+- Prenatal fine particulate exposure associated with reduced childhood lung function and nasal epithelia GSTP1 hypermethylation: Sex-specific effects.
+
+- Indoor black carbon and biomarkers of systemic inflammation and endothelial activation in COPD patients
+
+- Lung function association with outdoor temperature and relative humidity and its interaction with air pollution in the elderly
+
+- Association between particulate air pollution exposure during pregnancy and postpartum maternal psychological functioning.
+
+- Realizing the Paris Climate Agreement to Improve Cardiopulmonary Health. Where Science Meets Policy.
