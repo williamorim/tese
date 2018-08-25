@@ -9,57 +9,103 @@ Revisão de alguns artigos recentes do Joel Schwartz.
 
 <br>
 
-> The concentration-response between long-term PM2.5 exposure and mortality; A meta-regression approach.
+> [The concentration-response between long-term PM2.5 exposure and mortality; A meta-regression approach](https://www.ncbi.nlm.nih.gov/pubmed/30077140)
 
-- Objetivo: estimar o risco de morte (por causa específica e geral) associado a níveis de PM2.5.
+- **Objetivo**: estimar o risco de morte (por causa específica e geral) associado a níveis de PM2.5.
 
-- Método/modelo: meta-análise com todos os estudos associando longas exposições a PM2.5 e mortalidade. Foi utilizado um modelo de efeitos aleatórios.
+- **Método/modelo**: meta-análise com todos os estudos associando longas exposições a PM2.5 e mortalidade. Foi utilizado um modelo de efeitos aleatórios.
 
-- Local: 39 estudos na América do Norte, 8 da Europa e 6 da Ásia.
+- **Local**: 39 estudos na América do Norte, 8 da Europa e 6 da Ásia.
 
-- Conclusões: 
+- **Conclusões**: 
     - forte evidência do efeito adverso do PM2.5 na mortalidade;
     - estudos com menores exposições têm estimativas com menor tamanho de efeito;
     - os efeitos significantes foram menores que 10 $\mu$g/m$^3$.
 
 
-> Pregnancy exposure to atmospheric pollution and meteorological conditions and placental DNA methylation.
+> [Pregnancy exposure to atmospheric pollution and meteorological conditions and placental DNA methylation](https://www.ncbi.nlm.nih.gov/pubmed/29935799)
 
-- Objetivo: investigar se o NO$_2$, o PM10, a temperatura e a umidade durante a gravidez estão associados com diferenças nos níveis de metilação do DNA placentário. 
+- **Objetivo**: investigar se o NO$_2$, o PM10, a temperatura e a umidade durante a gravidez estão associados com diferenças nos níveis de metilação do DNA placentário. 
 
-- Local: França
+- **Local**: França.
 
-- Método/modelo: regressão linear robusta.
+- **Método/modelo**: regressão linear robusta.
 
-- Conclusões: associação entre a metilação e os níveis de NO$_2$ e PM10.
+- **Conclusões**: associação entre a metilação e os níveis de NO$_2$ e PM10.
 
 
-> The association between short and long-term exposure to PM2.5 and temperature and hospital admissions in New England and the synergistic effect of the short-term exposures.
+> [The association between short and long-term exposure to PM2.5 and temperature and hospital admissions in New England and the synergistic effect of the short-term exposures](https://www.sciencedirect.com/science/article/pii/S0048969718318308)
 
-- Objetivo:
+- **Objetivo**: investigar conjuntamente a associação da exposição ao PM2.5 de curto e longo prazo com internações hospitalares (doenças respiratórias, cardíacas e AVC).
 
-- Local:
+- **Período e local**: 2001-2011, New England - EUA.
 
-- Método/modelo:
+- **Método/modelo**: modelo Poisson do número de internações contra a concentração diária de PM2.5 (entre outros preditores).
 
-- Conclusões:
+- **Conclusões**: 
+    - associação positiva entre as internações hospitalares e a exposição a curto e longo prazo ao PM2.5;
+    - o efeito da exposição a longo prazo foi maior do que a do curto prazo;
+    - efeito do curto prazo em doenças respiratórias foi maior em dias quentes e em meses com maiores variações de temperatura;
+    - efeito do curto prazo em doenças cardíacas foi maior em dias frios e em meses com maiores variações de temperatura.
 
-> Exposures to Air Pollution and Risk of Acute-onset Placental Abruption: A Case-crossover Study.
+> [Exposures to Air Pollution and Risk of Acute-onset Placental Abruption: A Case-crossover Study](https://www.ncbi.nlm.nih.gov/pubmed/29863531)
 
-- Objetivo:
+- **Objetivo**: examinar se a exposição à poluição do ar (NO$_2$ e PM2.5) precedendo imediatamente o parto está associado com rupturas de início agudo
 
-- Local:
+- **Período e local**: 2008-2014, Nova Iorque - EUA.
 
-- Método/modelo:
+- **Método/modelo**: modelos não-lineares defasados baseados na regressão logística.
 
-- Conclusões:
+- **Conclusões**:
+    - aumento da chance de ruptura por exposição ao PM2.5 com lags de 3, 4 e 5 dias;
+    - aumento da chance de ruptura por exposição ao NO$_2$ com lags 3, 4 e 5.
 
-- Prenatal fine particulate exposure associated with reduced childhood lung function and nasal epithelia GSTP1 hypermethylation: Sex-specific effects.
+> [Prenatal fine particulate exposure associated with reduced childhood lung function and nasal epithelia GSTP1 hypermethylation: Sex-specific effects](https://www.ncbi.nlm.nih.gov/pubmed/29703190)
 
-- Indoor black carbon and biomarkers of systemic inflammation and endothelial activation in COPD patients
+- **Objetivo**: investigar a associação entre exposição ao PM2.5 ainda no útero com a função pulmonar infantil. 
 
-- Lung function association with outdoor temperature and relative humidity and its interaction with air pollution in the elderly
+- **Local**: EUA.
 
-- Association between particulate air pollution exposure during pregnancy and postpartum maternal psychological functioning.
+- **Método/modelo**: *Baysian distributed lag interaction models*.
 
-- Realizing the Paris Climate Agreement to Improve Cardiopulmonary Health. Where Science Meets Policy.
+- **Conclusões**: o modelo encontrou janelas sensíveis de penetração do PM2.5 tanto em meninas quanto meninos.
+
+> [Indoor black carbon and biomarkers of systemic inflammation and endothelial activation in COPD patients](https://www.ncbi.nlm.nih.gov/pubmed/29783085)
+
+- **Objetivo**: avaliar a relação entre Black Carbon indoor e inflamações pulmonares.
+
+- **Local**: EUA
+
+- **Método/modelo**: modelos mistos com intercepto aleatório para cada paciente.
+
+- **Conclusões**: efeito positivo entre os níveis de BC e as complicações pulmonares.
+
+> [Lung function association with outdoor temperature and relative humidity and its interaction with air pollution in the elderly](https://www.ncbi.nlm.nih.gov/pubmed/29684737)
+
+- **Objetivo**: investigar a associação entre função pulmonar, temperatura, umidade e black carbon.
+
+- **Período e local**: 1995-2011, EUA
+
+- **Método/modelo**: modelo misto linear.
+
+- **Conclusões**: a associação entre temperatura e umidade relativa do ar com morbidade é mais crítica em cenários com black carbon elevado.
+
+> [Association between particulate air pollution exposure during pregnancy and postpartum maternal psychological functioning](https://www.ncbi.nlm.nih.gov/pubmed/29668689)
+
+- **Objetivo**: estudar a associação entre exposição ao PM2.5 durante a gravidez e o funcionamento psicológico (depressão, ansiedadeda, anedonia) pós-parto.
+
+- **Local**: EUA
+
+- **Método/modelo**: *distributed lag models* (DLMs) foram implementados para identificar janelas de vulnerabilidade durante a gravidez.
+
+- **Conclusões**: associação significante entre alto níveis de PM2.5 e aumento no escore total de anedonia e depressão pós-parto.
+
+> [Association of Short-term Exposure to Air Pollution With Mortality in Older Adults](https://www.ncbi.nlm.nih.gov/pubmed/29279932)
+
+- **Objetivo**: estimar a associação entre exposiçao de curto prazo a PM2.5 e ozônio, em níveis dentro dos padrões estabelecidos, e a mortalidade na porção continental dos EUA.
+
+- **Período e local**: 2000-2012, EUA
+
+- **Método/modelo**: regressão logística condicional.
+
+- **Conclusões**: associação a curto prazo a PM2.5 e ozônio foi considerada significantemente associada a um aumento no risco de mortalidade, mesmo em níveis abaixo dos padrões estabelecidos pela agência nacional de qualidade do ar.
