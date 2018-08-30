@@ -86,6 +86,43 @@ ggsave(
 )
 
 
+# Cenários com baixo e alto share -----------------------------------------
+
+prep <- prep(rec, na.omit(df_model))
+
+
+# Baixo
+df_share_baixo <- df_model %>% 
+  mutate(share_gas = 0.2) %>% 
+  na.omit
+
+df_share_alto <- df_model %>% 
+  mutate(share_gas = 0.7) %>% 
+  na.omit
+
+df_model %>% 
+  na.omit %>% 
+  mutate(
+    pred_baixa = predict(model, df_share_baixo),
+    pred_alta = predict(model, df_share_alto),
+    pred = predict(model, na.omit(df_model))
+  ) %>%
+  group_by(stationname) %>% 
+  gather(var, o3, pred, pred_baixa, pred_alta) %>% 
+  ggplot(aes(x = date, y = o3, color = var)) +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~stationname) +
+  labs(color = "Cenário", x = "Ano", y = "Ozônio predito") +
+  scale_color_discrete(labels = c(
+    "Proporção observada", "Proporção Alta", "Proporção baixa"
+  )) +
+  theme(legend.position = "bottom")
+ggsave(
+  filename = "text/figuras/cap-comb-random-forest-cenarios.pdf", 
+  width = 6, 
+  height = 4
+)
+
 # Lime --------------------------------------------------------------------
 
 make_explanation <- function(explainer, station) {
