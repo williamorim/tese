@@ -10,9 +10,9 @@
 \contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{65}{table.caption.52}
 \contentsline {table}{\numberline {5.2}{\ignorespaces Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite {Salvo2017}.\relax }}{67}{table.caption.54}
 \contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{70}{table.caption.58}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{72}{table.caption.62}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{72}{table.caption.64}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{75}{table.caption.66}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{73}{table.caption.63}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{74}{table.caption.65}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{76}{table.caption.67}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

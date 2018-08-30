@@ -62,9 +62,9 @@
 \contentsline {subsection}{\numberline {5.5.2}LASSO e regress\~ao ridge}{69}{subsection.5.5.2}
 \contentsline {subsection}{\numberline {5.5.3}Random Forest}{69}{subsection.5.5.3}
 \contentsline {section}{\numberline {5.6}Transformando a vari\'avel resposta}{71}{section.5.6}
-\contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{72}{section.5.7}
+\contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{73}{section.5.7}
 \contentsline {section}{\numberline {5.8}Ajustando cada esta\c c\~ao separadamente}{74}{section.5.8}
-\contentsline {section}{\numberline {5.9}Coment\'arios}{74}{section.5.9}
+\contentsline {section}{\numberline {5.9}Coment\'arios}{75}{section.5.9}
 \contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{77}{chapter.6}
 \contentsline {chapter}{\numberline {7}Previs\~ao}{79}{chapter.7}
 \contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{81}{chapter.8}
@@ -72,5 +72,5 @@
 \contentsline {section}{\numberline {8.2}Dados nos EUA}{81}{section.8.2}
 \contentsline {section}{\numberline {8.3}Dados na Europa}{81}{section.8.3}
 \contentsline {chapter}{\numberline {9}Discuss\~ao}{83}{chapter.9}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{85}{appendix*.67}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{85}{appendix*.68}
 \contentsfinish 
