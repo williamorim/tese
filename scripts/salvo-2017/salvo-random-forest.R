@@ -119,8 +119,8 @@ df_model %>%
   theme(legend.position = "bottom")
 ggsave(
   filename = "text/figuras/cap-comb-random-forest-cenarios.pdf", 
-  width = 6, 
-  height = 4
+  width = 9, 
+  height = 6
 )
 
 # Lime --------------------------------------------------------------------
