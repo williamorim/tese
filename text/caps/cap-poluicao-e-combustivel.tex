@@ -306,6 +306,15 @@ Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na 
 	\label{fig:cap-comb-lime-pinheiros}
 \end{figure}
 
+Como a suposição de que a proporção de carros a gasolina não está associada diretamente a nenhum outro preditor, podemos predizer o ozônio substituindo o verdadeiro valor da proporção por um valor hipotético, que simule um cenário com poucos carros a gasolina rodando na cidade e outro com muito carros a gasolina. Na Figura \ref{fig:cap-comb-random-forest-cenarios}, apresentamos as curvas suavizadas do ozônio predito para esses dois cenários, além do cenário efetivamente observado. Os valores fixados para a proporção de carro a gasolina foram: 20\% para representar o cenário com poucos carros a gasolina e 70\% para o cenário com muitos carros. Esses valores foram escolhidos com base na distribuição da variável original. Observamos pelo gráfico que, os cenários observado e com baixa proporção são bem parecidos, enquanto o cenário com alta proporção apresenta menores concentrações em algumas estações.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-random-forest-cenarios.pdf}
+	\caption{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).}
+	\label{fig:cap-comb-random-forest-cenarios}
+\end{figure}
+
 \section{Transformando a variável resposta}
 
 Vimos na última seção que os modelos ajustados subestimam a concentração de ozônio quando tentamos predizer valores muito altos do poluente. A nossa suspeita é que existe alguma variável importante para explicar os valores esses níveis elevados de ozônio que não foi inserida na análise. No entanto, existem situações em que esse problema de ajuste se deve pelas restrições impostas pelo modelo.

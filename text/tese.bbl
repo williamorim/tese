@@ -1,4 +1,4 @@
-\begin{thebibliography}{60}
+\begin{thebibliography}{61}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -315,6 +315,16 @@ Pedro~Afonso Pereira, Leilane Maria~B. Santos, Eliane~Teixeira Sousa e
   photochemical ozone formation.
 \newblock \emph{Journal of the Brazilian Chemical Society}, 15\penalty0 (5):
   \penalty0 646--651.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Peters {\rm{\em et~al.}}(2000)Peters, Liu, Verrier, Schwartz, Gold,
+  Mittleman, Baliff, Oh, Allen, Monahan, e Dockery]{Peters2000}{\bf Peters
+  {\rm{\em et~al.}}(2000)}
+Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
+  Murray Mittleman, Jeff Baliff, J.~Annie Oh, George Allen, Kevin Monahan e
+  Douglas~W. Dockery.
+\newblock Air pollution and incidence of cardiac arrhythmia.
+\newblock \emph{Lippincott Williams \& Wilkins}, 11\penalty0 (1): \penalty0
+  11--17.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[{R Core Team}(2016)]{R2016}{\bf {R Core Team}(2016)}
 {R Core Team}.

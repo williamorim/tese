@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 502 of file tese.aux
+---line 521 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -19,45 +19,45 @@ You can't pop an empty literal stack for entry Adel2014
 while executing---line 1434 of file plainnat-ime.bst
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
-You've used 60 entries,
+You've used 61 entries,
             2743 wiz_defined-function locations,
-            1022 strings with 17130 characters,
-and the built_in function-call counts, 27553 in all, are:
-= -- 2377
-> -- 1978
+            1029 strings with 17438 characters,
+and the built_in function-call counts, 28409 in all, are:
+= -- 2441
+> -- 2080
 < -- 35
-+ -- 673
-- -- 612
-* -- 2207
-:= -- 4505
-add.period$ -- 205
-call.type$ -- 60
-change.case$ -- 310
-chr.to.int$ -- 59
-cite$ -- 123
-duplicate$ -- 1033
-empty$ -- 1959
-format.name$ -- 704
-if$ -- 5659
++ -- 707
+- -- 645
+* -- 2296
+:= -- 4649
+add.period$ -- 208
+call.type$ -- 61
+change.case$ -- 323
+chr.to.int$ -- 60
+cite$ -- 125
+duplicate$ -- 1051
+empty$ -- 1994
+format.name$ -- 738
+if$ -- 5826
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 74
-newline$ -- 328
-num.names$ -- 240
-pop$ -- 732
+missing$ -- 75
+newline$ -- 333
+num.names$ -- 244
+pop$ -- 758
 preamble$ -- 1
-purify$ -- 264
+purify$ -- 276
 quote$ -- 0
-skip$ -- 756
+skip$ -- 776
 stack$ -- 0
-substring$ -- 854
-swap$ -- 63
+substring$ -- 871
+swap$ -- 64
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 575
+type$ -- 586
 warning$ -- 3
-while$ -- 216
+while$ -- 220
 width$ -- 0
-write$ -- 945
+write$ -- 960
 (There were 8 error messages)
