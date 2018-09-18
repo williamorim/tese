@@ -1,4 +1,4 @@
-\begin{thebibliography}{62}
+\begin{thebibliography}{59}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,7 +91,7 @@ George Casella e Roger~L. Berger.
 Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
   Omary, Vlad Isakov, Michael Breen e Saravanan Arunachalam.
 \newblock Finely resolved on-road {PM}2.5 and estimated premature mortality in
-  central {N}orth {C}arolina.
+  central north carolina.
 \newblock \emph{Risk Analysis}.
 \newblock \doi{10.1111/risa.12775}.
 \newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
@@ -161,20 +161,6 @@ Trevor Hastie, Robert Tibshirani e Jerome Friedman.
 \newblock \emph{The Elements of Statistical Learning}.
 \newblock Springer Series in Statistics. Springer.   {\scriptsize Citado na
   p\'{a}g.}
-
-\bibitem[Hoek {\rm{\em et~al.}}(2002)Hoek, Brunekreef, Goldbohm, Fischer, e
-  van~den Brandt]{Hoek2002}{\bf Hoek {\rm{\em et~al.}}(2002)}
-Gerard Hoek, Bert Brunekreef, Sandra Goldbohm, Paul Fischer e Piet~A van~den
-  Brandt.
-\newblock Association between mortality and indicators of traffic-related air
-  pollution in the netherlands: a cohort study.
-\newblock \emph{The Lancet}, 360: \penalty0 1203:1209.   {\scriptsize Citado na
-  p\'{a}g.}
-
-\bibitem[Jacobson(2002)]{Jacobson2002}{\bf Jacobson(2002)}
-Mark~Z. Jacobson.
-\newblock \emph{Atmospheric Pollution History, Science, and Regulation}.
-\newblock Cambridge.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Jacobson(2007)]{Jacobson2007}{\bf Jacobson(2007)}
 Mark~Z. Jacobson.
@@ -320,16 +306,6 @@ Pedro~Afonso Pereira, Leilane Maria~B. Santos, Eliane~Teixeira Sousa e
   photochemical ozone formation.
 \newblock \emph{Journal of the Brazilian Chemical Society}, 15\penalty0 (5):
   \penalty0 646--651.   {\scriptsize Citado na p\'{a}g.}
-
-\bibitem[Peters {\rm{\em et~al.}}(2000)Peters, Liu, Verrier, Schwartz, Gold,
-  Mittleman, Baliff, Oh, Allen, Monahan, e Dockery]{Peters2000}{\bf Peters
-  {\rm{\em et~al.}}(2000)}
-Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
-  Murray Mittleman, Jeff Baliff, J.~Annie Oh, George Allen, Kevin Monahan e
-  Douglas~W. Dockery.
-\newblock Air pollution and incidence of cardiac arrhythmia.
-\newblock \emph{Lippincott Williams \& Wilkins}, 11\penalty0 (1): \penalty0
-  11--17.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[{R Core Team}(2016)]{R2016}{\bf {R Core Team}(2016)}
 {R Core Team}.
