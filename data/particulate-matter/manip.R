@@ -16,7 +16,10 @@ df <- purrr::map_dfr(
 )
 
 df %>%
-  mutate(mass_conc = ifelse(mass_conc == 999, NA, mass_conc)) %>% 
+  mutate(
+    mass_conc = ifelse(mass_conc == 999, NA, mass_conc),
+    hour = hour -1
+  ) %>% 
   rename(datetime = time) %>% 
   select(-mass_conc_movel) %>% 
   write_rds(
