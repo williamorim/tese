@@ -1,6 +1,6 @@
 \babel@toc {brazil}{}
-\contentsline {chapter}{Lista de Figuras}{xi}{chapter*.5}
-\contentsline {chapter}{Lista de Tabelas}{xv}{chapter*.6}
+\contentsline {chapter}{Lista de Figuras}{ix}{chapter*.5}
+\contentsline {chapter}{Lista de Tabelas}{xiii}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}An\'alise explorat\'oria}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Gr\'aficos}{6}{section.2.1}
@@ -33,7 +33,6 @@
 \contentsline {subsection}{\numberline {3.4.2}Modelos autorregressivos e de m\'edias m\'oveis (ARMA)}{39}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{40}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Modelos GARCH}{41}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Fun\c c\~oes de impacto na sa\'ude}{42}{subsection.3.4.5}
 \contentsline {chapter}{\numberline {4}Estrat\'egias de modelagem preditiva}{43}{chapter.4}
 \contentsline {section}{\numberline {4.1}Sobreajuste e o \textit {trade-off} entre vi\'es e vari\^ancia}{44}{section.4.1}
 \contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{46}{section.4.2}
@@ -66,14 +65,5 @@
 \contentsline {section}{\numberline {5.7}Ajustando a m\'axima di\'aria}{73}{section.5.7}
 \contentsline {section}{\numberline {5.8}Ajustando cada esta\c c\~ao separadamente}{74}{section.5.8}
 \contentsline {section}{\numberline {5.9}Coment\'arios}{75}{section.5.9}
-\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{77}{chapter.6}
-\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{77}{section.6.1}
-\contentsline {section}{\numberline {6.2}Material particulado e mortalidade}{77}{section.6.2}
-\contentsline {chapter}{\numberline {7}Previs\~ao}{79}{chapter.7}
-\contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{81}{chapter.8}
-\contentsline {section}{\numberline {8.1}Dados no Brasil}{81}{section.8.1}
-\contentsline {section}{\numberline {8.2}Dados nos EUA}{81}{section.8.2}
-\contentsline {section}{\numberline {8.3}Dados na Europa}{81}{section.8.3}
-\contentsline {chapter}{\numberline {9}Discuss\~ao}{83}{chapter.9}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{85}{appendix*.68}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{77}{appendix*.68}
 \contentsfinish 

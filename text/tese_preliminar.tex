@@ -18,6 +18,7 @@
 \usepackage[fixlanguage]{babelbib}
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
 \usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage{color,soul}
 \usepackage[a4paper,top=2.54cm,bottom=2.0cm,left=2.0cm,right=2.54cm]{geometry} % margens
 %\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,filecolor=black,bookmarksopen=true]{hyperref} % links em preto
 \usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=green,bookmarksopen=true]{hyperref} % links coloridos
@@ -26,6 +27,12 @@
 \fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
 
 \usepackage{bm}
+\usepackage{epigraph}
+\usepackage{multirow}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
 
 % ---------------------------------------------------------------------------- %
 % Cabeçalhos similares ao TAOCP de Donald E. Knuth
@@ -36,16 +43,16 @@
 \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
 \renewcommand{\headrulewidth}{0pt}
 
+% -----------------------------------------------------------------------------%
 % Comandos
 \newcommand{\REF}{\textcolor{red}{(REF) }}
 \newcommand{\Ex}{\textcolor{blue}{(EXEMPLO)}}
 \newcommand{\Gr}{\textcolor{green}{(GRÁFICO)}}
 \newcommand{\sigmatwo}{\sigma^2}
 \newcommand{\Z}{\mathbf{Z}}
-\newcommand{\X}{\mathbf{X}}
+\newcommand{\X}{\mathbf{X_t}}
 \newcommand{\inter}{\textcolor{red}{?? }}
 \newcommand{\completar}{\textcolor{red}{[...]}}
-
 % ---------------------------------------------------------------------------- %
 \graphicspath{{./figuras/}}             % caminho das figuras (recomendável)
 \frenchspacing                          % arruma o espaço: id est (i.e.) e exempli gratia (e.g.) 
@@ -60,115 +67,117 @@
 % Opções de listing usados para o código fonte
 % Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
 \lstset{ %
-language=Java,                  % choose the language of the code
-basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-numbers=left,                   % where to put the line-numbers
-numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
-numbersep=5pt,                  % how far the line-numbers are from the code
-showspaces=false,               % show spaces adding particular underscores
-showstringspaces=false,         % underline spaces within strings
-showtabs=false,                 % show tabs within strings adding particular underscores
-frame=single,	                % adds a frame around the code
-framerule=0.6pt,
-tabsize=2,	                    % sets default tabsize to 2 spaces
-captionpos=b,                   % sets the caption-position to bottom
-breaklines=true,                % sets automatic line breaking
-breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-escapeinside={\%*}{*)},         % if you want to add a comment within your code
-backgroundcolor=\color[rgb]{1.0,1.0,1.0}, % choose the background color.
-rulecolor=\color[rgb]{0.8,0.8,0.8},
-extendedchars=true,
-xleftmargin=10pt,
-xrightmargin=10pt,
-framexleftmargin=10pt,
-framexrightmargin=10pt
+	language=Java,                  % choose the language of the code
+	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,	                % adds a frame around the code
+	framerule=0.6pt,
+	tabsize=2,	                    % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	backgroundcolor=\color[rgb]{1.0,1.0,1.0}, % choose the background color.
+	rulecolor=\color[rgb]{0.8,0.8,0.8},
+	extendedchars=true,
+	xleftmargin=10pt,
+	xrightmargin=10pt,
+	framexleftmargin=10pt,
+	framexrightmargin=10pt
 }
 
 % ---------------------------------------------------------------------------- %
 % Corpo do texto
 \begin{document}
-\frontmatter 
-% cabeçalho para as páginas das seções anteriores ao capítulo 1 (frontmatter)
-\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
-\setcounter{tocdepth}{2}
-\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
-\fancyhead[RE,LO]{}
-\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
-
-\onehalfspacing  % espaçamento
-
-% ---------------------------------------------------------------------------- %
-% CAPA
-% Nota: O título para as dissertações/teses do IME-USP devem caber em um 
-% orifício de 10,7cm de largura x 6,0cm de altura que há na capa fornecida pela SPG.
-\thispagestyle{empty}
-\begin{center}
-    \vspace*{2.3cm}
-    \textbf{\Large{Estratégias para análise de dados de poluição do ar}}\\
-    
-    \vspace*{1.2cm}
-    \Large{William Nilson de Amorim}
-    
-    \vskip 2cm
-    \textsc{
-    Tese apresentada\\[-0.25cm] 
-    ao\\[-0.25cm]
-    Instituto de Matemática e Estatística\\[-0.25cm]
-    da\\[-0.25cm]
-    Universidade de São Paulo\\[-0.25cm]
-    para\\[-0.25cm]
-    obtenção do título\\[-0.25cm]
-    de\\[-0.25cm]
-    Doutor em Ciências}
-    
-    \vskip 1.5cm
-    Programa: Doutorado em Estatística\\
-    Orientador: Prof. Dr. Antonio Carlos Pedroso de Lima\\
-    Coorientador: Prof. Dr. Julio da Motta Singer
-
-   	\vskip 1cm
-    \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio
-    financeiro da CAPES.}
-    
-    \vskip 0.5cm
-    \normalsize{São Paulo, fevereiro de 2019}
-\end{center}
-
-\pagenumbering{roman}     % começamos a numerar 
-
-% Capítulos do trabalho
-\mainmatter
-
-% cabeçalho para as páginas de todos os capítulos
-\fancyhead[RE,LO]{\thesection}
-
-\singlespacing              % espaçamento simples
-%\onehalfspacing            % espaçamento um e meio
-
-\input{caps/cap-introducao}
-\input{caps/cap-analise-exploratoria}
-
-% cabeçalho para os apêndices
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
-\fancyhead[RE,LO]{}
-\appendix
-
-% ---------------------------------------------------------------------------- %
-% Bibliografia
-\backmatter \singlespacing   % espaçamento simples
-\bibliographystyle{plainnat-ime} % citação bibliográfica textual
-%\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}  % associado ao arquivo: 'bibliografia.bib'
-\bibliography{../Latex/Bibs/atlas.bib}
-
-% ---------------------------------------------------------------------------- %
-% Índice remissivo
-%\index{TBP|see{periodicidade região codificante}}
-%\index{DSP|see{processamento digital de sinais}}
-%\index{STFT|see{transformada de Fourier de tempo reduzido}}
-%\index{DFT|see{transformada discreta de Fourier}}
-%\index{Fourier!transformada|see{transformada de Fourier}}
-%
-%\printindex   % imprime o índice remissivo no documento 
-
+	\frontmatter 
+	% cabeçalho para as páginas das seções anteriores ao capítulo 1 (frontmatter)
+	\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+	\setcounter{tocdepth}{2}
+	\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+	\fancyhead[RE,LO]{}
+	\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+	
+	\onehalfspacing  % espaçamento
+	
+	% ---------------------------------------------------------------------------- %
+	% CAPA
+	% Nota: O título para as dissertações/teses do IME-USP devem caber em um 
+	% orifício de 10,7cm de largura x 6,0cm de altura que há na capa fornecida pela SPG.
+	\thispagestyle{empty}
+	\begin{center}
+		\vspace*{2.3cm}
+		\textbf{\Large{Estratégias para análise de dados de poluição do ar}}\\
+		
+		\vspace*{1.2cm}
+		\Large{William Nilson de Amorim}
+		
+		\vskip 2cm
+		\textsc{
+			Tese apresentada\\[-0.25cm] 
+			ao\\[-0.25cm]
+			Instituto de Matemática e Estatística\\[-0.25cm]
+			da\\[-0.25cm]
+			Universidade de São Paulo\\[-0.25cm]
+			para\\[-0.25cm]
+			obtenção do título\\[-0.25cm]
+			de\\[-0.25cm]
+			Doutor em Ciências}
+		
+		\vskip 1.5cm
+		Programa: Doutorado em Estatística\\
+		Orientador: Prof. Dr. Antonio Carlos Pedroso de Lima\\
+		Coorientador: Prof. Dr. Julio da Motta Singer
+		
+		\vskip 1cm
+		\normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio
+			financeiro da CAPES e do CNPQ.}
+		
+		\vskip 0.5cm
+		\normalsize{São Paulo, fevereiro de 2019}
+	\end{center}
+	
+	% ---------------------------------------------------------------------------- %
+	% Capítulos do trabalho
+	\mainmatter
+	
+	% cabeçalho para as páginas de todos os capítulos
+	\fancyhead[RE,LO]{\thesection}
+	
+	%\singlespacing              % espaçamento simples
+	\onehalfspacing            % espaçamento um e meio
+	
+	\input{caps/cap-introducao}
+	\input{caps/cap-analise-exploratoria}
+	\input{caps/cap-regressao}
+	\input{caps/cap-machine-learning}
+	\input{caps/cap-poluicao-e-combustivel}
+	
+	% cabeçalho para os apêndices
+	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
+	\fancyhead[RE,LO]{}
+	\appendix
+	
+	% ---------------------------------------------------------------------------- %
+	% Bibliografia
+	\backmatter \singlespacing   % espaçamento simples
+	\bibliographystyle{plainnat-ime} % citação bibliográfica textual
+	%\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}  % associado ao arquivo: 'bibliografia.bib'
+	\bibliography{../../Latex/Bibs/atlas.bib}
+	
+	% ---------------------------------------------------------------------------- %
+	% Índice remissivo
+	%\index{TBP|see{periodicidade região codificante}}
+	%\index{DSP|see{processamento digital de sinais}}
+	%\index{STFT|see{transformada de Fourier de tempo reduzido}}
+	%\index{DFT|see{transformada discreta de Fourier}}
+	%\index{Fourier!transformada|see{transformada de Fourier}}
+	%
+	%\printindex   % imprime o índice remissivo no documento 
+	
 \end{document}
