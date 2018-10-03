@@ -27,13 +27,27 @@ juntar_dfs <- function(ano) {
     mutate_all(.funs = funs(as.character))
 }
 
-df <- map_dfr(2007:2016, juntar_dfs) 
+df <- map_dfr(2007:2016, juntar_dfs)
 
-write_rds(df, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
+df <- df %>% 
+  mutate(
+    data_obito = lubridate::dmy(data_obito),
+    data_nascimento = lubridate::dmy(data_nascimento)
+  ) %>% 
+  mutate(
+    idade = case_when(
+      str_sub(idade, 1, 1) == 4 ~ str_sub(idade, 2, 3),
+      str_sub(idade, 1, 1) == 4 ~ paste0(1, str_sub(idade, 2, 3)),
+      TRUE ~ "0"
+    ),
+    idade = as.numeric(idade)
+  )
+
+write_rds(df_morte, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
 
 
-cid <- foreign::read.dbf("data/datasus-sim/dic/CID10.DBF")
-View(cid)
-
-cidcap <- foreign::read.dbf("data/datasus-sim/dic/CIDCAP10.DBF")
-View(cidcap)
+# cid <- foreign::read.dbf("data/datasus-sim/dic/CID10.DBF")
+# View(cid)
+# 
+# cidcap <- foreign::read.dbf("data/datasus-sim/dic/CIDCAP10.DBF")
+# View(cidcap)
