@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "William Amorim"
+date: "10/8/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Reunião Saldiva 08/10
+
+- Mandar artigo
+   - Para a mesma Nature
+   - Lancet global health
+   
+   
+   
+- Utilizar PM e ozônio no artigo   
+   - os dois poluentes que estão mais desregulamentados são ozônio e PM
+   
+- WHO está organizando um congresso de Urban air pollution
+- Patricia Ferrini está construindo uma ferramanta de health impact function
+
+- modelar poluição com temperatura e variação de temperatura
+
+- usar ozonio e pm para saber o net effect
+
+- mortalidade total: > 60 anos e < 5 anos
+
+- funções dose-resposta
+
+- coefficient relating ambient ozone/pm2.5 and mortality
+

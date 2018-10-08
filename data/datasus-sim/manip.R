@@ -27,9 +27,7 @@ juntar_dfs <- function(ano) {
     mutate_all(.funs = funs(as.character))
 }
 
-df <- map_dfr(2007:2016, juntar_dfs)
-
-df <- df %>% 
+df <- map_dfr(2007:2016, juntar_dfs) %>% 
   mutate(
     data_obito = lubridate::dmy(data_obito),
     data_nascimento = lubridate::dmy(data_nascimento)
@@ -41,9 +39,21 @@ df <- df %>%
       TRUE ~ "0"
     ),
     idade = as.numeric(idade)
-  )
+  ) 
 
-write_rds(df_morte, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
+write_rds(df, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
+
+# Manipulações
+
+df <- read_rds("data/datasus-sim/dosp2007-2016.rds")
+
+# Mortalidade total diária
+
+df_mort_total <- df %>% 
+  group_by(data_obito) %>% 
+  summarise(n_mortes = n()) %>% 
+  rename(date = data_obito) %>% 
+  write_rds("data/datasus-sim/mort_total.rds")
 
 
 # cid <- foreign::read.dbf("data/datasus-sim/dic/CID10.DBF")
@@ -51,3 +61,9 @@ write_rds(df_morte, "data/datasus-sim/dosp2007-2016.rds", compress = "gz")
 # 
 # cidcap <- foreign::read.dbf("data/datasus-sim/dic/CIDCAP10.DBF")
 # View(cidcap)
+
+# Joins
+
+
+
+

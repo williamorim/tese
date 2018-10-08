@@ -1,0 +1,86 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{natbib}
+
+\usepackage[brazil, english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{ulem} 
+
+\usepackage{amsmath}
+\usepackage{lineno}
+
+\usepackage{graphicx}
+\graphicspath{{figuras/}}
+\usepackage{epsfig}
+
+\usepackage{hyphenat}
+
+\bibliographystyle{amsplnat}
+
+
+\title{Nonlinear analysis of gasoline/ethanol share on ozone concentration}
+\author{William Nilson Amorim, Antonio Carlos Pedroso de Lima, \\ Julio M. Singer,  Carmen D.S. André, \\
+{\small Departamento de Estatística, Universidade de São Paulo, Brazil} \\
+Maria de Fátima Andrade, \\
+{\small Departamento de Ciências Atmosféricas, Universidade de São Paulo, Brazil} \\
+Paulo H.N. Saldiva \\
+{\small Instituto de Estudos Avançados, Universidade de São Paulo, Brazil}
+}
+\date{}
+
+\begin{document}
+	
+\linenumbers
+	
+\maketitle
+
+Bio-ethanol, a quasi-renewable fuel widely used in some countries as a cleaner option than gasoline, has been in the focus of the energy agenda since the European Commission stated that by 2050 the European Union should cut 20\% of the greenhouse gas emissions relatively to 1990 levels and increase to 20\% the amount of renewable energy used.
+\cite{Salvo2014}, however, showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.  \cite{Salvo2017} extended this work analysing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion.
+	
+The main predictor (\textit{shareE25}) considered in \cite{Salvo2014} and \cite{Salvo2017} was the estimated proportion of bi-fuel vehicles burning gasoline with 25\% ethanol (E25) over pure ethanol (E100). 
+The values of this variable were estimated using information on the price of ethanol at the pump and the motorist-level revealed-choice survey data \citep{Salvo2013}. 
+Such values were estimated weekly for the entire city, implying that the proportion of bi-fuel vehicles running on E25 was the same for all the monitoring stations where the pollutants were recorded hourly. 
+In \cite{Salvo2014}, these authors also consider an indicator variable for the three-month period during which the gasoline distributed in São Paulo was E20 rather than the usual E25.
+
+Our goal is to show that the assossiation between ozone and the estimated proportion of vehicles burning gasoline is not linear. Moreover, the results of this work suggest that the signal of the association depends on the concentration of ozone in the city.
+
+\section{Pollutin, weather and traffic data}
+
+\section{Statistical analysis}
+
+\subsection{Generalized addictive model}
+
+\subsection{Random Forest}
+
+\section{Results}
+
+\section{Discussion}
+
+%\newpage
+%\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}
+%\bibliography{/home/acarlos/Dropbox/FAPESP/Tematicos/MODAU/Ozonio/atlas.bib}
+%\bibliography{/home/jmsinger/Dropbox/MODAU/Etanol/atlas.bib}
+\bibliography{../../../Latex/Bibs/atlas.bib}
+			
+\section*{Acknowledgements} 
+
+This research received financial support from Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (Capes), Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq, grant 3304126/2015-2)
+and Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP, grant 2013/21728-2), Brazil.
+ 			
+\section*{Author contributions}
+
+W.N.A., A.C.P.L., J.M.S. and C.D.S.A. analyzed the data; M.F.A. contributed with climate and pollutant chemistry knowledge; P.H.N.S. suggested the theme; all authors wrote the paper.
+
+\section*{Additional information}
+
+Correspondence and request for materials should be addressed to W.N.A.
+All the figures and the R codes used in the statistical analysis may be obtained respectively at  http://bit.do/amorim\_et\_al\_figures and \\ http://bit.do/amorim\_et\_al\_codes. 
+
+\section*{Competing financial interests}
+
+The authors declare no competing financial interests.
+
+
+\end{document} 
+
