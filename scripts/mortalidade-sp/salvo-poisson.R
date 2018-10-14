@@ -45,19 +45,75 @@ model <- train(
   form = formulas[[1]],
   data = na.omit(df_model),
   method = "glm",
-  family = poisson(link = "log"),
+  family = poisson(link = "sqrt"),
   trControl = train_control
 )
 
 model
 summary(model)
-# RMSE: 39.63
-# MAE: 31.73
-# % var: 56.11%  
+varImp(model)
+# RMSE: 39.59
+# MAE: 31.69
+# % var: 56.19%
+# share_gas imp: > 20
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_geral,
   pred = predict(model, newdata = na.omit(df_model))
 )
 
+plot(model$finalModel)
 
+# Idosos
+
+set.seed(5893524)
+
+model <- train(
+  form = formulas[[2]],
+  data = na.omit(df_model),
+  method = "glm",
+  family = poisson(link = "sqrt"),
+  trControl = train_control
+)
+
+model
+summary(model)
+varImp(model)
+# RMSE: 30.74
+# MAE: 24.13
+# % var: 61.15% 
+# share_gas imp: > 20
+
+pred_obs_plot(
+  obs = na.omit(df_model)$n_mortes_idosos,
+  pred = predict(model, newdata = na.omit(df_model))
+)
+
+plot(model$finalModel)
+
+# Crianças
+
+set.seed(5893524)
+
+model <- train(
+  form = formulas[[3]],
+  data = na.omit(df_model),
+  method = "glm",
+  family = poisson(link = "sqrt"),
+  trControl = train_control
+)
+
+model
+summary(model)
+varImp(model)
+# RMSE: 5.19
+# MAE: 4.16
+# % var: 2.2%
+# share_gas imp: 8
+
+pred_obs_plot(
+  obs = na.omit(df_model)$n_mortes_criancas,
+  pred = predict(model, newdata = na.omit(df_model))
+)
+
+plot(model$finalModel)
