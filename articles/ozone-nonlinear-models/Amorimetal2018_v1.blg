@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Amorimetal2018_v1.aux
+The style file: amsplnat.bst
+Database file #1: ../../../Latex/Bibs/atlas.bib.bib
+You've used 3 entries,
+            2865 wiz_defined-function locations,
+            658 strings with 5324 characters,
+and the built_in function-call counts, 1280 in all, are:
+= -- 110
+> -- 57
+< -- 2
++ -- 22
+- -- 16
+* -- 140
+:= -- 222
+add.period$ -- 3
+call.type$ -- 3
+change.case$ -- 15
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 60
+empty$ -- 91
+format.name$ -- 29
+if$ -- 244
+int.to.chr$ -- 1
+int.to.str$ -- 4
+missing$ -- 3
+newline$ -- 13
+num.names$ -- 9
+pop$ -- 17
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 34
+stack$ -- 0
+substring$ -- 87
+swap$ -- 19
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 18
+warning$ -- 0
+while$ -- 9
+width$ -- 0
+write$ -- 33

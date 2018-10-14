@@ -31,21 +31,26 @@ Paulo H.N. Saldiva \\
 
 \begin{document}
 	
-\linenumbers
+%\linenumbers
 	
 \maketitle
 
 Bio-ethanol, a quasi-renewable fuel widely used in some countries as a cleaner option than gasoline, has been in the focus of the energy agenda since the European Commission stated that by 2050 the European Union should cut 20\% of the greenhouse gas emissions relatively to 1990 levels and increase to 20\% the amount of renewable energy used.
-\cite{Salvo2014}, however, showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.  \cite{Salvo2017} extended this work analysing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion.
-	
+
+The ethanol/gasoline shift as vehicles fuel is directly associated with the atmospheric balance of nitrate oxides (NOx) and organic volatile composts (VOCs), since gasoline burning generates more NOx and ethanol evaporation and partial burning generates more VOCs. This balance is an important component to describe the tropospheric ozone formation along the day \cite{SashaMadronich2014}. 
+
+In the past years, some have discussed the actual impact of shifting gasoline to ethanol as primary fuel in bi-fuel light-duty vehicles. \cite{Salvo2014} showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.
+
+Besides ozone, particulate matter has also been subject of many air pollution studies, mostly for the lack of regulation, lack of a safe threshold, and its effects on public health. \cite{Salvo2017} extended this work analyzing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion for ozone concentration, but they observed that ambient number concentrations of 7?100nm diameter particles (ultra-fine particles) rise along with the use of gasoline.
+
+This work has as primary goals (1)  analyze if the association between ozone and the estimated proportion of vehicles burning gasoline is in fact linear and (2) investigate the association between mortality and the estimated proportion of vehicles burning gasoline. To reach this goals, we used more sophisticated non-linear models, such as generalized addictive models and random forests, as well the LIME method to interpret the results of the latter.
+
+
+\section{Pollution, weather and traffic data}
+
 The main predictor (\textit{shareE25}) considered in \cite{Salvo2014} and \cite{Salvo2017} was the estimated proportion of bi-fuel vehicles burning gasoline with 25\% ethanol (E25) over pure ethanol (E100). 
 The values of this variable were estimated using information on the price of ethanol at the pump and the motorist-level revealed-choice survey data \citep{Salvo2013}. 
-Such values were estimated weekly for the entire city, implying that the proportion of bi-fuel vehicles running on E25 was the same for all the monitoring stations where the pollutants were recorded hourly. 
-In \cite{Salvo2014}, these authors also consider an indicator variable for the three-month period during which the gasoline distributed in São Paulo was E20 rather than the usual E25.
-
-Our goal is to show that the assossiation between ozone and the estimated proportion of vehicles burning gasoline is not linear. Moreover, the results of this work suggest that the signal of the association depends on the concentration of ozone in the city.
-
-\section{Pollutin, weather and traffic data}
+Such values were estimated weekly for the entire city, implying that the proportion of bi-fuel vehicles running on E25 was the same for all the monitoring stations where the pollutants were recorded hourly.
 
 \section{Statistical analysis}
 
