@@ -15,8 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
    - Para a mesma Nature
    - Lancet global health
    
-   
-   
 - Utilizar PM e ozônio no artigo   
    - os dois poluentes que estão mais desregulamentados são ozônio e PM
    

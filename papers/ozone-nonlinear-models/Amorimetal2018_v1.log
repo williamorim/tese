@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  13 OCT 2018 18:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  14 OCT 2018 20:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -197,6 +197,21 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
 \epsfxsize=\dimen123
 \epsfysize=\dimen124
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip49
+\multirow@cntb=\count110
+\multirow@dima=\skip50
+\bigstrutjot=\dimen125
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen126
+\extrarowheight=\dimen127
+\NC@list=\toks24
+\extratabsurround=\skip51
+\backup@length=\skip52
 ) (./hyphenat.sty
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
 \langwohyphens=\language4
@@ -205,32 +220,32 @@ LaTeX Info: Redefining \_ on input line 43.
 (./Amorimetal2018_v1.aux)
 \openout1 = `Amorimetal2018_v1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen125
+\scratchcounter=\count111
+\scratchdimen=\dimen128
 \scratchbox=\box32
-\nofMPsegments=\count111
-\nofMParguments=\count112
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen126
-\MPnumerator=\count114
-\makeMPintoPDFobject=\count115
-\everyMPtoPDFconversion=\toks25
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen129
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks26
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -289,30 +304,108 @@ e
 ))
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Amorimetal2018_v1.bbl) 
-[2] [3] (./Amorimetal2018_v1.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (10.68579pt too wide) in paragraph at lines 79--98
+ [][] 
+ []
+
+[3]
+Overfull \hbox (5.64581pt too wide) in paragraph at lines 115--115
+ []|\T1/cmr/m/n/12 Distribuição| 
+ []
+
+
+Overfull \hbox (5.47507pt too wide) in paragraph at lines 115--115
+ []|\T1/cmr/m/n/12 RMSE| 
+ []
+
+[4]
+<../../text/figuras/cap-comb-gam-plot.pdf, id=29, 433.62pt x 289.08pt>
+File: ../../text/figuras/cap-comb-gam-plot.pdf Graphic file (type pdf)
+<use ../../text/figuras/cap-comb-gam-plot.pdf>
+Package pdftex.def Info: ../../text/figuras/cap-comb-gam-plot.pdf  used on inpu
+t line 131.
+(pdftex.def)             Requested size: 272.99881pt x 182.00667pt.
+
+
+LaTeX Warning: Reference `fig:cap-comb-series-share-ozone' on page 5 undefined 
+on input line 136.
+
+<../../text/figuras/cap-comb-gam-plot-bs.pdf, id=30, 433.62pt x 289.08pt>
+File: ../../text/figuras/cap-comb-gam-plot-bs.pdf Graphic file (type pdf)
+<use ../../text/figuras/cap-comb-gam-plot-bs.pdf>
+Package pdftex.def Info: ../../text/figuras/cap-comb-gam-plot-bs.pdf  used on i
+nput line 140.
+(pdftex.def)             Requested size: 272.99881pt x 182.00667pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (63.93852pt too wide) in paragraph at lines 150--158
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <../../text/figuras/cap-comb-gam-plot.pdf>]
+
+LaTeX Warning: Reference `sec:random-forest' on page 6 undefined on input line 
+163.
+
+[6 <../../text/figuras/cap-comb-gam-plot-bs.pdf>]
+<../../text/figuras/cap-comb-lime-pinheiros.pdf, id=51, 433.62pt x 289.08pt>
+File: ../../text/figuras/cap-comb-lime-pinheiros.pdf Graphic file (type pdf)
+<use ../../text/figuras/cap-comb-lime-pinheiros.pdf>
+Package pdftex.def Info: ../../text/figuras/cap-comb-lime-pinheiros.pdf  used o
+n input line 167.
+(pdftex.def)             Requested size: 272.99881pt x 182.00667pt.
+<../../text/figuras/cap-comb-random-forest-cenarios.pdf, id=52, 650.43pt x 433.
+62pt>
+File: ../../text/figuras/cap-comb-random-forest-cenarios.pdf Graphic file (type
+ pdf)
+<use ../../text/figuras/cap-comb-random-forest-cenarios.pdf>
+Package pdftex.def Info: ../../text/figuras/cap-comb-random-forest-cenarios.pdf
+  used on input line 176.
+(pdftex.def)             Requested size: 272.99881pt x 182.00006pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./Amorimetal2018_v1.bbl [7 <../../text/figuras/cap-comb-lime-pinheiros.pdf>]
+[8 <../../text/figuras/cap-comb-random-forest-cenarios.pdf>]) [9]
+(./Amorimetal2018_v1.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3596 strings out of 494903
- 46924 string characters out of 6179960
- 111504 words of memory out of 5000000
- 6843 multiletter control sequences out of 15000+600000
- 15373 words of font info for 41 fonts, out of 8000000 for 9000
+ 3741 strings out of 494903
+ 49881 string characters out of 6179960
+ 117068 words of memory out of 5000000
+ 6974 multiletter control sequences out of 15000+600000
+ 17120 words of font info for 44 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 41i,7n,25p,529b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/william/.texlive2017/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/william/.texlive2017/texmf-var/fo
-nts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/william/.texlive2017/texmf-var
-/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/william/.texlive2017/texmf-
-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/william/.texlive2017/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/william/.texlive2017/
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/william/.texlive20
-17/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/william/.texliv
-e2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on Amorimetal2018_v1.pdf (3 pages, 90391 bytes).
+ 41i,11n,27p,1093b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.6
+00pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm070
+0.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm
+0800.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cbx1200.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/e
+c/ecti1200.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecbx1728.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jkna
+ppen/ec/ecrm1200.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecrm1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfou
+r/jknappen/ec/ecrm1440.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb>
+Output written on Amorimetal2018_v1.pdf (9 pages, 430622 bytes).
 PDF statistics:
- 291 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
+ 428 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,209 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{natbib}
+
+\usepackage[brazil, english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{ulem} 
+
+\usepackage{amsmath}
+\usepackage{lineno}
+
+\usepackage{graphicx}
+\graphicspath{{../../text/figuras/}}
+\usepackage{epsfig}
+
+
+\usepackage{multirow}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\usepackage{hyphenat}
+
+\bibliographystyle{amsplnat}
+
+
+\title{Nonlinear analysis of gasoline/ethanol share on ozone concentration}
+\author{William Nilson Amorim, Antonio Carlos Pedroso de Lima, \\ Julio M. Singer,  Carmen D.S. André, \\
+{\small Departamento de Estatística, Universidade de São Paulo, Brazil} \\
+Maria de Fátima Andrade, \\
+{\small Departamento de Ciências Atmosféricas, Universidade de São Paulo, Brazil} \\
+Paulo H.N. Saldiva \\
+{\small Instituto de Estudos Avançados, Universidade de São Paulo, Brazil}
+}
+\date{}
+
+\begin{document}
+	
+%\linenumbers
+	
+\maketitle
+
+Bio-ethanol, a quasi-renewable fuel widely used in some countries as a cleaner option than gasoline, has been in the focus of the energy agenda since the European Commission stated that by 2050 the European Union should cut 20\% of the greenhouse gas emissions relatively to 1990 levels and increase to 20\% the amount of renewable energy used.
+
+The ethanol/gasoline shift as vehicles fuel is directly associated with the atmospheric balance of nitrate oxides (NOx) and organic volatile composts (VOCs), since gasoline burning generates more NOx and ethanol evaporation and partial burning generates more VOCs. This balance is an important component to describe the tropospheric ozone formation along the day \cite{SashaMadronich2014}. 
+
+In the past years, some have discussed the actual impact of shifting gasoline to ethanol as primary fuel in bi-fuel light-duty vehicles. \cite{Salvo2014} showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.
+
+Besides ozone, particulate matter has also been subject of many air pollution studies, mostly for the lack of regulation, lack of a safe threshold, and its effects on public health. \cite{Salvo2017} extended this work analyzing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion for ozone concentration, but they observed that ambient number concentrations of 7?100nm diameter particles (ultra-fine particles) rise along with the use of gasoline.
+
+This work has as primary goals (1)  analyze if the association between ozone and the estimated proportion of vehicles burning gasoline is in fact linear and (2) investigate the association between mortality and the estimated proportion of vehicles burning gasoline. To reach this goals, we used more sophisticated non-linear models, such as generalized addictive models and random forests, as well the LIME method to interpret the results of the latter.
+
+
+\section{Pollution, weather and traffic data}
+
+The data used in this study was collected, organized and provide by \cite{Salvo2017}. It consist of air pollution, meteorologic and traffic data, as well the \textit{shareE25}, the estimated proportion of bi-fuel vehicles burning gasoline with 25\% ethanol (E25) over pure ethanol (E100).
+
+The \textit{shareE25} variable was estimated using information on the price of ethanol at the pump and the motorist-level revealed-choice survey data \citep{Salvo2013}. Such values were estimated weekly for the entire city, implying that the proportion of bi-fuel vehicles running on E25 was the same for all the monitoring stations where the pollutants were recorded hourly.
+
+The air pollution and meteorologic data was measured hourly in several monitoring stations along the city  maintained by the environmental authority of the state of São Paulo (CETESB). The traffic data, also measured hourly, was provided by the city traffic authority (CET).
+
+More information about the data can be found in supplementary information of \cite{Salvo2014} and \cite{Salvo2017}.
+
+\section{Statistical analysis}
+
+To analyze the effect of the \textit{shareE25} variation on the ozone levels, \cite{Salvo2017} used a linear regression model, which assumes that the relation between this to variables is the same for all the values of \textit{shareE25}.
+
+To investigate the linearity assumption, we applied two non-linear models on the exactly same variables considered by the authors. The first is the well established \textit{generalized additive model} \citep{Hastie2008}, which allows one to associate each one of the predictors to the response variable using a non-linear function. The second one is a \textit{bagging} tree model known as \textit{random forest}. This model consider a high number of regression trees and average its results to make predictions. Due to the lack of interpretation,  this type of predictive model is very little used in studies where the main goal is to make associations between variables. To work around this problem, we used a interpretation technique called LIME \citep{Ribeiro2016}.
+
+More details about this models can be found in \cite{James2013}.
+
+Following \cite{Salvo2017}, we used as response the daily 12pm to 7pm ozone concentration average, excluding the cold months from June to September. We have ozone data available from 12 monitoring stations in the city. We also considered the same predictors as the authors presented in the Table \ref{tab:variaveis-modelo-salvo-2017}.
+
+\begin{table}[h!]
+	\centering
+	\caption{Predictors considered for the ozone models}
+	\begin{tabular}{M{2cm}|M{8cm}|M{3cm} N}
+		\hline 
+		Type & Variables & Number of parameters & \\[10pt]
+		\hline 
+		Ethanol & Estimated proportion of cars running by gasoline (E25) & 1 & \\[10pt]
+		\hline
+		Station & Monitoring station dummies. & 11 & \\[10pt] 
+		\hline
+		Calendar & Dummies for day of week, week of year, vacation periods and public holidays.  &  44 & \\[10pt] 
+		\hline 
+		Trend & General and station specific trend term. &  12 & \\[10pt] 
+		\hline 
+		Climate & Temperature, solar radiation, humidity, wind speed and dummies for precipitation and thermal inversion.. & 9 & \\[10pt]
+		\hline 
+		Traffic & Dummies for station specific and city vehicle traffic intensity, as well inauguration of important beltway. & 18  & \\[10pt]
+		\hline 
+		\textbf{Total} & \textbf{16 predictors + intercept term} & \textbf{96 parameters*}  & \\[10pt]
+		\hline
+	\end{tabular}
+	\\
+	\vspace{1mm}
+	\scriptsize{*95 parameters from predictors + 1 parameters from intercept term.}
+	\label{tab:variaveis-modelo-salvo-2017}
+\end{table}
+
+The model considered by \cite{Salvo2017} estimated a coefficient of -16.66 $\pm$ 10.01 to the \textit{shareE25} variable, suggesting that the increase of the proportion of cars burnning E25 in the city is associated with the decrease of ozone levels. To compare the models, we used the root mean square error estimated by cross validation. We also compute the proportion of variance explained for each model. For the model used by \cite{Salvo2017}, these two quantities were, respectively, 19.74 and 70.65\%.
+
+\section{Results}
+
+We fitted three generalized additive models, the first using the Normal distribution, the second using the Gamma distribution and the last using the Inverse Normal distribution. The non-linear functions were assign to all numeric predictors: \textit{shareE25}, temperature, radiation, humidity, wind speed and trend. The other predictors were linear associated with the response. Smoothing splines were used to estimate the functions and the smoothing degree was chosen by cross validation. In the three models, the \textit{shareE25} variable was considered statistically significant to explain the ozone concentration. The performance of each model is described in the Table \ref{tab:cap-comb-resultados-gam}.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite{Salvo2017}.}
+	\begin{tabular}{M{2cm}|M{1cm}|M{2cm}|M{6cm} N}
+		\hline
+		Distribuição & RMSE & \% var. explicada & Variáveis mais importantes &\\
+		\hline
+		Normal & 19.82 & 70.50 & Temperatura, vento, umidade, radiação e tendência &\\
+		Gama & 20.07 & 69.50 & Temperatura, vento, umidade, radiação e tendência  &\\
+		Normal inversa & 29.28 & 45.30 & Temperatura, radiação, umidade, vento e tendência &\\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-resultados-gam}
+\end{table}
+
+Os resultados dos modelos Normal e Gama ficaram muito próximos do modelo de regressão linear ajustado pelos autores. Já o modelo Normal Inversa se mostrou inferior, mostrando que essa distribuição (com função de ligação $1/\mu^2$) não é adequada aos dados. Observamos que, para esses modelos, a tendência entrou como uma das cinco variáveis mais importantes para explicar a variabilidade da concentração de ozônio, o que não aconteceu para o modelo de regressão linear. Isso provavelmente se deve pela maior flexibilidade que os modelos aditivos possuem para representar a não-linearidade desse componente temporal. No modelo com distribuição normal, a proporção estimada de carros rodando a gasolina foi considerada a décima terceira mais importante, no modelo Gama foi a nona mais importante e no modelo Normal inversa foi a nona mais importante.
+
+A maneira usual de interpretar os modelos aditivos generalizados é construir gráficos de cada preditor pela sua função não-linear estimada\footnote{Os preditores que entraram no modelo de forma linear podem ser interpretados de maneira análoga a um modelo de regressão linear.}. Na Figura \ref{fig:comb-gam-plot}, apresentamos esse gráfico para o preditor referente à proporção estimada de carros à gasolina utilizando o modelo com distribuição Normal. O gráfico indica que conforme a proporção de carros à gasolina aumenta, a concentração de ozônio tende a diminuir, mesma conclusão encontrada no modelo de regressão linear.  
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{cap-comb-gam-plot.pdf}
+	\caption{Função não-linear estimada pelo modelo aditivo generalizado com distribuição Normal para a proporção estimada de carros rodando a gasolina. A área cinza em volta da curva representa o intervalo de confiança com 2 erros-padrão para cima e para baixo.}
+	\label{fig:comb-gam-plot}
+\end{figure}
+
+Para avaliar a variabilidade das estimativas, criamos 200 amostras de \textit{bootstraping} e ajustamos o modelo aditivo generalizado com distribuição Normal (que apresentou o melhor desempenho) para cada uma delas. Na Figura \ref{fig:comb-gam-plot-bs}, apresentamos o resultado para a função estimada da variável referente à proporção estimada de carros à gasolina. As curvas cinzas são as 200 funções estimadas, uma para cada amostra de \textit{bootstrapping}, e representam a variabilidade da função apresentada na Figura \ref{fig:comb-gam-plot}. A curva azul é a curva suavizada por \textit{splines} cúbicos. Podemos notar que a tendência de diminuição da concentração de ozônio conforme a proporção de carros a gasolina aumenta é consistente para o modelo aditivo generalizado. Podemos observar também que há uma maior variabilidade nos extremos desse preditor. Isso acontece porque temos poucos dias nos quais a proporção de carros a gasolina foi estimada muito baixa ou muito alta (Figura \ref{fig:cap-comb-series-share-ozone}). 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{cap-comb-gam-plot-bs.pdf}
+	\caption{Em cinza, as funções estimadas da variável referente à proporção estimada de carros à gasolina para cada uma das 200 amostras de \textit{bootstrapping}. Em azul, a curva suavizada por \textit{splines} cúbicos.}
+	\label{fig:comb-gam-plot-bs}
+\end{figure}
+
+Em busca de resultados mais precisos, ajustamos também uma \textit{random forest} aos dados. Os resultados estão resumidos na Tabela \ref{tab:cap-comb-resultados-random-forest}. 
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado do modelo \textit{random forest} aplicado aos dados de \cite{Salvo2017}. Os hiperparâmetros referentes ao tamanho mínimo de cada nó e o número de preditores sorteados em cada amostra foram definidos por validação cruzada.}
+	\begin{tabular}{M{2cm}|M{3cm}|M{2cm}|M{2cm}|M{5cm} N}
+		\hline
+		Tamanho mínimo dos nós  & Número de preditores em cada amostra & RMSE & \% var. explicada & Variáveis mais importantes & \\
+		\hline
+		1 & 48  & 14.11 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-resultados-random-forest}
+\end{table}
+Observamos que a \textit{random forest} apresentou um menor erro de teste (RMSE = 14.11) do que o modelo de regressão linear, além de explicar uma maior porcentagem da variação da concentração de ozônio. Os cinco preditores mais importantes foram temperatura, umidade, radiação, vento e tendência, iguais aos encontrados nos modelos aditivos generalizados. A proporção estimada de carros a gasolina foi o sexto preditor mais importante.
+
+Apesar de termos um ajuste mais preciso, a partir deste modelo não conseguimos interpretar a diretamente a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio. Não sabemos se esse preditor é estatisticamente significativo e, em caso positivo, em qual direção ela está associada à resposta. Sem essa interpretação, não conseguimos responder a pergunta de interesse do estudo.
+
+Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:random-forest}. Como exemplo, vamos avaliar as predições para os 100 dias com maiores níveis de ozônio e para os 100 dias com menores dias de ozônio. A Figura \ref{fig:cap-comb-lime-pinheiros} sugere que, para os dias com maiores médias de ozônio, o efeito protetor da proporção estimada de carros à gasolina acontece com maior frequência quando temos cerca de 50\% da frota ou mais rodando a gasolina. O mesmo acontece para os dias com menores médias. Esse comportamento reforça a relação não-linear encontrado evidenciada pelo modelo aditivo generalizado ajustado na seção anterior.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{cap-comb-lime-pinheiros.pdf}
+	\caption{Proporção estimada de carros gasolinas contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}). À esquerda, utilizamos os 100 dias com as menores médias de ozônio e, à direita, os 100 dias com as maiores médias. }
+	\label{fig:cap-comb-lime-pinheiros}
+\end{figure}
+
+Como a suposição de que a proporção de carros a gasolina não está associada diretamente a nenhum outro preditor, podemos predizer o ozônio substituindo o verdadeiro valor da proporção por um valor hipotético, que simule um cenário com poucos carros a gasolina rodando na cidade e outro com muito carros a gasolina. Na Figura \ref{fig:cap-comb-random-forest-cenarios}, apresentamos as curvas suavizadas do ozônio predito para esses dois cenários, além do cenário efetivamente observado. Os valores fixados para a proporção de carro a gasolina foram: 20\% para representar o cenário com poucos carros a gasolina e 70\% para o cenário com muitos carros. Esses valores foram escolhidos com base na distribuição da variável original. Observamos pelo gráfico que, os cenários observado e com baixa proporção são bem parecidos, enquanto o cenário com alta proporção apresenta menores concentrações em algumas estações.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{cap-comb-random-forest-cenarios.pdf}
+	\caption{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).}
+	\label{fig:cap-comb-random-forest-cenarios}
+\end{figure}
+
+\section{Discussion}
+
+%\newpage
+%\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}
+%\bibliography{/home/acarlos/Dropbox/FAPESP/Tematicos/MODAU/Ozonio/atlas.bib}
+%\bibliography{/home/jmsinger/Dropbox/MODAU/Etanol/atlas.bib}
+\bibliography{../../../Latex/Bibs/atlas.bib}
+			
+\section*{Acknowledgements} 
+
+This research received financial support from Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (Capes), Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq, grant 3304126/2015-2)
+and Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP, grant 2013/21728-2), Brazil.
+ 			
+\section*{Author contributions}
+
+W.N.A., A.C.P.L., J.M.S. and C.D.S.A. analyzed the data; M.F.A. contributed with climate and pollutant chemistry knowledge; P.H.N.S. suggested the theme; all authors wrote the paper.
+
+\section*{Additional information}
+
+Correspondence and request for materials should be addressed to W.N.A.
+All the figures and the R codes used in the statistical analysis may be obtained respectively at  http://bit.do/amorim\_et\_al\_figures and \\ http://bit.do/amorim\_et\_al\_codes. 
+
+\section*{Competing financial interests}
+
+The authors declare no competing financial interests.
+
+
+\end{document} 
+

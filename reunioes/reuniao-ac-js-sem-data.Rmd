@@ -1,0 +1,20 @@
+---
+title: "Reunião AC/JS"
+output: html_document
+---
+
+# Pauta
+
+- Reunião com o Saldiva
+  - associação entre mortalidade e poluição está batido
+  - usar funções de impacto na saúde para encontrar o net effect do PM2.5 e do ozônio
+  
+- Tese
+  - share vs mortalidade
+     - comentar resultados
+     - como melhorar os modelos?
+
+- Artigo
+  - o que incluir?
+     - análise do PM2.5
+     - análise da mortalidade
