@@ -18,3 +18,7 @@ output: html_document
   - o que incluir?
      - análise do PM2.5
      - análise da mortalidade
+     
+# Ata
+
+- ajustar regressão segmentada para o problema do ozônio vs etanol

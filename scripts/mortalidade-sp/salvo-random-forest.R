@@ -143,3 +143,74 @@ pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_criancas,
   pred = predict(model, newdata = na.omit(df_model))
 )
+
+# LIME --------------------------------------------------------------------
+
+# Idosos
+
+explainer <- lime(
+  na.omit(df_model), 
+  model
+)
+
+# 10% mais mortes
+
+test_days <- df_model %>% 
+  na.omit %>%
+  top_n(n = 100, n_mortes_idosos)
+
+explanation <- explain(
+  test_days, 
+  explainer,
+  n_features = 10
+)
+
+explanation %>% 
+  filter(feature == "share_gas") %>%
+  mutate(feature_value = as.numeric(feature_value)) %>% 
+  ggplot(aes(x = feature_value, y = feature_weight)) +
+  geom_point() +
+  labs(
+    x = "Proporção de carros a gasolina",
+    y = "Coeficiente no modelo simples"
+  ) +
+  #ggtitle("Maiores médias de ozônio") +
+  theme_bw()
+
+# 10% menos mortes
+
+test_days <- 
+  df_model %>% 
+  na.omit %>%
+  top_n(n = -100, n_mortes_idosos)
+
+explanation <- explain(
+  test_days, 
+  explainer, 
+  n_features = 10
+)
+
+explanation %>% 
+  filter(feature == "share_gas") %>%
+  mutate(feature_value = as.numeric(feature_value)) %>% 
+  ggplot(aes(x = feature_value, y = feature_weight)) +
+  geom_point() +
+  labs(
+    x = "Proporção de carros a gasolina",
+    y = "Coeficiente no modelo simples"
+  ) +
+  ggtitle("Menores médias de ozônio") +
+  theme_bw()
+
+# p <- p2 + p1
+# 
+# ggsave(
+#   plot = p,
+#   filename = paste(
+#     "scripts/salvo-2017/img/random-forest-explanations/explanation-",
+#     station,
+#     ".pdf"
+#   ),
+#   width = 6, 
+#   height = 4
+# )

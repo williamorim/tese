@@ -1,4 +1,4 @@
-\begin{thebibliography}{62}
+\begin{thebibliography}{65}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -120,6 +120,13 @@ Gleice~M.S. Concei{\c{c}}{\~a}o, Paulo Hil{\'a}rio~Nascimento Saldiva e Julio
 \newblock \emph{Revista Brasileira de Epidemiologia}, 4\penalty0 (3): \penalty0
   206--219.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Cox(2012)]{Cox2012}{\bf Cox(2012)}
+L.~A. Cox.
+\newblock Miscommunicating risk, uncertainty, and causation: Fine particulate
+  air pollution and mortality risk as an example.
+\newblock \emph{Risk Analysis}, 32\penalty0 (5).   {\scriptsize Citado na
+  p\'{a}g.}
+
 \bibitem[Demidenko(2013)]{Demidenko2013}{\bf Demidenko(2013)}
 E.~Demidenko.
 \newblock \emph{Mixed models: theory and applications with R}.
@@ -149,6 +156,14 @@ R.~F. Engle.
 \newblock Climate action.
 \newblock \url{https://ec.europa.eu/clima/policies/strategies/2050_en}, 2011.
 \newblock [Online; acessado 15-03-2017].   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Fann {\rm{\em et~al.}}(2012)Fann, Lamson, Anenberg, Wesson, Risley, e
+  Hubbel]{Fann2012}{\bf Fann {\rm{\em et~al.}}(2012)}
+Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
+\newblock Estimating the national public health burden associated with exposure
+  to ambient {PM}2.5 and ozone.
+\newblock \emph{Risk Analysis}, 32: \penalty0 81--95.   {\scriptsize Citado na
+  p\'{a}g.}
 
 \bibitem[Hastie e Tibshirani(1990)]{Hastie1990}{\bf Hastie e Tibshirani(1990)}
 Trevor Hastie e Robert Tibshirani.
@@ -488,5 +503,12 @@ S.~H. Yoon, S.~Y. Ha, H.~G. Roh e C.~S. Lee.
 \newblock \emph{Proceedings of the Institution of Mechanical Engineers, Part D:
   Journal of Automobile Engineering}, 223: \penalty0 941--951.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Zannetti(1990)]{Zannetti1990}{\bf Zannetti(1990)}
+P.~Zannetti.
+\newblock \emph{Air pollution modelling: theories, computational methods and
+  available software}.
+\newblock Springer Science+Business Media, LLC, New York.   {\scriptsize Citado
+  na p\'{a}g.}
 
 \end{thebibliography}

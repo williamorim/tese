@@ -26,7 +26,7 @@
 \bibliographystyle{amsplnat}
 
 
-\title{Nonlinear analysis of gasoline/ethanol share on ozone concentration}
+\title{Nonlinear modeling of the gasoline/ethanol share on ozone concentration}
 \author{William Nilson Amorim, Antonio Carlos Pedroso de Lima, \\ Julio M. Singer,  Carmen D.S. André, \\
 {\small Departamento de Estatística, Universidade de São Paulo, Brazil} \\
 Maria de Fátima Andrade, \\
@@ -122,61 +122,52 @@ We fitted three generalized additive models, the first using the Normal distribu
 	\label{tab:cap-comb-resultados-gam}
 \end{table}
 
-Os resultados dos modelos Normal e Gama ficaram muito próximos do modelo de regressão linear ajustado pelos autores. Já o modelo Normal Inversa se mostrou inferior, mostrando que essa distribuição (com função de ligação $1/\mu^2$) não é adequada aos dados. Observamos que, para esses modelos, a tendência entrou como uma das cinco variáveis mais importantes para explicar a variabilidade da concentração de ozônio, o que não aconteceu para o modelo de regressão linear. Isso provavelmente se deve pela maior flexibilidade que os modelos aditivos possuem para representar a não-linearidade desse componente temporal. No modelo com distribuição normal, a proporção estimada de carros rodando a gasolina foi considerada a décima terceira mais importante, no modelo Gama foi a nona mais importante e no modelo Normal inversa foi a nona mais importante.
+The results from the Normal and Gama models were close to those for the linear regression fitted by \cite{Salvo2017}, while the Inverse Normal model got bigger RMSE and lower R$^2$, indicating that this distribution is not appropriated to fit the data. Contrary to the linear regression model, the trend term was held as one of the five most important variables to explain the variability of the ozone concentration in these three models. It presumably happened due to the flexibility of the GAM to represent the non-linearity of this temporal component. The \textit{shareE25} variable was the 13th more important in the Normal model, and the 9th in the Gama model and Inverse Normal model.
 
-A maneira usual de interpretar os modelos aditivos generalizados é construir gráficos de cada preditor pela sua função não-linear estimada\footnote{Os preditores que entraram no modelo de forma linear podem ser interpretados de maneira análoga a um modelo de regressão linear.}. Na Figura \ref{fig:comb-gam-plot}, apresentamos esse gráfico para o preditor referente à proporção estimada de carros à gasolina utilizando o modelo com distribuição Normal. O gráfico indica que conforme a proporção de carros à gasolina aumenta, a concentração de ozônio tende a diminuir, mesma conclusão encontrada no modelo de regressão linear.  
+The usual method to interpret the generalized additive models is to plot each predictor by its estimated non-linear function. Figure \ref{fig:comb-gam-plot} shows this plot for the \textit{shareE25} variable, suggesting a non-linear relation between this variable and the concentration of ozone: positive in the extremes (10\% - 20\% and 60\% - 80\%) and negative in the center (20\% - 60\%).
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{cap-comb-gam-plot.pdf}
-	\caption{Função não-linear estimada pelo modelo aditivo generalizado com distribuição Normal para a proporção estimada de carros rodando a gasolina. A área cinza em volta da curva representa o intervalo de confiança com 2 erros-padrão para cima e para baixo.}
+	\caption{Non-linear function estimated by the Normal generalized additive model to the \textit{shareE25} variable. The gray area represents a 95\% confidence interval.}
 	\label{fig:comb-gam-plot}
 \end{figure}
 
-Para avaliar a variabilidade das estimativas, criamos 200 amostras de \textit{bootstraping} e ajustamos o modelo aditivo generalizado com distribuição Normal (que apresentou o melhor desempenho) para cada uma delas. Na Figura \ref{fig:comb-gam-plot-bs}, apresentamos o resultado para a função estimada da variável referente à proporção estimada de carros à gasolina. As curvas cinzas são as 200 funções estimadas, uma para cada amostra de \textit{bootstrapping}, e representam a variabilidade da função apresentada na Figura \ref{fig:comb-gam-plot}. A curva azul é a curva suavizada por \textit{splines} cúbicos. Podemos notar que a tendência de diminuição da concentração de ozônio conforme a proporção de carros a gasolina aumenta é consistente para o modelo aditivo generalizado. Podemos observar também que há uma maior variabilidade nos extremos desse preditor. Isso acontece porque temos poucos dias nos quais a proporção de carros a gasolina foi estimada muito baixa ou muito alta (Figura \ref{fig:cap-comb-series-share-ozone}). 
+To evaluate the variability of the estimates, we also followed the strategy in \cite{Salvo2017} and fitted the Normal GAM (which had the best performance) in 200 bootstrap samples. Figure \ref{fig:comb-gam-plot-bs} shows the 200 estimated curves (in gray) for the \textit{shareE25} variable in the bootstrap models and the cubic splines smoothed curve (in blue). The non-linear pattern found is the same as described earlier. The high variability in the extremes is result of few data with low or high estimated proportion of cars burning E25.
+
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{cap-comb-gam-plot-bs.pdf}
-	\caption{Em cinza, as funções estimadas da variável referente à proporção estimada de carros à gasolina para cada uma das 200 amostras de \textit{bootstrapping}. Em azul, a curva suavizada por \textit{splines} cúbicos.}
+	\caption{In gray, the 200 estimated curves for the \textit{shareE25} variable in the bootstrap models. In blue, the cubic splines smoothed curve.}
 	\label{fig:comb-gam-plot-bs}
 \end{figure}
 
-Em busca de resultados mais precisos, ajustamos também uma \textit{random forest} aos dados. Os resultados estão resumidos na Tabela \ref{tab:cap-comb-resultados-random-forest}. 
+The table \ref{tab:cap-comb-resultados-random-forest} shows the results of the random forest model. As expected we obtained a lower test error (RMSE = 14.11) and higher R$^2$ (85.72) than the linear regression and the additive models. The five most important predictors were: temperature, humidity, radiation, wind speed e trend, just like in the GAM. The \textit{shareE25} was the 6th most important variable. 
 
 \begin{table}[h!]
 	\centering
-	\caption{Resultado do modelo \textit{random forest} aplicado aos dados de \cite{Salvo2017}. Os hiperparâmetros referentes ao tamanho mínimo de cada nó e o número de preditores sorteados em cada amostra foram definidos por validação cruzada.}
+	\caption{Random forest model results for the \cite{Salvo2017} data. The hyperparameters for minimal node size and number of predictors sampled in each tree were chosen by cross validation.}
 	\begin{tabular}{M{2cm}|M{3cm}|M{2cm}|M{2cm}|M{5cm} N}
 		\hline
-		Tamanho mínimo dos nós  & Número de preditores em cada amostra & RMSE & \% var. explicada & Variáveis mais importantes & \\
+		Minimal node size  & Number of predictors sample & RMSE & \% var. explained & Most important variables & \\
 		\hline
-		1 & 48  & 14.11 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
+		1 & 48  & 14.11 & 85.72 & Temperature, humidity, radiation, wind speed e trend & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-comb-resultados-random-forest}
 \end{table}
-Observamos que a \textit{random forest} apresentou um menor erro de teste (RMSE = 14.11) do que o modelo de regressão linear, além de explicar uma maior porcentagem da variação da concentração de ozônio. Os cinco preditores mais importantes foram temperatura, umidade, radiação, vento e tendência, iguais aos encontrados nos modelos aditivos generalizados. A proporção estimada de carros a gasolina foi o sexto preditor mais importante.
 
-Apesar de termos um ajuste mais preciso, a partir deste modelo não conseguimos interpretar a diretamente a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio. Não sabemos se esse preditor é estatisticamente significativo e, em caso positivo, em qual direção ela está associada à resposta. Sem essa interpretação, não conseguimos responder a pergunta de interesse do estudo.
-
-Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:random-forest}. Como exemplo, vamos avaliar as predições para os 100 dias com maiores níveis de ozônio e para os 100 dias com menores dias de ozônio. A Figura \ref{fig:cap-comb-lime-pinheiros} sugere que, para os dias com maiores médias de ozônio, o efeito protetor da proporção estimada de carros à gasolina acontece com maior frequência quando temos cerca de 50\% da frota ou mais rodando a gasolina. O mesmo acontece para os dias com menores médias. Esse comportamento reforça a relação não-linear encontrado evidenciada pelo modelo aditivo generalizado ajustado na seção anterior.
+Although we have a more precise fit, we can not directly access  the relation between the \textit{shareE25} and the ozone concentration, i.e., we don't know if this predictor is statistically significant to explain the variability of the ozone levels and the direction of this supposed association. To solve this problem, we used the LIME technique to interpret the results of the random forest. With this goal in mind, we chose to evaluate the \textit{shareE25} effect on the 100 days with the lower levels of ozone and the 100 days with the higher levels. Figure \ref{fig:cap-comb-lime-pinheiros} suggests that, for the days with high ozone concentration, the protective effect of the \textit{shareE25} happens mostly when more then 50\% of the fleet is burning gasoline. The same happens on the days with lower ozone concentration. This pattern support the hypothesis of non-linear relation between these ozone concentration and ethanol/gasoline burning.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{cap-comb-lime-pinheiros.pdf}
-	\caption{Proporção estimada de carros gasolinas contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}). À esquerda, utilizamos os 100 dias com as menores médias de ozônio e, à direita, os 100 dias com as maiores médias. }
+	\caption{\textit{shareE25} against the estimated coefficient for this predictor in the simple model used in LIME (ridge regression). On the left, the 100 days with lower ozone concentration. On the right, the 100 days with higher ozone concentration.}
 	\label{fig:cap-comb-lime-pinheiros}
 \end{figure}
 
-Como a suposição de que a proporção de carros a gasolina não está associada diretamente a nenhum outro preditor, podemos predizer o ozônio substituindo o verdadeiro valor da proporção por um valor hipotético, que simule um cenário com poucos carros a gasolina rodando na cidade e outro com muito carros a gasolina. Na Figura \ref{fig:cap-comb-random-forest-cenarios}, apresentamos as curvas suavizadas do ozônio predito para esses dois cenários, além do cenário efetivamente observado. Os valores fixados para a proporção de carro a gasolina foram: 20\% para representar o cenário com poucos carros a gasolina e 70\% para o cenário com muitos carros. Esses valores foram escolhidos com base na distribuição da variável original. Observamos pelo gráfico que, os cenários observado e com baixa proporção são bem parecidos, enquanto o cenário com alta proporção apresenta menores concentrações em algumas estações.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\linewidth]{cap-comb-random-forest-cenarios.pdf}
-	\caption{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).}
-	\label{fig:cap-comb-random-forest-cenarios}
-\end{figure}
 
 \section{Discussion}
 

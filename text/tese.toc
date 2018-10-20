@@ -67,8 +67,8 @@
 \contentsline {section}{\numberline {5.8}Ajustando cada esta\c c\~ao separadamente}{74}{section.5.8}
 \contentsline {section}{\numberline {5.9}Coment\'arios}{75}{section.5.9}
 \contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{77}{chapter.6}
-\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{77}{section.6.1}
-\contentsline {section}{\numberline {6.2}Material particulado e mortalidade}{77}{section.6.2}
+\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{78}{section.6.1}
+\contentsline {section}{\numberline {6.2}Material particulado e mortalidade}{78}{section.6.2}
 \contentsline {chapter}{\numberline {7}Previs\~ao}{79}{chapter.7}
 \contentsline {chapter}{\numberline {8}Obtendo dados de polui\c c\~ao}{81}{chapter.8}
 \contentsline {section}{\numberline {8.1}Dados no Brasil}{81}{section.8.1}
