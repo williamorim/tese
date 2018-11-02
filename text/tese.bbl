@@ -1,4 +1,4 @@
-\begin{thebibliography}{65}
+\begin{thebibliography}{71}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -137,6 +137,22 @@ A.~J. Dobson.
 \newblock \emph{An introduction to generalized linear models}.
 \newblock Chapman and Hall, New York.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Dordonnat {\rm{\em et~al.}}(2008)Dordonnat, Koopman, Ooms,
+  Dessertaine, e Collet]{Collet2008}{\bf Dordonnat {\rm{\em et~al.}}(2008)}
+V.~Dordonnat, S.~J. Koopman, M.~Ooms, A.~Dessertaine e J.~Collet.
+\newblock An hourly periodic state space model for modelling french national
+  electricity load.
+\newblock \emph{International Institute of Forecasters}, 24: \penalty0
+  566--587.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Eckner(2018)]{Eckner2018}{\bf Eckner(2018)}
+Andreas Eckner.
+\newblock A framework for the analysis of unevenly spaced time series data.
+\newblock \emph{Journal of the American Statistical Association}.
+\newblock URL
+  \url{http://eckner.com/papers/unevenly_spaced_time_series_analysis.pdf}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Engle(1982)]{Engle1982}{\bf Engle(1982)}
 R.~F. Engle.
 \newblock Autoregressive conditional heteroscedasticity with estimates of the
@@ -221,6 +237,18 @@ Adel Javanmard e Andrea Montanari.
   random design model: Asymptotic theory.
 \newblock \emph{arXiv:1301.4240v3 [stat.ME]}.   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Kalman(1960)]{Kalman1960}{\bf Kalman(1960)}
+R.~E. Kalman.
+\newblock A new approach to linear filtering and prediction problems.
+\newblock \emph{Trans. ASME J. of Basic Eng.}, \penalty0 (82): \penalty0
+  35--45.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Kalman e Bucy(1961)]{Kalman1961}{\bf Kalman e Bucy(1961)}
+R.~E. Kalman e R.~S. Bucy.
+\newblock New results in filtering and prediction problems.
+\newblock \emph{Trans. ASME J. of Basic Eng.}, \penalty0 (83): \penalty0
+  95--108.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Katsouyanni {\rm{\em et~al.}}(1996)Katsouyanni, Schwartz, Spix,
   Touloumi, Zmirou, Zanobetti, Wojtyniak, Vonk, Tobias, P{\"o}nk{\"a}, Medina,
@@ -467,6 +495,17 @@ J.M. Singer, J.S. Nobre e F.M.M. Rocha.
   preliminar)}.
 \newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[WHO(2004)]{WHO2004}{\bf WHO(2004)}
+World Health~Organization WHO.
+\newblock Health aspects of air pollution.
+\newblock Relat\'{o}rio T\'{e}cnico E83080.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Wickham(2010)]{Hadley2010}{\bf Wickham(2010)}
+Hadley Wickham.
+\newblock A layered grammar of graphics.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 19\penalty0
+  (1): \penalty0 3--28.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Wickham e Grolemund(2017)]{R4DS2017}{\bf Wickham e Grolemund(2017)}
 Hadley Wickham e Garrett Grolemund.

@@ -21,8 +21,8 @@ source("scripts/salvo-2017/salvo-utils.R")
 formulas <- df_model %>%
   select(
     -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
-    -date, -dayofweek,
-    -pp, -dv_pp_20_150,
+    -date, -dayofweek, -week,
+    -pp, -starts_with("dv_pp_"),
     -dv_sun_reg,
     -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
   ) %>%

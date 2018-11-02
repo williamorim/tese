@@ -27,12 +27,12 @@
 \BOOKMARK [1][]{section.3.3}{Modelos aditivos generalizados}{chapter.3}% 27
 \BOOKMARK [2][]{subsection.3.3.1}{Especifica\347\343o do modelo}{section.3.3}% 28
 \BOOKMARK [2][]{subsection.3.3.2}{Splines e regress\343o local}{section.3.3}% 29
-\BOOKMARK [1][]{section.3.4}{Modelos ARIMA e extens\365es}{chapter.3}% 30
+\BOOKMARK [1][]{section.3.4}{Modelos de previs\343o}{chapter.3}% 30
 \BOOKMARK [2][]{subsection.3.4.1}{Modelos autorregressivos \(AR\)}{section.3.4}% 31
 \BOOKMARK [2][]{subsection.3.4.2}{Modelos autorregressivos e de m\351dias m\363veis \(ARMA\)}{section.3.4}% 32
 \BOOKMARK [2][]{subsection.3.4.3}{Modelos autorregressivos integrados e de m\351dias m\363veis \(ARIMA\)}{section.3.4}% 33
-\BOOKMARK [2][]{subsection.3.4.4}{Modelos GARCH}{section.3.4}% 34
-\BOOKMARK [2][]{subsection.3.4.5}{Fun\347\365es de impacto na sa\372de}{section.3.4}% 35
+\BOOKMARK [2][]{subsection.3.4.4}{Outros modelos de previs\343o}{section.3.4}% 34
+\BOOKMARK [2][]{subsection.3.4.5}{Outros t\363picos de modelagem}{section.3.4}% 35
 \BOOKMARK [0][]{chapter.4}{Estrat\351gias de modelagem preditiva}{}% 36
 \BOOKMARK [1][]{section.4.1}{Sobreajuste e o trade-off entre vi\351s e vari\342ncia}{chapter.4}% 37
 \BOOKMARK [1][]{section.4.2}{Estimando a performance do modelo}{chapter.4}% 38
@@ -63,10 +63,10 @@
 \BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 63
 \BOOKMARK [1][]{section.6.1}{Etanol, oz\364nio e mortalidade}{chapter.6}% 64
 \BOOKMARK [1][]{section.6.2}{Material particulado e mortalidade}{chapter.6}% 65
-\BOOKMARK [0][]{chapter.7}{Previs\343o}{}% 66
-\BOOKMARK [0][]{chapter.8}{Obtendo dados de polui\347\343o}{}% 67
-\BOOKMARK [1][]{section.8.1}{Dados no Brasil}{chapter.8}% 68
-\BOOKMARK [1][]{section.8.2}{Dados nos EUA}{chapter.8}% 69
-\BOOKMARK [1][]{section.8.3}{Dados na Europa}{chapter.8}% 70
-\BOOKMARK [0][]{chapter.9}{Discuss\343o}{}% 71
-\BOOKMARK [0][]{appendix*.68}{Refer\352ncias Bibliogr\341ficas}{}% 72
+\BOOKMARK [0][]{chapter.7}{Obtendo dados de polui\347\343o}{}% 66
+\BOOKMARK [1][]{section.7.1}{Web scraping}{chapter.7}% 67
+\BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 68
+\BOOKMARK [1][]{section.7.3}{Dados nos EUA}{chapter.7}% 69
+\BOOKMARK [1][]{section.7.4}{Dados na Europa}{chapter.7}% 70
+\BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 71
+\BOOKMARK [0][]{appendix*.71}{Refer\352ncias Bibliogr\341ficas}{}% 72

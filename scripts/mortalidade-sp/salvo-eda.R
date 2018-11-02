@@ -113,3 +113,11 @@ df_model_longo %>%
   scale_x_continuous(breaks = 1:12) +
   theme_bw()
 
+# Share -------------------------------------------------------------------
+
+df_model %>% 
+  group_by(year) %>% 
+  mutate(n = 1:n()) %>% 
+  ggplot(aes(x = n, y = share_gas)) +
+  geom_line() +
+  facet_wrap(~year, nrow = 6)

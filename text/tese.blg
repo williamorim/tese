@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 528 of file tese.aux
+---line 549 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -14,50 +14,58 @@ format.pages is an unknown function---line 725 of file plainnat-ime.bst
 format.pages is an unknown function---line 873 of file plainnat-ime.bst
 format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
+I was expecting a `,' or a `}'---line 549 of file ../../Latex/Bibs/atlas.bib.bib
+ :  
+ :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--there's a number but no volume in Beer2011
 You can't pop an empty literal stack for entry Adel2014
 while executing---line 1434 of file plainnat-ime.bst
+Warning--there's a number but no volume in Kalman1960
+Warning--there's a number but no volume in Kalman1961
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
-You've used 65 entries,
+Warning--empty institution Em WHO2004
+You've used 71 entries,
             2743 wiz_defined-function locations,
-            1047 strings with 18024 characters,
-and the built_in function-call counts, 29839 in all, are:
-= -- 2559
-> -- 2167
-< -- 38
-+ -- 738
-- -- 672
-* -- 2390
-:= -- 4889
-add.period$ -- 220
-call.type$ -- 65
-change.case$ -- 338
-chr.to.int$ -- 64
-cite$ -- 133
-duplicate$ -- 1119
-empty$ -- 2111
-format.name$ -- 769
-if$ -- 6119
+            1087 strings with 18852 characters,
+and the built_in function-call counts, 32051 in all, are:
+= -- 2762
+> -- 2276
+< -- 44
++ -- 777
+- -- 705
+* -- 2545
+:= -- 5249
+add.period$ -- 239
+call.type$ -- 71
+change.case$ -- 361
+chr.to.int$ -- 70
+cite$ -- 148
+duplicate$ -- 1217
+empty$ -- 2294
+format.name$ -- 810
+if$ -- 6578
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 81
-newline$ -- 353
-num.names$ -- 260
-pop$ -- 804
+missing$ -- 86
+newline$ -- 384
+num.names$ -- 284
+pop$ -- 857
 preamble$ -- 1
-purify$ -- 289
+purify$ -- 306
 quote$ -- 0
-skip$ -- 820
+skip$ -- 881
 stack$ -- 0
-substring$ -- 894
-swap$ -- 68
-text.length$ -- 0
+substring$ -- 972
+swap$ -- 74
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 620
-warning$ -- 3
-while$ -- 233
+type$ -- 686
+warning$ -- 6
+while$ -- 255
 width$ -- 0
-write$ -- 1019
-(There were 8 error messages)
+write$ -- 1109
+(There were 9 error messages)
