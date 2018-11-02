@@ -8,6 +8,7 @@
 
 library(tidyverse)
 library(patchwork)
+
 set.seed(7)
 
 dados <- data_frame(
@@ -27,14 +28,16 @@ modelo2 <- lm(y ~ poly(x, 2), data = dados)
 p1 <- ggplot(dados, aes(x = x, y = y)) + 
   geom_point() + 
   theme_bw() +
-  ggtitle("(a)")
+  ggtitle("(a)") +
+  scale_y_continuous(limits = c(-4, 12), breaks = c(0, 4, 8))
 
 p2 <- ggplot(dados, aes(x = x, y = y)) + geom_point() + 
   geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm') +
   geom_smooth(formula = y ~ poly(x, 2), colour = "orange", se = FALSE, method = 'lm') +
   geom_smooth(formula = y ~ poly(x, 9), colour = "blue", se = FALSE, method = 'lm') +
   theme_bw() +
-  ggtitle("(b)")
+  ggtitle("(b)") +
+  scale_y_continuous(limits = c(-4, 12), breaks = c(0, 4, 8))
 
 p3 <- ggplot(dados, aes(x = x, y = y)) + geom_point() + 
   geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm') +
@@ -42,14 +45,16 @@ p3 <- ggplot(dados, aes(x = x, y = y)) + geom_point() +
   geom_smooth(formula = y ~ poly(x, 9), colour = "blue", se = FALSE, method = 'lm') +
   geom_point(data = dados2, aes(x = x, y = y)) +
   theme_bw() +
-  ggtitle("(c)")
+  ggtitle("(c)") +
+  scale_y_continuous(limits = c(-4, 12), breaks = c(0, 4, 8))
 
 p4 <- ggplot(dados2, aes(x = x, y = y)) + geom_point() + 
   geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm') +
   geom_smooth(formula = y ~ poly(x, 2), colour = "orange", se = FALSE, method = 'lm') +
   geom_smooth(formula = y ~ poly(x, 9), colour = "blue", se = FALSE, method = 'lm') +
   theme_bw()  +
-  ggtitle("(d)")
+  ggtitle("(d)") +
+  scale_y_continuous(limits = c(-4, 12), breaks = c(0, 4, 8))
 
 p <- p1 + p2 + p3 + p4
 

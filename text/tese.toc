@@ -38,24 +38,24 @@
 \contentsline {subsection}{\numberline {3.4.5}Outros t\'opicos de modelagem}{45}{subsection.3.4.5}
 \contentsline {subsubsection}{Fun\c c\~oes de impacto na sa\'ude}{45}{section*.35}
 \contentsline {chapter}{\numberline {4}Estrat\'egias de modelagem preditiva}{47}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sobreajuste e o \textit {trade-off} entre vi\'es e vari\^ancia}{48}{section.4.1}
+\contentsline {section}{\numberline {4.1}Sobreajuste e o balan\c co entre vi\'es e vari\^ancia}{48}{section.4.1}
 \contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{50}{section.4.2}
 \contentsline {section}{\numberline {4.3}M\'etodos de reamostragem}{51}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Valida\c c\~ao cruzada}{51}{subsection.4.3.1}
 \contentsline {subsubsection}{Amostra de valida\c c\~ao}{51}{section*.38}
-\contentsline {subsubsection}{LOOCV}{51}{section*.39}
+\contentsline {subsubsection}{Valida\c c\~ao cruzada \textit {leave-one-out} (LOOCV)}{51}{section*.39}
 \contentsline {subsubsection}{K-fold}{52}{section*.41}
 \contentsline {subsection}{\numberline {4.3.2}Bootstrapping}{53}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Sele\c c\~ao de vari\'aveis}{53}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Selecionando o melhor subconjunto de preditores}{53}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.1}Selecionando o melhor subconjunto de preditores}{54}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Stepwise}{54}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}Regulariza\c c\~ao}{55}{section.4.5}
 \contentsline {subsubsection}{Regress\~ao Ridge}{55}{section*.44}
-\contentsline {subsubsection}{LASSO}{56}{section*.45}
+\contentsline {subsubsection}{Least absolute shrinkage and selection operator (LASSO)}{56}{section*.45}
 \contentsline {section}{\numberline {4.6}Quantificando a import\^ancia dos preditores}{57}{section.4.6}
 \contentsline {section}{\numberline {4.7}Modelos de \'arvores}{57}{section.4.7}
 \contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{58}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Random Forests}{59}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.2}Random Forests}{58}{subsection.4.7.2}
 \contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{61}{chapter.5}
 \contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{61}{section.5.1}
 \contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{62}{section.5.2}

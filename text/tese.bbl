@@ -1,4 +1,4 @@
-\begin{thebibliography}{71}
+\begin{thebibliography}{72}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -180,6 +180,11 @@ Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
   to ambient {PM}2.5 and ozone.
 \newblock \emph{Risk Analysis}, 32: \penalty0 81--95.   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Gower(1971)]{Gower1971}{\bf Gower(1971)}
+C.~John Gower.
+\newblock A general coefficient of similarity and some of its properties.
+\newblock \emph{Biometrics}.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Hastie e Tibshirani(1990)]{Hastie1990}{\bf Hastie e Tibshirani(1990)}
 Trevor Hastie e Robert Tibshirani.
