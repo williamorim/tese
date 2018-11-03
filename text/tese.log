@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  2 NOV 2018 17:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  3 NOV 2018 19:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1800,9 +1800,9 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 110.
+(babel)             in language  on input line 111.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 110.
+(babel)             in language  on input line 111.
  [87
 
 ]
@@ -1812,14 +1812,14 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 228.
  [88]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 343.
+(babel)             in language  on input line 349.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 343.
+(babel)             in language  on input line 349.
  [89]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 462.
+(babel)             in language  on input line 477.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 462.
+(babel)             in language  on input line 477.
  [90])
 
 Package natbib Warning: There were undefined citations.
@@ -1847,7 +1847,7 @@ Here is how much of TeX's memory you used:
  14965 multiletter control sequences out of 15000+600000
  32768 words of font info for 79 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 36i,13n,46p,2107b,573s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,13n,46p,2107b,577s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440.6
 00pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx090
 0.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi
@@ -1884,10 +1884,10 @@ fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on tese.pdf (109 pages, 2822945 bytes).
+Output written on tese.pdf (109 pages, 2823084 bytes).
 PDF statistics:
  3341 PDF objects out of 3580 (max. 8388607)
- 2322 compressed objects within 24 object streams
+ 2321 compressed objects within 24 object streams
  414 named destinations out of 1000 (max. 500000)
  812 words of extra memory for PDF output out of 10000 (max. 10000000)
 

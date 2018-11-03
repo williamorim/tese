@@ -15,7 +15,8 @@ Christopher~H. Achen.
 \bibitem[Barros {\rm{\em et~al.}}(2009)Barros, Paula, e Leiva]{Barros2009}{\bf
   Barros {\rm{\em et~al.}}(2009)}
 Michelli Barros, Gilberto~A. Paula e Victor Leiva.
-\newblock An r implementation for generalized birnbaum-saunders distributions.
+\newblock An r implementation for generalized {B}irnbaum-{S}aunders
+  distributions.
 \newblock \emph{Computational Statistics and Data Analysis}, 53\penalty0 (4):
   \penalty0 1511--1528.   {\scriptsize Citado na p\'{a}g.}
 
@@ -44,14 +45,14 @@ Andreina Belusic, Ivana Herceg-Bulic e Zvjezdana~Bencetic Klaic.
   p\'{a}g.}
 
 \bibitem[Bollerslev(1986)]{Bollerslev1986}{\bf Bollerslev(1986)}
-T.~Bollerslev.
+Tim Bollerslev.
 \newblock Generalized autoregressive conditional heteroscedasticity.
 \newblock \emph{J. Econ.}, 31: \penalty0 307--327.   {\scriptsize Citado na
   p\'{a}g.}
 
 \bibitem[Box e Jenkins(1970)]{Box1970}{\bf Box e Jenkins(1970)}
-G.~E.~P. Box e G.~M. Jenkins.
-\newblock \emph{TIme series analysis: forecasting and control}.
+George E.~P. Box e Gwilym~M. Jenkins.
+\newblock \emph{Time series analysis: forecasting and control}.
 \newblock Holden-Day, San Francisco.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Breiman(2001)]{Breiman2001}{\bf Breiman(2001)}
@@ -61,14 +62,14 @@ Leo Breiman.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Breiman e Friedman(1985)]{Breiman1985}{\bf Breiman e Friedman(1985)}
-Leo Breiman e J.~H. Friedman.
+Leo Breiman e Jerome~H. Friedman.
 \newblock Estimating optimal transformations for multiple regression and
   correlations (with discussion).
 \newblock \emph{Journal of the American Statistical Association}, 80\penalty0
   (391): \penalty0 580--619.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Cameron e Miller(2015)]{Cameron2015}{\bf Cameron e Miller(2015)}
-A.~Colin Cameron e Douglas~L. Miller.
+Adrian~C. Cameron e Douglas~L. Miller.
 \newblock A practitioner's guide to cluster-robust inference.
 \newblock \emph{J. Human Resources}, 50\penalty0 (2): \penalty0 317--372.
   {\scriptsize Citado na p\'{a}g.}
@@ -99,10 +100,10 @@ Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
 
 \bibitem[Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{a}})Concei{\c{c}}{\~a}o, Miraglia, Kishi, Saldiva, e
-  da~Motta~Singer]{Gleice2001a}{\bf Concei{\c{c}}{\~a}o {\rm{\em
+  Singer]{Gleice2001a}{\bf Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{a}})}
-Gleice~M.S. Concei{\c{c}}{\~a}o, Simone~G.E.K. Miraglia, Humberto~S. Kishi,
-  Paulo Hil{\'a}rio~Nascimento Saldiva e Julio da~Motta~Singer.
+Gleice M.~S. Concei{\c{c}}{\~a}o, Simone G. E.~K. Miraglia, Humberto~S. Kishi,
+  Paulo H.~N. Saldiva e Julio~M. Singer.
 \newblock Air pollution and child mortality: a time-series study in {S}{\~a}o
   {P}aulo, {B}razil.
 \newblock \emph{Environmental Health Perspectives}, 109\penalty0 (3): \penalty0
@@ -110,10 +111,9 @@ Gleice~M.S. Concei{\c{c}}{\~a}o, Simone~G.E.K. Miraglia, Humberto~S. Kishi,
 
 \bibitem[Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{b}})Concei{\c{c}}{\~a}o, Saldiva, e
-  da~Motta~Singer]{Gleice2001b}{\bf Concei{\c{c}}{\~a}o {\rm{\em
+  Singer]{Gleice2001b}{\bf Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{b}})}
-Gleice~M.S. Concei{\c{c}}{\~a}o, Paulo Hil{\'a}rio~Nascimento Saldiva e Julio
-  da~Motta~Singer.
+Gleice M.~S. Concei{\c{c}}{\~a}o, Paulo H.~N. Saldiva e Julio~M. Singer.
 \newblock Modelos {MLG} e {MAG} para an{\'a}lise da associa{\c{c}}{\~a}o entre
   polui{\c{c}}{\~a}o atmosf{\'e}rica e marcadores de morbi-mortalidade: uma
   introdu{\c{c}}{\~a}o baseada em dados da cidade de {S}{\~a}o {P}aulo.
@@ -128,12 +128,12 @@ L.~A. Cox.
   p\'{a}g.}
 
 \bibitem[Demidenko(2013)]{Demidenko2013}{\bf Demidenko(2013)}
-E.~Demidenko.
+Eugene Demidenko.
 \newblock \emph{Mixed models: theory and applications with R}.
 \newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Dobson(1990)]{Dobson1990}{\bf Dobson(1990)}
-A.~J. Dobson.
+Annette~J. Dobson.
 \newblock \emph{An introduction to generalized linear models}.
 \newblock Chapman and Hall, New York.   {\scriptsize Citado na p\'{a}g.}
 
@@ -154,7 +154,7 @@ Andreas Eckner.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Engle(1982)]{Engle1982}{\bf Engle(1982)}
-R.~F. Engle.
+Robert~F. Engle.
 \newblock Autoregressive conditional heteroscedasticity with estimates of the
   variance of united kingdom inflation.
 \newblock \emph{Econometrica}, 50: \penalty0 987--1007.   {\scriptsize Citado
@@ -215,7 +215,7 @@ Mark~Z. Jacobson.
 \bibitem[Jacobson(2007)]{Jacobson2007}{\bf Jacobson(2007)}
 Mark~Z. Jacobson.
 \newblock Effects of ethanol ({E}85) versus gasoline vehicles on cancer and
-  mortality in the united states.
+  mortality in the {U}nited {S}tates.
 \newblock \emph{Environmental Science \& Technology}, 41\penalty0 (11):
   \penalty0 4150--4157.   {\scriptsize Citado na p\'{a}g.}
 
@@ -282,7 +282,7 @@ Itai Kloog, Francesco Nordio, Brent~A. Coull e Joel Schwartz.
 
 \bibitem[Leiva(2015)]{Leiva2015}{\bf Leiva(2015)}
 Victor Leiva.
-\newblock \emph{The Birnbaum-Saunders distribution}.
+\newblock \emph{The {B}irnbaum-{S}aunders distribution}.
 \newblock Academic Press; 1 edition.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Leiva {\rm{\em et~al.}}(2008)Leiva, Barros, Paula., e
@@ -322,12 +322,12 @@ Sacha Madronich.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
-C.~E. McCulloch e S.~R. Searle.
+Charles~E. McCulloch e Shayle~R. Searle.
 \newblock \emph{Generalized, linear, and mixed models}.
 \newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Morettin e Toloi(2004)]{Morettin2004}{\bf Morettin e Toloi(2004)}
-Pedro~A. Morettin e Clelia~M.C. Toloi.
+Pedro~A. Morettin e Clelia M.~C. Toloi.
 \newblock \emph{An{\'a}lise de Series Temporais}.
 \newblock ABE - Projeto Fisher e Editora Edgard Blucher, S{\~a}o Paulo.
   {\scriptsize Citado na p\'{a}g.}
@@ -342,7 +342,7 @@ Patricia~A. Mulawa, Steven~H. Cadle, Kenneth Knapp, Roy Zweidinger, Richard
   \penalty0 1302--1307.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Nelder e Wedderburn(1972)]{Nelder1972}{\bf Nelder e Wedderburn(1972)}
-J.~A. Nelder e R.~W.~M. Wedderburn.
+John~A. Nelder e R.~William~M. Wedderburn.
 \newblock Generalized linear models.
 \newblock \emph{Stat Soc A}, 135: \penalty0 370--384.   {\scriptsize Citado na
   p\'{a}g.}
@@ -389,16 +389,15 @@ Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
 \bibitem[Ribeiro {\rm{\em et~al.}}(2016)Ribeiro, Singh, e
   Guestrin]{Ribeiro2016}{\bf Ribeiro {\rm{\em et~al.}}(2016)}
 Marco~Tulio Ribeiro, Sameer Singh e Carlos Guestrin.
-\newblock ``why should i trust you?'' explaining the predictions of any
+\newblock ``{W}hy should {I} trust you?'' {E}xplaining the predictions of any
   classifier.
 \newblock \emph{arXiv:1602.04938v3 [cs.LG]}.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Saldiva {\rm{\em et~al.}}(1994)Saldiva, Lichtenfels, Paiva, Barone,
   Martins, Massad, Pereira, Xavier, Singer, e Bohm]{Saldiva1994}{\bf Saldiva
   {\rm{\em et~al.}}(1994)}
-P.~H.~N. Saldiva, A.~J. F.~C. Lichtenfels, P.~S.~O. Paiva, I.~A. Barone, M.~A.
-  Martins, E.~Massad, J.~C.~R. Pereira, V.~P. Xavier, J.~M. Singer e G.~M.
-  Bohm.
+P.~Saldiva, A.~Lichtenfels, P.~Paiva, I.~Barone, M.~Martins, E.~Massad,
+  J.~Pereira, V.~Xavier, J.~Singer e G.~Bohm.
 \newblock Association between air pollution and mortality due to respiratory
   diseases in children in {S}{\~a}o {P}aulo, {B}razil: a preliminary report.
 \newblock \emph{Environmental Research}, 65\penalty0 (2): \penalty0 218 -- 225.
@@ -438,14 +437,6 @@ Alberto Salvo, Joel Brito, Paulo Artaxo e Franz~M. Geiger.
 \newblock \emph{Nature Communications}, 8: \penalty0 1--14.   {\scriptsize
   Citado na p\'{a}g.}
 
-\bibitem[Schwartz e Dockery(1992)]{SchwartzDockery1992}{\bf Schwartz e
-  Dockery(1992)}
-J.~Schwartz e D.~W. Dockery.
-\newblock Particulate air pollution and daily mortality in {S}teubenville,
-  {O}hio.
-\newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
-  {\scriptsize Citado na p\'{a}g.}
-
 \bibitem[Schwartz {\rm{\em et~al.}}(1996)Schwartz, Dockery, e
   Neas]{SchwartzDockeryNeas1996}{\bf Schwartz {\rm{\em et~al.}}(1996)}
 J.~Schwartz, D.~W. Dockery e L.~M. Neas.
@@ -466,6 +457,14 @@ Joel Schwartz.
 \newblock \emph{Epidemiology}, 1\penalty0 (7): \penalty0 20--28.   {\scriptsize
   Citado na p\'{a}g.}
 
+\bibitem[Schwartz e Dockery(1992)]{SchwartzDockery1992}{\bf Schwartz e
+  Dockery(1992)}
+Joel Schwartz e Douglas~W. Dockery.
+\newblock Particulate air pollution and daily mortality in {S}teubenville,
+  {O}hio.
+\newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Schwartz e Marcus(1990)]{SchwartzMarcus1990}{\bf Schwartz e
   Marcus(1990)}
 Joel Schwartz e Allan Marcus.
@@ -477,7 +476,7 @@ Joel Schwartz e Allan Marcus.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Shumway e Stoffer(1982)]{Shumway1982}{\bf Shumway e Stoffer(1982)}
-R.~H. Shumway e D.~S. Stoffer.
+Robert Shumway e David Stoffer.
 \newblock An approach to time series smoothing and forecasting using the {EM}
   algorithm.
 \newblock \emph{Journal of Time Series Analysis}, 3\penalty0 (4): \penalty0
@@ -495,7 +494,7 @@ Robert~H. Shumway e David~S. Stoffer.
 
 \bibitem[Singer {\rm{\em et~al.}}(2012)Singer, Nobre, e Rocha]{Singer2012}{\bf
   Singer {\rm{\em et~al.}}(2012)}
-J.M. Singer, J.S. Nobre e F.M.M. Rocha.
+Julio Singer, Juvêncio Nobre e Francisco~Marcelo Rocha.
 \newblock \emph{An{\'a}lise de Dados Longitudinais (vers{\~a}o parcial
   preliminar)}.
 \newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize
@@ -525,7 +524,7 @@ Leland Wilkinson.
   Citado na p\'{a}g.}
 
 \bibitem[Williams(1987)]{Williams1987}{\bf Williams(1987)}
-A.~D. Williams.
+Alistair~D. Williams.
 \newblock Generalized linear model diagnostic using the deviance and single
   case deletion.
 \newblock \emph{Applied Statistics}, 36: \penalty0 181--191.   {\scriptsize
@@ -540,7 +539,7 @@ Simon~N. Wood.
 
 \bibitem[Yoon {\rm{\em et~al.}}(2009)Yoon, Ha, Roh, e Lee]{Yoon2009}{\bf Yoon
   {\rm{\em et~al.}}(2009)}
-S.~H. Yoon, S.~Y. Ha, H.~G. Roh e C.~S. Lee.
+S.~Yoon, S.~Ha, H.~Roh e C.~Lee.
 \newblock Effect of bioethanol as an alternative fuel on the emissions
   reduction characteristics and combustion stability in a spark ignition
   engine.

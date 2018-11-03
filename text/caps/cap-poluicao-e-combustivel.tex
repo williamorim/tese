@@ -383,7 +383,7 @@ Também observamos pela Figura \ref{fig:cap-comb-max-diaria-pred-obs-plot} que os
 	\label{fig:cap-comb-max-diaria-pred-obs-plot}
 \end{figure}
 
-Apesar da redução na precisão dos modelos, os resultados obtidos apontam na mesma direção: a proporção de ozônio é estatisticamente significante para explicar variações na concentração de ozônio e mais carros a gasolina tende a diminuir os níveis do poluente.
+Apesar da redução na precisão dos modelos, os resultados obtidos apontam na mesma direção: a proporção estimada de carros rodando a gasolina é estatisticamente significante para explicar variações na concentração de ozônio. Além disso, o aumento dessa proporção tende a diminuir as concentrações do poluente.
 
 \section{Ajustando cada estação separadamente}
 
@@ -391,7 +391,7 @@ A estratégia adotada por \cite{Salvo2017} e por nós até aqui foi juntar as infor
 
 O mecanismo gerador do ozônio, assim como qualquer poluente, é altamente dependente da química atmosférica local. Para avaliar se os resultados encontrados são robustos em relação à posição geográfica de cada estação, podemos refazer a análise ajustando um modelo para cada uma das estações. 
 
-Na Tabela \ref{tab:cap-comb-ozone-resultados-cada-estacao}, apresentamos os resultados do modelo de regressão linear para cada uma das 12 estações medidoras de ozônio. O modelo ajustado foi o mesmo considerado pelos autores, com exceção das variáveis relacionadas à estação. Analisando as estimativas dos coeficientes da proporção de carros a gasolina, observamos que essa variável é positivamente associada com a concentração de ozônio nas estações IPEN e São Caetano do Sul\footnote{Para a estação IPEN, o coeficiente é marginalmente significativo significativo.}, contrariando a conclusão para as outras estações e para os resultados com a amostra agregada.
+Na Tabela \ref{tab:cap-comb-ozone-resultados-cada-estacao}, apresentamos os resultados do modelo de regressão linear para cada uma das 12 estações medidoras de ozônio. O modelo ajustado foi o mesmo considerado pelos autores, com exceção das variáveis relacionadas à estação. Analisando as estimativas dos coeficientes da proporção de carros a gasolina, observamos que essa variável é positivamente associada com a concentração de ozônio nas estações IPEN e São Caetano do Sul\footnote{Para a estação IPEN, o coeficiente é marginalmente significativo.}, contrariando a conclusão para as outras estações e para os resultados com a amostra agregada.
 
 Em relação à performance dos modelos, o RMSE para cada estação não difere muito do encontrado para o modelo global. A proporção da variabilidade explicada só está muito abaixo para a estação Parelheiros. De uma forma geral, as variáveis meteorológicas são as mais importantes para explicar a concentração de ozônio, sendo que a temperatura ficou entre as cinco primeiras em todos os modelos.
 
@@ -448,6 +448,6 @@ Embora essa associação pareça contra-intuitiva, dado o senso comum de que o etan
 
 Essa interpretação também pode explicar os resultados diferentes encontrados para as estações IPEN e São Caetano do Sul, sendo preciso estudar melhor a química atmosférica da região onde as estações estão para confirmar a existência de ambientes limitados em NO$_2$. 
 
-Um outro ponto importante a ser considerado é a relevância prática dos resultados. Usando a estimativa encontrada por \cite{Salvo2017}, quando a proporção de carros a gasolina sobe de 30\% para 80\%, mantendo todas as outras variáveis constantes, a concentração diária média de ozônio tende a diminuir 8.3 $\mu g/m^3$. Considerando a concentração média de ozônio em toda a amostra, uma redução média de 72.2 $\mu g/m^3$ para 63.9 $\mu g/m^3$ pode não ter relevante prática para a criação de políticas públicas para a redução de emissões de etanol.
+Um outro ponto importante a ser considerado é a relevância prática dos resultados. Usando a estimativa encontrada por \cite{Salvo2017}, quando a proporção de carros a gasolina sobe de 30\% para 80\%, mantendo todas as outras variáveis constantes, a concentração diária média de ozônio tende a diminuir 8.3 $\mu g/m^3$. Considerando a concentração média de ozônio em toda a amostra, uma redução média de 72.2 $\mu g/m^3$ para 63.9 $\mu g/m^3$ pode não ter relevância prática para a criação de políticas públicas para a redução de emissões de etanol.
 
 Para avaliar o real impacto da redução do ozônio, podemos estudar o efeito desse poluente no número de casos de doenças e mortes relacionadas com a poluição. Nesse sentido, apresentaremos no próximo capítulo algumas análises associando dados de poluição com dados epidemiológicos.
