@@ -29,19 +29,35 @@ formulas <- df_model %>%
   ) %>%
   map(as.formula)
 
-make_recs <- function(df_model, formula) {
+make_recs <- function(df_model, formula, lag) {
   df_model %>%
     recipe(formula = formula) %>%
-    step_naomit(all_predictors(), all_outcomes()) %>% 
-    step_dummy(week, one_hot = TRUE)
+    step_lag(share_gas, lag = lag) %>%
+    step_dummy(week, one_hot = TRUE) %>% 
+    step_rm(share_gas) %>% 
+    step_meanimpute(all_numeric())
 }
 
-recs <- map(formulas, make_recs, df_model = df_model)
-
+recs_geral <- map(1:30, make_recs, df_model = df_model, formula = formulas[[1]])
+recs_idosos <- map(1:30, make_recs, df_model = df_model, formula = formulas[[2]])
+recs_criancas <- map(1:30, make_recs, df_model = df_model, formula = formulas[[3]])
 
 # Model -------------------------------------------------------------------
 
 # Geral
+
+run_model <- function(rec, df_model, train_control, tuning_grid) {
+  set.seed(5893524)
+  model <- train(
+    x = rec,
+    data = df_model,
+    method = "ranger",
+    trControl = train_control,
+    tuneGrid = tuning_grid,
+    importance = 'impurity'
+  )
+  model$results
+}
 
 train_control <- trainControl(method = "cv", number = 5)
 
@@ -51,28 +67,12 @@ tuning_grid <- expand.grid(
   min.node.size = 6
 )
 
-set.seed(5893524)
-
-model <- train(
-  x = recs[[1]],
-  data = na.omit(df_model),
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
-)
-
-model
-model$finalModel
-varImp(model)
-# RMSE: 36.06
-# MAE: 28.60
-# % var: 64.57%  
-# share_gas imp: 3ª
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_geral,
-  pred = predict(model, newdata = na.omit(df_model))
+geral_results <- map_dfr(
+  recs_geral, 
+  run_model, 
+  df_model = df_model,
+  train_control = train_control,
+  tuning_grid = tuning_grid
 )
 
 # Idosos
@@ -142,74 +142,3 @@ pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_criancas,
   pred = predict(model, newdata = na.omit(df_model))
 )
-
-# LIME --------------------------------------------------------------------
-
-# Idosos
-
-explainer <- lime(
-  na.omit(df_model), 
-  model
-)
-
-# 10% mais mortes
-
-test_days <- df_model %>% 
-  na.omit %>%
-  top_n(n = 100, n_mortes_idosos)
-
-explanation <- explain(
-  test_days, 
-  explainer,
-  n_features = 10
-)
-
-explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  #ggtitle("Maiores médias de ozônio") +
-  theme_bw()
-
-# 10% menos mortes
-
-test_days <- 
-  df_model %>% 
-  na.omit %>%
-  top_n(n = -100, n_mortes_idosos)
-
-explanation <- explain(
-  test_days, 
-  explainer, 
-  n_features = 10
-)
-
-explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  ggtitle("Menores médias de ozônio") +
-  theme_bw()
-
-# p <- p2 + p1
-# 
-# ggsave(
-#   plot = p,
-#   filename = paste(
-#     "scripts/salvo-2017/img/random-forest-explanations/explanation-",
-#     station,
-#     ".pdf"
-#   ),
-#   width = 6, 
-#   height = 4
-# )

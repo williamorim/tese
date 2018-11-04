@@ -75,8 +75,7 @@
 \contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{83}{chapter.7}
 \contentsline {section}{\numberline {7.1}Web scraping}{84}{section.7.1}
 \contentsline {section}{\numberline {7.2}Dados no Brasil}{84}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados nos EUA}{84}{section.7.3}
-\contentsline {section}{\numberline {7.4}Dados na Europa}{84}{section.7.4}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{84}{section.7.3}
 \contentsline {chapter}{\numberline {8}Discuss\~ao}{85}{chapter.8}
 \contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{87}{appendix*.71}
 \contentsfinish 

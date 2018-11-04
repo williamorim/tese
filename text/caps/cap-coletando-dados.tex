@@ -26,11 +26,16 @@ Nesta seção, discutiremos os conceitos básicos de web scraping e apresentaremos 
 
 \section{Web scraping}
   
+  
+  
+  
 \section{Dados no Brasil}
 
+Para o estado de São Paulo, a CETESB (Companhia Ambiental do Estado de São Paulo) oferece um sistema de consulta de medidas em tempo real e de relatórios diários, mensais e anuais. O sistema, chamado \textit{Qualar}, também permite a exportação de diversas séries históricas de poluentes e parâmetros meteorológicos, além de informações sobre as estações de monitoramento. 
 
+Para facilitar o acesso aos dados, já que o sistema possui restrições estruturais (como baixar dados de vários poluentes ou estações de uma única vez) e também pode se tornar lento quando precisamos acessar séries muito longas, nós criamos o pacote \texttt{koffing}, em R. O processo se resume ao uso da função \texttt{scraper\_cetesb()}, que tem, entre outros argumentos, o parâmetro a ser baixado, a estação medidora e o login e senha de acesso ao Qualar. Dada uma lista de parâmetros e estações, a função pode ser utilizada dentro de um \textit{looping} para baixar os dados de diversas estações e poluentes automaticamente. Para instalar o pacote, basta rodar o seguinte comando \texttt{devtools::install\_github("atmoschem/koffing")}.
 
-\section{Dados nos EUA}
+\section{Dados em outros países}
 
-\section{Dados na Europa}
+Lançado em março de 2000, o programa MOPPIT (\textit{Measurements Of Pollution In The Troposphere}) lançado pela NASA tem como objetivo medir o monóxido de carbono troposférico em escala global. Os dados podem ser baixados diretamente do seguinte site: \url{https://search.earthdata.nasa.gov/}. Além dos dados do MOPPIT, a NASA possui diversas outros dados atmosféricos que podem ser baixados pelo portal \url{https://eosweb.larc.nasa.gov/}, como concentração de aerossóis, formação de  nuvens, radiação e composição da troposfera. 
 

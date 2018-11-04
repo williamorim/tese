@@ -121,3 +121,14 @@ df_model %>%
   ggplot(aes(x = n, y = share_gas)) +
   geom_line() +
   facet_wrap(~year, nrow = 6)
+
+# Lagged share
+
+map_dfc(21:30, lag, x = df_model$share_gas) %>% 
+  bind_cols(df_model) %>% 
+  gather(lag, share_gas, starts_with("V")) %>%
+  mutate(lag = str_replace(lag, "V", "lag ")) %>%
+  ggplot(aes(x = share_gas, y = n_mortes_idosos)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~lag)
