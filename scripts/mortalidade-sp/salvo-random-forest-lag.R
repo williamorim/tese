@@ -67,13 +67,19 @@ tuning_grid <- expand.grid(
   min.node.size = 6
 )
 
-geral_results <- map_dfr(
+results_geral <- map_dfr(
   recs_geral, 
   run_model, 
   df_model = df_model,
   train_control = train_control,
-  tuning_grid = tuning_grid
+  tuning_grid = NULL
 )
+
+# Melhor lag: 0
+# RMSE: 36.06
+# MAE: 28.60
+# % var: 64.57%  
+# share_gas imp: 3ª
 
 # Idosos
 
@@ -85,29 +91,21 @@ tuning_grid <- expand.grid(
   min.node.size = 5
 )
 
-set.seed(5893524)
-
-model <- train(
-  x = recs[[2]],
-  data = na.omit(df_model),
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
+results_adultos <- map_dfr(
+  recs_idosos, 
+  run_model, 
+  df_model = df_model,
+  train_control = train_control,
+  tuning_grid = NULL
 )
 
-model
-model$finalModel
-varImp(model)
+
+# Melhor lag: 0
 # RMSE: 27.91
 # MAE: 21.85
 # % var: 69.47%  
 # share_gas imp: 2ª
 
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_idosos,
-  pred = predict(model, newdata = na.omit(df_model))
-)
 # Crianças
 
 train_control <- trainControl(method = "cv", number = 5)
@@ -119,26 +117,16 @@ tuning_grid <- expand.grid(
 )
 
 
-set.seed(5893524)
-
-model <- train(
-  x = recs[[3]],
-  data = na.omit(df_model),
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
+results_criancas <- map_dfr(
+  recs_criancas, 
+  run_model, 
+  df_model = df_model,
+  train_control = train_control,
+  tuning_grid = tuning_grid
 )
 
-model
-model$finalModel
-varImp(model)
+# Melhor lag: 0
 # RMSE: 5.13
 # MAE: 4.12
 # % var: 1.7%  
 # share_gas imp: 4ª
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_criancas,
-  pred = predict(model, newdata = na.omit(df_model))
-)
