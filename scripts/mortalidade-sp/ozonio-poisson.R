@@ -20,7 +20,7 @@ formulas <- df_model %>%
     -pp, -dv_pp_20_150,
     -dv_sun_reg,
     -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation,
-    -o3_mass_conc
+    -share_gas,
   ) %>%
   names() %>%
   str_c(collapse = " + ") %>%
@@ -28,7 +28,7 @@ formulas <- df_model %>%
     c("n_mortes_geral ~ ", "n_mortes_idosos ~ ", "n_mortes_criancas ~ "), .
   ) %>%
   map(as.formula)
-  
+
 # Model -------------------------------------------------------------------
 
 train_control <- trainControl(method="cv", number = 5)
@@ -48,10 +48,11 @@ model <- train(
 model
 summary(model)
 varImp(model)
-# RMSE: 39.59
-# MAE: 31.69
-# % var: 56.19%
-# aumento de 10% no share -> aumento de 105% na taxa de mortalidade
+# RMSE: 40.46
+# MAE: 32.62
+# % var: 53.59%
+# share_gas imp: > 20
+# aumento de 10 no ozônio -> aumento de 0.4% na taxa de mortalidade
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_geral,

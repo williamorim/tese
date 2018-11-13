@@ -13,18 +13,14 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 # Formula -----------------------------------------------------------------
 
-# df_model <-
-#   recipe(df_model) %>%
-#   prep(training = df_model) %>% 
-#   bake(newdata = df_model)
-
 formulas <- df_model %>%
   select(
     -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
     -date, -dayofweek, -week, -contains("_reg"), -contains("_vac"),
     -pp, -dv_pp_20_150,
     -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
+    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation,
+    -o3_mass_conc
   ) %>%
   names() %>%
   str_c(collapse = " + ") %>%
@@ -45,17 +41,17 @@ model <- train(
   form = formulas[[1]],
   data = na.omit(df_model),
   method = "gam",
-  family = poisson(link = "sqrt"),
+  family = poisson(link = "log"),
   trControl = train_control
 )
 
 model
 summary(model)
 varImp(model)
-# RMSE: 42.06
-# MAE: 33.32
-# % var: 50.51%
-# share_gas imp: > 20
+# RMSE: 43.45
+# MAE: 34.56
+# % var: 46.42%
+# share_gas imp: 2
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_geral,

@@ -16,11 +16,11 @@ source("scripts/salvo-2017/salvo-utils.R")
 formulas <- df_model %>%
   select(
     -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
-    -date, -dayofweek,
+    -date, -dayofweek, -week, -contains("_reg"), -contains("_vac"),
     -pp, -dv_pp_20_150,
     -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation,
-    -o3_mass_conc
+    -year, -month, -day, -dv_yearendvacation,
+    -share_gas
   ) %>%
   names() %>%
   str_c(collapse = " + ") %>%
@@ -28,7 +28,7 @@ formulas <- df_model %>%
     c("n_mortes_geral ~ ", "n_mortes_idosos ~ ", "n_mortes_criancas ~ "), .
   ) %>%
   map(as.formula)
-  
+
 # Model -------------------------------------------------------------------
 
 train_control <- trainControl(method="cv", number = 5)
@@ -40,7 +40,7 @@ set.seed(5893524)
 model <- train(
   form = formulas[[1]],
   data = na.omit(df_model),
-  method = "glm",
+  method = "gam",
   family = poisson(link = "log"),
   trControl = train_control
 )
@@ -48,17 +48,21 @@ model <- train(
 model
 summary(model)
 varImp(model)
-# RMSE: 39.59
-# MAE: 31.69
-# % var: 56.19%
-# aumento de 10% no share -> aumento de 105% na taxa de mortalidade
+# RMSE: 47.47
+# MAE: 37.89
+# % var: 36.16%
+# share_gas imp: 4
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_geral,
   pred = predict(model, newdata = na.omit(df_model))
 )
 
-plot(model$finalModel)
+gam_plot(
+  model$finalModel, 
+  model$finalModel$smooth[[1]],
+  xlab = "Concentração de ozônio"
+)
 
 # Idosos
 
@@ -67,7 +71,7 @@ set.seed(5893524)
 model <- train(
   form = formulas[[2]],
   data = na.omit(df_model),
-  method = "glm",
+  method = "gam",
   family = poisson(link = "sqrt"),
   trControl = train_control
 )
@@ -75,9 +79,9 @@ model <- train(
 model
 summary(model)
 varImp(model)
-# RMSE: 30.74
-# MAE: 24.13
-# % var: 61.15% 
+# RMSE: 33.50
+# MAE: 26.33
+# % var: 53.63%
 # share_gas imp: > 20
 
 pred_obs_plot(
@@ -85,31 +89,8 @@ pred_obs_plot(
   pred = predict(model, newdata = na.omit(df_model))
 )
 
-plot(model$finalModel)
-
-# Crianças
-
-set.seed(5893524)
-
-model <- train(
-  form = formulas[[3]],
-  data = na.omit(df_model),
-  method = "glm",
-  family = poisson(link = "sqrt"),
-  trControl = train_control
+gam_plot(
+  model$finalModel, 
+  model$finalModel$smooth[[1]],
+  xlab = "Proporção estimada de carros a gasolina"
 )
-
-model
-summary(model)
-varImp(model)
-# RMSE: 5.19
-# MAE: 4.16
-# % var: 2.2%
-# share_gas imp: 8
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_criancas,
-  pred = predict(model, newdata = na.omit(df_model))
-)
-
-plot(model$finalModel)

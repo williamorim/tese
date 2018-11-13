@@ -74,8 +74,14 @@
 \contentsline {section}{\numberline {6.2}Material particulado e mortalidade}{82}{section.6.2}
 \contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{83}{chapter.7}
 \contentsline {section}{\numberline {7.1}Web scraping}{84}{section.7.1}
-\contentsline {section}{\numberline {7.2}Dados no Brasil}{84}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{84}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{85}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{87}{appendix*.71}
+\contentsline {subsubsection}{Identificar}{84}{section*.72}
+\contentsline {subsubsection}{Navegar}{84}{section*.73}
+\contentsline {subsubsection}{Replicar}{85}{section*.74}
+\contentsline {subsubsection}{Parsear}{85}{section*.75}
+\contentsline {subsubsection}{Validar}{85}{section*.76}
+\contentsline {subsubsection}{Iterar}{85}{section*.77}
+\contentsline {section}{\numberline {7.2}Dados no Brasil}{85}{section.7.2}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{86}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{87}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{89}{appendix*.78}
 \contentsfinish 

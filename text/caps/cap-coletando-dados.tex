@@ -20,14 +20,59 @@ Uma etapa crucial da análise de dados, muitas vezes menosprezada pelos estatísti
 
 Dados de poluição, pela sua relevância para a saúde pública, costumam ser medidos e disponibilizados gratuitamente por órgãos públicos. Embora dificilmente haja interesse político para dificultar o acesso desses dados, como muitas vezes acontece com dados públicos governamentais e de tribunais, o acesso a eles nem sempre é construído maneira ótima e raramente a base se encontra estruturada para análise. A principal causa disso é falta de comunicação entre o responsável pela disponibilização dos dados e a pessoa que vai de fato analisá-los.
 
-Com o aumento da disponibilização de dados na internet ao lado da dificuldade de acesso e estruturação, um \textit{framework} de coleta de dados conhecido \textit{web scraping} (ou raspagem de dados web) vem se tornando cada vez mais popular. Seu objetivo é criar rotinas computacionais para baixar dados de páginas e sistemas na internet de forma automática e estruturada. Embora essas rotinas exijam conhecimento de programação web, elas podem ser realizadas no mesmo ambiente da análise de dados quando utilizamos linguagens como o R ou o Python. 
+Com o aumento da disponibilização de dados na internet ao lado da dificuldade de acesso e estruturação, um \textit{framework} de coleta de dados conhecido \textit{web scraping} vem se tornando cada vez mais popular. Seu objetivo é criar rotinas computacionais para baixar dados de páginas e sistemas na internet de forma automática e estruturada. Embora essas rotinas exijam conhecimento de programação web, elas podem ser realizadas no mesmo ambiente da análise de dados quando utilizamos linguagens como o R ou o Python. 
  
 Nesta seção, discutiremos os conceitos básicos de web scraping e apresentaremos algumas formas de se obter dados de poluição do ar, tanto no Brasil quanto em outros lugares do mundo.
 
 \section{Web scraping}
   
+\textit{Web scraping}\footnote{O termo em português \textit{raspagem de dados web} existe, mas é bem pouco utilizado.} é a tarefa de extrair dados da internet de forma automatizada. Hoje em dia é muito comum termos acesso rápido e fácil a qualquer conjunto de informações pela web, mas raramente esses dados estão estruturados e em uma forma de fácil obtenção pelo usuário.
+
+O web scraping é necessário quando os dados são disponibilizados publicamente, mas o acesso manual a eles é exaustivo ou impraticável, como, por exemplo, quando queremos baixar uma série de 30 anos de um poluente, mas os dados são disponibilizados mês a mês, com cada arquivo em uma página diferente. Quando os dados não são públicos, a construção de \textit{scrapers} deve levar em conta os termos de uso da página, pois algumas não permitem a extração dos dados ou o acesso via algoritmo. Também é recomendável sempre verificar se o órgão ou a empresa já não possui uma API (\textit{Application Programming Interface}), isto é, um sistema criado para facilitar o acesso de terceiros aos dados.
+
+O fluxo do web scraping, como podemos observar no diagrama a seguir, é composto por seis etapas: identificar, navegar, replicar, parsear, validar e iterar.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-webscraping-cycle.png}
+	\caption{O fluxo do web scraping.}
+	\label{fig:cap-webscraping-cycle}
+\end{figure}
+
+A seguir, descreveremos de uma forma geral cada uma dessas etapas.
+
+\subsubsection{Identificar}
+
+No primeiro passo do fluxo, precisamos identificar a informação que vamos coletar, isto é, entender bem qual é a estrutura das páginas que queremos raspar e traçar um plano para extrair tudo que precisamos.
+
+Se, por exemplo, estamos interessados em uma tabela que aparece no corpo de diversas páginas web, precisamos listar todas as páginas que devem ser acessadas (definir o conjunto de \textit{links} que serão acessados) e avaliar se essa tabela sempre aparece com o mesmo formato.
+
+\subsubsection{Navegar}
+
+O objetivo desta etapa é descobrir qual e que tipo de requisição é feita para o servidor que hospeda o site gerar os dados que queremos extrair. 
+
+Esta etapa exige algum conhecimento de programação web, pois consiste em usar ferramentas de desenvolvedor do navegador para encontrar a fonte dos dados a partir das chamadas HTTP ou dos resultados das funções JavaScript. 
+
+\subsubsection{Replicar}
+
+Se tivéssemos que fazer várias requisições HTTP para chegar até a informação que queremos, seria nesta etapa que tentaríamos replicar essas chamadas. Aqui, é necessário compreender absolutamente tudo que a página está fazendo para trazer o conteúdo até você, como a existência de parâmetros, cookies, \textit{tokens} etc.
+
+No R, é possível fazer requisições \texttt{GET} e \texttt{POST} a partir das funções \texttt{GET()} e \texttt{POST()} do pacote \texttt{httr}.
+
+\subsubsection{Parsear}
+
+O anglicismo \textit{parsear} vem do verbo to parse, que quer dizer algo como analisar ou estudar, mas que, no contexto do web scraping, significa extrair os dados desejados de um arquivo HTML. Esta etapa é essencialmente dependente da estrutura de dados que está sendo baixada e de como ela foi disponibilizada na página.
+
+\subsubsection{Validar}
+
+Se tudo ocorreu bem, validar os resultados será uma tarefa simples. Precisamos apenas reproduzir o procedimento descrito até agora para algumas outras páginas de modo a verificar se estamos de fato extraindo corretamente tudo o que queremos.
+
+Caso encontremos algo de errado precisamos voltar ao terceiro passo, tentar replicar corretamente o comportamento do site e parsear os dados certos nas páginas.
+
+\subsubsection{Iterar}
   
-  
+O último passo consiste em colocar o \textit{scraper} em produção. Aqui, ele já deve estar funcionando corretamente para todos os casos desejados e estar pronto para extrair todos os dados que precisamos.
+
   
 \section{Dados no Brasil}
 

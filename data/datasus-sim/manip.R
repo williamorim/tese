@@ -89,14 +89,15 @@ df_salvo <- df_salvo %>%
     date, year, month, week, day, dayofweek,
     dv_publicholiday, dv_weekday_regular, dv_yearendvacation,
     share_gas,
-    tp, hm, pp
+    tp, hm, pp,
+    o3_mass_conc
   ) %>% 
   mutate(
     date = str_c(year, month, day, sep = "-") %>% lubridate::ymd()
   )
 
 mean_vars <- df_salvo %>%
-  select(date, tp, hm, pp, share_gas) %>% 
+  select(date, tp, hm, pp, share_gas, o3_mass_conc) %>% 
   group_by(date) %>% 
   summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
   ungroup()
