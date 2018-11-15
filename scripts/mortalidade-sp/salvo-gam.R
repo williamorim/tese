@@ -66,6 +66,14 @@ ajustes <- map(
 
 extrai_resultados <- function(ajuste, preditor) {
   
+  best <- ajuste$bestTune
+  ajuste$results <- filter(
+    ajuste$results, 
+    select == best$select, 
+    method == best$method
+  )
+  
+  
   imp <-  ajuste %>% 
     varImp() %>% 
     .$importance %>% 
@@ -74,24 +82,20 @@ extrai_resultados <- function(ajuste, preditor) {
     filter(var == preditor) %>% 
     .$n
   
-  estimativas <- ajuste %>% 
+  valor_p <- ajuste %>% 
     .$finalModel %>% 
     broom::tidy() %>% 
-    filter(term == preditor) %>% 
-    magrittr::extract(c("estimate", "p.value")) %>% 
+    filter(str_detect(term, preditor)) %>% 
+    magrittr::extract(c("p.value")) %>% 
     as.list()
   
-  tibble(
+  res = tibble(
     RMSE = ajuste$results$RMSE,
     R2 = ajuste$results$Rsquared,
     MAE = ajuste$results$MAE,
     varImp = imp,
-    coeficiente = estimativas$estimate,
-    valor_p = estimativas$p.value
-  ) %>% 
-    mutate(
-      variacao = round((exp(coeficiente*10) - 1)*100, 2)
-    )
+    valor_p = valor_p
+  )
   
 }
 
@@ -102,81 +106,84 @@ resultados <- map_dfr(
 ) %>% 
   bind_cols(formulas, .)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Geral
 
-set.seed(5893524)
+resultados %>% 
+  filter(mortalidade == "n_mortes_geral") %>% 
+  arrange(RMSE) %>% 
+  View
 
-model <- train(
-  form = formulas[[1]],
-  data = na.omit(df_model),
-  method = "gam",
-  family = poisson(link = "log"),
-  trControl = train_control
-)
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 37.68864
+# R2: 0.5965807
+# varImp: 11
+# valor-p: < 000.1
 
-model
-summary(model)
-varImp(model)
-# RMSE: 43.45
-# MAE: 34.56
-# % var: 46.42%
-# share_gas imp: 2
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_geral,
-  pred = predict(model, newdata = na.omit(df_model))
+gam_plot(
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[1]],
+  xlab = ajustes[[1]]$finalModel$smooth[[1]]$term
 )
 
 gam_plot(
-  model$finalModel, 
-  model$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina"
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[4]],
+  xlab = ajustes[[1]]$finalModel$smooth[[4]]$term
 )
+
 
 # Idosos
 
-set.seed(5893524)
+resultados %>% 
+  filter(mortalidade == "n_mortes_idosos") %>% 
+  arrange(RMSE) %>% 
+  View
 
-model <- train(
-  form = formulas[[2]],
-  data = na.omit(df_model),
-  method = "gam",
-  family = poisson(link = "sqrt"),
-  trControl = train_control
-)
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 29.55081
+# R2: 0.6292175
+# varImp: 10
+# valor-p: < 000.1
 
-model
-summary(model)
-varImp(model)
-# RMSE: 33.50
-# MAE: 26.33
-# % var: 53.63%
-# share_gas imp: > 20
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_idosos,
-  pred = predict(model, newdata = na.omit(df_model))
+gam_plot(
+  ajustes[[2]]$finalModel, 
+  ajustes[[2]]$finalModel$smooth[[1]],
+  xlab = ajustes[[2]]$finalModel$smooth[[1]]$term
 )
 
 gam_plot(
-  model$finalModel, 
-  model$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina"
+  ajustes[[2]]$finalModel, 
+  ajustes[[2]]$finalModel$smooth[[4]],
+  xlab = ajustes[[2]]$finalModel$smooth[[4]]$term
+)
+
+# Crianças
+
+resultados %>% 
+  filter(mortalidade == "n_mortes_criancas") %>% 
+  arrange(RMSE) %>% 
+  View
+
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 5.042236
+# R2: 0.03484929
+# varImp: 7
+# valor-p: < 0.26
+
+gam_plot(
+  ajustes[[3]]$finalModel, 
+  ajustes[[3]]$finalModel$smooth[[1]],
+  xlab = ajustes[[3]]$finalModel$smooth[[1]]$term
+)
+
+gam_plot(
+  ajustes[[3]]$finalModel, 
+  ajustes[[3]]$finalModel$smooth[[4]],
+  xlab = ajustes[[3]]$finalModel$smooth[[4]]$term
 )

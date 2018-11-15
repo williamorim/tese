@@ -229,7 +229,7 @@ Ao estimarmos os parâmetros $\beta_0$ e $\beta_1$ (pelo método de mínimos quadra
 \widehat{Y_t} = \hat{\beta}_0 + \hat{\beta}_1 X_{t}, \quad t = 1, \dots, n,
 \label{mod:reta-de-regressao-simples}
 \end{equation}
-sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $\hat{\beta}_1$ as estimativas de $\beta_0$ e $\beta_1$ respectivamente. Note que (\ref{mod:reta-de-regressao-simples}) representa a equação de uma reta com intercepto $\hat{\beta}_0$ e coeficiente angular $\hat{\beta}_1$. Isso significa que essa reta cruza o eixo $y$ no ponto $\hat{\beta}_0$ e, se variamos o valor de $X_{t}$ em uma unidade, $\widehat{Y_t}$ vai variar $\hat{\beta}_1$ unidades, não importa qual seja o valor de $X_{t}$. Essa associação entre $\widehat{Y_t}$ e $X_{t}$ (ou $Y_t$ e $X_{t}$) é dita ser \textit{linear} com respeito aos parâmetros e está ilustrada na Figura \ref{fig:suposicao-linearidade}, para $\hat{\beta}_0$ igual a 0 e $\hat{\beta}_1$ igual a 10. Quando temos mais de um preditor, como no modelo (\ref{mod:linear}), a interpretação é análoga para cada par $(\widehat{Y_t}, X_{it})$, mantendo-se as outras variáveis fixadas.
+sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $\hat{\beta}_1$ as estimativas de $\beta_0$ e $\beta_1$ respectivamente. Note que (\ref{mod:reta-de-regressao-simples}) representa a equação de uma reta com intercepto $\hat{\beta}_0$ e coeficiente angular $\hat{\beta}_1$. Isso significa que essa reta cruza o eixo $y$ no ponto $\hat{\beta}_0$ e, se variamos o valor de $X_{t}$ em uma unidade, $\widehat{Y_t}$ vai variar $\hat{\beta}_1$ unidades, não importa qual seja o valor de $X_{t}$ ($\hat{\beta}_1$ determina a inclinação da reta). Essa associação entre $\widehat{Y_t}$ e $X_{t}$ (ou $Y_t$ e $X_{t}$) é dita ser \textit{linear} com respeito aos parâmetros e está ilustrada na Figura \ref{fig:suposicao-linearidade}, para $\hat{\beta}_0$ igual a 0 e $\hat{\beta}_1$ igual a 10. Quando temos mais de um preditor, como no modelo (\ref{mod:linear}), a interpretação é análoga para cada par $(\widehat{Y_t}, X_{it})$ se mantivermos as as outras variáveis fixadas.
 
 \begin{figure}[!h]
 	\centering
@@ -238,7 +238,7 @@ sendo $\widehat{Y_t}$ o valor de $Y_t$ predito pelo modelo e $\hat{\beta}_0$ e $
 	\label{fig:suposicao-linearidade}
 \end{figure}
 
-Repare que a suposição de linearidade é mais forte do que apenas monotonicidade. Enquanto esta última restringe que a associação entre as variáveis seja sempre crescente ou decrescente, a primeira também restringe o quanto a variável resposta varia quando o preditor aumenta ou diminui em uma unidade. Essa diferença é importante, pois muitas vezes utilizamos modelos lineares na tentativa de explicar relações que são apenas monotônicas, o que pode levar a estimativas pouco confiáveis e conclusões equivocadas. Uma discussão mais detalhada sobre esse problema pode ser encontrada em \cite{Achen2005}.
+Repare que a suposição de linearidade é mais forte do que apenas monotonicidade. Enquanto a monotonicidade restringe que a associação entre as variáveis seja sempre crescente ou decrescente, a linearidade também restringe o quanto a variável resposta varia quando o preditor aumenta ou diminui em uma unidade. Essa diferença é importante pois muitas vezes utilizamos modelos lineares na tentativa de explicar relações que são apenas monotônicas, o que pode levar a estimativas pouco confiáveis e conclusões equivocadas. Uma discussão mais detalhada sobre esse problema pode ser encontrada em \cite{Achen2005}.
 
 %A suposição de linearidade é restritiva pois a verdadeira relação entre $Y_t$ e $X_t$ pode ter outras formas. \Ex
 
@@ -266,6 +266,8 @@ Modelos polinomiais \citep{James2013} também podem ser utilizados para contornar
 	%\label{mod:polinomial}
 \end{displaymath}
 Essa classe de modelos é bem flexível e permite ajustar associações complexas entre as variáveis $X$ e $Y$, sendo uma boa alternativa para predição, mas pouco utilizados para inferência devido à falta de interpretação.
+
+Modelos de regressão segmentada são outra alternativa para ajustar relações não-lineares.
 
 %Uma terceira maneira utiliza funções escadas para representar o preditor cuja associação com a resposta é supostamente não-linear. Essa variável é dividida em M categorias, transformando-se em uma variável qualitativa. Isso é equivalente a ajustar uma função constante em cada subintervalo.
 

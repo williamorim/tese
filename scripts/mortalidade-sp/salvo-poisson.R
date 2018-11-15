@@ -110,6 +110,16 @@ resultados %>%
   arrange(RMSE) %>% 
   View
 
+
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 40.58628
+# R2: 0.5316665
+# varImp: 11
+# variacao (+10% share): 82.76%
+# valor-p: < 000.1
+
 # Idosos
 
 resultados %>% 
@@ -117,12 +127,32 @@ resultados %>%
   arrange(RMSE) %>% 
   View
 
+
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 31.59895
+# R2: 0.5762253
+# varImp: 11
+# variação (+10% share): 107.99%
+# valor-p: < 000.1
+
 # Crianças
 
 resultados %>% 
   filter(mortalidade == "n_mortes_criancas") %>% 
   arrange(RMSE) %>% 
   View
+
+
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 5.057434
+# R2: 0.02815193
+# varImp: 7
+# variacao (+10% share): 118.69
+# valor-p: 0.16391250
 
 # 
 # ggplot(df_model) +
