@@ -7,7 +7,7 @@ library(recipes)
 # Dados -------------------------------------------------------------------
 
 df_model <- read_rds("data/datasus-sim/model_mort_diaria_salvo.rds")
-df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
+# df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
 
 source("scripts/salvo-2017/salvo-utils.R")
 
@@ -27,8 +27,10 @@ cria_formula <- function(mort, temp, sazon) {
 
 formulas <- expand.grid(
   mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
-  temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
-  sazonalidade = c("month", "season")
+  #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
+  temperatura = "tp",
+  #sazonalidade = c("month", "season")
+  sazonalidade = "month"
 ) %>% 
   as.tibble() %>% 
   mutate(formula = cria_formula(mortalidade, temperatura, sazonalidade))
@@ -58,7 +60,7 @@ train_control <- trainControl(method="cv", number = 5)
 ajustes <- map(
   formulas$formula,
   train_model,
-  df_model = df_model,
+  df_model = filter(df_model, week != "26"),
   train_control = train_control
 )
 
@@ -110,7 +112,6 @@ resultados %>%
   arrange(RMSE) %>% 
   View
 
-
 # Melhor resultado:
 # temp média
 # month
@@ -119,6 +120,8 @@ resultados %>%
 # varImp: 11
 # variacao (+10% share): 82.76%
 # valor-p: < 000.1
+
+ajustes[[1]]$finalModel %>% plot
 
 # Idosos
 

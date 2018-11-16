@@ -27,8 +27,10 @@ cria_formula <- function(mort, temp, sazon) {
 
 formulas <- expand.grid(
   mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
-  temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
-  sazonalidade = c("month", "season")
+  #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
+  temperatura = c("tp", "tp_var"),
+  #sazonalidade = c("month", "season")
+  sazonalidade = "month"
 ) %>% 
   as.tibble() %>% 
   mutate(formula = cria_formula(mortalidade, temperatura, sazonalidade))
