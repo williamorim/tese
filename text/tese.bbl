@@ -1,4 +1,4 @@
-\begin{thebibliography}{72}
+\begin{thebibliography}{73}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -330,6 +330,12 @@ Charles~E. McCulloch e Shayle~R. Searle.
 Pedro~A. Morettin e Clelia M.~C. Toloi.
 \newblock \emph{An{\'a}lise de Series Temporais}.
 \newblock ABE - Projeto Fisher e Editora Edgard Blucher, S{\~a}o Paulo.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Muggeo(2003)]{Muggeo2003}{\bf Muggeo(2003)}
+Vito Muggeo.
+\newblock Estimating regression models with unknown break-points.
+\newblock \emph{Statistics in Medicine}, 22: \penalty0 3055--3071.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Mulawa {\rm{\em et~al.}}(1997)Mulawa, Cadle, Knapp, Zweidinger, Snow,

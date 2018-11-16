@@ -267,11 +267,21 @@ Modelos polinomiais \citep{James2013} também podem ser utilizados para contornar
 \end{displaymath}
 Essa classe de modelos é bem flexível e permite ajustar associações complexas entre as variáveis $X$ e $Y$, sendo uma boa alternativa para predição, mas pouco utilizados para inferência devido à falta de interpretação.
 
-Modelos de regressão segmentada são outra alternativa para ajustar relações não-lineares.
+Modelos de regressão segmentada \citep{Muggeo2003} são outra alternativa para ajustar relações não-lineares. Vamos supor que, para um determinado local, as médias diárias da concentração de ozônio e da temperatura sejam relacionadas como na gráfico da esquerda da Figura \ref{fig:cap-regressao-exemplo-reg-seg}. O ajuste de um modelo de regressão segmentada a exemplo consiste em estimar um ou mais pontos de corte para a temperatura e, em cada região formada, ajustar uma reta de regressão com inclinação possivelmente diferente. O gráfico da direita apresenta as retas de regressão segmentada para um ponto de corte na temperatura.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-regressao-exemplo-reg-seg.pdf}
+	\caption{Exemplo de regressão segmentada. À esquerda, o gráfico de concentrações médias diárias de ozônio pela temperatura média diária. À direita, um modelo de regressão segmentada ajustada aos pontos com um ponto de corte.}
+	\label{fig:cap-regressao-exemplo-reg-seg}
+\end{figure}
+
+A especificação do modelo, além de permitir que a inclinação das retas ajustadas mude em cada ponto de corte, possui parâmetros interpretáveis, ao contrário do modelo polinomial e dos modelos aditivos (ver Seção \ref{sec:gam}). A ideia por trás do algoritmo de estimação consiste em achar os pontos de corte no preditor que melhor representem mudanças na relação preditor/resposta. Isso é feito utilizando uma técnica de \textit{linearização} do modelo utilizando a expansão de Taylor de primeira ordem (ver \citep{Muggeo2003} para mais detalhes). Dessa forma, o ponto de corte passa a ser um parâmetro do modelo e a dificuldade computacional é a mesma de um ajuste de um modelo de regressão linear.
+
 
 %Uma terceira maneira utiliza funções escadas para representar o preditor cuja associação com a resposta é supostamente não-linear. Essa variável é dividida em M categorias, transformando-se em uma variável qualitativa. Isso é equivalente a ajustar uma função constante em cada subintervalo.
 
-Mais detalhes sobre linearidade e outras alternativas podem ser encontradas em \cite{Hastie2008} e \cite{James2013}.
+Mais detalhes sobre linearidade e outras alternativas para contornar essa suposição podem ser encontradas em \cite{Hastie2008} e \cite{James2013}.
 
 \subsection{Contornado a suposição de aditividade}
 \label{sec:aditividade}

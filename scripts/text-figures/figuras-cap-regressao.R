@@ -4,6 +4,7 @@
 # William Nilson de Amorim
 
 library(tidyverse)
+library(patchwork)
 set.seed("5893524")
 
 # exemplo-splines
@@ -42,3 +43,48 @@ ggplot(df, aes(x = x, y = y)) +
   theme_bw()
 ggsave(filename = "text/figuras/cap-regressao-exemplo-splines.pdf", 
        width = 6, height = 4)
+
+# exemplo regressão segmentada
+
+df <- readr::read_rds("data/artaxo-salvo-geiger/data-asg-model.rds")
+
+fit <- lm(o3_mass_conc ~ tp, data = df)
+fit_seg <- segmented::segmented(fit,seg.Z = ~tp, psi = c(20, 30))
+
+
+p1 <- df %>% 
+  filter(siteid == 1) %>% 
+  ggplot(aes(x = tp, y = o3_mass_conc)) +
+  geom_point() +
+  theme_bw() +
+  labs(
+    x = "Temperatura (°C)", 
+    y = expression(paste(O[3], " (", mu, "g/", m^3, ")"))
+  )
+
+p15 <- df %>% 
+  filter(siteid == 1) %>% 
+  ggplot(aes(x = tp, y = o3_mass_conc)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_bw() +
+  labs(
+    x = "Temperatura (°C)", 
+    y = expression(paste(O[3], " (", mu, "g/", m^3, ")"))
+  )
+
+p2 <- df %>% 
+  filter(siteid == 1) %>% 
+  ggplot(aes(x = tp, y = o3_mass_conc)) +
+  geom_point() +
+  geom_segment(x = 0, y = -2.069, xend = 21.66, yend = 38.5548, color = "blue") +
+  geom_segment(xend = 38, yend = 151.9, x = 21.66, y = 38.5548, color = "orange") +
+  theme_bw() +
+  labs(
+    x = "Temperatura (°C)", 
+    y = expression(paste(O[3], " (", mu, "g/", m^3, ")"))
+  )
+
+p <- p1 + p2
+
+ggsave("text/figuras/cap-regressao-exemplo-reg-seg.pdf", p, width = 6, height = 4)

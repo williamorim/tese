@@ -2,17 +2,17 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Crit\'erios para a escolha da ordem de modelos ARIMA.\relax }}{43}{table.caption.32}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Crit\'erios para a escolha da ordem de modelos ARIMA.\relax }}{44}{table.caption.33}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Raiz do erro quadr\'atico m\'edio (RMSE) para os modelos polinomiais de grau 1 a 9 ajustados com 10 e 110 observa\c c\~oes no exemplo da Figura \ref {cap-aprend-estat-trade-off}.\relax }}{49}{table.caption.37}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Modelos de regress\~ao linear que devem ser ajustados para selecionar o melhor subconjunto de vari\'aveis no caso com 3 preditores.\relax }}{54}{table.caption.43}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Raiz do erro quadr\'atico m\'edio (RMSE) para os modelos polinomiais de grau 1 a 9 ajustados com 10 e 110 observa\c c\~oes no exemplo da Figura \ref {cap-aprend-estat-trade-off}.\relax }}{49}{table.caption.38}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Modelos de regress\~ao linear que devem ser ajustados para selecionar o melhor subconjunto de vari\'aveis no caso com 3 preditores.\relax }}{54}{table.caption.44}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{69}{table.caption.55}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite {Salvo2017}.\relax }}{71}{table.caption.57}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{74}{table.caption.61}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{77}{table.caption.66}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{78}{table.caption.68}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{80}{table.caption.70}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Preditores considerados pelo modelo para a concentra\c c\~ao de oz\^onio ajustado em \cite {Salvo2017}.\relax }}{69}{table.caption.56}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite {Salvo2017}.\relax }}{71}{table.caption.58}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{74}{table.caption.62}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{77}{table.caption.67}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{78}{table.caption.69}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{80}{table.caption.71}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
