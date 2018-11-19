@@ -1,7 +1,6 @@
 # Ozônio - Salvo, 2017
 # Regressão linear
 
-
 # Libraries ---------------------------------------------------------------
 
 library(tidyverse)
@@ -36,7 +35,7 @@ formula <- df_model %>%
 # Model -------------------------------------------------------------------
 
 model <- lm(formula, data = df_model)
-seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.15, 0.5))
+seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.2, 0.5, 0.6))
 
 summary(seg_model)
 

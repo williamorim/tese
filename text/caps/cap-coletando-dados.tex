@@ -76,6 +76,20 @@ O último passo consiste em colocar o \textit{scraper} em produção. Aqui, ele já 
   
 \section{Dados no Brasil}
 
+Dados de poluição do ar no Brasil geralmente são disponibilizados pelas Órgãos Estaduais de Meio Ambiente, sendo que o acesso a esses dados, em geral, pode ser feito direta ou indiretamente no portal de cada órgão. 
+
+Uma solução integrada para acessar esses dados foi desenvolvida pelo Instituo de Energia e Meio Ambiente (IEMA), que compilou os dados de monitoramento dos órgãos ambientais de todo o país em uma plataforma unificada e acessível. A \href{http://qualidadedoar.org.br/}{Plataforma de Qualidade do Ar}, em sua primeira versão, compilou os valores anuais da concentração de poluentes atmosféricos, criando uma base de dados entre os anos de 2000 e 2014 de todos os estados que disponibilizam tais informações. Com o objetivo de explorar em mais detalhes os poluentes monitorados, a plataforma passou a incorporar dados horários e diários a partir de 2015.
+
+Na Figura \ref{fig:cap-webscraping-mapa-iema}, apresentamos um mapa das estações de monitoramento disponíveis na plataforma do IEMA. Fica claro que o monitoramento de poluentes é uma atividade quase exclusiva das regiões Sul e Sudeste.
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-webscraping-mapa-iema.png}
+	\caption{Mapa de estações de monitoramento disponíveis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.}
+	\label{fig:cap-webscraping-mapa-iema}
+\end{figure}
+
 Para o estado de São Paulo, a CETESB (Companhia Ambiental do Estado de São Paulo) oferece um sistema de consulta de medidas em tempo real e de relatórios diários, mensais e anuais. O sistema, chamado \textit{Qualar}, também permite a exportação de diversas séries históricas de poluentes e parâmetros meteorológicos, além de informações sobre as estações de monitoramento. 
 
 Para facilitar o acesso aos dados, já que o sistema possui restrições estruturais (como baixar dados de vários poluentes ou estações de uma única vez) e também pode se tornar lento quando precisamos acessar séries muito longas, nós criamos o pacote \texttt{koffing}, em R. O processo se resume ao uso da função \texttt{scraper\_cetesb()}, que tem, entre outros argumentos, o parâmetro a ser baixado, a estação medidora e o login e senha de acesso ao Qualar. Dada uma lista de parâmetros e estações, a função pode ser utilizada dentro de um \textit{looping} para baixar os dados de diversas estações e poluentes automaticamente. Para instalar o pacote, basta rodar o seguinte comando \texttt{devtools::install\_github("atmoschem/koffing")}.

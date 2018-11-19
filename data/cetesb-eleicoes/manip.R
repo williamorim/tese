@@ -24,8 +24,8 @@ safe_scraper_cetesb <- possibly(
       parameter = parameter,
       start = start,
       end = end,
-      login = "seu_login",
-      password = "sua_senha"
+      login = "thewilliam89@gmail.com",
+      password = "wouldy0uralauq?"
     )
   },
   otherwise = NULL
@@ -44,73 +44,61 @@ get_cetesb_data <- function(station, parameter) {
       x = df, 
       path = str_c(
         "data/cetesb-eleicoes/df-", 
-        parameter, "-", station, "-", year, ".csv"
+        parameter, "-", station, ".csv"
       )
     )
     
     print(
       str_c(
         "Dados de ", parameter, " da estação ", 
-        station, " de ", year, " baixados com sucesso."
+        station, " baixados com sucesso."
         )
     )
   } else {
     print(
       str_c(
         "Não foi possível baixar dados de ", parameter, " da estação ", 
-        station, " de ", year
+        station
       )
     )
   }
   
 }
 
-walk2(
-  stations_ids$id, 
-  parameters_id,
-  get_cetesb_data
-)
-
-
+for(j in 1:length(parameters_id)) {
+  walk(
+    stations_ids$id, 
+    get_cetesb_data,
+    parameters_id[j]
+  )
+}
 
 # Consolidando os dados ---------------------------------------------------
 
-files <- list.files(path = "data/cetesb-greve-caminhoneiros/")
-paths <- str_c("data/cetesb-greve-caminhoneiros/", files)
+files <- list.files(path = "data/cetesb-eleicoes/")
+paths <- str_c("data/cetesb-eleicoes/", files)
 paths <- paths[str_detect(paths, ".csv")]
 
 df <- map_dfr(
   paths, 
-  read_csv,
-  col_types = str_c(rep("c", 17), collapse = "")
+  read_csv
 )
 
-aux <- df %>%
-  select(
-    parameter = `Nome Parâmetro`,
-    stationname = `Nome Estação`,
-    date = Data,
-    hour = Hora,
-    mass_conc = `Média Horária`
-  ) %>%
+df %>%
   mutate(
-    mass_conc = str_replace(mass_conc, ",", "."),
-    mass_conc = as.numeric(mass_conc),
-    date = lubridate::dmy(date),
-    hour = str_sub(hour, start = 1, end = 2),
-    hour = as.numeric(hour),
-    dayofweek = lubridate::wday(date, label = TRUE),
-    mass_conc = ifelse(abs(mass_conc) == 9999999, NA, mass_conc),
-    parameter = str_replace_all(parameter, " [(].*", "")
+    periodo = case_when(
+      date == "2018-10-07" | date == "2018-10-28" ~ "eleicao",
+      date == "2018-09-30" | date == "2018-09-23" ~ "antes",
+      date == "2018-10-14" | date == "2018-10-21" ~ "entre",
+      date == "2018-11-04" | date == "2018-11-11" ~ "depois",
+      TRUE ~ "outro"
+    )
   ) %>% 
-  spread(parameter, mass_conc)
+  write_rds(
+    path = "data/cetesb-eleicoes/data-eleicoes.rds",
+    compress = "gz"
+  )
 
-write_rds(
-  aux,
-  path = "data/cetesb-greve-caminhoneiros/data-greve-caminhoneiros.rds",
-  compress = "gz"
-)
-  
 # Unidades de medida
   
 # 1 MP10 (Partículas Inaláveis)        µg/m3            
