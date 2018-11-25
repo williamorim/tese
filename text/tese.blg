@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 558 of file tese.aux
+---line 577 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -29,45 +29,45 @@ Warning--there's a number but no volume in Kalman1961
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
 Warning--empty institution Em WHO2004
-You've used 73 entries,
+You've used 74 entries,
             2743 wiz_defined-function locations,
-            1101 strings with 19081 characters,
-and the built_in function-call counts, 32706 in all, are:
-= -- 2824
-> -- 2296
-< -- 46
-+ -- 785
-- -- 711
-* -- 2580
-:= -- 5355
-add.period$ -- 245
-call.type$ -- 73
-change.case$ -- 367
-chr.to.int$ -- 72
-cite$ -- 152
-duplicate$ -- 1251
-empty$ -- 2358
-format.name$ -- 818
-if$ -- 6717
+            1109 strings with 19220 characters,
+and the built_in function-call counts, 33125 in all, are:
+= -- 2864
+> -- 2317
+< -- 47
++ -- 792
+- -- 717
+* -- 2609
+:= -- 5420
+add.period$ -- 248
+call.type$ -- 74
+change.case$ -- 371
+chr.to.int$ -- 73
+cite$ -- 154
+duplicate$ -- 1268
+empty$ -- 2393
+format.name$ -- 827
+if$ -- 6807
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 88
-newline$ -- 394
-num.names$ -- 292
-pop$ -- 873
+missing$ -- 89
+newline$ -- 399
+num.names$ -- 296
+pop$ -- 881
 preamble$ -- 1
-purify$ -- 310
+purify$ -- 313
 quote$ -- 0
-skip$ -- 900
+skip$ -- 913
 stack$ -- 0
-substring$ -- 1003
-swap$ -- 76
+substring$ -- 1026
+swap$ -- 77
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 708
+type$ -- 719
 warning$ -- 6
-while$ -- 262
+while$ -- 266
 width$ -- 0
-write$ -- 1139
+write$ -- 1154
 (There were 10 error messages)

@@ -3,6 +3,7 @@
 library(tidyverse)
 library(caret)
 library(recipes)
+library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ cria_formula <- function(mort, temp, sazon) {
 formulas <- expand.grid(
   mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
   #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
-  temperatura = c("tp", "tp_var"),
+  temperatura = "tp",
   #sazonalidade = c("month", "season")
   sazonalidade = "month"
 ) %>% 
@@ -118,16 +119,17 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 37.68864
-# R2: 0.5965807
+# RMSE: 37.80102
+# R2: 0.5941244
 # varImp: 11
 # valor-p: < 000.1
 
-gam_plot(
+p_geral <- gam_plot(
   ajustes[[1]]$finalModel, 
   ajustes[[1]]$finalModel$smooth[[1]],
-  xlab = ajustes[[1]]$finalModel$smooth[[1]]$term
-)
+  xlab = ""
+) +
+  ggtitle("Geral")
 
 gam_plot(
   ajustes[[1]]$finalModel, 
@@ -151,11 +153,12 @@ resultados %>%
 # varImp: 10
 # valor-p: < 000.1
 
-gam_plot(
+p_idosos <- gam_plot(
   ajustes[[2]]$finalModel, 
   ajustes[[2]]$finalModel$smooth[[1]],
-  xlab = ajustes[[2]]$finalModel$smooth[[1]]$term
-)
+  xlab = ""
+)+
+  ggtitle("Idosos")
 
 gam_plot(
   ajustes[[2]]$finalModel, 
@@ -178,14 +181,20 @@ resultados %>%
 # varImp: 7
 # valor-p: < 0.26
 
-gam_plot(
+p_criancas <- gam_plot(
   ajustes[[3]]$finalModel, 
   ajustes[[3]]$finalModel$smooth[[1]],
-  xlab = ajustes[[3]]$finalModel$smooth[[1]]$term
-)
+  xlab = "Proporção estimada de carros a gasolina"
+) +
+  ggtitle("Crianças")
 
 gam_plot(
   ajustes[[3]]$finalModel, 
   ajustes[[3]]$finalModel$smooth[[4]],
   xlab = ajustes[[3]]$finalModel$smooth[[4]]$term
 )
+
+
+patchwork::wrap_plots(p_geral, p_idosos, p_criancas, ncol = 1)
+ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson.pdf", 
+       width = 5, height = 5)

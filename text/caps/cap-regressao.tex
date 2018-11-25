@@ -520,7 +520,7 @@ No R, modelos lineares generalizados podem ser ajustados utilizando-se a função 
 
 Para mais informações sobre \textit{splines}, regressão local e modelos lineares aditivos em geral, consultar \cite{Hastie2008} e \cite{James2013}.
 
-\section{Modelos de previsão}
+\section{Séries temporais}
 
 Às vezes, queremos explicar a série $Y$ apenas por seus valores defasados no tempo (autocorrelação) ou pelos valores defasados dos preditores $X_{1}, \dots, X_{p}$ (correlação cruzada). Como os modelos de regressão apresentados até aqui permitem que $Y$ seja influenciada apenas por valores contemporâneos das variáveis explicativas, eles podem ser insuficientes para explicar toda as relações temporais presente em uma série. 
 
@@ -610,15 +610,17 @@ A ideia nesse passo é, a partir dos gráficos da função de autocorrelação e autoc
 
 A classe ARIMA pode ser generalizada para incluir o ajuste da sazonalidade. Essa nova classe, conhecida como SARIMA, inclui termos autoregressivos e de médias móveis para termos separados por \textit{lags} de tamanho $s$. Para mais informações, recomendamos a leitura do Capítulo 10 de \cite{Morettin2004} e da Seção 3.9 de \cite{Shumway2006}.  
 
+Na linguagem R, uma maneira conveniente de se ajustar um modelo ARIMA é utilizar a função \texttt{auto.arima()} do pacote \texttt{forecast}. O algoritmo construído nessa função retorna o melhor modelo ARIMA com base em alguma métrica de qualidade de ajuste do modelo\footnote{As opções disponíveis são AIC, AICc ou BIC.}, ajustando todas as combinações de valores para $p$, $d$ e $q$ segundo alguma restrição (combinação de todas as ordens menores que 5, por exemplo).
+
 %\subsection{Modelos de função de transferência}
 
 %Em muitos estudos de séries temporais, não conseguimos explicar a variabilidade de uma variável apenas pelos seus próprios valores defasados no tempo. A classe ARIMA apresentada nas últimas seções não contempla a inclusão de covariáveis, o que pode ser um grande impeditivo para o uso desses modelos.
 
 %Modelos de função de transferência descrevem a relação entre os preditores e a variável resposta de um fenômeno usando uma razão de polinômios, sendo a ordem do modelo igual à ordem do polinômio do denominador.
 
-\subsection{Outros modelos de previsão}
+\section{Outros modelos}
 
-\subsubsection{Modelos GARCH}
+\subsection{Modelos GARCH}
 
 Os modelos para séries temporais apresentados até aqui são utilizados para modelar a média condicional de um processo quando a variância condicional (volatilidade) é constante. Em muitos problemas, contudo, a suposição de homoscedasticidade pode não ser verdadeira.
 
@@ -661,7 +663,7 @@ Por ser um modelo com muitos parâmetros, a especificação do modelo GARCH($p$, $q
 
 A estimação desses modelos pode ser conduzida da mesma forma que para os modelos ARMA, discutida na Seção 3.6 de \cite{Shumway2006}.
 
-\subsubsection{Modelos dinâmicos}
+\subsection{Modelos dinâmicos}
 
 Estudos de poluição atmosférica envolvem dados cuja coleta é naturalmente suscetível à omissão. A medição de poluentes e de variáveis meteorológicas, por exemplo, envolve equipamentos que estão sujeitos a imprecisões, falhas e precisam ser constantemente regulados. Esses dados geralmente são sustentados pela administração pública, cuja redução de verbas pode descontinuar ou reduzir os planos de coleta.
 
@@ -684,13 +686,13 @@ A aplicação desses modelos nos permite ajustar a série a partir de suas observaç
 
 \cite{Collet2008} apresentam um famoso uso da aplicação de modelos dinâmicos para previsão de consumo de energia elétrica na França. Mais informações sobre o modelo, no contexto de poluição do ar, podem ser encontradas no capítulo 12.3 de \cite{Zannetti1990}. 
 
-\subsection{Outros tópicos de modelagem}
+%\textsc{\subsection{Outros tópicos de modelagem}
 
-Nesta seção, apresentaremos alguns tópicos adicionais sobre modelagem de dados de poluição.
+%Nesta seção, apresentaremos alguns tópicos adicionais sobre modelagem de dados de poluição.
 
-\subsubsection{Funções de impacto na saúde}
-\label{sec:health-impact-functions}
+%\subsubsection{Funções de impacto na saúde}
+%\label{sec:health-impact-functions}
 
-\cite{Chang2017} utilizaram funções de dose-resposta para avaliar a associação da mortalidade com as concentrações de material particulado próximas a estradas na região central da Carolina do Norte (EUA). Eles concluíram que 72\% das mortes prematuras associadas à exposição de PM2.5 aconteciam em um raio de 1km de grandes estradas, onde cerca de 50\% da população vivia.
+%\cite{Chang2017} utilizaram funções de dose-resposta para avaliar a associação da mortalidade com as %concentrações de material particulado próximas a estradas na região central da Carolina do Norte (EUA). %Eles concluíram que 72\% das mortes prematuras associadas à exposição de PM2.5 aconteciam em um raio de 1km %de grandes estradas, onde cerca de 50\% da população vivia.
 
-Referências de funções de impacto na saúde: \cite{Chang2017}.
+%Referências de funções de impacto na saúde: \cite{Chang2017}.}

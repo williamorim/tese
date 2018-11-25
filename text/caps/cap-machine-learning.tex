@@ -301,7 +301,7 @@ As árvores de decisão se baseiam no particionamento das variáveis explicativas, 
 
 Na Figura \ref{fig:cap-aprend-estat-arvore}, apresentamos um exemplo de árvore de decisão para a concentração de ozônio explicada pela temperatura. Para interpretá-la, basta começarmos pelo primeiro nó (a caixa mais alta da figura) e seguir as regras de decisão até encontrarmos um nó final (uma das caixas no nível mais baixo). Cada nó final apresenta a estimativa para as observações que caíram naquela partição e o número de observações dentro da partição (absoluto e proporcional ao tamanho da amostra). A Figura \ref{fig:cap-aprend-estat-arvore} indica que dias com temperatura menor de 26° C serão preditos com concentração de ozônio igual a 38 $\mu/m^3$; dias com temperatura entre 27 e 29° C serão preditos com concentração de ozônio igual a 69 $\mu/m^3$; e dias com temperatura maior de 92° C serão preditos com temperatura igual a 92° C. Além de conseguirmos predizer facilmente o nível de ozônio a partir da temperatura, também podemos observar que a concentração de ozônio aumenta com a temperatura. Na prática, podemos utilizar as árvores de decisão com quantos preditores forem necessários, sendo que cada nó poderá conter uma regra com um preditor diferente.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-arvore.pdf}
 	\caption{Exemplo de uma árvore de decisão para a concentração de ozônio explicada pela temperatura.}
@@ -315,7 +315,23 @@ As árvores de decisão copiam bem o processo de tomada de decisão do cérebro huma
 \subsection{Random Forests}
 \label{sec:random-forest}
 
-As chamadas \textit{random forests} utilizam diversas árvores de decisão para predizer o valor de uma observação. Em cada iteração do algoritmo, selecionamos uma amostra dos $p$ preditores e construímos uma árvore de decisão para esses $m$ preditores. Esse procedimento é repetido $M$ vezes, gerando $M$ árvores diferentes. A amostragem dos preditores garante que as árvores geradas não sejam muito correlacionadas e permite que o modelo aprenda também com preditores de menor peso. A predição final será então a média das predições de cada árvore. Geralmente, $m$ é escolhido como $\sqrt{p}$, mas esse hiperparâmetro pode ser definido utilizando validação cruzada. $M$ por volta de 200 costuma ser suficiente para gerar bons resultados\footnote{Para valores de $M$ muito altos (maior que 200), a amostragem dos preditores passa a criar árvores mais parecidas com as já existentes, o que não gera maiores ganhos de precisão.}.
+As árvores de decisão apresentadas na seção anterior tendem a ter alta variância, isto é, se dividirmos nossa amostra em duas e aplicarmos o mesmo modelo de árvores de decisão em cada um, há uma grande chance de obtermos divisões diferentes no espaço amostral e, consequentemente, diferentes predições. 
+
+Uma maneira de lidar com esse problema é gerar diferentes amostras de \textit{bootstrapping}, ajustar o mesmo modelo em cada uma delas e utilizar predições médias como estimativas final do modelo. Em um contexto geral, essa técnica é chamada de \textit{bootstrapping aggregation} ou \textit{bagging}. Ele pode ser utilizada para qualquer modelo e seu objetivo geral é diminuir a variância das estimativas.
+
+As chamadas \textit{random forests} \cite{Hastie2008} são uma aplicação do \textit{bagging} para árvores de decisão. Neste modelo, além de utilizarmos uma amostra de \textit{boostraping} diferente para cada árvore ajustada, também fazemos uma seleção dos preditores para cada ajuste. Isso impede que as árvores ajustadas sejam muito correlacionadas e permite que preditores que seriam preteridos por serem "menos importantes" também ajudem a explicar a variação da variável resposta.
+
+Em cada iteração do algoritmo,
+
+\begin{enumerate}
+	\item sorteamos $m$ dos $p$ preditores, $m \leq p$;
+	\item geramos uma amostra de \textit{boostrapping} a partir da base inicial;
+	\item ajustamos uma árvore de decisão utilizando os $m$ preditores escolhidos em (1) e a amostra em (2).
+\end{enumerate}
+
+Repetindo esse procedimento $M$ vezes, teremos $M$ estimativas para cada nova observação. A predição final será a média dessas $M$ estimativas (no caso de regressão) ou a classe mais frequente (no caso de classificação). Geralmente, $m$ é escolhido como $\sqrt{p}$, mas esse hiperparâmetro pode ser definido utilizando validação cruzada. $M$ por volta de 200 costuma ser suficiente para gerar bons resultados\footnote{Para valores de $M$ muito altos (maior que 200), a amostragem dos preditores passa a criar árvores mais parecidas com as já existentes, o que não gera maiores ganhos de precisão.}.
+
+\textit{Random forests} podem ser ajustadas utilizando a função \texttt{train()} do pacote \texttt{caret} com \texttt{methord = "ranger"}. Os principais hiperparâmetros que devem ser escolhidos são o número de sorteados em cada ajuste ($m$) e o número mínimo de observações nos nós finais de cada árvore.
 
 Ao contrário das árvores de decisão, as \textit{random forests} não são diretamente interpretáveis, já que se baseiam nas estimativas de centenas de árvores. Medidas de importância das variáveis podem ser utilizadas para avaliar quais preditores são os mais relevantes para explicar a variável resposta. Em geral, usa-se a redução média do RMSE gerada por todas partições do preditor nas $M$ árvores.
 
@@ -336,3 +352,21 @@ O algoritmo consiste em:
 
 A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \textit{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R. O texto pode ser acessado por este link: \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{https://goo.gl/Nu9ZsA}.
 
+\subsection{XGBoosting}
+
+Assim como o \textit{bagging}, apresentado na seção anterior, o \textit{boosting} é uma abordagem geral aplicada a diversos modelos para aumentar seu poder preditivo. No contexto de árvores de decisão, a ideia aqui é construir árvores sequencialmente, sendo que cada árvore utiliza informações obtidas da árvore anterior. Ao contrário do \textit{bagging}, o \textit{boosting} não envolve amostras de \textit{bootstraping}, sendo que cada passo do algoritmo utiliza uma versão modificada dos dados originais.
+
+A ideia por trás do \textit{boosting} é \textit{aprender devagar}. Em vez de tentarmos ajustar uma grande árvore em toda a base de dados, ajustamos pequenas árvores $\hat{f}^1(x), \hat{f}^2(x), \dots, \hat{f}^B(x)$ sequencialmente, de tal forma que a árvore $\hat{f}^i(x)$ é ajustada utilizando os resíduos da árvore $\hat{f}^{i-1}(x)$. Considere $\hat{f}(x)$ a nossa função estimada final do modelo e que, inicialmente, $\hat{f}(x) = 0$. Em cada passo do algoritmo, a nova árvore $\hat{f}^i(x)$ é somada à função estimada $\hat{f}(x)$ utilizando-se um parâmetro de encolhimento $\lambda > 0$, isto é, no passo $i$, $\hat{f}(x)$ passa a ser $\hat{f}(x) + \lambda\hat{f}^i(x)$. Assim, os resíduos são atualizados em cada passo e $\hat{f}(x)$  melhora lentamente em regiões onde sua performance era ruim. O parâmetro de encolhimento $\lambda$, o número de árvores $B$ e o tamanho de cada árvore (controlado pelo número de nós terminais) são os principais hiperparâmetros do modelo e podem ser escolhidos por validação cruzada.
+
+O \textit{gradient boosting} generaliza o \textit{boosting} substituindo o ajuste dos resíduos pela minimização de uma função de custo $L(y, f(x))$. Em cada etapa, ajustamos uma árvore não mais aos resíduos, mas sim às quantidades
+
+\begin{displaymath}
+g_i = - \left[\frac{\delta L(y_i - f(x_i))}{\delta f(x_i)}\right]_{f = f^{i-1}}, \quad i = 1, \dots, n.
+\end{displaymath}
+As quantidades $g_1, \dots, g_n$ representam o gradiente da função de custo em relação a cada árvore $f^i(x)$. Portanto, em cada etapa, minimizamos lentamente a função de custo a partir da nova árvore ajustada. Esse é algoritmo de minimização é chamado de \textit{gradient descent} \cite{Kiefer1952}.
+
+Por fim, o \textit{XGboosting} (ou \textit{extreme gradient boosting}) é uma implementação eficiente do \textit{gradient boosting} que utiliza alguns "truques" para otimizar o processo de estimação, como penalização das árvores para controlar a velocidade de aprendizado, randomização dos parâmetros para diminuir a correlação entre as árvores e encolhimento dos nós terminais para diminuir o sobreajuste. Esse algoritmo é um dos mais utilizados em problemas preditivos complexos hoje em dia, estando entre os três modelos mais vencedores de competições de \textit{machine learning}.
+
+Assim como as \textit{random forests}, esses modelos são não-interpretáveis e precisam de ferramentas como gráficos de dependência parcial ou o LIME para a avaliação da associação entre as variáveis.
+
+Na linguagem R, podemos ajustar o \textit{Xgboosting} utilizando a função \texttt{train()} do pacote \texttt{caret} com o argumento \texttt{method = "xgbTree"} ou diretamente as funções do pacote \texttt{xgboost}.
