@@ -256,9 +256,24 @@ Para avaliar a variabilidade das estimativas, criamos 200 amostras de \textit{bo
 
 Embora o modelo aditivo tenha levantado outras hipóteses sobre a relação entre a concentração de ozônio e a proporção estimada de carros a gasolina, ele não trouxe ganho de precisão se compararmos com o modelo de regressão linear. 
 
-Quando comparamos os resultados do modelo de regressão linear com os dos modelos aditivos, observamos que não houve ganho de precisão com o aumento da complexidade do modelo. Portanto o modelo linear, por simplicidade, é preferível. Sendo assim, primeiro vamos explorar a não-linearidade utilizando um modelo de regressão segmentada (mais simples do que o modelo aditivo) e , em seguida, vamos utilizar uma \textit{random forest} (um modelo não-linear mais complexo) para tentar aumentar a precisão do ajuste.
+Quando comparamos a performance do modelo de regressão linear com a dos modelos aditivos, observamos que não houve ganho de precisão com o aumento da complexidade do modelo. Vamos então explorar a não-linearidade utilizando um modelo de regressão segmentada (mais simples do que o modelo aditivo) e , em seguida, vamos utilizar uma \textit{random forest} (um modelo não-linear mais flexível) para tentar aumentar a precisão do ajuste.
 
 \subsection{Modelo de regressão segmentada}
+
+Para explorar um modelo não-linear mais simples do que o modelo aditivo generalizado, ajustamos o modelo de regressão segmentada discutido na Seção \ref{sec:linearidade}. Com base na Figura \ref{fig:comb-gam-plot}, optamos por segmentar a reta de regressão em três pontos: por volta do valor 0.2, por volta do valor 0.5 e por volta do valor 0.6. Esses pontos representam as maiores inflexões da curva estimada no modelo aditivo Normal para a proporção estimada de carros a gasolina. Como o modelo é altamente sensível ao ponto de segmentação inicial, testamos diversas combinações de pontos com valores ao redor de 0.2, 0.5 e 0.6. A combinação que levou ao menor RMSE foi XXX. Os resultados para este modelo estão apresentados na Tabela XXX.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultado do modelo de regressão segmentada.}
+	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{5cm} N}
+		\hline
+		Pontos de segmentação  & RMSE & \% var. explicada & Variáveis mais importantes & \\
+		\hline
+		1 & 14.11 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-comb-resultados-random-forest}
+\end{table}
 
 \subsection{Random Forest}
 

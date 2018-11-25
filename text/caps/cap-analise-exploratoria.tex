@@ -24,9 +24,7 @@ O efeito do tempo nas observações é a grande peculiaridade das séries temporais,
 
 Neste texto, representaremos séries temporais pela notação $\{Y_t, t \geq 0\}$ ou, de forma simplificada, $Y_t$. O índice inteiro não-negativo $t$ representa a ordem em que as observações foram realizadas. As variáveis serão denotadas por letras maiúsculas do nosso alfabeto e os índices por letras minúsculas: $Y_t, X_s, Z_r$ etc.
 
-Sob o contexto de estudos de poluição do ar, apresentaremos a seguir as principais técnicas para análise exploratória de séries temporais.  Utilizaremos como exemplo as séries horárias de concentração de ozônio (O$_3$), óxido de nitrogênio (NO), dióxido de nitrogênio (NO$_2$) e temperatura, todas medidas na cidade de São Paulo de 2008 a 2013, disponibilizadas por \cite{Salvo2014} e \cite{Salvo2017} nos respectivos endereços: \href{http://bit.do/salvo_geiger_data}{http://bit.do/salvo\_geiger\_data} e \\ \href{https://goo.gl/9tNzvj}{https://goo.gl/9tNzvj}.
-
-\newpage
+Sob o contexto de estudos de poluição do ar, apresentaremos as principais técnicas para análise exploratória de séries temporais.  Utilizaremos como exemplo as séries horárias de concentração de ozônio (O$_3$), óxido de nitrogênio (NO), dióxido de nitrogênio (NO$_2$) e temperatura, todas medidas na cidade de São Paulo de 2008 a 2013, disponibilizadas por \cite{Salvo2014} e \cite{Salvo2017} nos respectivos endereços: \href{http://bit.do/salvo_geiger_data}{http://bit.do/salvo\_geiger\_data} e \href{https://goo.gl/9tNzvj}{https://goo.gl/9tNzvj}. Em seguida, apresentaremos uma aplicação real de visualização de dados.
 
 \section{Gráficos}
 \label{sec:graficos}
@@ -331,4 +329,79 @@ A Figura \ref{fig:cap2_ccf} apresenta a função de correlação cruzada do ozônio e
 
 Em alguns casos, quando o fenômeno associado não varia muito no tempo, podemos considerar a média de um certo intervalo como variável defasada. Pela Figura \ref{fig:cap2_ccf}, observamos uma certa correlação entre o ozônio e a temperatura nas defasagens de -5 a -8. Assim, a média da temperatura medida entre $t-8$ e $t-5$ também poderia ser incluída no modelo.
 
-As técnicas abordadas até aqui podem ser utilizadas para obter um conhecimento inicial sobre o fenômeno estudado, auxiliando-nos a escolher a melhor estratégia de modelagem. No próximo capítulo, apresentaremos os principais modelos utilizados 	em análises envolvendo poluição do ar.
+As técnicas abordadas até aqui podem ser utilizadas para obter um conhecimento inicial sobre o fenômeno estudado, auxiliando-nos a escolher a melhor estratégia de modelagem. No próximo capítulo, apresentaremos os principais modelos utilizados em análises envolvendo poluição do ar.
+
+\section{Visualizando dados de poluição durante a greve de caminhoneiros}
+
+\textit{A greve dos caminhoneiros} foi como ficou conhecida a paralisação de caminhoneiros autônomos em todo o território brasileiro em maio de 2018. As manifestações começaram no dia 21 de maio e duraram até o início de junho. Nesse período, muitas cidades sofreram com desabastecimento, principalmente de combustível, diminuindo não apenas o tráfego de veículos pesados, mas também de automóveis. Como as emissões veiculares são a principal fonte de diversos poluentes em centros urbanos, seria interessante analisarmos o impacto dessas paralisações nos níveis de poluição.
+
+Utilizando os dados disponibilizados pela Companhia de Ambiental do Estado de São Paulo (CETESB), vamos analisar a concentração de alguns poluentes entre os dias 23 e 30 de maio\footnote{Período em que as consequências das paralisações foram mais intensas.} na região metropolitana de São Paulo. Os poluentes considerados foram: monóxido de carbono (CO), ozônio (O$_3$), monóxido e dióxido de nitrogênio (NO e NO$_2$) e material particulado 10 (MP10). Também consideramos períodos anteriores e posteriores à greve, para avaliar a mudança causada pelas paralisações, e os mesmos dias em anos anteriores, em que não houve greve. O período total analisado foi de 1º de maio a 14 de junho, dos anos de 2016, 2017 e 2018.
+
+As concentrações de cada poluente foram medidas em estações de monitoramento da CETESB: Osasco, Pinheiros, Parque Dom Pedro II e Ibirapuera. O critério para a escolha foi a disponibilidade de dados para os poluentes escolhidos e o perfil do tráfego de veículos na região das estações. As estações Parque Dom Pedro II e Pinheiros ficam em regiões de tráfego intenso, a primeira no centro da cidade e a segunda próxima à marginal Pinheiros, via expressa que liga as zonas sul, oeste e norte. A estação de Osasco também fica numa região de tráfego intenso e relativamente próxima a duas rodovias. A estação Ibirapuera não é muito afetada pelo tráfego pois fica dentro do Parque Ibirapuera e será utilizada como comparação.
+
+Para construir os gráficos das séries, utilizamos o gráfico apresentado na Figura \ref{fig:cap-explo-medias-diarias} para avaliar a média horária de cada poluente em cada dia da semana. Assim, em vez de utilizarmos as séries horárias, que apresentam sazonalidade diária, construímos as séries da média diária nos horários de pico. Esse gráfico mostra, por exemplo, que os picos de CO acontecem de manhã e no começo da noite e que os níveis desse poluente são bem menores nos fins de semana.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-medias-diarias.png}
+	\caption{Médias horárias por dia da semana durante o período observado dos poluentes considerados na análise.}
+	\label{fig:cap-explo-medias-diarias}
+\end{figure}
+
+Na Tabela \ref{tab:cap-explo-tab-variacao-media}, apresentamos a variação da média dos poluentes em cada estação no período de greve em relação à média nos períodos anterior e posterior à greve. Nas Figuras \ref{fig:cap-explo-serie-CO}, \ref{fig:cap-explo-serie-O3}, \ref{fig:cap-explo-serie-NO}, \ref{fig:cap-explo-serie-NO2} e \ref{fig:cap-explo-serie-PM10} apresentamos, respectivamente, as séries para o monóxido de carbono, o ozônio, o monóxido e dióxido de nitrogênio e para o material particulado. Observamos que, com exceção do ozônio, a concentração média dos poluentes durante o período de paralisação diminuiu. A maior redução foi a de NO, que é diretamente produzido pela queima de combustíveis, principalmente gasolina e diesel. 
+
+O ozônio é produto de um complexo processo químico que ocorre ao longo do dia, envolvendo diversos compostos e a radiação solar, sendo que uma explicação para o aumento de sua concentração durante a greve pode ser dada pela diminuição dos níveis de NO. O NO faz parte do balanço diário do ozônio, consumindo-o ao longo da tarde e diminuindo suas concentrações. Como o NO diminuiu devido a redução do tráfego de veículos, menos ozônio era consumido e por isso o aumento na concentração.
+
+Esta análise considera apenas as séries durante o período de greve para explicar a variação da concentração dos poluentes. Uma análise mais completa deveria considerar também os efeitos climáticos (temperatura, precipitação, vento, radiação, entre outros). As conclusões aqui supõem que esses fatores se mantiveram homogêneos durante o período analisado, o que pode não ser razoável. Mais resultados podem ser encontrados em \url{https://www.rpollution.com/blog/greve-caminhoneiros/}.
+
+\begin{table}[h!]
+	\centering
+	\caption{Variação da média dos poluentes em cada estação no período de greve em relação à média nos períodos anterior e posterior à greve}
+	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{2cm}|M{2cm} N}
+		\hline
+		Poluente & Ibirapuera & Osasco & Parque D. Pedro II & Pinheiros & \\
+		\hline
+		CO & -48.02\% & -32.78\% & -51.16\% & -65.9\% & \\
+		O$_3$ & 53.7\% & 	N/A  &	68.43\% & 	126\% & \\
+		NO & -89.66\% & -50.9\% & -75.38\% & -83.09\% & \\
+		NO$_2$ & -42.49\% &	-13.24\% &	-38.73\% & -39.45\% & \\
+		MP10 & N/A 	& -19.1\% &	-19.06\% &	-20.06\% & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-explo-tab-variacao-media}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-serie-CO.png}
+	\caption{Série observada para o monóxido de carbono. O intervalo entre as retas pontilhadas corresponde ao período de paralisações.}
+	\label{fig:cap-explo-serie-CO}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-serie-O3.png}
+	\caption{Série observada para o ozônio. O intervalo entre as retas pontilhadas corresponde ao período de paralisações.}
+	\label{fig:cap-explo-serie-O3}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-serie-NO.png}
+	\caption{Série observada para o monóxido de nitrogênio. O intervalo entre as retas pontilhadas corresponde ao período de paralisações.}
+	\label{fig:cap-explo-serie-NO}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-serie-NO2.png}
+	\caption{Série observada para o dióxido de nitrogênio. O intervalo entre as retas pontilhadas corresponde ao período de paralisações.}
+	\label{fig:cap-explo-serie-NO2}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cap-explo-serie-PM10.png}
+	\caption{Série observada para o material particulado (PM10). O intervalo entre as retas pontilhadas corresponde ao período de paralisações.}
+	\label{fig:cap-explo-serie-PM10}
+\end{figure}

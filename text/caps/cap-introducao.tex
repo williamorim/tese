@@ -20,7 +20,7 @@ Nesse contexto, como discutido em \cite{Zannetti1990}, a análise de dados de pol
 	\item determinar e responsabilizar fontes atuais de poluição;
 	\item selecionar regiões para futuras fontes de poluição, minimizando o impacto ambiental;
 	\item controlar episódios severos de poluição a partir de estratégias de intervenção;
-	\item investigar o efeito da concentração de poluentes na saúde pública, principalmente em grupos de risco como crianças, gestantes e idosos.	. 
+	\item investigar o efeito da concentração de poluentes na saúde pública, principalmente em grupos de risco como crianças, gestantes e idosos.
 \end{itemize}
 
 \cite{Carslaw2007}, por exemplo, modelaram concentrações diárias de óxidos e dióxidos de nitrogênio, monóxido de carbono, benzeno e 1,3-butadieno para avaliar a tendência das concentrações desses poluentes durante o período de 1998 a 2005 no movimentado centro de Londres. \cite{Beer2011} analisaram dados de morbidade e mortalidade para estudar os impactos à saúde ao se utilizar etanol como aditivo na gasolina em regiões urbanas da Austrália, medindo níveis de ozônio, dióxido de nitrogênio e material particulado em câmaras de poluição. \cite{Kloog2012} utilizaram medidas de profundidade óptica de aerossóis feitas por satélites para prever concentrações diárias de material particulado na costa leste dos Estados Unidos. \cite{Belusic2015} estudaram a relação das concentrações horárias de monóxido de carbono, dióxido de enxofre, dióxido de nitrogênio e material particulado com as condições climáticas da cidade de Zagrebe, na Croácia.
@@ -41,16 +41,9 @@ Os modelos aditivos generalizados \citep{Hastie1990} são uma boa alternativa nes
 
 Modelos para séries temporais acomodam bem os componente temporais, como sazonalidade e autocorrelação, mas diversos deles assumem que a série é estacionária, sendo preciso realizar alguma transformação nos dados antes do ajuste.
 
-O objetivo desta tese é criar e discutir estratégias robustas para a análise de dados de poluição do ar que considerem as seguintes situações:
-
-\begin{enumerate}
-	\item grande número de covariáveis e relações não-lineares entre as covariáveis e a resposta;
-	\item presença de dados omissos;
-	\item e presença de variáveis não-observáveis ou com erro de medida.
-\end{enumerate}
-Os resultados deste trabalho visam auxiliar pesquisadores de qualquer área, mesmo aqueles com pouca experiência em modelagem estatística, na análise de dados oriundos de estudos de poluição do ar. O desenvolvimento adequado desses trabalhos é essencial para a criação de políticas públicas que promovam melhorias na saúde pública das grandes cidades e na nossa relação com o meio ambiente.
-
-Com essa finalidade, utilizaremos conjuntos de dados reais para apontar as vantagens e desvantagens de cada metodologia, gerando estratégias de análise que contemplem as principais dificuldades encontradas na prática. Também aplicaremos técnicas de aprendizado estatístico pouco ou ainda não utilizadas no estudo de séries de poluição do ar, como validação cruzada e regularização.  
+O objetivo desta tese é criar e discutir estratégias robustas para a análise de dados de poluição do ar, avaliando em quais contextos as metodologias atuais são adequadas e podem ser aplicadas e propondo abordagens com técnicas mais recentes, ainda pouco utilizadas na análise de dados de poluição. Os resultados deste trabalho visam criar uma ponte entre a modelagem estatística e a pesquisa em poluição do ar, auxiliando pesquisadores de outras áreas que têm pouco contato com a Estatística. Dado seu carácter multidisciplinar, é essencial que existam materiais acessíveis sobre cada uma das disciplinas que compõem esse campo para o adequado desenvolvimento de trabalhos e, posteriormente, a possibilidade de criação de políticas públicas que promovam melhorias na saúde pública e na nossa relação com o meio ambiente.
+ 
+Com essa finalidade, utilizaremos conjuntos de dados reais para apontar as vantagens e desvantagens de cada metodologia, gerando estratégias de análise que contemplem as principais dificuldades encontradas na prática. Também aplicaremos técnicas de \textit{machine learning} pouco ou ainda não utilizadas no estudo de séries de poluição do ar, como validação cruzada e regularização.  
 
 No Capítulo 2, discutiremos a análise exploratória de dados de poluição, com o objetivo principal de diminuir a complexidade do problema para facilitar a busca de informações relevantes sobre o fenômeno estudado \citep{R4DS2017}. No Capítulo 3, apresentaremos resumidamente os principais modelos utilizados no ajuste de séries de poluição, assim como outras técnicas interessantes para a análise desses dados. Nos Capítulos 4, 5 e 6 desenvolveremos estratégias para a análise de dados de poluição do ar envolvendo a descrição do poluente ao longo do tempo, o uso de combustíveis e a associação com dados de saúde pública. No Capítulo 7, apresentaremos formas de se extrair da internet dados públicos de poluição do ar. Por fim, no Capítulo 8, concluiremos a tese discutindo os principais resultados. 
 
