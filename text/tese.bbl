@@ -1,4 +1,4 @@
-\begin{thebibliography}{73}
+\begin{thebibliography}{74}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -269,6 +269,12 @@ K.~Katsouyanni, J.~Schwartz, C.~Spix, G.~Touloumi, D.~Zmirou, A.~Zanobetti,
 \newblock ISSN 0143-005X.
 \newblock \doi{10.1136/jech.50.Suppl_1.S12}.
 \newblock URL \url{http://jech.bmj.com/content/50/Suppl_1/S12}.   {\scriptsize
+  Citado na p\'{a}g.}
+
+\bibitem[Kiefer e Wolfowitz(1952)]{Kiefer1952}{\bf Kiefer e Wolfowitz(1952)}
+J.~Kiefer e J.~Wolfowitz.
+\newblock Stochastic estimation of the maximum of a regression function.
+\newblock \emph{Ann. Math. Statista}, 23: \penalty0 462--466.   {\scriptsize
   Citado na p\'{a}g.}
 
 \bibitem[Kloog {\rm{\em et~al.}}(2012)Kloog, Nordio, Coull, e

@@ -3,6 +3,7 @@
 library(tidyverse)
 library(caret)
 library(recipes)
+library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
@@ -115,10 +116,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 40.58628
-# R2: 0.5316665
-# varImp: 11
-# variacao (+10% share): 82.76%
+# RMSE: 40.71568
+# R2: 0.52166547
+# varImp: 12
+# variacao (+10% share): 74.74%
 # valor-p: < 000.1
 
 ajustes[[1]]$finalModel %>% plot
@@ -157,16 +158,54 @@ resultados %>%
 # variacao (+10% share): 118.69
 # valor-p: 0.16391250
 
-# 
+
+# Gráficos de resíduos
+
+p_geral <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[1]], 
+  y = "n_mortes_geral"
+) +
+  ggtitle("Geral")
+
+p_idosos <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[2]], 
+  y = "n_mortes_idosos"
+) +
+  ggtitle("Idosos")
+
+p_criancas <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[3]], 
+  y = "n_mortes_criancas"
+) +
+  ggtitle("Crianças")
+
+
+p_geral + p_idosos + p_criancas
+ggsave(filename = "text/figuras/cap-mort-res-plot-glm.pdf", 
+       width = 6, height = 4)
+
+
+
 # ggplot(df_model) +
 #   geom_boxplot(aes(x = season, y = share_gas))
-# 
-# p1 <- ggplot(df_model) +
-#   geom_boxplot(aes(x = month, y = n_mortes_geral))
-# 
-# p2 <- ggplot(df_model) +
-#   geom_boxplot(aes(x = month, y = share_gas))
 # 
 # 
 # ggplot(df_model) +
 #   geom_boxplot(aes(x = week, y = n_mortes_geral, fill = month))
+
+
+p1 <- ggplot(df_model) +
+  geom_boxplot(aes(x = month, y = n_mortes_geral)) +
+  labs(x = "Mês", y = "Número de mortes (geral)") +
+  theme_bw()
+
+p2 <- ggplot(df_model) +
+  geom_boxplot(aes(x = month, y = share_gas))  +
+  labs(x = "Mês", y = "Proporção de carros a gasolina")
+
+p1 + p2
+ggsave(filename = "text/figuras/cap-mort-boxplot-share.pdf", 
+       width = 6, height = 4)
