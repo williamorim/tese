@@ -49,7 +49,7 @@ ggsave(filename = "text/figuras/cap-regressao-exemplo-splines.pdf",
 df <- readr::read_rds("data/artaxo-salvo-geiger/data-asg-model.rds")
 
 fit <- lm(o3_mass_conc ~ tp, data = df)
-fit_seg <- segmented::segmented(fit,seg.Z = ~tp, psi = c(20, 30))
+fit_seg <- segmented::segmented(fit,seg.Z = ~tp, psi = 20)
 
 
 p1 <- df %>% 

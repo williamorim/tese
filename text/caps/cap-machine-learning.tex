@@ -352,7 +352,7 @@ O algoritmo consiste em:
 
 A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \textit{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R. O texto pode ser acessado por este link: \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{https://goo.gl/Nu9ZsA}.
 
-\subsection{XGBoosting}
+\subsection{XGBoost}
 
 Assim como o \textit{bagging}, apresentado na seção anterior, o \textit{boosting} é uma abordagem geral aplicada a diversos modelos para aumentar seu poder preditivo. No contexto de árvores de decisão, a ideia aqui é construir árvores sequencialmente, sendo que cada árvore utiliza informações obtidas da árvore anterior. Ao contrário do \textit{bagging}, o \textit{boosting} não envolve amostras de \textit{bootstraping}, sendo que cada passo do algoritmo utiliza uma versão modificada dos dados originais.
 
@@ -365,8 +365,8 @@ g_i = - \left[\frac{\delta L(y_i - f(x_i))}{\delta f(x_i)}\right]_{f = f^{i-1}},
 \end{displaymath}
 As quantidades $g_1, \dots, g_n$ representam o gradiente da função de custo em relação a cada árvore $f^i(x)$. Portanto, em cada etapa, minimizamos lentamente a função de custo a partir da nova árvore ajustada. Esse é algoritmo de minimização é chamado de \textit{gradient descent} \cite{Kiefer1952}.
 
-Por fim, o \textit{XGboosting} (ou \textit{extreme gradient boosting}) é uma implementação eficiente do \textit{gradient boosting} que utiliza alguns "truques" para otimizar o processo de estimação, como penalização das árvores para controlar a velocidade de aprendizado, randomização dos parâmetros para diminuir a correlação entre as árvores e encolhimento dos nós terminais para diminuir o sobreajuste. Esse algoritmo é um dos mais utilizados em problemas preditivos complexos hoje em dia, estando entre os três modelos mais vencedores de competições de \textit{machine learning}.
+Por fim, o \textit{XGBoost} (ou \textit{extreme gradient boosting}) é uma implementação eficiente do \textit{gradient boosting} que utiliza alguns "truques" para otimizar o processo de estimação, como penalização das árvores para controlar a velocidade de aprendizado, randomização dos parâmetros para diminuir a correlação entre as árvores e encolhimento dos nós terminais para diminuir o sobreajuste. Esse algoritmo é um dos mais utilizados em problemas preditivos complexos hoje em dia, estando entre os três modelos mais vencedores de competições de \textit{machine learning}.
 
 Assim como as \textit{random forests}, esses modelos são não-interpretáveis e precisam de ferramentas como gráficos de dependência parcial ou o LIME para a avaliação da associação entre as variáveis.
 
-Na linguagem R, podemos ajustar o \textit{Xgboosting} utilizando a função \texttt{train()} do pacote \texttt{caret} com o argumento \texttt{method = "xgbTree"} ou diretamente as funções do pacote \texttt{xgboost}.
+Na linguagem R, podemos ajustar o \textit{XGBoost} utilizando a função \texttt{train()} do pacote \texttt{caret} com o argumento \texttt{method = "xgbTree"} ou diretamente as funções do pacote \texttt{xgboost}.

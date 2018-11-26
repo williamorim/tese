@@ -34,6 +34,8 @@ formula <- df_model %>%
 
 # Model -------------------------------------------------------------------
 
+# Validação cruzada
+
 ajustar_modelo <- function(formula, df, pontos) {
   model <- lm(formula, data = df)
   segmented(model, seg.Z = ~share_gas, psi = pontos)
@@ -118,6 +120,13 @@ resultados_ <- resultados %>%
 resultados_ %>% 
   arrange(rmse)
 
+# Melhor modelo
+
+# pontos: 0.21 - 0.51 - 0.59
+# R2 = 0.71
+# RMSE = 19.4
+
+set.seed(5893524)
 model <- lm(formula, data = df_model)
 seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.21, 0.51, 0.59))
 
@@ -125,8 +134,64 @@ summary(seg_model)
 
 plot(seg_model)
 
-# Melhor modelo
-# 0.21 - 0.51 - 0.59
-# R2 = 0.71
-# RMSE = 19.4
+seg_model %>% 
+  broom::tidy() %>% 
+  mutate(statistic = abs(statistic)) %>% 
+  arrange(desc(statistic)) %>% 
+  select(term, statistic)
 
+df_model %>% 
+  filter(siteid == 1) %>% 
+  ggplot(aes(x = share_gas, y = -8)) +
+  geom_point(size = 0.1) +
+  geom_segment(
+    x = 0.1395, 
+    y = 13.70102, 
+    xend = 0.2625, 
+    yend = 3.4503,
+    size = 0.1,
+    color = "blue"
+  ) +
+  geom_segment(
+    x = 0.2625, 
+    y = 3.4503,
+    xend = 0.5070, 
+    yend = 11.898,
+    size = 0.1,
+    color = "blue"
+  ) +
+  geom_segment(
+    x = 0.5070, 
+    y = 11.898, 
+    xend = 0.5751, 
+    yend = -7.7471,
+    size = 0.1,
+    color = "blue"
+  ) +
+  geom_segment(
+    x = 0.5751, 
+    y = -7.7471, 
+    xend = 0.7552, 
+    yend = 10.6939,
+    size = 0.1,
+    color = "blue"
+  ) +
+  theme_bw() +
+  labs(
+    x = "Proporção estimada de carros a gasolina", 
+    y = "Efeito na concentração de ozônio"
+  ) +
+  coord_cartesian(ylim = c(-10, 14))
+  ggsave(filename = "text/figuras/cap-comb-seg-reg-plot.pdf", 
+         width = 6, height = 4)
+
+25.32680 - 83.33890*0.1395
+25.32680 - 83.33890*0.2625
+
+25.32680 - 83.33890*0.5070 + 117.88960*(0.5070-0.2625)
+
+25.32680 - 83.33890*0.5751 + 117.88960*(0.5751-0.2625) - 
+  323.02512*(0.5751-0.5070)
+
+25.32680 - 83.33890*0.7552 + 117.88960*(0.7552-0.2625) - 
+  323.02512*(0.7552-0.5070) + 390.86760*(0.7552-0.5751)

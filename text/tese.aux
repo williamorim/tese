@@ -516,7 +516,7 @@
 \citation{Gower1971}
 \@writefile{brf}{\backcite{Ribeiro2016}{{64}{4.7.2}{Item.20}}}
 \@writefile{brf}{\backcite{Gower1971}{{64}{3}{Item.23}}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.3}XGBoosting}{64}{subsection.4.7.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.3}XGBoost}{64}{subsection.4.7.3}}
 \citation{Kiefer1952}
 \@writefile{brf}{\backcite{Kiefer1952}{{65}{4.7.3}{subsection.4.7.3}}}
 \citation{EC_Climate_Action}
@@ -606,46 +606,48 @@
 \citation{Salvo2017}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Modelo de regress\~ao segmentada}{80}{subsection.5.5.2}}
 \@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Resultado do modelo de regress\~ao segmentada.\relax }}{80}{table.caption.66}}
-\newlabel{tab:cap-comb-resultados-random-forest}{{5.3}{80}{Resultado do modelo de regressão segmentada.\relax }{table.caption.66}{}}
+\newlabel{tab:cap-comb-resultados-reg-seg}{{5.3}{80}{Resultado do modelo de regressão segmentada.\relax }{table.caption.66}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5.3}Random Forest}{80}{subsection.5.5.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado do modelo \textit  {random forest} aplicado aos dados de \cite  {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{80}{table.caption.67}}
-\@writefile{brf}{\backcite{Salvo2017}{{80}{5.4}{table.caption.67}}}
-\newlabel{tab:cap-comb-resultados-random-forest}{{5.4}{80}{Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperparâmetros referentes ao tamanho mínimo de cada nó e o número de preditores sorteados em cada amostra foram definidos por validação cruzada.\relax }{table.caption.67}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces Valores da concentra\c c\~ao de oz\^onio preditos pelo modelo \textit  {random forest} contra os valores observados.\relax }}{81}{figure.caption.68}}
-\newlabel{fig:cap-comb-forest-pred-obs-plot}{{5.13}{81}{Valores da concentração de ozônio preditos pelo modelo \textit {random forest} contra os valores observados.\relax }{figure.caption.68}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.14}{\ignorespaces Propor\c c\~ao estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regress\~ao \textit  {ridge}). \`A esquerda, utilizamos os 100 dias com as menores m\'edias de oz\^onio e, \`a direita, os 100 dias com as maiores m\'edias. \relax }}{81}{figure.caption.69}}
-\newlabel{fig:cap-comb-lime-pinheiros}{{5.14}{81}{Proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit {ridge}). À esquerda, utilizamos os 100 dias com as menores médias de ozônio e, à direita, os 100 dias com as maiores médias. \relax }{figure.caption.69}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces Reta de regress\~ao segmentada para a propor\c c\~ao estimada de carros a gasolina. O efeito representa o valor da concentra\c c\~ao de oz\^onio para cada valor da propor\c c\~ao estimada de carros a gasolina se todos os outros preditores tivessem valor igual a 0. Essa medida n\~ao tem interpreta\c c\~ao pr\'atica, mas pode ser utilizada para calcular a varia\c c\~ao no oz\^onio quando variamos o a propor\c c\~ao de carros a gasolina.\relax }}{81}{figure.caption.67}}
+\newlabel{fig:cap-comb-seg-reg-plot}{{5.13}{81}{Reta de regressão segmentada para a proporção estimada de carros a gasolina. O efeito representa o valor da concentração de ozônio para cada valor da proporção estimada de carros a gasolina se todos os outros preditores tivessem valor igual a 0. Essa medida não tem interpretação prática, mas pode ser utilizada para calcular a variação no ozônio quando variamos o a proporção de carros a gasolina.\relax }{figure.caption.67}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Resultado do modelo \textit  {random forest} aplicado aos dados de \cite  {Salvo2017}. Os hiperpar\^ametros referentes ao tamanho m\IeC {\'\i }nimo de cada n\'o e o n\'umero de preditores sorteados em cada amostra foram definidos por valida\c c\~ao cruzada.\relax }}{81}{table.caption.68}}
+\@writefile{brf}{\backcite{Salvo2017}{{81}{5.4}{table.caption.68}}}
+\newlabel{tab:cap-comb-resultados-random-forest}{{5.4}{81}{Resultado do modelo \textit {random forest} aplicado aos dados de \cite {Salvo2017}. Os hiperparâmetros referentes ao tamanho mínimo de cada nó e o número de preditores sorteados em cada amostra foram definidos por validação cruzada.\relax }{table.caption.68}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.14}{\ignorespaces Valores da concentra\c c\~ao de oz\^onio preditos pelo modelo \textit  {random forest} contra os valores observados.\relax }}{82}{figure.caption.69}}
+\newlabel{fig:cap-comb-forest-pred-obs-plot}{{5.14}{82}{Valores da concentração de ozônio preditos pelo modelo \textit {random forest} contra os valores observados.\relax }{figure.caption.69}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.15}{\ignorespaces Propor\c c\~ao estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regress\~ao \textit  {ridge}). \`A esquerda, utilizamos os 100 dias com as menores m\'edias de oz\^onio e, \`a direita, os 100 dias com as maiores m\'edias. \relax }}{82}{figure.caption.70}}
+\newlabel{fig:cap-comb-lime-pinheiros}{{5.15}{82}{Proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit {ridge}). À esquerda, utilizamos os 100 dias com as menores médias de ozônio e, à direita, os 100 dias com as maiores médias. \relax }{figure.caption.70}{}}
 \citation{Salvo2017}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.15}{\ignorespaces Curvas suavizadas do oz\^onio predito para os cen\'arios observado, com alta propor\c c\~ao de carros a gasolina (70\% durante todo o per\IeC {\'\i }odo) e baixa propor\c c\~ao de carros a gasolina (20\% durante todo o per\IeC {\'\i }odo).\relax }}{82}{figure.caption.70}}
-\newlabel{fig:cap-comb-random-forest-cenarios}{{5.15}{82}{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).\relax }{figure.caption.70}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.4}XGBoosting}{82}{subsection.5.5.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Outras estrat\'egias de an\'alise}{82}{section.5.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}Sele\c c\~ao de vari\'aveis}{82}{subsection.5.6.1}}
-\@writefile{brf}{\backcite{Salvo2017}{{82}{5.6.1}{subsection.5.6.1}}}
-\citation{Salvo2017}
-\citation{Salvo2017}
-\citation{Salvo2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.16}{\ignorespaces Curvas suavizadas do oz\^onio predito para os cen\'arios observado, com alta propor\c c\~ao de carros a gasolina (70\% durante todo o per\IeC {\'\i }odo) e baixa propor\c c\~ao de carros a gasolina (20\% durante todo o per\IeC {\'\i }odo).\relax }}{83}{figure.caption.71}}
+\newlabel{fig:cap-comb-random-forest-cenarios}{{5.16}{83}{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).\relax }{figure.caption.71}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.4}XGBoosting}{83}{subsection.5.5.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Outras estrat\'egias de an\'alise}{83}{section.5.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}Sele\c c\~ao de vari\'aveis}{83}{subsection.5.6.1}}
+\@writefile{brf}{\backcite{Salvo2017}{{83}{5.6.1}{subsection.5.6.1}}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6.2}Transformando a vari\'avel resposta}{83}{subsection.5.6.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.16}{\ignorespaces Distribui\c c\~ao da concentra\c c\~ao de oz\^onio na amostra considerada por \cite  {Salvo2017}.\relax }}{83}{figure.caption.71}}
-\@writefile{brf}{\backcite{Salvo2017}{{83}{5.16}{figure.caption.71}}}
-\newlabel{fig:cap-comb-dist-ozonio}{{5.16}{83}{Distribuição da concentração de ozônio na amostra considerada por \cite {Salvo2017}.\relax }{figure.caption.71}{}}
-\@writefile{brf}{\backcite{Salvo2017}{{83}{5.6.2}{figure.caption.71}}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Ajustando a m\'axima di\'aria}{83}{subsection.5.6.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{84}{table.caption.72}}
-\newlabel{tab:cap-comb-var-trans-resultados}{{5.5}{84}{Resultado dos modelos ajustados com a variável resposta transformada.\relax }{table.caption.72}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.17}{\ignorespaces Gr\'aficos dos valores da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear com transforma\c c\~ao \textit  {log}. No painel do meio, modelo de regress\~ao linear com transforma\c c\~ao Box-Cox. No painel da direita, \textit  {random forest} com transforma\c c\~ao Box-Cox.\relax }}{84}{figure.caption.73}}
-\newlabel{fig:cap-comb-lin-reg-transfor-pred-obs-plot}{{5.17}{84}{Gráficos dos valores da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear com transformação \textit {log}. No painel do meio, modelo de regressão linear com transformação Box-Cox. No painel da direita, \textit {random forest} com transformação Box-Cox.\relax }{figure.caption.73}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{85}{table.caption.74}}
-\newlabel{tab:cap-comb-max-diaria-resultados}{{5.6}{85}{Resultado dos modelos ajustados com a variável resposta transformada.\relax }{table.caption.74}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.18}{\ignorespaces Gr\'aficos dos valores da m\'axima di\'aria da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear e, no painel do meio, a \textit  {random forest}.\relax }}{85}{figure.caption.75}}
-\newlabel{fig:cap-comb-max-diaria-pred-obs-plot}{{5.18}{85}{Gráficos dos valores da máxima diária da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear e, no painel do meio, a \textit {random forest}.\relax }{figure.caption.75}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.4}Ajustando cada esta\c c\~ao separadamente}{85}{subsection.5.6.4}}
-\citation{SashaMadronich2014}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Coment\'arios}{86}{section.5.7}}
-\@writefile{brf}{\backcite{SashaMadronich2014}{{86}{5.7}{section.5.7}}}
 \citation{Salvo2017}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{87}{table.caption.76}}
-\newlabel{tab:cap-comb-ozone-resultados-cada-estacao}{{5.7}{87}{Resultados dos modelos para cada estação. A estimativa apresentada na segunda coluna se refere ao coeficiente da proporção de carros a gasolina rodando na cidade.\relax }{table.caption.76}{}}
+\citation{Salvo2017}
+\citation{Salvo2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.17}{\ignorespaces Distribui\c c\~ao da concentra\c c\~ao de oz\^onio na amostra considerada por \cite  {Salvo2017}.\relax }}{84}{figure.caption.72}}
+\@writefile{brf}{\backcite{Salvo2017}{{84}{5.17}{figure.caption.72}}}
+\newlabel{fig:cap-comb-dist-ozonio}{{5.17}{84}{Distribuição da concentração de ozônio na amostra considerada por \cite {Salvo2017}.\relax }{figure.caption.72}{}}
+\@writefile{brf}{\backcite{Salvo2017}{{84}{5.6.2}{figure.caption.72}}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{84}{table.caption.73}}
+\newlabel{tab:cap-comb-var-trans-resultados}{{5.5}{84}{Resultado dos modelos ajustados com a variável resposta transformada.\relax }{table.caption.73}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.18}{\ignorespaces Gr\'aficos dos valores da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear com transforma\c c\~ao \textit  {log}. No painel do meio, modelo de regress\~ao linear com transforma\c c\~ao Box-Cox. No painel da direita, \textit  {random forest} com transforma\c c\~ao Box-Cox.\relax }}{85}{figure.caption.74}}
+\newlabel{fig:cap-comb-lin-reg-transfor-pred-obs-plot}{{5.18}{85}{Gráficos dos valores da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear com transformação \textit {log}. No painel do meio, modelo de regressão linear com transformação Box-Cox. No painel da direita, \textit {random forest} com transformação Box-Cox.\relax }{figure.caption.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Ajustando a m\'axima di\'aria}{85}{subsection.5.6.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Resultado dos modelos ajustados com a vari\'avel resposta transformada.\relax }}{85}{table.caption.75}}
+\newlabel{tab:cap-comb-max-diaria-resultados}{{5.6}{85}{Resultado dos modelos ajustados com a variável resposta transformada.\relax }{table.caption.75}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.19}{\ignorespaces Gr\'aficos dos valores da m\'axima di\'aria da concentra\c c\~ao de oz\^onio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regress\~ao linear e, no painel do meio, a \textit  {random forest}.\relax }}{86}{figure.caption.76}}
+\newlabel{fig:cap-comb-max-diaria-pred-obs-plot}{{5.19}{86}{Gráficos dos valores da máxima diária da concentração de ozônio preditos pelos modelos contra os valores observados. No painel da esquerda, modelo de regressão linear e, no painel do meio, a \textit {random forest}.\relax }{figure.caption.76}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.4}Ajustando cada esta\c c\~ao separadamente}{86}{subsection.5.6.4}}
+\citation{SashaMadronich2014}
+\citation{Salvo2017}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Coment\'arios}{87}{section.5.7}}
+\@writefile{brf}{\backcite{SashaMadronich2014}{{87}{5.7}{section.5.7}}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Resultados dos modelos para cada esta\c c\~ao. A estimativa apresentada na segunda coluna se refere ao coeficiente da propor\c c\~ao de carros a gasolina rodando na cidade.\relax }}{88}{table.caption.77}}
+\newlabel{tab:cap-comb-ozone-resultados-cada-estacao}{{5.7}{88}{Resultados dos modelos para cada estação. A estimativa apresentada na segunda coluna se refere ao coeficiente da proporção de carros a gasolina rodando na cidade.\relax }{table.caption.77}{}}
 \@writefile{brf}{\backcite{Salvo2017}{{88}{5.7}{section.5.7}}}
 \citation{Jacobson2002}
 \citation{Jacobson2002}
@@ -657,68 +659,68 @@
 \citation{Cox2012}
 \citation{Fann2012}
 \citation{Fann2012}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{89}{chapter.6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{91}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{cap:saude}{{6}{89}{Poluição e saúde pública}{chapter.6}{}}
-\@writefile{brf}{\backcite{Jacobson2002}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Jacobson2002}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{SchwartzDockery1992}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Saldiva1995}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Peters2000}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Hoek2002}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Fann2012}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Cox2012}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Fann2012}{{89}{6}{chapter.6}}}
-\@writefile{brf}{\backcite{Fann2012}{{89}{6}{chapter.6}}}
+\newlabel{cap:saude}{{6}{91}{Poluição e saúde pública}{chapter.6}{}}
+\@writefile{brf}{\backcite{Jacobson2002}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Jacobson2002}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{SchwartzDockery1992}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Saldiva1995}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Peters2000}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Hoek2002}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Fann2012}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Cox2012}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Fann2012}{{91}{6}{chapter.6}}}
+\@writefile{brf}{\backcite{Fann2012}{{91}{6}{chapter.6}}}
 \citation{Salvo2017}
 \citation{Salvo2017}
 \citation{Salvo2017}
 \citation{Salvo2014}
 \citation{Salvo2017}
 \citation{WHO2004}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{90}{section.6.1}}
-\@writefile{brf}{\backcite{Salvo2017}{{90}{6.1}{section.6.1}}}
-\@writefile{brf}{\backcite{Salvo2017}{{90}{6.1}{section.6.1}}}
-\@writefile{brf}{\backcite{Salvo2017}{{90}{6.1}{section.6.1}}}
-\@writefile{brf}{\backcite{Salvo2014}{{90}{6.1}{section.6.1}}}
-\@writefile{brf}{\backcite{Salvo2017}{{90}{6.1}{section.6.1}}}
-\@writefile{brf}{\backcite{WHO2004}{{90}{6.1}{section.6.1}}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{91}{subsection.6.1.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Resultados do modelo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{91}{table.caption.77}}
-\newlabel{tab:cap-mort-glm-poisson}{{6.1}{91}{Resultados do modelo Poisson para mortalidade geral em crianças, idosos e na população como um todo.\relax }{table.caption.77}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Gr\'afico dos valores preditos versus os valores observados para o modelo linear generalizado com distribui\c c\~ao Poisson para cada um dos grupos.\relax }}{91}{figure.caption.78}}
-\newlabel{fig:cap-mort-res-plot-glm}{{6.1}{91}{Gráfico dos valores preditos versus os valores observados para o modelo linear generalizado com distribuição Poisson para cada um dos grupos.\relax }{figure.caption.78}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{92}{subsection.6.1.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Resultados do modelo aditivo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{92}{table.caption.79}}
-\newlabel{tab:cap-mort-gam-poisson}{{6.2}{92}{Resultados do modelo aditivo Poisson para mortalidade geral em crianças, idosos e na população como um todo.\relax }{table.caption.79}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Modelo ARIMA e regress\~ao linear}{92}{subsection.6.1.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Fun\c c\~oes estimadas para a propor\c c\~ao estimada de carros a gasolina pelo modelo aditivo Poisson para cada grupo.\relax }}{93}{figure.caption.80}}
-\newlabel{fig:cap-mort-gam-plot-poisson}{{6.2}{93}{Funções estimadas para a proporção estimada de carros a gasolina pelo modelo aditivo Poisson para cada grupo.\relax }{figure.caption.80}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Distribui\c c\~ao da mortalidade e geral e da propor\c c\~ao de carros a gasolina por m\^es.\relax }}{93}{figure.caption.81}}
-\newlabel{fig:cap-mort-boxplot-share}{{6.3}{93}{Distribuição da mortalidade e geral e da proporção de carros a gasolina por mês.\relax }{figure.caption.81}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Outras an\'alises realizadas}{94}{subsection.6.1.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.5}Associando mortalidade e concentra\c c\~ao de oz\^onio}{94}{subsection.6.1.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{95}{chapter.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{92}{section.6.1}}
+\@writefile{brf}{\backcite{Salvo2017}{{92}{6.1}{section.6.1}}}
+\@writefile{brf}{\backcite{Salvo2017}{{92}{6.1}{section.6.1}}}
+\@writefile{brf}{\backcite{Salvo2017}{{92}{6.1}{section.6.1}}}
+\@writefile{brf}{\backcite{Salvo2014}{{92}{6.1}{section.6.1}}}
+\@writefile{brf}{\backcite{Salvo2017}{{92}{6.1}{section.6.1}}}
+\@writefile{brf}{\backcite{WHO2004}{{92}{6.1}{section.6.1}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{93}{subsection.6.1.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Resultados do modelo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{93}{table.caption.78}}
+\newlabel{tab:cap-mort-glm-poisson}{{6.1}{93}{Resultados do modelo Poisson para mortalidade geral em crianças, idosos e na população como um todo.\relax }{table.caption.78}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Gr\'afico dos valores preditos versus os valores observados para o modelo linear generalizado com distribui\c c\~ao Poisson para cada um dos grupos.\relax }}{93}{figure.caption.79}}
+\newlabel{fig:cap-mort-res-plot-glm}{{6.1}{93}{Gráfico dos valores preditos versus os valores observados para o modelo linear generalizado com distribuição Poisson para cada um dos grupos.\relax }{figure.caption.79}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{94}{subsection.6.1.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Resultados do modelo aditivo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{94}{table.caption.80}}
+\newlabel{tab:cap-mort-gam-poisson}{{6.2}{94}{Resultados do modelo aditivo Poisson para mortalidade geral em crianças, idosos e na população como um todo.\relax }{table.caption.80}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Modelo ARIMA e regress\~ao linear}{94}{subsection.6.1.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Fun\c c\~oes estimadas para a propor\c c\~ao estimada de carros a gasolina pelo modelo aditivo Poisson para cada grupo.\relax }}{95}{figure.caption.81}}
+\newlabel{fig:cap-mort-gam-plot-poisson}{{6.2}{95}{Funções estimadas para a proporção estimada de carros a gasolina pelo modelo aditivo Poisson para cada grupo.\relax }{figure.caption.81}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Distribui\c c\~ao da mortalidade e geral e da propor\c c\~ao de carros a gasolina por m\^es.\relax }}{95}{figure.caption.82}}
+\newlabel{fig:cap-mort-boxplot-share}{{6.3}{95}{Distribuição da mortalidade e geral e da proporção de carros a gasolina por mês.\relax }{figure.caption.82}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Outras an\'alises realizadas}{96}{subsection.6.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.5}Associando mortalidade e concentra\c c\~ao de oz\^onio}{96}{subsection.6.1.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{97}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Web scraping}{96}{section.7.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces O fluxo do web scraping.\relax }}{96}{figure.caption.82}}
-\newlabel{fig:cap-webscraping-cycle}{{7.1}{96}{O fluxo do web scraping.\relax }{figure.caption.82}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Identificar}{96}{section*.83}}
-\@writefile{toc}{\contentsline {subsubsection}{Navegar}{96}{section*.84}}
-\@writefile{toc}{\contentsline {subsubsection}{Replicar}{97}{section*.85}}
-\@writefile{toc}{\contentsline {subsubsection}{Parsear}{97}{section*.86}}
-\@writefile{toc}{\contentsline {subsubsection}{Validar}{97}{section*.87}}
-\@writefile{toc}{\contentsline {subsubsection}{Iterar}{97}{section*.88}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Dados no Brasil}{97}{section.7.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Mapa de esta\c c\~oes de monitoramento dispon\IeC {\'\i }veis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }}{98}{figure.caption.89}}
-\newlabel{fig:cap-webscraping-mapa-iema}{{7.2}{98}{Mapa de estações de monitoramento disponíveis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }{figure.caption.89}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{98}{section.7.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Discuss\~ao}{99}{chapter.8}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Web scraping}{98}{section.7.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces O fluxo do web scraping.\relax }}{98}{figure.caption.83}}
+\newlabel{fig:cap-webscraping-cycle}{{7.1}{98}{O fluxo do web scraping.\relax }{figure.caption.83}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Identificar}{98}{section*.84}}
+\@writefile{toc}{\contentsline {subsubsection}{Navegar}{98}{section*.85}}
+\@writefile{toc}{\contentsline {subsubsection}{Replicar}{99}{section*.86}}
+\@writefile{toc}{\contentsline {subsubsection}{Parsear}{99}{section*.87}}
+\@writefile{toc}{\contentsline {subsubsection}{Validar}{99}{section*.88}}
+\@writefile{toc}{\contentsline {subsubsection}{Iterar}{99}{section*.89}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Dados no Brasil}{99}{section.7.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Mapa de esta\c c\~oes de monitoramento dispon\IeC {\'\i }veis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }}{100}{figure.caption.90}}
+\newlabel{fig:cap-webscraping-mapa-iema}{{7.2}{100}{Mapa de estações de monitoramento disponíveis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }{figure.caption.90}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{100}{section.7.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Discuss\~ao}{101}{chapter.8}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{cap:conclusoes}{{8}{99}{Discussão}{chapter.8}{}}
+\newlabel{cap:conclusoes}{{8}{101}{Discussão}{chapter.8}{}}
 \bibstyle{plainnat-ime}
 \bibdata{../../Latex/Bibs/atlas.bib}
 \bibcite{Achen2005}{{1}{2005}{{Achen}}{{}}}
@@ -734,7 +736,7 @@
 \bibcite{Casella2001}{{11}{2001}{{Casella e Berger}}{{}}}
 \bibcite{Chang2017}{{12}{2017}{{Chang {\rm  {\em  et~al.}}}}{{Chang, Vizuete, Serre, Vennam, Omary, Isakov, Breen, e Arunachalam}}}
 \bibcite{Gleice2001a}{{13}{2001{a}}{{Concei{\c {c}}{\~a}o {\rm  {\em  et~al.}}}}{{Concei{\c {c}}{\~a}o, Miraglia, Kishi, Saldiva, e Singer}}}
-\@writefile{toc}{\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{101}{appendix*.90}}
+\@writefile{toc}{\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{103}{appendix*.91}}
 \bibcite{Gleice2001b}{{14}{2001{b}}{{Concei{\c {c}}{\~a}o {\rm  {\em  et~al.}}}}{{Concei{\c {c}}{\~a}o, Saldiva, e Singer}}}
 \bibcite{Cox2012}{{15}{2012}{{Cox}}{{}}}
 \bibcite{Demidenko2013}{{16}{2013}{{Demidenko}}{{}}}

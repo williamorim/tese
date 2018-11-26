@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  25 NOV 2018 20:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  26 NOV 2018 19:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -394,11 +394,7 @@ s
 Writing index file tese.idx
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) (./tese.aux
-
-LaTeX Warning: Label `tab:cap-comb-resultados-random-forest' multiply defined.
-
-)
+) (./tese.aux)
 \openout1 = `tese.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
@@ -415,7 +411,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
 LaTeX Font Info:    ... okay on input line 97.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
 LaTeX Font Info:    ... okay on input line 97.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count115
 \scratchdimen=\dimen136
@@ -642,15 +639,15 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [13])
+ [13]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+ [14])
 \tf@lof=\write6
 \openout6 = `tese.lof'.
 
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 314.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 314.
- [14]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 314.
 Package babel Info: Redefining portuges shorthand "|
@@ -737,13 +734,13 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 61.
  [6]
-<figuras/cap-analise-explo-O3-DPII.pdf, id=966, 578.16pt x 361.35pt>
+<figuras/cap-analise-explo-O3-DPII.pdf, id=967, 578.16pt x 361.35pt>
 File: figuras/cap-analise-explo-O3-DPII.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-O3-DPII.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-O3-DPII.pdf  used on input l
 ine 64.
 (pdftex.def)             Requested size: 468.33257pt x 292.70844pt.
-<figuras/cap-analise-explo-O3-DPII-media-horaria.pdf, id=968, 578.16pt x 361.35
+<figuras/cap-analise-explo-O3-DPII-media-horaria.pdf, id=969, 578.16pt x 361.35
 pt>
 File: figuras/cap-analise-explo-O3-DPII-media-horaria.pdf Graphic file (type pd
 f)
@@ -755,7 +752,7 @@ sed on input line 73.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/cap-analise-explo-O3-DPII-media-diaria.pdf, id=971, 578.16pt x 361.35p
+<figuras/cap-analise-explo-O3-DPII-media-diaria.pdf, id=972, 578.16pt x 361.35p
 t>
 File: figuras/cap-analise-explo-O3-DPII-media-diaria.pdf Graphic file (type pdf
 )
@@ -766,7 +763,7 @@ ed on input line 82.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/cap-analise-explo-O3-todas-estacoes-media-diaria.pdf, id=972, 578.16pt
+<figuras/cap-analise-explo-O3-todas-estacoes-media-diaria.pdf, id=973, 578.16pt
  x 361.35pt>
 File: figuras/cap-analise-explo-O3-todas-estacoes-media-diaria.pdf Graphic file
  (type pdf)
@@ -777,7 +774,7 @@ ia.pdf  used on input line 93.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/cap-analise-explo-O3-NO.pdf, id=974, 578.16pt x 361.35pt>
+<figuras/cap-analise-explo-O3-NO.pdf, id=975, 578.16pt x 361.35pt>
 File: figuras/cap-analise-explo-O3-NO.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-O3-NO.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-O3-NO.pdf  used on input lin
@@ -808,14 +805,14 @@ Package babel Info: Redefining portuges shorthand "|
 /cap-analise-explo-O3-NO.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 109.
-<./figuras/cap-analise-explo-scatter-ozone-no.pdf, id=1026, 433.62pt x 289.08pt
+<./figuras/cap-analise-explo-scatter-ozone-no.pdf, id=1027, 433.62pt x 289.08pt
 >
 File: ./figuras/cap-analise-explo-scatter-ozone-no.pdf Graphic file (type pdf)
 <use ./figuras/cap-analise-explo-scatter-ozone-no.pdf>
 Package pdftex.def Info: ./figuras/cap-analise-explo-scatter-ozone-no.pdf  used
  on input line 118.
 (pdftex.def)             Requested size: 468.33257pt x 312.23703pt.
-<./figuras/cap-analise-explo-scatter-ozone-no2.pdf, id=1029, 433.62pt x 289.08p
+<./figuras/cap-analise-explo-scatter-ozone-no2.pdf, id=1030, 433.62pt x 289.08p
 t>
 File: ./figuras/cap-analise-explo-scatter-ozone-no2.pdf Graphic file (type pdf)
 
@@ -827,7 +824,7 @@ d on input line 127.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-analise-explo-scatter-ozone-no2-morning.pdf, id=1030, 433.62pt x
+<./figuras/cap-analise-explo-scatter-ozone-no2-morning.pdf, id=1031, 433.62pt x
  289.08pt>
 File: ./figuras/cap-analise-explo-scatter-ozone-no2-morning.pdf Graphic file (t
 ype pdf)
@@ -845,7 +842,7 @@ Package babel Info: Redefining portuges shorthand "|
 [10 <./figuras/cap-analise-explo-scatter-ozone-no.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 141.
-<./figuras/cap-analise-explo-hist-ozone.pdf, id=1044, 433.62pt x 289.08pt>
+<./figuras/cap-analise-explo-hist-ozone.pdf, id=1045, 433.62pt x 289.08pt>
 File: ./figuras/cap-analise-explo-hist-ozone.pdf Graphic file (type pdf)
 <use ./figuras/cap-analise-explo-hist-ozone.pdf>
 Package pdftex.def Info: ./figuras/cap-analise-explo-hist-ozone.pdf  used on in
@@ -855,7 +852,7 @@ put line 148.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-analise-explo-ridges-ozone-month.pdf, id=1046, 433.62pt x 289.08
+<./figuras/cap-analise-explo-ridges-ozone-month.pdf, id=1047, 433.62pt x 289.08
 pt>
 File: ./figuras/cap-analise-explo-ridges-ozone-month.pdf Graphic file (type pdf
 )
@@ -885,7 +882,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 192.
  [13 <./figuras/cap-analise-explo-hist-ozone.pdf>]
-<figuras/cap-analise-explo-asg-O3-trend.pdf, id=1092, 722.7pt x 433.62pt>
+<figuras/cap-analise-explo-asg-O3-trend.pdf, id=1093, 722.7pt x 433.62pt>
 File: figuras/cap-analise-explo-asg-O3-trend.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-asg-O3-trend.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-asg-O3-trend.pdf  used on in
@@ -902,7 +899,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 214.
 [14 <./figuras/cap-analise-explo-ridges-ozone-month.pdf>]
-<figuras/cap-analise-explo-periodograma.pdf, id=1110, 722.7pt x 433.62pt>
+<figuras/cap-analise-explo-periodograma.pdf, id=1111, 722.7pt x 433.62pt>
 File: figuras/cap-analise-explo-periodograma.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-periodograma.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-periodograma.pdf  used on in
@@ -930,7 +927,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 246.
  [16 <./figuras/cap-analise-explo-periodograma.pdf>]
-<figuras/cap-analise-explo-acf-O3-DPII.pdf, id=1153, 578.16pt x 289.08pt>
+<figuras/cap-analise-explo-acf-O3-DPII.pdf, id=1154, 578.16pt x 289.08pt>
 File: figuras/cap-analise-explo-acf-O3-DPII.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-acf-O3-DPII.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-acf-O3-DPII.pdf  used on inp
@@ -941,7 +938,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 272.
  [17 <./figuras/cap-analise-explo-acf-O3-DPII.pdf>]
-<figuras/cap-analise-explo-pacf-O3-DPII.pdf, id=1170, 578.16pt x 289.08pt>
+<figuras/cap-analise-explo-pacf-O3-DPII.pdf, id=1171, 578.16pt x 289.08pt>
 File: figuras/cap-analise-explo-pacf-O3-DPII.pdf Graphic file (type pdf)
 <use figuras/cap-analise-explo-pacf-O3-DPII.pdf>
 Package pdftex.def Info: figuras/cap-analise-explo-pacf-O3-DPII.pdf  used on in
@@ -955,7 +952,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 303.
 
 [18 <./figuras/cap-analise-explo-pacf-O3-DPII.pdf>]
-<./figuras/ccf_temp.pdf, id=1185, 578.16pt x 289.08pt>
+<./figuras/ccf_temp.pdf, id=1186, 578.16pt x 289.08pt>
 File: ./figuras/ccf_temp.pdf Graphic file (type pdf)
 <use ./figuras/ccf_temp.pdf>
 Package pdftex.def Info: ./figuras/ccf_temp.pdf  used on input line 325.
@@ -971,7 +968,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 337.
 [19]
-<./figuras/cap-explo-medias-diarias.png, id=1193, 505.89pt x 361.35pt>
+<./figuras/cap-explo-medias-diarias.png, id=1194, 505.89pt x 361.35pt>
 File: ./figuras/cap-explo-medias-diarias.png Graphic file (type png)
 <use ./figuras/cap-explo-medias-diarias.png>
 Package pdftex.def Info: ./figuras/cap-explo-medias-diarias.png  used on input 
@@ -989,7 +986,7 @@ Package babel Info: Redefining portuges shorthand "|
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-explo-serie-CO.png, id=1211, 433.62pt x 346.67015pt>
+<./figuras/cap-explo-serie-CO.png, id=1212, 433.62pt x 346.67015pt>
 File: ./figuras/cap-explo-serie-CO.png Graphic file (type png)
 <use ./figuras/cap-explo-serie-CO.png>
 Package pdftex.def Info: ./figuras/cap-explo-serie-CO.png  used on input line 3
@@ -998,7 +995,7 @@ Package pdftex.def Info: ./figuras/cap-explo-serie-CO.png  used on input line 3
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-explo-serie-O3.png, id=1212, 433.62pt x 346.67015pt>
+<./figuras/cap-explo-serie-O3.png, id=1213, 433.62pt x 346.67015pt>
 File: ./figuras/cap-explo-serie-O3.png Graphic file (type png)
 <use ./figuras/cap-explo-serie-O3.png>
 Package pdftex.def Info: ./figuras/cap-explo-serie-O3.png  used on input line 3
@@ -1007,7 +1004,7 @@ Package pdftex.def Info: ./figuras/cap-explo-serie-O3.png  used on input line 3
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-explo-serie-NO.png, id=1213, 433.62pt x 346.67015pt>
+<./figuras/cap-explo-serie-NO.png, id=1214, 433.62pt x 346.67015pt>
 File: ./figuras/cap-explo-serie-NO.png Graphic file (type png)
 <use ./figuras/cap-explo-serie-NO.png>
 Package pdftex.def Info: ./figuras/cap-explo-serie-NO.png  used on input line 3
@@ -1016,7 +1013,7 @@ Package pdftex.def Info: ./figuras/cap-explo-serie-NO.png  used on input line 3
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-explo-serie-NO2.png, id=1214, 433.62pt x 346.67015pt>
+<./figuras/cap-explo-serie-NO2.png, id=1215, 433.62pt x 346.67015pt>
 File: ./figuras/cap-explo-serie-NO2.png Graphic file (type png)
 <use ./figuras/cap-explo-serie-NO2.png>
 Package pdftex.def Info: ./figuras/cap-explo-serie-NO2.png  used on input line 
@@ -1025,7 +1022,7 @@ Package pdftex.def Info: ./figuras/cap-explo-serie-NO2.png  used on input line
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figuras/cap-explo-serie-PM10.png, id=1215, 433.62pt x 346.67015pt>
+<./figuras/cap-explo-serie-PM10.png, id=1216, 433.62pt x 346.67015pt>
 File: ./figuras/cap-explo-serie-PM10.png Graphic file (type png)
 <use ./figuras/cap-explo-serie-PM10.png>
 Package pdftex.def Info: ./figuras/cap-explo-serie-PM10.png  used on input line
@@ -1070,7 +1067,7 @@ Package babel Info: Redefining portuges shorthand "|
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
-<figuras/cap-modelos-black-box.png, id=1246, 732.7375pt x 190.7125pt>
+<figuras/cap-modelos-black-box.png, id=1247, 732.7375pt x 190.7125pt>
 File: figuras/cap-modelos-black-box.png Graphic file (type png)
 <use figuras/cap-modelos-black-box.png>
 Package pdftex.def Info: figuras/cap-modelos-black-box.png  used on input line 
@@ -1099,7 +1096,7 @@ Package babel Info: Redefining portuges shorthand "|
  [29]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 101.
-<figuras/exemplo-serie-tendencia-linear-quadratica.pdf, id=1313, 417.56pt x 287
+<figuras/exemplo-serie-tendencia-linear-quadratica.pdf, id=1314, 417.56pt x 287
 .0725pt>
 File: figuras/exemplo-serie-tendencia-linear-quadratica.pdf Graphic file (type 
 pdf)
@@ -1111,7 +1108,7 @@ Package pdftex.def Info: figuras/exemplo-serie-tendencia-linear-quadratica.pdf
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/exemplo-serie-tendencias-diferentes.pdf, id=1315, 417.56pt x 287.0725p
+<figuras/exemplo-serie-tendencias-diferentes.pdf, id=1316, 417.56pt x 287.0725p
 t>
 File: figuras/exemplo-serie-tendencias-diferentes.pdf Graphic file (type pdf)
 <use figuras/exemplo-serie-tendencias-diferentes.pdf>
@@ -1130,7 +1127,7 @@ Package babel Info: Redefining portuges shorthand "|
  [31 <./figuras/exemplo-serie-tendencia-linear-quadratica.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 171.
-<figuras/exemplo-serie-correlacao.pdf, id=1343, 417.56pt x 216.81pt>
+<figuras/exemplo-serie-correlacao.pdf, id=1344, 417.56pt x 216.81pt>
 File: figuras/exemplo-serie-correlacao.pdf Graphic file (type pdf)
 <use figuras/exemplo-serie-correlacao.pdf>
 Package pdftex.def Info: figuras/exemplo-serie-correlacao.pdf  used on input li
@@ -1147,7 +1144,7 @@ Package babel Info: Redefining portuges shorthand "|
 [32 <./figuras/exemplo-serie-tendencias-diferentes.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 198.
-<figuras/exemplo-serie-heteroscedasticidade.pdf, id=1365, 490.83376pt x 316.181
+<figuras/exemplo-serie-heteroscedasticidade.pdf, id=1366, 490.83376pt x 316.181
 24pt>
 File: figuras/exemplo-serie-heteroscedasticidade.pdf Graphic file (type pdf)
 <use figuras/exemplo-serie-heteroscedasticidade.pdf>
@@ -1165,7 +1162,7 @@ Package babel Info: Redefining portuges shorthand "|
 [33 <./figuras/exemplo-serie-correlacao.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 216.
-<figuras/suposicao-linearidade.pdf, id=1390, 417.56pt x 287.0725pt>
+<figuras/suposicao-linearidade.pdf, id=1391, 417.56pt x 287.0725pt>
 File: figuras/suposicao-linearidade.pdf Graphic file (type pdf)
 <use figuras/suposicao-linearidade.pdf>
 Package pdftex.def Info: figuras/suposicao-linearidade.pdf  used on input line 
@@ -1180,7 +1177,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 246.
 [34 <./figuras/exemplo-serie-heteroscedasticidade.pdf>]
-<figuras/exemplo-residuos-linearidade-forma-U.pdf, id=1408, 548.0475pt x 258.96
+<figuras/exemplo-residuos-linearidade-forma-U.pdf, id=1409, 548.0475pt x 258.96
 75pt>
 File: figuras/exemplo-residuos-linearidade-forma-U.pdf Graphic file (type pdf)
 <use figuras/exemplo-residuos-linearidade-forma-U.pdf>
@@ -1193,7 +1190,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 264.
  [35 <./figuras/suposicao-linearidade.pdf> <./figuras/exemplo-residuos-linearid
 ade-forma-U.pdf>]
-<figuras/cap-regressao-exemplo-reg-seg.pdf, id=1433, 433.62pt x 289.08pt>
+<figuras/cap-regressao-exemplo-reg-seg.pdf, id=1434, 433.62pt x 289.08pt>
 File: figuras/cap-regressao-exemplo-reg-seg.pdf Graphic file (type pdf)
 <use figuras/cap-regressao-exemplo-reg-seg.pdf>
 Package pdftex.def Info: figuras/cap-regressao-exemplo-reg-seg.pdf  used on inp
@@ -1235,13 +1232,13 @@ Package babel Info: Redefining portuges shorthand "|
  [39]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 354.
-<figuras/gamma-distribution.pdf, id=1512, 391.4625pt x 216.81pt>
+<figuras/gamma-distribution.pdf, id=1513, 391.4625pt x 216.81pt>
 File: figuras/gamma-distribution.pdf Graphic file (type pdf)
 <use figuras/gamma-distribution.pdf>
 Package pdftex.def Info: figuras/gamma-distribution.pdf  used on input line 365
 .
 (pdftex.def)             Requested size: 327.83136pt x 181.5766pt.
-<figuras/inverse-normal-distribution.pdf, id=1514, 391.4625pt x 216.81pt>
+<figuras/inverse-normal-distribution.pdf, id=1515, 391.4625pt x 216.81pt>
 File: figuras/inverse-normal-distribution.pdf Graphic file (type pdf)
 <use figuras/inverse-normal-distribution.pdf>
 Package pdftex.def Info: figuras/inverse-normal-distribution.pdf  used on input
@@ -1283,7 +1280,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 464.
  [43]
-<figuras/cap-regressao-exemplo-splines.pdf, id=1606, 433.62pt x 289.08pt>
+<figuras/cap-regressao-exemplo-splines.pdf, id=1607, 433.62pt x 289.08pt>
 File: figuras/cap-regressao-exemplo-splines.pdf Graphic file (type pdf)
 <use figuras/cap-regressao-exemplo-splines.pdf>
 Package pdftex.def Info: figuras/cap-regressao-exemplo-splines.pdf  used on inp
@@ -1357,7 +1354,7 @@ Package babel Info: Redefining portuges shorthand "|
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 34.
-<figuras/cap-aprend-estat-trade-off.pdf, id=1745, 433.62pt x 289.08pt>
+<figuras/cap-aprend-estat-trade-off.pdf, id=1746, 433.62pt x 289.08pt>
 File: figuras/cap-aprend-estat-trade-off.pdf Graphic file (type pdf)
 <use figuras/cap-aprend-estat-trade-off.pdf>
 Package pdftex.def Info: figuras/cap-aprend-estat-trade-off.pdf  used on input 
@@ -1391,7 +1388,7 @@ Package babel Info: Redefining portuges shorthand "|
  [54]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 107.
-<figuras/cap-aprend-estat-esquema-loocv.png, id=1780, 387.4475pt x 294.09875pt>
+<figuras/cap-aprend-estat-esquema-loocv.png, id=1781, 387.4475pt x 294.09875pt>
 
 File: figuras/cap-aprend-estat-esquema-loocv.png Graphic file (type png)
 <use figuras/cap-aprend-estat-esquema-loocv.png>
@@ -1407,7 +1404,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 142.
 [55]
-<figuras/cap-aprend-estat-esquema-k-fold-cv.png, id=1789, 568.1225pt x 340.2712
+<figuras/cap-aprend-estat-esquema-k-fold-cv.png, id=1790, 568.1225pt x 340.2712
 6pt>
 File: figuras/cap-aprend-estat-esquema-k-fold-cv.png Graphic file (type png)
 <use figuras/cap-aprend-estat-esquema-k-fold-cv.png>
@@ -1461,7 +1458,7 @@ Package babel Info: Redefining portuges shorthand "|
  [61]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 298.
-<figuras/cap-aprend-estat-arvore.pdf, id=1867, 722.7pt x 722.7pt>
+<figuras/cap-aprend-estat-arvore.pdf, id=1868, 722.7pt x 722.7pt>
 File: figuras/cap-aprend-estat-arvore.pdf Graphic file (type pdf)
 <use figuras/cap-aprend-estat-arvore.pdf>
 Package pdftex.def Info: figuras/cap-aprend-estat-arvore.pdf  used on input lin
@@ -1527,13 +1524,13 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 65.
  [69]
-<figuras/cap-comb-series-share-ozone.pdf, id=1987, 433.62pt x 289.08pt>
+<figuras/cap-comb-series-share-ozone.pdf, id=1988, 433.62pt x 289.08pt>
 File: figuras/cap-comb-series-share-ozone.pdf Graphic file (type pdf)
 <use figuras/cap-comb-series-share-ozone.pdf>
 Package pdftex.def Info: figuras/cap-comb-series-share-ozone.pdf  used on input
  line 74.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
-<figuras/cap-comb-scatter-share-ozone.pdf, id=1988, 433.62pt x 289.08pt>
+<figuras/cap-comb-scatter-share-ozone.pdf, id=1989, 433.62pt x 289.08pt>
 File: figuras/cap-comb-scatter-share-ozone.pdf Graphic file (type pdf)
 <use figuras/cap-comb-scatter-share-ozone.pdf>
 Package pdftex.def Info: figuras/cap-comb-scatter-share-ozone.pdf  used on inpu
@@ -1544,19 +1541,19 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 87.
  [70 <./figuras/cap-comb-series-share-ozone.pdf>]
-<figuras/cap-comb-temperature-ridge-graph.pdf, id=2001, 433.62pt x 289.08pt>
+<figuras/cap-comb-temperature-ridge-graph.pdf, id=2002, 433.62pt x 289.08pt>
 File: figuras/cap-comb-temperature-ridge-graph.pdf Graphic file (type pdf)
 <use figuras/cap-comb-temperature-ridge-graph.pdf>
 Package pdftex.def Info: figuras/cap-comb-temperature-ridge-graph.pdf  used on 
 input line 90.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
-<figuras/cap-comb-series-temperature-ozone.pdf, id=2002, 433.62pt x 289.08pt>
+<figuras/cap-comb-series-temperature-ozone.pdf, id=2003, 433.62pt x 289.08pt>
 File: figuras/cap-comb-series-temperature-ozone.pdf Graphic file (type pdf)
 <use figuras/cap-comb-series-temperature-ozone.pdf>
 Package pdftex.def Info: figuras/cap-comb-series-temperature-ozone.pdf  used on
  input line 97.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
-<figuras/cap-comb-scatter-temperature-ozone.pdf, id=2003, 433.62pt x 289.08pt>
+<figuras/cap-comb-scatter-temperature-ozone.pdf, id=2004, 433.62pt x 289.08pt>
 File: figuras/cap-comb-scatter-temperature-ozone.pdf Graphic file (type pdf)
 <use figuras/cap-comb-scatter-temperature-ozone.pdf>
 Package pdftex.def Info: figuras/cap-comb-scatter-temperature-ozone.pdf  used o
@@ -1568,7 +1565,7 @@ Overfull \hbox (11.93927pt too wide) in paragraph at lines 109--109
 on-tra-dos em [][]https://www.rpollution.com/flexdashboards/ozonio-
  []
 
-<figuras/cap-comb-scatter-congestion-region-ozone.pdf, id=2009, 433.62pt x 289.
+<figuras/cap-comb-scatter-congestion-region-ozone.pdf, id=2010, 433.62pt x 289.
 08pt>
 File: figuras/cap-comb-scatter-congestion-region-ozone.pdf Graphic file (type p
 df)
@@ -1576,7 +1573,7 @@ df)
 Package pdftex.def Info: figuras/cap-comb-scatter-congestion-region-ozone.pdf  
 used on input line 123.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
-<figuras/cap-comb-ozone-congestion-throughtout-week.pdf, id=2010, 578.16pt x 36
+<figuras/cap-comb-ozone-congestion-throughtout-week.pdf, id=2011, 578.16pt x 36
 1.35pt>
 File: figuras/cap-comb-ozone-congestion-throughtout-week.pdf Graphic file (type
  pdf)
@@ -1602,7 +1599,7 @@ Package babel Info: Redefining portuges shorthand "|
 
 [73 <./figuras/cap-comb-scatter-temperature-ozone.pdf> <./figuras/cap-comb-scat
 ter-congestion-region-ozone.pdf>]
-<figuras/cap-comb-ozone-throughtout-week-by-share.pdf, id=2060, 433.62pt x 289.
+<figuras/cap-comb-ozone-throughtout-week-by-share.pdf, id=2061, 433.62pt x 289.
 08pt>
 File: figuras/cap-comb-ozone-throughtout-week-by-share.pdf Graphic file (type p
 df)
@@ -1658,7 +1655,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 184.
 [75 <./figuras/cap-comb-ozone-throughtout-week-by-share.pdf>]
-<figuras/cap-comb-lin-reg-pred-obs-plot.pdf, id=2100, 433.62pt x 289.08pt>
+<figuras/cap-comb-lin-reg-pred-obs-plot.pdf, id=2101, 433.62pt x 289.08pt>
 File: figuras/cap-comb-lin-reg-pred-obs-plot.pdf Graphic file (type pdf)
 <use figuras/cap-comb-lin-reg-pred-obs-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-lin-reg-pred-obs-plot.pdf  used on in
@@ -1687,13 +1684,13 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 227.
 [77]
-<figuras/cap-comb-gam-plot.pdf, id=2133, 433.62pt x 289.08pt>
+<figuras/cap-comb-gam-plot.pdf, id=2134, 433.62pt x 289.08pt>
 File: figuras/cap-comb-gam-plot.pdf Graphic file (type pdf)
 <use figuras/cap-comb-gam-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-gam-plot.pdf  used on input line 234.
 
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
-<figuras/cap-comb-gam-pred-obs-plot.pdf, id=2135, 433.62pt x 289.08pt>
+<figuras/cap-comb-gam-pred-obs-plot.pdf, id=2136, 433.62pt x 289.08pt>
 File: figuras/cap-comb-gam-pred-obs-plot.pdf Graphic file (type pdf)
 <use figuras/cap-comb-gam-pred-obs-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-gam-pred-obs-plot.pdf  used on input 
@@ -1708,7 +1705,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 249.
 [78 <./figuras/cap-comb-gam-plot.pdf>]
-<figuras/cap-comb-gam-plot-bs.pdf, id=2149, 433.62pt x 289.08pt>
+<figuras/cap-comb-gam-plot-bs.pdf, id=2150, 433.62pt x 289.08pt>
 File: figuras/cap-comb-gam-plot-bs.pdf Graphic file (type pdf)
 <use figuras/cap-comb-gam-plot-bs.pdf>
 Package pdftex.def Info: figuras/cap-comb-gam-plot-bs.pdf  used on input line 2
@@ -1722,120 +1719,139 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 264.
  [79 <./figuras/cap-comb-gam-pred-obs-plot.pdf> <./figuras/cap-comb-gam-plot-bs
 .pdf>]
+
+LaTeX Warning: Reference `' on page 80 undefined on input line 278.
+
+<figuras/cap-comb-seg-reg-plot.pdf, id=2176, 433.62pt x 289.08pt>
+File: figuras/cap-comb-seg-reg-plot.pdf Graphic file (type pdf)
+<use figuras/cap-comb-seg-reg-plot.pdf>
+Package pdftex.def Info: figuras/cap-comb-seg-reg-plot.pdf  used on input line 
+282.
+(pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 278.
-<figuras/cap-comb-forest-pred-obs-plot.pdf, id=2177, 433.62pt x 289.08pt>
+(babel)             in language  on input line 289.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 308.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 308.
+[80]
+<figuras/cap-comb-forest-pred-obs-plot.pdf, id=2187, 433.62pt x 289.08pt>
 File: figuras/cap-comb-forest-pred-obs-plot.pdf Graphic file (type pdf)
 <use figuras/cap-comb-forest-pred-obs-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-forest-pred-obs-plot.pdf  used on inp
-ut line 300.
+ut line 311.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 309.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 309.
-[80]
-<figuras/cap-comb-lime-pinheiros.pdf, id=2185, 433.62pt x 289.08pt>
+<figuras/cap-comb-lime-pinheiros.pdf, id=2190, 433.62pt x 289.08pt>
 File: figuras/cap-comb-lime-pinheiros.pdf Graphic file (type pdf)
 <use figuras/cap-comb-lime-pinheiros.pdf>
 Package pdftex.def Info: figuras/cap-comb-lime-pinheiros.pdf  used on input lin
-e 312.
+e 323.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 318.
+(babel)             in language  on input line 329.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 318.
- [81 <./figuras/cap-comb-forest-pred-obs-plot.pdf> <./figuras/cap-comb-lime-pin
-heiros.pdf>]
-<figuras/cap-comb-random-forest-cenarios.pdf, id=2203, 650.43pt x 433.62pt>
+(babel)             in language  on input line 329.
+[81 <./figuras/cap-comb-seg-reg-plot.pdf>]
+<figuras/cap-comb-random-forest-cenarios.pdf, id=2202, 650.43pt x 433.62pt>
 File: figuras/cap-comb-random-forest-cenarios.pdf Graphic file (type pdf)
 <use figuras/cap-comb-random-forest-cenarios.pdf>
 Package pdftex.def Info: figuras/cap-comb-random-forest-cenarios.pdf  used on i
-nput line 321.
+nput line 332.
 (pdftex.def)             Requested size: 327.83136pt x 218.55621pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 326.
+(babel)             in language  on input line 337.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 328.
+(babel)             in language  on input line 339.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 332.
+(babel)             in language  on input line 343.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 344.
+(babel)             in language  on input line 343.
+[82 <./figuras/cap-comb-forest-pred-obs-plot.pdf> <./figuras/cap-comb-lime-pinh
+eiros.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 344.
- [82 <./figuras/cap-comb-random-forest-cenarios.pdf>]
+(babel)             in language  on input line 343.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 344.
-<figuras/cap-comb-dist-ozonio.pdf, id=2218, 433.62pt x 289.08pt>
+(babel)             in language  on input line 355.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 360.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 360.
+ [83 <./figuras/cap-comb-random-forest-cenarios.pdf>]
+<figuras/cap-comb-dist-ozonio.pdf, id=2234, 433.62pt x 289.08pt>
 File: figuras/cap-comb-dist-ozonio.pdf Graphic file (type pdf)
 <use figuras/cap-comb-dist-ozonio.pdf>
 Package pdftex.def Info: figuras/cap-comb-dist-ozonio.pdf  used on input line 3
-52.
+63.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
 
-Overfull \hbox (2.98842pt too wide) in paragraph at lines 364--364
+Overfull \hbox (2.98842pt too wide) in paragraph at lines 375--375
  []|\T1/cmr/m/n/10.95 RMSE| 
  []
 
 
-Overfull \hbox (14.0587pt too wide) in paragraph at lines 362--374
+Overfull \hbox (14.0587pt too wide) in paragraph at lines 373--385
  [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf, id=2227, 433.62pt x 289.0
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 388.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 388.
+[84 <./figuras/cap-comb-dist-ozonio.pdf>]
+<figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf, id=2253, 433.62pt x 289.0
 8pt>
 File: figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf Graphic file (type pd
 f)
 <use figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf  u
-sed on input line 380.
+sed on input line 391.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 396.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 385.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 389.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 389.
-[83 <./figuras/cap-comb-dist-ozonio.pdf>]
-Overfull \hbox (2.98842pt too wide) in paragraph at lines 396--396
+Overfull \hbox (2.98842pt too wide) in paragraph at lines 407--407
  []|\T1/cmr/m/n/10.95 RMSE| 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figuras/cap-comb-max-diaria-pred-obs-plot.pdf, id=2241, 433.62pt x 289.08pt>
+<figuras/cap-comb-max-diaria-pred-obs-plot.pdf, id=2256, 433.62pt x 289.08pt>
 File: figuras/cap-comb-max-diaria-pred-obs-plot.pdf Graphic file (type pdf)
 <use figuras/cap-comb-max-diaria-pred-obs-plot.pdf>
 Package pdftex.def Info: figuras/cap-comb-max-diaria-pred-obs-plot.pdf  used on
- input line 409.
+ input line 420.
 (pdftex.def)             Requested size: 327.83136pt x 218.56503pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 416.
+(babel)             in language  on input line 427.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 419.
+(babel)             in language  on input line 427.
+[85 <./figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 419.
-[84 <./figuras/cap-comb-lin-reg-transfor-pred-obs-plot.pdf>]
+(babel)             in language  on input line 427.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 425.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 425.
- [85 <./figuras/cap-comb-max-diaria-pred-obs-plot.pdf>]
-Overfull \hbox (28.2851pt too wide) in paragraph at lines 439--469
+(babel)             in language  on input line 441.
+ [86 <./figuras/cap-comb-max-diaria-pred-obs-plot.pdf>]
+Overfull \hbox (28.2851pt too wide) in paragraph at lines 450--480
  [][] 
  []
 
@@ -1843,22 +1859,29 @@ Overfull \hbox (28.2851pt too wide) in paragraph at lines 439--469
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 471.
+(babel)             in language  on input line 482.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 481.
+(babel)             in language  on input line 495.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 481.
-[86]
+(babel)             in language  on input line 495.
+[87]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 484.
+(babel)             in language  on input line 495.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 484.
- [87]) (./caps/cap-poluicao-e-saude.tex
+(babel)             in language  on input line 495.
+ [88]) (./caps/cap-poluicao-e-saude.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 2.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 2.
+ [89]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [88]
+ [90
+
+]
 Cap\'{\i }tulo 6.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
@@ -1866,9 +1889,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
-[89
-
-]
+[91]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 13.
 Package babel Info: Redefining portuges shorthand "|
@@ -1877,8 +1898,8 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
- [90]
-<figuras/cap-mort-res-plot-glm.pdf, id=2336, 433.62pt x 289.08pt>
+ [92]
+<figuras/cap-mort-res-plot-glm.pdf, id=2355, 433.62pt x 289.08pt>
 File: figuras/cap-mort-res-plot-glm.pdf Graphic file (type pdf)
 <use figuras/cap-mort-res-plot-glm.pdf>
 Package pdftex.def Info: figuras/cap-mort-res-plot-glm.pdf  used on input line 
@@ -1888,10 +1909,10 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 56.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 56.
- [91 <./figuras/cap-mort-res-plot-glm.pdf>]
+ [93 <./figuras/cap-mort-res-plot-glm.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
-<figuras/cap-mort-gam-plot-poisson.pdf, id=2351, 361.35pt x 361.35pt>
+<figuras/cap-mort-gam-plot-poisson.pdf, id=2370, 361.35pt x 361.35pt>
 File: figuras/cap-mort-gam-plot-poisson.pdf Graphic file (type pdf)
 <use figuras/cap-mort-gam-plot-poisson.pdf>
 Package pdftex.def Info: figuras/cap-mort-gam-plot-poisson.pdf  used on input l
@@ -1901,7 +1922,7 @@ ine 84.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/cap-mort-boxplot-share.pdf, id=2352, 433.62pt x 289.08pt>
+<figuras/cap-mort-boxplot-share.pdf, id=2371, 433.62pt x 289.08pt>
 File: figuras/cap-mort-boxplot-share.pdf Graphic file (type pdf)
 <use figuras/cap-mort-boxplot-share.pdf>
 Package pdftex.def Info: figuras/cap-mort-boxplot-share.pdf  used on input line
@@ -1916,7 +1937,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 101.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 101.
-[92]
+[94]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
 Package babel Info: Redefining portuges shorthand "|
@@ -1926,13 +1947,13 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [93 <./figuras/cap-mort-gam-plot-poisson.pdf> <./figuras/cap-mort-boxplot-shar
+ [95 <./figuras/cap-mort-gam-plot-poisson.pdf> <./figuras/cap-mort-boxplot-shar
 e.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [94]
+ [96]
 Cap\'{\i }tulo 7.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
@@ -1942,10 +1963,10 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 30.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 30.
-[95
+[97
 
 ]
-<figuras/cap-webscraping-cycle.png, id=2384, 877.2775pt x 362.35374pt>
+<figuras/cap-webscraping-cycle.png, id=2404, 877.2775pt x 362.35374pt>
 File: figuras/cap-webscraping-cycle.png Graphic file (type png)
 <use figuras/cap-webscraping-cycle.png>
 Package pdftex.def Info: figuras/cap-webscraping-cycle.png  used on input line 
@@ -1955,10 +1976,10 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
- [96 <./figuras/cap-webscraping-cycle.png>]
+ [98 <./figuras/cap-webscraping-cycle.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 77.
-<figuras/cap-webscraping-mapa-iema.png, id=2396, 458.71375pt x 430.60875pt>
+<figuras/cap-webscraping-mapa-iema.png, id=2415, 458.71375pt x 430.60875pt>
 File: figuras/cap-webscraping-mapa-iema.png Graphic file (type png)
 <use figuras/cap-webscraping-mapa-iema.png>
 Package pdftex.def Info: figuras/cap-webscraping-mapa-iema.png  used on input l
@@ -1972,7 +1993,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 94.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 94.
-[97]
+[99]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 97.
 ) (./caps/cap-discussao.tex
@@ -1980,7 +2001,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [98 <./figuras/cap-webscraping-mapa-iema.png>]
+ [100 <./figuras/cap-webscraping-mapa-iema.png>]
 Cap\'{\i }tulo 8.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
@@ -1989,14 +2010,14 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
- [99
+ [101
 
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 343.
- [100
+ [102
 
 ] (./tese.bbl (./tese.brf)
 \tf@brf=\write8
@@ -2008,24 +2029,24 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 111.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 111.
- [101
+ [103
 
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 228.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 228.
- [102]
+ [104]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 355.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 355.
- [103]
+ [105]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 471.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 471.
- [104])
+ [106])
 
 Package natbib Warning: There were undefined citations.
 
@@ -2034,7 +2055,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 358.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 358.
-[105]
+[107]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
  (./tese.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
@@ -2046,69 +2067,63 @@ Package rerunfilecheck Warning: File `tese.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `tese.out':
-(rerunfilecheck)             Before: 24F8E5B626280DE838FA0A285D9767BE;6298
-(rerunfilecheck)             After:  94BC478CF364EC800E7421C756FD4094;6218.
+(rerunfilecheck)             Before: 41AFCD88B89750775D9AAF8B78C9122A;6218
+(rerunfilecheck)             After:  3B4EAF76851EDD8F1A563F25390F279D;6215.
 Package rerunfilecheck Info: File `tese.brf' has not changed.
-(rerunfilecheck)             Checksum: 3474DF732E389AC4B896196D38865A76;10021.
+(rerunfilecheck)             Checksum: F75D005F02F36E9B6C10778542038C9C;10021.
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
  ) 
 Here is how much of TeX's memory you used:
- 12491 strings out of 494903
- 194619 string characters out of 6179960
- 322982 words of memory out of 5000000
- 15058 multiletter control sequences out of 15000+600000
+ 12500 strings out of 494903
+ 194890 string characters out of 6179960
+ 323811 words of memory out of 5000000
+ 15064 multiletter control sequences out of 15000+600000
  32768 words of font info for 79 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  36i,13n,46p,2107b,575s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section.6.2} has been referenced but does not exi
-st, replaced by a fixed one
-
- </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0900.600
-pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440.
-600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi10
-95.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ect
-i1000.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecbx1000.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecti0900.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecbx1200.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
-} </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.60
-0pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800
-.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2
-074.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ec
-ti1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecrm0900.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen
-/ec/ecbx1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecbx2488.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jk
-nappen/ec/ecrm1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour
-/jknappen/ec/eccc1440.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1440.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cme
-x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on tese.pdf (125 pages, 4113061 bytes).
+ </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0900.6
+00pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti144
+0.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi
+1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cti1000.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/e
+c/ecbx1000.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecti0900.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jkna
+ppen/ec/ecbx1200.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.e
+nc} </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.
+600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm08
+00.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
+x2074.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/
+ecti1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecrm0900.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecbx1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecbx2488.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/
+jknappen/ec/ecrm1095.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/eccc1440.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/l
+jfour/jknappen/ec/ecrm1440.600pk> </home/william/.texlive2017/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on tese.pdf (127 pages, 4124443 bytes).
 PDF statistics:
- 3609 PDF objects out of 4296 (max. 8388607)
- 2538 compressed objects within 26 object streams
- 465 named destinations out of 1000 (max. 500000)
- 952 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3629 PDF objects out of 4296 (max. 8388607)
+ 2554 compressed objects within 26 object streams
+ 467 named destinations out of 1000 (max. 500000)
+ 949 words of extra memory for PDF output out of 10000 (max. 10000000)
 

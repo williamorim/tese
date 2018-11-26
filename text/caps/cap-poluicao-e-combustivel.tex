@@ -260,20 +260,31 @@ Quando comparamos a performance do modelo de regressão linear com a dos modelos 
 
 \subsection{Modelo de regressão segmentada}
 
-Para explorar um modelo não-linear mais simples do que o modelo aditivo generalizado, ajustamos o modelo de regressão segmentada discutido na Seção \ref{sec:linearidade}. Com base na Figura \ref{fig:comb-gam-plot}, optamos por segmentar a reta de regressão em três pontos: por volta do valor 0.2, por volta do valor 0.5 e por volta do valor 0.6. Esses pontos representam as maiores inflexões da curva estimada no modelo aditivo Normal para a proporção estimada de carros a gasolina. Como o modelo é altamente sensível ao ponto de segmentação inicial, testamos diversas combinações de pontos com valores ao redor de 0.2, 0.5 e 0.6. A combinação que levou ao menor RMSE foi XXX. Os resultados para este modelo estão apresentados na Tabela XXX.
+Para explorar um modelo não-linear mais simples do que o modelo aditivo generalizado, ajustamos o modelo de regressão segmentada discutido na Seção \ref{sec:linearidade}. Com base na Figura \ref{fig:comb-gam-plot}, optamos por segmentar a reta de regressão em três pontos: por volta do valor 0.2, por volta do valor 0.5 e por volta do valor 0.6. Esses pontos representam as maiores inflexões da curva estimada no modelo aditivo Normal para a proporção estimada de carros a gasolina. Como o modelo é altamente sensível ao ponto de segmentação inicial, testamos diversas combinações de pontos com valores ao redor de 0.2, 0.5 e 0.6. A combinação que levou ao menor RMSE foi (0.21, 0.51, 0.59). Os resultados para este modelo estão apresentados na Tabela \ref{tab:cap-comb-resultados-reg-seg}.
 
 \begin{table}[h!]
 	\centering
 	\caption{Resultado do modelo de regressão segmentada.}
-	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{5cm} N}
+	\begin{tabular}{M{3cm}|M{2cm}|M{2cm}|M{5cm} N}
 		\hline
 		Pontos de segmentação  & RMSE & \% var. explicada & Variáveis mais importantes & \\
 		\hline
-		1 & 14.11 & 85.72 & Temperatura, umidade, radiação, vento e tendência & \\
+		(0.21, 0.51, 0.59) & 19.45 & 71.23 & Temperatura, vento, radiação, umidade e var. ind. para a estação São Caetano do Sul & \\
 		\hline
 	\end{tabular}
-	\label{tab:cap-comb-resultados-random-forest}
+	\label{tab:cap-comb-resultados-reg-seg}
 \end{table}
+
+Observamos que o modelo apresenta performance ligeiramente melhor do que os modelos lineares e aditivos (menor RMSE e maior R$^2$). As variáveis mais importantes para explicar a concentração de ozônio continuam as mesmas do modelo de regressão linear. A proporção de carros a gasolina foi considerada estatisticamente significante (valor-p < 0.001), sendo que a Figura \ref{} apresenta a reta de regressão segmentada estimada para o efeito desse preditor na variação da concentração de ozônio. Quando comparamos esse gráfico com os gráficos do modelo aditivo generalizado (Figuras \ref{fig:comb-gam-plot} e \ref{fig:comb-gam-plot-bs}), notamos que ambos os modelos capturam relações não-lineares semelhantes, principalmente as quedas no efeito por volta dos valores 0.2 e 0.5 e o aumento próximo ao valor 0.6. O modelo de regressão segmentada estima aumento no efeito entre os valores intermediários, ao contrário do modelo aditivo.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-seg-reg-plot.pdf}
+	\caption{Reta de regressão segmentada para a proporção estimada de carros a gasolina. O efeito representa o valor da concentração de ozônio para cada valor da proporção estimada de carros a gasolina se todos os outros preditores tivessem valor igual a 0. Essa medida não tem interpretação prática, mas pode ser utilizada para calcular a variação no ozônio quando variamos o a proporção de carros a gasolina.}
+	\label{fig:cap-comb-seg-reg-plot}
+\end{figure}
+
+Embora as funções não-lineares do modelo de regressão segmentada e do modelo não-linear apresentem algumas diferentes, ambos sugerem que um modelo linear não é o mais adequado para investigar a associação entre a concentração de ozônio e a proporção de carros rodando a gasolina na cidade. Ambos os modelos também estimam que a proporção ótima de carros rodando a gasolina para a redução dos níveis de ozônio estaria em torno de 58\%. A seguir, ajustaremos um modelo mais flexível, na tentativa de melhorarmos a precisão das estimativas.
 
 \subsection{Random Forest}
 
