@@ -102,21 +102,31 @@ pontos <- expand.grid(
 
 set.seed(5893524)
 
-resultados <- map(
+resultados <- map_dfr(
   pontos,
   validacao_cruzada,
   formula = formula,
   df = df_model
 )
 
+saveRDS(resultados, file = "scripts/salvo-2017/seg-reg-res.rds")
+
+resultados_ <- resultados %>% 
+  bind_rows() %>% 
+  mutate(pontos = map(pontos, paste, collapse = "-") %>% unlist)
+
+resultados_ %>% 
+  arrange(rmse)
+
 model <- lm(formula, data = df_model)
-seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.2, 0.5, 0.6))
+seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.21, 0.51, 0.59))
 
 summary(seg_model)
 
 plot(seg_model)
 
-# RMSE: 19.74
-# MAE: 14.96
-# % var: 70.27%  
-# share_gas imp: 15º
+# Melhor modelo
+# 0.21 - 0.51 - 0.59
+# R2 = 0.71
+# RMSE = 19.4
+
