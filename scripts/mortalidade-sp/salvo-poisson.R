@@ -204,7 +204,8 @@ p1 <- ggplot(df_model) +
 
 p2 <- ggplot(df_model) +
   geom_boxplot(aes(x = month, y = share_gas))  +
-  labs(x = "Mês", y = "Proporção de carros a gasolina")
+  labs(x = "Mês", y = "Proporção de carros a gasolina") +
+  theme_bw()
 
 p1 + p2
 ggsave(filename = "text/figuras/cap-mort-boxplot-share.pdf", 
