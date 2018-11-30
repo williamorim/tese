@@ -520,7 +520,7 @@ No R, modelos lineares generalizados podem ser ajustados utilizando-se a função 
 
 Para mais informações sobre \textit{splines}, regressão local e modelos lineares aditivos em geral, consultar \cite{Hastie2008} e \cite{James2013}.
 
-\section{Séries temporais}
+\section{Modelos de séries temporais}
 
 Às vezes, queremos explicar a série $Y$ apenas por seus valores defasados no tempo (autocorrelação) ou pelos valores defasados dos preditores $X_{1}, \dots, X_{p}$ (correlação cruzada). Como os modelos de regressão apresentados até aqui permitem que $Y$ seja influenciada apenas por valores contemporâneos das variáveis explicativas, eles podem ser insuficientes para explicar toda as relações temporais presente em uma série. 
 
@@ -564,7 +564,8 @@ A estimação dos parâmetros $(\phi_1, \dots, \phi_p)$ e $(\theta_1, \dots, \theta
 
 As três classes de modelos apresentadas até aqui consideram que a série $Y_t$ é estacionária, o que normalmente não acontece na prática. Para flexibilizar essa restrição, apresentaremos a seguir os modelos ARIMA($p$, $d$, $q$), uma extensão da classe ARMA que considera a diferenciação de grau $d$ da série para eliminar a não-estacionariedade.
 
-\subsection{Modelos autorregressivos integrados e de médias móveis (ARIMA)} 
+\subsection{Modelos autorregressivos integrados e de médias móveis (ARIMA)}
+\label{sec:arima}
 
 Vimos na Seção \ref{sec:tend-sazon} que séries não-estacionárias podem ser diferenciadas para se alcançar a estacionariedade. De maneira geral, essa estratégia é válida para séries que não apresentam \textit{comportamento explosivo} ou, em outros termos, que apresentam alguma homogeneidade em seu comportamento não-estacionário. \cite{Morettin2004} enquadram séries dessa natureza, chamadas de \textit{séries não-estacionárias homogêneas}, em dois grupos:
 
@@ -618,7 +619,61 @@ Na linguagem R, uma maneira conveniente de se ajustar um modelo ARIMA é utilizar
 
 %Modelos de função de transferência descrevem a relação entre os preditores e a variável resposta de um fenômeno usando uma razão de polinômios, sendo a ordem do modelo igual à ordem do polinômio do denominador.
 
+\section{Modelos não-supervisionados}
+
+Modelos não-supervisionados são aqueles que não consideram uma variável resposta. Geralmente são utilizados para criar agrupamentos e fazer redução de dimensionalidade. Em estudos de poluição do ar, modelos não-supervisionados são muito utilizados para detecção de fontes de poluentes. A seguir, discutiremos os modelos usualmente utilizados.
+
+In contrast, unsupervised learning is often much more challenging. The
+exercise tends to be more subjective, and there is no simple goal for the
+analysis, such as prediction of a response. Unsupervised learning is often
+performed as part of an exploratory data analysis. Furthermore, it can be
+hard to assess the results obtained from unsupervised learning methods,
+since there is no universally accepted mechanism for performing cross-
+validation or validating results on an independent data set. The reason
+for this difference is simple. If we fit a predictive model using a supervised
+learning technique, then it is possible to check our work by seeing how
+well our model predicts the response Y on observations not used in fitting
+the model. However, in unsupervised learning, there is no way to check our
+work because we don?t know the true answer?the problem is unsupervised.
+
+\subsection{Análise de componentes principais}
+
+Imagine que em um estudo estamos investigando a concentração de dois poluentes, digamos $X_1$ e $X_2$. Dada uma amostra de tamanho $n$ dessas variáveis, se quiséssemos explorar esses dados descritivamente, poderíamos construir um gráfico de dispersão de $X_1$ contra $X_2$ e, a partir dele, observar a variabilidade desses poluentes e também como eles estão correlacionados. Se eles apresentarem correlação positiva, teríamos indícios de que eles são gerados pela mesma fonte ou pelas mesmas condições atmosféricas.
+
+Imagine agora que, em vez de 2 poluentes, tivéssemos 10. Se quiséssemos construir todos os gráficos de dispersão para as combinações dois a dois, precisaríamos analisar 45 gráficos, sendo que cada um deles só traria uma pequena parte da informação contida nos dados.
+
+Em um contexto geral, para $p$ poluentes, gostaríamos de uma maneira de visualizar o máximo possível da informação contida nas $p$ dimensões geradas pelos preditores $X_1, \dots, X_p$ em uma representação com poucas dimensões. Esse é exatamente o objetivo da análise de componentes principais.
+
+Dado um conjunto de preditores $X_1, X_2, \dots, X_p$, a análise de componentes principais visa encontrar uma projeção ortogonal $Z_1, Z_2, \dots, Z_p$, tal que
+
+\[
+VAR(Z_1) \geq VAR(Z_2) \geq \cdots, VAR(Z_p).
+\]
+Isso implica que, em geral, com apenas as primeiras variáveis $Z$'s, digamos $Z_1$ e $Z_2$, podemos explicar a maior parte da variabilidade dos preditores $X$'s. Assim, $Z_1$ e $Z_2$ representariam em apenas 2 dimensões a maior parte da informação contida nos dados.
+
+Cada variável $Z_i$, chamada de $i$-ésima componente principal, é uma combinação linear dos preditores $X_1, X_2, \dots, X_p$ dada por
+
+\begin{equation}
+Z_i = \phi_{1i} X_1 + \phi_{2i} X_2 + \cdots \phi_{pi} X_p,
+\end{equation}
+sendo que os elementos $\phi_{1i}, \dots, \phi_{pi}$ são os \textit{pesos} do $i$-ésimo componente principal. Como esses pesos são normalizados, $\sum_{j = 1}^p{\phi_{ji}^2} = 1$, temos que $\phi_{ji} < 1$, para todo $j = 1, \dots, p$. Assim, os  $\phi_{1i}, \dots, \phi_{pi}$ próximos de 1 indicam preditores positivamente associados e cuja variabilidade está sendo representada por $Z_i$.
+
+Como $Z_1, Z_2, \dots, Z_p$ representa uma projeção ortogonal, cada par de componentes ($Z_i$, $Z_j$) é não-correlacionado. Dessa forma, o componente $Z_2$, por exemplo, é a combinação linear de $X_1, X_2, \dots, X_p$ de maior variância entre todas as combinações lineares que são não-correlacionadas com $Z_1$. Isso quer dizer que as fontes de variação representadas por $Z_2$ são não-correlacionadas com as encontradas em $Z_1$.
+
+Voltando ao nosso exemplo com os poluentes, se a análise de componentes principais indicasse os poluentes $X_1$, $X_3$ e $X_5$ como aqueles como maiores pesos para o componente $Z_1$ e os poluentes $X_2$, $X_3$ e $X_4$ como aqueles com maior peso para o componente $Z_2$, então esses dois grupos de poluentes caracterizariam duas fontes não-correlacionadas de poluição\footnote{ A identificação da fonte deve então ser feita a partir dos poluentes que a compõe utilizando conhecimento teórico sobre emissões ou resultados de estudo anteriores.}.
+
+Os cálculos por trás da análise de componentes principais envolvem decomposição espectral \citep{Nicholson2006}, uma técnica de álgebra linear para representar matrizes em função de seus autovetores e autovalores. 
+
+Na linguagem R, podemos realizar uma análise de componentes principais utilizando a função \texttt{prcomp()} do pacote \texttt{stats}.
+
+
+\subsection{Positive Matrix Factorization}
+
+\subsection{Análise Fatorial}
+
 \section{Outros modelos}
+
+\subsection{Modelos mistos}
 
 \subsection{Modelos GARCH}
 

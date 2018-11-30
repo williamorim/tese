@@ -50,10 +50,10 @@ train_control <- trainControl(method = "cv", number = 5)
 tuning_grid <- expand.grid(
   gamma = 0,
   min_child_weight = 1,
-  nrounds = c(150, 175, 200),
-  max_depth = c(3, 4, 5),
-  eta = c(0.4, 0.45, 0.5),
-  colsample_bytree = c(0.7, 0.8, 0.9),
+  nrounds = 250,
+  max_depth = 5,
+  eta = 0.4,
+  colsample_bytree = 0.7,
   subsample = 1
 )
 
@@ -71,12 +71,12 @@ model <- train(
 )
 
 model
-# RMSE: 14.11
-# MAE: 10.20
-# % var: 85.72%  
+
+# RMSE: 12.60
+# MAE: 9.03
+# % var: 87.89%  
 # share_gas imp: 6ª
 
-model$finalModel
 varImp(model)
 
 pred_obs_plot(

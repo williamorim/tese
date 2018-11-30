@@ -97,8 +97,37 @@ Na próxima seção, avaliaremos melhor a relação entre mortalidade e proporção de 
 
 \subsection{Modelo ARIMA e regressão linear}
 
-Como a associação entre mortalidade e proporção de carros a gasolina estiver sendo induzida pela ausência de alguma outra variável sazonal importante, podemos ajustar um modelo de série temporal aos dados de mortalidade para eliminar os componentes temporais e então ajustar um modelo de regressão aos resíduos, para avaliar se a variação não explicada está associada com a proporção de carros a gasolina.
+Se a associação entre mortalidade e proporção de carros a gasolina estiver sendo induzida pela ausência de alguma outra variável sazonal importante, podemos ajustar um modelo de série temporal aos dados de mortalidade para controlar os componentes temporais e então ajustar um modelo de regressão aos resíduos para avaliar se a variação não explicada está associada com a proporção de carros a gasolina.
+
+O modelo de séries temporais escolhido foi o modelo ARIMA($p$, $d$, $q$), discutido na Seção \ref{sec:arima}. Para ajustá-lo, utilizamos a função \texttt{auto.arima()} do pacote \texttt{forecast}, que testa diversos valores dos parâmetros $p$, $d$ e $q$ e escolhe a combinação que gera o modelo com o melhor ajuste\footnote{O modelo com o menor AIC (\textit{Akaike's Information Criterion}), uma medida que pondera a qualidade do ajuste com a complexidade do modelo. Para mais informações, consultar \cite{Konishi2008}.}. 
+
+O modelo de regressão ajustado nos resíduos do modelo ARIMA considera os seguintes preditores: proporção estimada de carros a gasolina, temperatura, umidade, dia da semana e indicador de dia útil. Assim como anteriormente, testamos modelos com a média, mínima, máxima e variação diária da temperatura.
+
+Os resultados para os modelos ajustados estão apresentados na Tabela \ref{tab:cap-mort-reg-lin-arima}. Reparamos que em nenhum dos modelos a proporção de carros a gasolina é significativa para explicar os resíduos do modelo ARIMA, sugerindo que realmente havia algum componente sazonal induzindo a associação entre esse preditor e a mortalidade. Repare que, para o grupo geral por exemplo, os preditores considerados explicam apenas 11\% da variabilidade não explicada pelo modelo ARIMA. Em todos os modelos, a variável escolhida para a temperatura foi a variação diária.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultados do modelo de regressão linear ajustado nos resíduos do modelo ARIMA.}
+	\begin{tabular}{M{2cm}|M{3cm}|M{5cm} N}
+		\hline
+		Grupo & \% var. explicada & Valor-p para a proporção de carros a gasolina & \\
+		\hline
+		Geral & 0.11 & 0.40 & \\
+		Idosos & 0.05 & 0.28 & \\
+		Crianças & 0.002 & 0.42 & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-mort-reg-lin-arima}
+\end{table}
+
+Calculando o RSME para o modelo final (combinação do modelo ARIMA e da regressão linear), temos os valores 37.6, 28.8 e 5.03 para os grupos geral, idosos e crianças, respectivamente. Esses valores são ligeiramente inferiores aos encontrados para o modelo aditivo Poisson.
+
+A seguir, apresentaremos alguns resultados de analises complementares que realizamos para testar a robustez das conclusões encontradas até aqui.
 
 \subsection{Outras análises realizadas}
+
+- Modelos com lag
+- Random forest
+- XGBoost
 
 \subsection{Associando mortalidade e concentração de ozônio}

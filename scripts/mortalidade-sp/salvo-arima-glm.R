@@ -8,7 +8,7 @@ library(forecast)
 # Dados -------------------------------------------------------------------
 
 df_model <- read_rds("data/datasus-sim/model_mort_diaria_salvo.rds")
-df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
+# df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
 
 source("scripts/salvo-2017/salvo-utils.R")
 

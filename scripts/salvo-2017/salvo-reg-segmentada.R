@@ -95,9 +95,9 @@ validacao_cruzada <- function(pontos, formula, df, k = 5) {
 }
 
 pontos <- expand.grid(
-  p1 = seq(0.17, 0.23, 0.01),
-  p2 = seq(0.47, 0.53, 0.01),
-  p3 = seq(0.57, 0.63, 0.01)
+  p1 = 0.2,
+  p2 = 0.6
+  #p3 = seq(0.57, 0.63, 0.01)
 ) %>% 
   split(x = ., seq(nrow(.))) %>% 
   map(as.numeric)
@@ -128,7 +128,7 @@ resultados_ %>%
 
 set.seed(5893524)
 model <- lm(formula, data = df_model)
-seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.21, 0.51, 0.59))
+seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.15, 0.17, 0.5, 0.6))
 
 summary(seg_model)
 
