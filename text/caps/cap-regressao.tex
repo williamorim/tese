@@ -675,6 +675,16 @@ Na linguagem R, podemos realizar uma análise de componentes principais utilizand
 
 \subsection{Modelos mistos}
 
+Os modelos mistos (ou modelos de coeficientes aleatórios) foram introduzidos por \cite{Fisher1918} para estudar a correlação de traços hereditários em pais, mães e filhos. Eles são particularmente úteis em estudos clínicos, ensaios biológicos e estudos sociais, nos quais variáveis medidas em uma mesma unidade amostral (medidas repetidas) ou unidades amostrais com agrupamentos naturais\footnote{Como membros de uma mesma família, pacientes de um mesmo hospital, animais de uma mesma ninhada ou moradores de uma mesma região.} (dados hierárquicos) geram observações correlacionadas.
+
+Essa classe de modelos utiliza \textit{coeficientes aleatórios} para controlar os efeitos individuais e de grupo que não podem ser observados\footnote{Como carga genética, criação, o efeito do atendimento por um mesmo médico, níveis de poluição do ar de uma mesma região etc.}. Ao contrário dos coeficientes fixos dos modelos de regressão vistos até aqui, que modelam a média da variável resposta, os efeitos aleatórios introduzem uma estrutura para a variância de $Y$, contemplando a correlação entre observações de um mesmo grupo e as diferentes variâncias de observações de diferentes grupos.
+
+Em estudos de poluição do ar, modelos mistos são usados principalmente para controlar variações individuais em estudos epidemiológicos longitudinais. \cite{Liao1999}, por exemplo, avaliaram a resposta autonômica cardiovascular a variações diárias de material particulado 2.5 em 26 idosos durante 3 semanas consecutivas, mostrando que o aumento dos níveis de MP2.5 estão associados a um menor controle autonômico cardíaca. \cite{Coull2001} utilizaram um modelo aditivo misto para associar mudanças na concentração de poluentes atmosféricos com a função pulmonar de crianças ao longo de 109 dias. Eles mostraram que o modelo misto era o mais adequado para contemplar a heterogeneidade populacional da suscetibilidade à poluição. Já \cite{Chuang2011} avaliaram o uso de um componente aleatório para os graus de liberdade de um modelo aditivo Poisson em estudos epidemiológicos de poluição do ar. Os autores observaram que esse modelo gerava erros-padrão maiores do que o modelo aditivo usual e concluíram que um alisamento variável da função não-linear em conjunto com essa maior variabilidade poderia refletir melhor a realidade.
+
+Mais informações sobre modelos mistos, como especificação do modelo, estimação e outros exemplos, podem ser encontradas em \cite{Singer2012} e \cite{Galecki2013}.
+
+Na linguagem R, modelos mistos podem ser ajustados a partir das funções dos pacotes \texttt{nlme} e \texttt{lme4}.
+
 \subsection{Modelos GARCH}
 
 Os modelos para séries temporais apresentados até aqui são utilizados para modelar a média condicional de um processo quando a variância condicional (volatilidade) é constante. Em muitos problemas, contudo, a suposição de homoscedasticidade pode não ser verdadeira.

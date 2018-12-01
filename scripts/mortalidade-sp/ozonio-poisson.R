@@ -3,114 +3,210 @@
 library(tidyverse)
 library(caret)
 library(recipes)
+library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
 df_model <- read_rds("data/datasus-sim/model_mort_diaria_salvo.rds")
-df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
+# df_share_bs <- read_rds("data/artaxo-salvo-geiger/dados_gas_200_bs.rds")
 
 source("scripts/salvo-2017/salvo-utils.R")
 
-# Formula -----------------------------------------------------------------
+# Formulas ----------------------------------------------------------------
 
-formulas <- df_model %>%
-  select(
-    -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
-    -date, -dayofweek,
-    -pp, -dv_pp_20_150,
-    -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation,
-    -share_gas,
-  ) %>%
-  names() %>%
-  str_c(collapse = " + ") %>%
-  str_c(
-    c("n_mortes_geral ~ ", "n_mortes_idosos ~ ", "n_mortes_criancas ~ "), .
-  ) %>%
-  map(as.formula)
+cria_formula <- function(mort, temp, sazon) {
+  
+  padrao <- "o3_mass_conc + hm + trend + dayofweek + dv_workday"
+  
+  
+  padrao %>% 
+    str_c(temp, sep = " + ") %>% 
+    str_c(sazon, sep = " + ") %>% 
+    str_c(mort, ., sep = " ~ ")
+  
+}
+
+formulas <- expand.grid(
+  mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
+  #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
+  temperatura = "tp",
+  #sazonalidade = c("month", "season")
+  sazonalidade = "month"
+) %>% 
+  as.tibble() %>% 
+  mutate(formula = cria_formula(mortalidade, temperatura, sazonalidade))
 
 # Model -------------------------------------------------------------------
 
+# Function to train the models
+
+train_model <- function(formula, df_model, train_control) {
+  
+  set.seed(5893524)
+  
+  train(
+    form = as.formula(formula),
+    data = na.omit(df_model),
+    method = "glm",
+    family = poisson(link = "log"),
+    trControl = train_control
+  )
+  
+}
+
+# Fits
+
 train_control <- trainControl(method="cv", number = 5)
+
+ajustes <- map(
+  formulas$formula,
+  train_model,
+  df_model = filter(df_model, week != "26"),
+  train_control = train_control
+)
+
+# Resultados
+
+extrai_resultados <- function(ajuste, preditor) {
+  
+  imp <-  ajuste %>% 
+    varImp() %>% 
+    .$importance %>% 
+    rownames_to_column("var") %>%
+    mutate(n = row_number(desc(Overall))) %>% 
+    filter(var == preditor) %>% 
+    .$n
+  
+  estimativas <- ajuste %>% 
+    .$finalModel %>% 
+    broom::tidy() %>% 
+    filter(term == preditor) %>% 
+    magrittr::extract(c("estimate", "p.value")) %>% 
+    as.list()
+  
+  tibble(
+    RMSE = ajuste$results$RMSE,
+    R2 = ajuste$results$Rsquared,
+    MAE = ajuste$results$MAE,
+    varImp = imp,
+    coeficiente = estimativas$estimate,
+    valor_p = estimativas$p.value
+  ) %>% 
+    mutate(
+      variacao = round((exp(coeficiente*10) - 1)*100, 2)
+    )
+  
+}
+
+resultados <- map_dfr(
+  ajustes,
+  extrai_resultados,
+  preditor = "o3_mass_conc"
+) %>% 
+  bind_cols(formulas, .)
+
+View(resultados)
 
 # Geral
 
-set.seed(5893524)
+resultados %>% 
+  filter(mortalidade == "n_mortes_geral") %>% 
+  arrange(RMSE) %>% 
+  View
 
-model <- train(
-  form = formulas[[1]],
-  data = na.omit(df_model),
-  method = "glm",
-  family = poisson(link = "log"),
-  trControl = train_control
-)
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 40.75174
+# R2: 0.5208003
+# varImp: 13
+# variacao (+10 conc): 0.32%
+# valor-p: < 000.1
 
-model
-summary(model)
-varImp(model)
-# RMSE: 40.46
-# MAE: 32.62
-# % var: 53.59%
-# share_gas imp: > 20
-# aumento de 10 no ozônio -> aumento de 0.4% na taxa de mortalidade
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_geral,
-  pred = predict(model, newdata = na.omit(df_model))
-)
-
-plot(model$finalModel)
+ajustes[[1]]$finalModel %>% plot
 
 # Idosos
 
-set.seed(5893524)
+resultados %>% 
+  filter(mortalidade == "n_mortes_idosos") %>% 
+  arrange(RMSE) %>% 
+  View
 
-model <- train(
-  form = formulas[[2]],
-  data = na.omit(df_model),
-  method = "glm",
-  family = poisson(link = "sqrt"),
-  trControl = train_control
-)
 
-model
-summary(model)
-varImp(model)
-# RMSE: 30.74
-# MAE: 24.13
-# % var: 61.15% 
-# share_gas imp: > 20
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_idosos,
-  pred = predict(model, newdata = na.omit(df_model))
-)
-
-plot(model$finalModel)
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 31.76168
+# R2: 0.5619809
+# varImp: 13
+# variação (+10 conc): 0.36%
+# valor-p: < 000.1
 
 # Crianças
 
-set.seed(5893524)
+resultados %>% 
+  filter(mortalidade == "n_mortes_criancas") %>% 
+  arrange(RMSE) %>% 
+  View
 
-model <- train(
-  form = formulas[[3]],
-  data = na.omit(df_model),
-  method = "glm",
-  family = poisson(link = "sqrt"),
-  trControl = train_control
-)
 
-model
-summary(model)
-varImp(model)
-# RMSE: 5.19
-# MAE: 4.16
-# % var: 2.2%
-# share_gas imp: 8
+# Melhor resultado:
+# temp média
+# month
+# RMSE: 5.090106
+# R2: 0.02815551
+# varImp: 13
+# valor-p: 0.7142002
 
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_criancas,
-  pred = predict(model, newdata = na.omit(df_model))
-)
 
-plot(model$finalModel)
+# Gráficos de resíduos
+
+p_geral <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[1]], 
+  y = "n_mortes_geral"
+) +
+  ggtitle("Geral")
+
+p_idosos <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[2]], 
+  y = "n_mortes_idosos"
+) +
+  ggtitle("Idosos")
+
+p_criancas <- pred_obs_plot2(
+  df = df_model, 
+  model = ajustes[[3]], 
+  y = "n_mortes_criancas"
+) +
+  ggtitle("Crianças")
+
+
+p_geral + p_idosos + p_criancas
+ggsave(filename = "text/figuras/cap-mort-res-plot-glm.pdf", 
+       width = 6, height = 4)
+
+
+
+# ggplot(df_model) +
+#   geom_boxplot(aes(x = season, y = share_gas))
+# 
+# 
+# ggplot(df_model) +
+#   geom_boxplot(aes(x = week, y = n_mortes_geral, fill = month))
+
+
+p1 <- ggplot(df_model) +
+  geom_boxplot(aes(x = month, y = n_mortes_geral)) +
+  labs(x = "Mês", y = "Número de mortes (geral)") +
+  theme_bw()
+
+p2 <- ggplot(df_model) +
+  geom_boxplot(aes(x = month, y = share_gas))  +
+  labs(x = "Mês", y = "Proporção de carros a gasolina") +
+  theme_bw()
+
+p1 + p2
+ggsave(filename = "text/figuras/cap-mort-boxplot-share.pdf", 
+       width = 6, height = 4)

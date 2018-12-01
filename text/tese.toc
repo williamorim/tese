@@ -39,8 +39,8 @@
 \contentsline {subsection}{\numberline {3.5.3}An\'alise Fatorial}{50}{subsection.3.5.3}
 \contentsline {section}{\numberline {3.6}Outros modelos}{50}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}Modelos mistos}{50}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Modelos GARCH}{50}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Modelos din\^amicos}{51}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.2}Modelos GARCH}{51}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Modelos din\^amicos}{52}{subsection.3.6.3}
 \contentsline {chapter}{\numberline {4}Estrat\'egias de modelagem preditiva}{53}{chapter.4}
 \contentsline {section}{\numberline {4.1}Sobreajuste e o balan\c co entre vi\'es e vari\^ancia}{54}{section.4.1}
 \contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{56}{section.4.2}

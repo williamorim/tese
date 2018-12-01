@@ -1,4 +1,4 @@
-\begin{thebibliography}{75}
+\begin{thebibliography}{80}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -98,6 +98,18 @@ Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
 \newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
   na p\'{a}g.}
 
+\bibitem[Chuang {\rm{\em et~al.}}(2011)Chuang, Mazumdar, Park, Tang, Arena, e
+  Nicolich]{Chuang2011}{\bf Chuang {\rm{\em et~al.}}(2011)}
+Ya-Hsiu Chuang, Sati Mazumdar, Taeyoung Park, Gong Tang, Vincent.~C. Arena e
+  Mark~J. Nicolich.
+\newblock Generalized linear mixed models in time series studies of air
+  pollution.
+\newblock \emph{Atmospheric Pollution Research}, 2\penalty0 (4): \penalty0 428
+  -- 435.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215304694}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{a}})Concei{\c{c}}{\~a}o, Miraglia, Kishi, Saldiva, e
   Singer]{Gleice2001a}{\bf Concei{\c{c}}{\~a}o {\rm{\em
@@ -119,6 +131,13 @@ Gleice M.~S. Concei{\c{c}}{\~a}o, Paulo H.~N. Saldiva e Julio~M. Singer.
   introdu{\c{c}}{\~a}o baseada em dados da cidade de {S}{\~a}o {P}aulo.
 \newblock \emph{Revista Brasileira de Epidemiologia}, 4\penalty0 (3): \penalty0
   206--219.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Coull {\rm{\em et~al.}}(2001)Coull, Schwartz, e Wand]{Coull2001}{\bf
+  Coull {\rm{\em et~al.}}(2001)}
+Brent Coull, Joel Schwartz e Matt Wand.
+\newblock Respiratory health and air pollution: additivemixed model analyses.
+\newblock \emph{Biostatistics}, 2\penalty0 (3): \penalty0 337--349.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Cox(2012)]{Cox2012}{\bf Cox(2012)}
 L.~A. Cox.
@@ -180,6 +199,19 @@ Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
   to ambient {PM}2.5 and ozone.
 \newblock \emph{Risk Analysis}, 32: \penalty0 81--95.   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Fisher(1918)]{Fisher1918}{\bf Fisher(1918)}
+Ronald Fisher.
+\newblock The correlation between relatives on the supposition of {M}endelian
+  inheritance.
+\newblock \emph{Transactions of the Royal Society of Edinburgh}, 652\penalty0
+  (2): \penalty0 399--433.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Galecki e Burzykowski(2013)]{Galecki2013}{\bf Galecki e
+  Burzykowski(2013)}
+Andrzej Galecki e Tomasz Burzykowski.
+\newblock \emph{Linear Mixed-Effects Models Using R}.
+\newblock Springer.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Gower(1971)]{Gower1971}{\bf Gower(1971)}
 C.~John Gower.
@@ -303,6 +335,15 @@ Victor Leiva, Michelli Barros, Gilberto~A. Paula. e Antonio Sanhueza.
   concentration.
 \newblock \emph{Environmetrics}, 19: \penalty0 235--249.   {\scriptsize Citado
   na p\'{a}g.}
+
+\bibitem[Liao {\rm{\em et~al.}}(1999)Liao, Creason, Shy, Williams, Watfs, e
+  Zweidinger]{Liao1999}{\bf Liao {\rm{\em et~al.}}(1999)}
+Duanping Liao, John Creason, Card Shy, Ron Williams, Randall Watfs e Roy
+  Zweidinger.
+\newblock Daily variation of particulate air pollution and poor cardiac
+  autonomic control in the elderly.
+\newblock \emph{Environ Health Perspect}, 107\penalty0 (7): \penalty0 521--525.
+    {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Lin {\rm{\em et~al.}}(1999)Lin, Martins, Farhat, Pope,
   Concei{\c{c}}{\~a}o, Anast{\'a}cio, Hatanaka, Andrade, Hamaue, Bohm, e
