@@ -333,25 +333,6 @@ Repetindo esse procedimento $M$ vezes, teremos $M$ estimativas para cada nova ob
 
 \textit{Random forests} podem ser ajustadas utilizando a função \texttt{train()} do pacote \texttt{caret} com \texttt{methord = "ranger"}. Os principais hiperparâmetros que devem ser escolhidos são o número de sorteados em cada ajuste ($m$) e o número mínimo de observações nos nós finais de cada árvore.
 
-Ao contrário das árvores de decisão, as \textit{random forests} não são diretamente interpretáveis, já que se baseiam nas estimativas de centenas de árvores. Medidas de importância das variáveis podem ser utilizadas para avaliar quais preditores são os mais relevantes para explicar a variável resposta. Em geral, usa-se a redução média do RMSE gerada por todas partições do preditor nas $M$ árvores.
-
-Uma outra técnica utilizada para interpretar modelos como as \textit{random forests} é o LIME (\textit{Local snterpretable Model-Agnostic Explanations}) \citep{Ribeiro2016}. Dado qualquer modelo estatístico, essa técnica consiste em explicar quais preditores foram responsáveis pela predição de uma observação específica. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não interpretáveis.
-
-Essa técnica assume que todo modelo complexo prevê valores parecidos para duas observações muito próximas, sendo possível ajustar um modelo simples ao redor de uma única observação para copiar o comportamento global do modelo complexo. Assim, a partir de um modelo interpretável podemos obter para cada observação uma explicação sobre a predição feita pelo modelo não-interpretável.
-
-O algoritmo consiste em:
-
-\begin{enumerate}
-	\item Para cada predição a ser explicada, permutar a observação $n$ vezes.
-	\item Predizer cada uma das observações permutadas usando o modelo complexo.
-	\item Calcular uma medida de distância e similaridade entre as permutações e a observação original. Geralmente a distância de Gower é utilizada \citep{Gower1971}.
-	\item Selecionar as $m$ variáveis mais importantes utilizadas pelo modelo complexo para explicar os dados permutados.
-	\item Ajustar um modelo interpretável aos dados permutados, utilizando as predições do modelo complexo como variável resposta e as $m$ variáveis selecionadas no passo anterior como preditores, ponderando pela medida de similaridade com a observação original.
-	\item Usar as estimativas desse modelo simples como as explicações para o comportamento local do modelo complexo.	 
-\end{enumerate}
-
-A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \textit{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R. O texto pode ser acessado por este link: \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{https://goo.gl/Nu9ZsA}.
-
 \subsection{XGBoost}
 
 Assim como o \textit{bagging}, apresentado na seção anterior, o \textit{boosting} é uma abordagem geral aplicada a diversos modelos para aumentar seu poder preditivo. No contexto de árvores de decisão, a ideia aqui é construir árvores sequencialmente, sendo que cada árvore utiliza informações obtidas da árvore anterior. Ao contrário do \textit{bagging}, o \textit{boosting} não envolve amostras de \textit{bootstraping}, sendo que cada passo do algoritmo utiliza uma versão modificada dos dados originais.
@@ -370,3 +351,36 @@ Por fim, o \textit{XGBoost} (ou \textit{extreme gradient boosting}) é uma implem
 Assim como as \textit{random forests}, esses modelos são não-interpretáveis e precisam de ferramentas como gráficos de dependência parcial ou o LIME para a avaliação da associação entre as variáveis.
 
 Na linguagem R, podemos ajustar o \textit{XGBoost} utilizando a função \texttt{train()} do pacote \texttt{caret} com o argumento \texttt{method = "xgbTree"} ou diretamente as funções do pacote \texttt{xgboost}.
+
+\section{Interpretando modelos caixa-preta}
+
+Ao contrário dos modelos apresentados no capítulo anterior, modelos como o \textit{random forest} ou o \textit{XGboost} não são interpretáveis. Isso implica que não conseguimos avaliar diretamente como cada preditor está associado com a variável resposta, impossibilitando que esses modelos sejam usados para inferência ou criando muita desconfiança a respeito do que esses modelos estão fazendo por trás das cortinas.
+
+Neste capítulo, vamos apresentar algumas técnicas que, sob algumas suposições ou restrições, visam elucidar qual é a relação dos preditores com os valores preditos, abrindo um pouco a caixa-preta dos modelos de \textit{machine learning}.
+
+\subsection{Gráficos de dependência parcial}
+
+\subsection{Esperança condicional individual}
+
+\subsection{Gráficos de efeitos locais acumulados}
+
+\subsection{LIME}
+
+%The idea is quite intuitive. First of all, forget about the training data and imagine you only have the black box model where you can input data points and get the models predicted outcome. You can probe the box as often as you want. Your goal is to understand why the machine learning model made a certain prediction. LIME tests out what happens to the model?s predictions when you feed variations of your data into the machine learning model. LIME generates a new dataset consisting of perturbed samples and the associated black box model?s predictions. On this dataset LIME then trains an interpretable model weighted by the proximity of the sampled instances to the instance of interest. The interpretable model can basically be anything from this chapter, for example LASSO or a decision tree. The learned model should be a good approximation of the machine learning model locally, but it does not have to be so globally. This kind of accuracy is also called local fidelity.
+
+Uma outra técnica utilizada para interpretar modelos caixa-preta é o LIME (\textit{Local snterpretable Model-Agnostic Explanations}) \citep{Ribeiro2016}. Dado qualquer modelo estatístico, essa técnica consiste em explicar quais preditores foram responsáveis pela predição de uma observação específica. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não interpretáveis.
+
+Essa técnica assume que todo modelo complexo prevê valores parecidos para duas observações muito próximas, sendo possível ajustar um modelo simples ao redor de uma única observação para copiar o comportamento global do modelo complexo. Assim, a partir de um modelo interpretável podemos obter para cada observação uma explicação sobre a predição feita pelo modelo não-interpretável.
+
+O algoritmo consiste em:
+
+\begin{enumerate}
+	\item Para cada predição a ser explicada, permutar a observação $n$ vezes.
+	\item Predizer cada uma das observações permutadas usando o modelo complexo.
+	\item Calcular uma medida de distância e similaridade entre as permutações e a observação original. Geralmente a distância de Gower é utilizada \citep{Gower1971}.
+	\item Selecionar as $m$ variáveis mais importantes utilizadas pelo modelo complexo para explicar os dados permutados.
+	\item Ajustar um modelo interpretável aos dados permutados, utilizando as predições do modelo complexo como variável resposta e as $m$ variáveis selecionadas no passo anterior como preditores, ponderando pela medida de similaridade com a observação original.
+	\item Usar as estimativas desse modelo simples como as explicações para o comportamento local do modelo complexo.	 
+\end{enumerate}
+
+A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \textit{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R. O texto pode ser acessado por este link: \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{https://goo.gl/Nu9ZsA}.

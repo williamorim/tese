@@ -61,6 +61,11 @@
 \contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{64}{subsection.4.7.1}
 \contentsline {subsection}{\numberline {4.7.2}Random Forests}{64}{subsection.4.7.2}
 \contentsline {subsection}{\numberline {4.7.3}XGBoost}{66}{subsection.4.7.3}
+\contentsline {section}{\numberline {4.8}Interpretando modelos caixa-preta}{67}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Gr\'aficos de depend\^encia parcial}{67}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}Esperan\c ca condicional individual}{67}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.3}Gr\'aficos de efeitos locais acumulados}{67}{subsection.4.8.3}
+\contentsline {subsection}{\numberline {4.8.4}LIME}{67}{subsection.4.8.4}
 \contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{69}{chapter.5}
 \contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{69}{section.5.1}
 \contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{70}{section.5.2}
@@ -93,7 +98,7 @@
 \contentsline {subsubsection}{Validar}{101}{section*.89}
 \contentsline {subsubsection}{Iterar}{101}{section*.90}
 \contentsline {section}{\numberline {7.2}Dados no Brasil}{101}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{102}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{103}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{105}{appendix*.92}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{103}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{105}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{107}{appendix*.92}
 \contentsfinish 

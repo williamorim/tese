@@ -141,3 +141,36 @@ tibble(
   knitr::kable(format = "latex")
 
 
+
+# Gráfico NO ---------------------------------------------------------------
+
+df <- read_rds("data/salvo-geiger/bd_original.rds")
+df %>% head %>% View
+
+df %>% 
+  filter(!monthofyear %in% 6:9, hour %in% 8:16) %>% 
+  mutate(
+    stationname = case_when(
+      stationno == 1 ~ "Dom Pedro II",
+      stationno == 2 ~ "Santana",
+      stationno == 3 ~ "Mooca",
+      stationno == 5 ~ "Ibirapuera",
+      stationno == 6 ~ "Nossa Senhora do O",
+      stationno == 7 ~ "Sao Caetano do Sul",
+      stationno == 8 ~ "Congonhas",
+      stationno == 10 ~ "Cerqueira Cesa",
+      stationno == 15 ~ "Diadema",
+      stationno == 18 ~ "Santo Andre 1",
+      stationno == 22 ~ "Maua",
+      stationno == 27 ~ "Pinheiros",
+      stationno == 29 ~ "Parelheiros",
+      stationno == 31 ~ "IPEN",
+      TRUE ~ NA_character_
+    )
+  ) %>% 
+  filter(!is.na(stationname)) %>% 
+  gather(poluente, valor, NO, NO2) %>%
+  ggplot(aes(x = stationname, y = valor)) +
+  geom_boxplot() +
+  facet_wrap(~poluente) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
