@@ -33,7 +33,7 @@ cria_receita <- function(df_model, formula) {
 vars <- c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas")
 formulas <- map(vars, cria_formula)
 receitas <- map(formulas, cria_receita, df_model = df_model)
-  
+
 # Model -------------------------------------------------------------------
 
 # Geral
@@ -41,9 +41,13 @@ receitas <- map(formulas, cria_receita, df_model = df_model)
 train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 12,
-  min.node.size = 3
+  gamma = 0,
+  min_child_weight = 1,
+  nrounds = 250,
+  max_depth = 5,
+  eta = 0.4,
+  colsample_bytree = 0.7,
+  subsample = 1
 )
 
 set.seed(5893524)
@@ -51,9 +55,9 @@ set.seed(5893524)
 model <- train(
   x = receitas[[1]],
   data = df_model,
-  method = "ranger",
+  method = "xgbTree",
   trControl = train_control,
-  tuneGrid = tuning_grid,
+  #tuneGrid = tuning_grid,
   importance = 'impurity'
 )
 
