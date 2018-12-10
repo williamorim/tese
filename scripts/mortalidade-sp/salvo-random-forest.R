@@ -96,7 +96,7 @@ model$finalModel
 varImp(model)
 # RMSE: 27.69438
 # MAE: 21.87697
-# % var: 0.6743066%  
+# % var: 0.6743066 
 # share_gas imp: 5ª
 
 pred_obs_plot(
@@ -137,4 +137,64 @@ pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_criancas,
   pred = predict(model, newdata = na.omit(df_model))
 )
+
+# Lime --------------------------------------------------------------------
+
+make_explanation <- function(i, explainer, df, n_features = 5) {
+  
+  explanation <- explain(df_explain[i,], explainer, n_features = n_features) %>% 
+    select(
+      feature, 
+      feature_value,
+      feature_weight,
+      prediction,
+      model_r2
+    ) %>% 
+    mutate(feature_value = as.character(feature_value))
+  
+  if(i%%100 == 0) {
+    print(paste("Another one bites the dust!", i))
+  }
+  
+  explanation
+  
+}
+
+explainer <- lime(
+  na.omit(df_model), 
+  model
+)
+
+df_explain <- na.omit(df_model)
+m <- nrow(df_explain)
+
+explanation <- map_dfr(
+  1:m,
+  make_explanation,
+  explainer = explainer,
+  df = df_explain
+)
+
+# saveRDS(explanation, file = "explanation.rds")
+# explanation <- readRDS("explanation.rds")
+
+# Explicação geral
+explanation %>% 
+  filter(feature == "share_gas") %>%
+  mutate(feature_value = as.numeric(feature_value)) %>% 
+  ggplot(aes(x = feature_value, y = feature_weight)) +
+  geom_point() +
+  labs(
+    x = "Proporção de carros a gasolina",
+    y = "Coeficiente no modelo simples"
+  ) +
+  theme_bw()
+
+ggsave(
+  filename = "text/figuras/cap-mort-share-rf-explanation.pdf",
+  width = 6,
+  height = 4
+)
+
+
 

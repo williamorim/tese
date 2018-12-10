@@ -28,10 +28,10 @@ cria_formula <- function(mort, temp, sazon) {
 
 formulas <- expand.grid(
   mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
-  temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
-  #temperatura = "tp",
-  sazonalidade = c("month", "season")
-  #sazonalidade = "month"
+  #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
+  temperatura = "tp",
+  #sazonalidade = c("month", "season")
+  sazonalidade = "month"
 ) %>% 
   as.tibble() %>% 
   mutate(formula = cria_formula(mortalidade, temperatura, sazonalidade))
@@ -151,12 +151,13 @@ resultados %>%
 # RMSE: 29.65548
 # R2: 0.6263659
 # varImp: 11
-# valor-p: < 000.3
+# valor-p:  0.003
 
 p_idosos <- gam_plot(
   ajustes[[2]]$finalModel, 
   ajustes[[2]]$finalModel$smooth[[1]],
-  xlab = ""
+  xlab = "Proporção estimada de carros a gasolina",
+  ylab = "Efeito na mortalidade"
 )+
   ggtitle("Idosos")
 
@@ -184,17 +185,19 @@ resultados %>%
 p_criancas <- gam_plot(
   ajustes[[3]]$finalModel, 
   ajustes[[3]]$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina"
+  xlab = "Proporção estimada de carros a gasolina",
+  ylab = "Efeito na mortalidade"
 ) +
   ggtitle("Crianças")
 
 gam_plot(
   ajustes[[3]]$finalModel, 
   ajustes[[3]]$finalModel$smooth[[4]],
-  xlab = ajustes[[3]]$finalModel$smooth[[4]]$term
+  xlab = ajustes[[3]]$finalModel$smooth[[4]]$term,
+  ylab = "Efeito na mortalidade"
 )
 
 
-patchwork::wrap_plots(p_geral, p_idosos, p_criancas, ncol = 1)
-ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson.pdf", 
-       width = 5, height = 5)
+patchwork::wrap_plots(p_idosos, p_criancas, ncol = 2)
+ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson-ozonio.pdf", 
+       width = 8, height = 4)

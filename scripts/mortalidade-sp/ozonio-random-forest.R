@@ -14,66 +14,27 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 # Formula -----------------------------------------------------------------
 
-formulas <- df_model %>%
-  select(
-    -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
-    -date, -dayofweek,
-    -pp, -dv_pp_20_150,
-    -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
-  ) %>%
-  names() %>%
-  str_c(collapse = " + ") %>%
-  str_c(
-    c("n_mortes_geral ~ ", "n_mortes_idosos ~ ", "n_mortes_criancas ~ "), .
-  ) %>%
-  map(as.formula)
+cria_formula <- function(mort) {
+  
+  padrao <- "o3_mass_conc + hm + tp + trend + dayofweek + dv_workday + month"
+  
+  padrao %>% 
+    str_c(mort, ., sep = " ~ ")
+  
+}
 
-make_recs <- function(df_model, formula) {
+cria_receita <- function(df_model, formula) {
   df_model %>%
     recipe(formula = formula) %>%
     step_naomit(all_predictors(), all_outcomes()) %>% 
-    step_dummy(week, one_hot = TRUE)
+    step_dummy(dayofweek, month, one_hot = TRUE)
 }
 
-recs <- map(formulas, make_recs, df_model = df_model)
-
+vars <- c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas")
+formulas <- map(vars, cria_formula)
+receitas <- map(formulas, cria_receita, df_model = df_model)
 
 # Model -------------------------------------------------------------------
-
-# Geral
-
-train_control <- trainControl(method = "cv", number = 5)
-
-tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 61,
-  min.node.size = 6
-)
-
-set.seed(5893524)
-
-model <- train(
-  x = recs[[1]],
-  data = na.omit(df_model),
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
-)
-
-model
-model$finalModel
-varImp(model)
-# RMSE: 36.06
-# MAE: 28.60
-# % var: 64.57%  
-# share_gas imp: 3ª
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_geral,
-  pred = predict(model, newdata = na.omit(df_model))
-)
 
 # Idosos
 
@@ -81,14 +42,14 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = 68,
-  min.node.size = 5
+  mtry = 13,
+  min.node.size = 4
 )
 
 set.seed(5893524)
 
 model <- train(
-  x = recs[[2]],
+  x = receitas[[2]],
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -99,15 +60,16 @@ model <- train(
 model
 model$finalModel
 varImp(model)
-# RMSE: 27.91
-# MAE: 21.85
-# % var: 69.47%  
-# share_gas imp: 2ª
+# RMSE: 28.46537
+# MAE: 21.87697
+# % var: 0.6557702 
+# o3 imp: 6ª
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_idosos,
   pred = predict(model, newdata = na.omit(df_model))
 )
+
 # Crianças
 
 train_control <- trainControl(method = "cv", number = 5)
@@ -115,14 +77,14 @@ train_control <- trainControl(method = "cv", number = 5)
 tuning_grid <- expand.grid(
   splitrule = "variance",
   mtry = 2,
-  min.node.size = 3
+  min.node.size = 5
 )
 
 
 set.seed(5893524)
 
 model <- train(
-  x = recs[[3]],
+  x = receitas[[3]],
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -133,39 +95,59 @@ model <- train(
 model
 model$finalModel
 varImp(model)
-# RMSE: 5.13
-# MAE: 4.12
-# % var: 1.7%  
-# share_gas imp: 4ª
+# RMSE: 5.054336
+# MAE: 4.06617
+# % var: 0.02515931%  
+# o3 imp: 3ª
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_criancas,
   pred = predict(model, newdata = na.omit(df_model))
 )
 
-# LIME --------------------------------------------------------------------
+# Lime --------------------------------------------------------------------
 
-# Idosos
+make_explanation <- function(i, explainer, df, n_features = 5) {
+  
+  explanation <- explain(df_explain[i,], explainer, n_features = n_features) %>% 
+    select(
+      feature, 
+      feature_value,
+      feature_weight,
+      prediction,
+      model_r2
+    ) %>% 
+    mutate(feature_value = as.character(feature_value))
+  
+  if(i%%100 == 0) {
+    print(paste("Another one bites the dust!", i))
+  }
+  
+  explanation
+  
+}
 
 explainer <- lime(
   na.omit(df_model), 
   model
 )
 
-# 10% mais mortes
+df_explain <- na.omit(df_model)
+m <- nrow(df_explain)
 
-test_days <- df_model %>% 
-  na.omit %>%
-  top_n(n = 100, n_mortes_idosos)
-
-explanation <- explain(
-  test_days, 
-  explainer,
-  n_features = 10
+explanation <- map_dfr(
+  1:m,
+  make_explanation,
+  explainer = explainer,
+  df = df_explain
 )
 
+# saveRDS(explanation, file = "explanation.rds")
+# explanation <- readRDS("explanation.rds")
+
+# Explicação geral
 explanation %>% 
-  filter(feature == "share_gas") %>%
+  filter(feature == "o3_mass_conc") %>%
   mutate(feature_value = as.numeric(feature_value)) %>% 
   ggplot(aes(x = feature_value, y = feature_weight)) +
   geom_point() +
@@ -173,43 +155,13 @@ explanation %>%
     x = "Proporção de carros a gasolina",
     y = "Coeficiente no modelo simples"
   ) +
-  #ggtitle("Maiores médias de ozônio") +
   theme_bw()
 
-# 10% menos mortes
-
-test_days <- 
-  df_model %>% 
-  na.omit %>%
-  top_n(n = -100, n_mortes_idosos)
-
-explanation <- explain(
-  test_days, 
-  explainer, 
-  n_features = 10
+ggsave(
+  filename = "text/figuras/cap-mort-share-rf-explanation.pdf",
+  width = 6,
+  height = 4
 )
 
-explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  ggtitle("Menores médias de ozônio") +
-  theme_bw()
 
-# p <- p2 + p1
-# 
-# ggsave(
-#   plot = p,
-#   filename = paste(
-#     "scripts/salvo-2017/img/random-forest-explanations/explanation-",
-#     station,
-#     ".pdf"
-#   ),
-#   width = 6, 
-#   height = 4
-# )
+

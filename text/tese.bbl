@@ -1,4 +1,4 @@
-\begin{thebibliography}{80}
+\begin{thebibliography}{90}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -68,6 +68,15 @@ Leo Breiman e Jerome~H. Friedman.
 \newblock \emph{Journal of the American Statistical Association}, 80\penalty0
   (391): \penalty0 580--619.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Buhr {\rm{\em et~al.}}(1992)Buhr, Trainer, Parrish, Sievers, e
+  Fehsenfeld]{Buhr1992}{\bf Buhr {\rm{\em et~al.}}(1992)}
+M.~P. Buhr, M.~Trainer, D.~D. Parrish, R.~E. Sievers e F.~C. Fehsenfeld.
+\newblock Assessment of pollutant emission inventories by principal component
+  analysis of ambient air measurements.
+\newblock \emph{Geophysical Research Letters}, 19\penalty0 (10): \penalty0
+  1009--1012.
+\newblock \doi{10.1029/92GL01020}.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Cameron e Miller(2015)]{Cameron2015}{\bf Cameron e Miller(2015)}
 Adrian~C. Cameron e Douglas~L. Miller.
 \newblock A practitioner's guide to cluster-robust inference.
@@ -97,6 +106,17 @@ Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
 \newblock \doi{10.1111/risa.12775}.
 \newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
   na p\'{a}g.}
+
+\bibitem[Chavent {\rm{\em et~al.}}(2009)Chavent, Guegan, Kuentz, Patouille, e
+  Saracco]{Chavent2009}{\bf Chavent {\rm{\em et~al.}}(2009)}
+Marie Chavent, Herv{\'e} Guegan, Vanessa Kuentz, Brigitte Patouille e
+  J{\'e}r{\^o}me Saracco.
+\newblock {PCA} and {PMF} based methodology for air pollution sources
+  identification and apportionment.
+\newblock 20: \penalty0 928--942.
+\newblock URL
+  \url{https://hal.archives-ouvertes.fr/hal-00332015/file/Env-2009-preprint.pdf}.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Chuang {\rm{\em et~al.}}(2011)Chuang, Mazumdar, Park, Tang, Arena, e
   Nicolich]{Chuang2011}{\bf Chuang {\rm{\em et~al.}}(2011)}
@@ -131,6 +151,21 @@ Gleice M.~S. Concei{\c{c}}{\~a}o, Paulo H.~N. Saldiva e Julio~M. Singer.
   introdu{\c{c}}{\~a}o baseada em dados da cidade de {S}{\~a}o {P}aulo.
 \newblock \emph{Revista Brasileira de Epidemiologia}, 4\penalty0 (3): \penalty0
   206--219.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Cortina-Januchs {\rm{\em et~al.}}(2015)Cortina-Januchs,
+  Quintanilla-Dominguez, Vega-Corona, e Andina]{Cortina2015}{\bf
+  Cortina-Januchs {\rm{\em et~al.}}(2015)}
+Maria~Guadalupe Cortina-Januchs, Joel Quintanilla-Dominguez, Antonio
+  Vega-Corona e Diego Andina.
+\newblock Development of a model for forecasting of pm10 concentrations in
+  salamanca, mexico.
+\newblock \emph{Atmospheric Pollution Research}, 6\penalty0 (4): \penalty0 626
+  -- 634.
+\newblock ISSN 1309-1042.
+\newblock \doi{https://doi.org/10.5094/APR.2015.071}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215301951}.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Coull {\rm{\em et~al.}}(2001)Coull, Schwartz, e Wand]{Coull2001}{\bf
   Coull {\rm{\em et~al.}}(2001)}
@@ -172,6 +207,19 @@ Andreas Eckner.
   \url{http://eckner.com/papers/unevenly_spaced_time_series_analysis.pdf}.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Elangasinghe {\rm{\em et~al.}}(2014)Elangasinghe, Singhal, Dirks, e
+  Salmond]{Elangasinghe2014}{\bf Elangasinghe {\rm{\em et~al.}}(2014)}
+Madhavi~Anushka Elangasinghe, Naresh Singhal, Kim~N. Dirks e Jennifer~A.
+  Salmond.
+\newblock Development of an {ANN}-based air pollution forecasting system with
+  explicit knowledge through sensitivity analysis.
+\newblock \emph{Atmospheric Pollution Research}, 5\penalty0 (4): \penalty0 696
+  -- 708.
+\newblock ISSN 1309-1042.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215302786}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Engle(1982)]{Engle1982}{\bf Engle(1982)}
 Robert~F. Engle.
 \newblock Autoregressive conditional heteroscedasticity with estimates of the
@@ -192,6 +240,11 @@ Robert~F. Engle.
 \newblock \url{https://ec.europa.eu/clima/policies/strategies/2050_en}, 2011.
 \newblock [Online; acessado 15-03-2017].   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Everitt e Hothorn(2011)]{Everitt2011}{\bf Everitt e Hothorn(2011)}
+Brian Everitt e Torsten Hothorn.
+\newblock \emph{An Introduction to Applied Multivariate Analysis with R}.
+\newblock Use R! Springer-Verlag New York.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Fann {\rm{\em et~al.}}(2012)Fann, Lamson, Anenberg, Wesson, Risley, e
   Hubbel]{Fann2012}{\bf Fann {\rm{\em et~al.}}(2012)}
 Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
@@ -199,6 +252,17 @@ Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
   to ambient {PM}2.5 and ozone.
 \newblock \emph{Risk Analysis}, 32: \penalty0 81--95.   {\scriptsize Citado na
   p\'{a}g.}
+
+\bibitem[Feng {\rm{\em et~al.}}(2015)Feng, Li, Zhu, Hou, Jin, e
+  Wang]{Feng2015}{\bf Feng {\rm{\em et~al.}}(2015)}
+Xiao Feng, Qi~Li, Yajie Zhu, Junxiong Hou, Lingyan Jin e Jingjie Wang.
+\newblock Artificial neural networks forecasting of pm2.5 pollution using air
+  mass trajectory based geographic model and wavelet transformation.
+\newblock \emph{Atmospheric Environment}, 107: \penalty0 118 -- 128.
+\newblock \doi{https://doi.org/10.1016/j.atmosenv.2015.02.030}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1352231015001491}.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Fisher(1918)]{Fisher1918}{\bf Fisher(1918)}
 Ronald Fisher.
@@ -437,6 +501,21 @@ Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
 \newblock \emph{Lippincott Williams \& Wilkins}, 11\penalty0 (1): \penalty0
   11--17.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Polezer {\rm{\em et~al.}}(2018)Polezer, Tadano, Siqueira, Godoi,
+  Yamamoto, de~André, Pauliquevis, de~Fatima~Andrade, Oliveira, Saldiva,
+  Taylor, e Godoi]{Polezer2018}{\bf Polezer {\rm{\em et~al.}}(2018)}
+Gabriela Polezer, Yara~S. Tadano, Hugo~V. Siqueira, Ana~F.L. Godoi, Carlos~I.
+  Yamamoto, Paulo~A. de~André, Theotonio Pauliquevis, Maria de~Fatima~Andrade,
+  Andrea Oliveira, Paulo~H.N. Saldiva, Philip~E. Taylor e Ricardo~H.M. Godoi.
+\newblock Assessing the impact of pm2.5 on respiratory disease using artificial
+  neural networks.
+\newblock \emph{Environmental Pollution}, 235: \penalty0 394 -- 403.
+\newblock ISSN 0269-7491.
+\newblock \doi{https://doi.org/10.1016/j.envpol.2017.12.111}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0269749117337107}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[{R Core Team}(2016)]{R2016}{\bf {R Core Team}(2016)}
 {R Core Team}.
 \newblock \emph{R: A Language and Environment for Statistical Computing}.
@@ -557,6 +636,31 @@ Julio Singer, Juvêncio Nobre e Francisco~Marcelo Rocha.
   preliminar)}.
 \newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Stingone {\rm{\em et~al.}}(2017)Stingone, P.Pandey, Claudio, e
+  Pandey]{Chen2017}{\bf Stingone {\rm{\em et~al.}}(2017)}
+Jeanette~A. Stingone, Om~P.Pandey, Luz Claudio e Gaurav Pandey.
+\newblock Using machine learning to identify air pollution exposure profiles
+  associated with early cognitive skills among u.s. children.
+\newblock \emph{Environmental Pollution}, 230: \penalty0 230--240.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Tecer(2009)]{Tecer2009}{\bf Tecer(2009)}
+Lokman~Hakan Tecer.
+\newblock A factor analysis study: Air pollution, meteorology, and hospital
+  admissions for respiratory diseases.
+\newblock \emph{Toxicological \& Environmental Chemistry}, 91\penalty0 (7):
+  \penalty0 1399--1411.
+\newblock \doi{10.1080/02772240902732316}.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Thurston e Spengler(1985)]{Thurston1985}{\bf Thurston e
+  Spengler(1985)}
+George~D. Thurston e John~D. Spengler.
+\newblock A quantitative assessment of source contributions to inhalable
+  particulate matter pollution in metropolitan boston.
+\newblock \emph{Atmospheric Environment (1967)}, 19\penalty0 (1): \penalty0 9
+  -- 25.
+\newblock ISSN 0004-6981.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[WHO(2004)]{WHO2004}{\bf WHO(2004)}
 World Health~Organization WHO.

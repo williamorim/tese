@@ -96,6 +96,7 @@ Observando agora os gráficos das funções não-lineares ajustadas para a proporção
 Na próxima seção, avaliaremos melhor a relação entre mortalidade e proporção de carros a gasolina eliminando os componentes temporais da série de mortalidade ajustando inicialmente um modelo ARIMA.
 
 \subsection{Modelo ARIMA e regressão linear}
+\label{sec:mort-arima}
 
 Se a associação entre mortalidade e proporção de carros a gasolina estiver sendo induzida pela ausência de alguma outra variável sazonal importante, podemos ajustar um modelo de série temporal aos dados de mortalidade para controlar os componentes temporais e então ajustar um modelo de regressão aos resíduos para avaliar se a variação não explicada está associada com a proporção de carros a gasolina.
 
@@ -131,3 +132,41 @@ A seguir, apresentaremos alguns resultados de analises complementares que realiz
 - XGBoost
 
 \subsection{Associando mortalidade e concentração de ozônio}
+
+Nesta seção, apresentaremos os resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio diretamente como preditor. O objetivo é comparar esses resultados com aqueles obtidos nas seções anteriores para avaliar se a proporção estimada de carros a gasolina estaria representando bem o efeito da poluição por ozônio na mortalidade.
+
+Os modelos ajustas aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil.
+
+A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que tanto o modelo linear quanto o modelo aditivo indicam uma associação positiva entre mortalidade em idosos e concentração de ozônio. Para o modelo linear, um aumento de 10 $\mu$g/m$^3$ está associado com um aumento médio de 0.36 na mortalidade de idosos. A relação para o modelo aditivo pode ser observada pelo gráfico da função não-linear apresentado na Figura \ref{fig:cap-mort-gam-plot-poisson-ozonio}. Mais uma vez, as variáveis consideradas não explicam a variabilidade da mortalidade infantil.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio como preditor.}
+	\begin{tabular}{M{3cm}|M{2cm}|M{2cm}|M{3cm}|M{4cm} N}
+		\hline
+		Modelo & Grupo & RMSE & \% var. explicada & Relação com a mortalidade (valor-p) & \\
+		\hline
+		\multirow{2}{2.5cm}{Linear Poisson} & Idosos & 31.76 & 56.20 & Positiva (< 0.001) & \\
+		& Crianças & 5.09 & 2.81 & Não há (0.71) & \\
+		\hline
+		\multirow{2}{2.9cm}{Aditivo Poisson} & Idosos & 29.66 & 62.64 & Positiva (0.003) & \\
+		& Crianças & 5.05 & 3.00 & Não há ($\approx$ 1) & \\
+		\hline
+		\multirow{2}{2.9cm}{\textit{Random forest}} & Idosos & 27.69 & 67.43 & Positiva & \\
+		& Crianças & 5.05 & 3.00 & Não há & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-mort-res-ozonio}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-gam-plot-poisson-ozonio.pdf}
+	\caption{Gráfico da função não-linear estimada pelos modelos aditivos generalizados para a proporção estimada de carros a gasolina.}
+	\label{fig:cap-mort-gam-plot-poisson-ozonio}
+\end{figure}
+
+Aqui, também utilizamos a mesma estratégia da Seção \ref{sec:mort-arima} e ajustamos um modelo ARIMA para a mortalidade e um modelo de regressão linear com a concentração de ozônio e variáveis controles nos resíduos. Para este modelo, a concentração de ozônio não foi considerada estatisticamente significativa para explicar a variabilidade da mortalidade, tanto em idosos quanto em crianças. No entanto, como observamos anteriormente, a concentração de ozônio é altamente sazonal e, portanto, ao eliminarmos esse componente temporal da mortalidade, possivelmente estamos eliminando também o efeito do ozônio.
+
+
+ 

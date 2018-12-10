@@ -121,7 +121,7 @@ resultados %>%
 # R2: 0.5208003
 # varImp: 13
 # variacao (+10 conc): 0.32%
-# valor-p: < 000.1
+# valor-p: < 0.001
 
 ajustes[[1]]$finalModel %>% plot
 

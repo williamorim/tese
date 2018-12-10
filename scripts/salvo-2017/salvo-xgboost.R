@@ -141,7 +141,9 @@ make_explanation <- function(i, explainer, df, n_features = 10) {
     ) %>% 
     mutate(feature_value = as.character(feature_value))
   
-  print(paste("Another one bites the dust!", i))
+  if(i%%100 == 0) {
+    print(paste("Another one bites the dust!", i))
+  }
   
   explanation
   
@@ -152,7 +154,7 @@ explainer <- lime(
   model
 )
 
-df_explain <- na.omit(df_model) %>% sample_n(100)
+df_explain <- na.omit(df_model)
 m <- nrow(df_explain)
 
 explanation <- map_dfr(
@@ -177,8 +179,10 @@ explanation %>%
   ) +
   theme_bw()
 
+write_rds(explanation, "explanation_xg.rds")
+
 ggsave(
-  filename = "text/figuras/cap-comb-xgboost-explanation.pfd",
+  filename = "text/figuras/cap-comb-xgboost-explanation.pdf",
   width = 6,
   height = 4
 )

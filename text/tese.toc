@@ -35,70 +35,69 @@
 \contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{47}{subsection.3.4.3}
 \contentsline {section}{\numberline {3.5}Modelos n\~ao-supervisionados}{48}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}An\'alise de componentes principais}{49}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Positive Matrix Factorization}{50}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}An\'alise Fatorial}{50}{subsection.3.5.3}
-\contentsline {section}{\numberline {3.6}Outros modelos}{50}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Modelos mistos}{50}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.5.2}An\'alise Fatorial}{50}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Outros modelos}{51}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Modelos mistos}{51}{subsection.3.6.1}
 \contentsline {subsection}{\numberline {3.6.2}Modelos GARCH}{51}{subsection.3.6.2}
 \contentsline {subsection}{\numberline {3.6.3}Modelos din\^amicos}{52}{subsection.3.6.3}
-\contentsline {chapter}{\numberline {4}Estrat\'egias de modelagem preditiva}{53}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sobreajuste e o balan\c co entre vi\'es e vari\^ancia}{54}{section.4.1}
-\contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{56}{section.4.2}
-\contentsline {section}{\numberline {4.3}M\'etodos de reamostragem}{57}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Valida\c c\~ao cruzada}{57}{subsection.4.3.1}
-\contentsline {subsubsection}{Amostra de valida\c c\~ao}{57}{section*.43}
-\contentsline {subsubsection}{Valida\c c\~ao cruzada \textit {leave-one-out} (LOOCV)}{57}{section*.44}
-\contentsline {subsubsection}{K-fold}{58}{section*.46}
-\contentsline {subsection}{\numberline {4.3.2}Bootstrapping}{59}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Sele\c c\~ao de vari\'aveis}{59}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Selecionando o melhor subconjunto de preditores}{60}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Stepwise}{60}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Regulariza\c c\~ao}{61}{section.4.5}
-\contentsline {subsubsection}{Regress\~ao Ridge}{61}{section*.49}
-\contentsline {subsubsection}{Least absolute shrinkage and selection operator (LASSO)}{62}{section*.50}
-\contentsline {section}{\numberline {4.6}Quantificando a import\^ancia dos preditores}{63}{section.4.6}
-\contentsline {section}{\numberline {4.7}Modelos de \'arvores}{63}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{64}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Random Forests}{64}{subsection.4.7.2}
-\contentsline {subsection}{\numberline {4.7.3}XGBoost}{66}{subsection.4.7.3}
-\contentsline {section}{\numberline {4.8}Interpretando modelos caixa-preta}{67}{section.4.8}
-\contentsline {subsection}{\numberline {4.8.1}Gr\'aficos de depend\^encia parcial}{67}{subsection.4.8.1}
-\contentsline {subsection}{\numberline {4.8.2}Esperan\c ca condicional individual}{67}{subsection.4.8.2}
-\contentsline {subsection}{\numberline {4.8.3}Gr\'aficos de efeitos locais acumulados}{67}{subsection.4.8.3}
-\contentsline {subsection}{\numberline {4.8.4}LIME}{67}{subsection.4.8.4}
-\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{69}{chapter.5}
-\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{69}{section.5.1}
-\contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{70}{section.5.2}
-\contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{72}{section.5.3}
-\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{76}{section.5.4}
-\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{78}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{79}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Modelo de regress\~ao segmentada}{82}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Random Forest}{82}{subsection.5.5.3}
-\contentsline {subsection}{\numberline {5.5.4}XGBoosting}{85}{subsection.5.5.4}
-\contentsline {section}{\numberline {5.6}Outras estrat\'egias de an\'alise}{85}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Sele\c c\~ao de vari\'aveis}{85}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Transformando a vari\'avel resposta}{85}{subsection.5.6.2}
-\contentsline {subsection}{\numberline {5.6.3}Ajustando a m\'axima di\'aria}{87}{subsection.5.6.3}
-\contentsline {subsection}{\numberline {5.6.4}Ajustando cada esta\c c\~ao separadamente}{88}{subsection.5.6.4}
-\contentsline {section}{\numberline {5.7}Coment\'arios}{89}{section.5.7}
-\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{93}{chapter.6}
-\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{94}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{95}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{96}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Modelo ARIMA e regress\~ao linear}{96}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Outras an\'alises realizadas}{98}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Associando mortalidade e concentra\c c\~ao de oz\^onio}{98}{subsection.6.1.5}
-\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{99}{chapter.7}
-\contentsline {section}{\numberline {7.1}Web scraping}{100}{section.7.1}
-\contentsline {subsubsection}{Identificar}{100}{section*.85}
-\contentsline {subsubsection}{Navegar}{100}{section*.86}
-\contentsline {subsubsection}{Replicar}{101}{section*.87}
-\contentsline {subsubsection}{Parsear}{101}{section*.88}
-\contentsline {subsubsection}{Validar}{101}{section*.89}
-\contentsline {subsubsection}{Iterar}{101}{section*.90}
-\contentsline {section}{\numberline {7.2}Dados no Brasil}{101}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{103}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{105}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{107}{appendix*.92}
+\contentsline {chapter}{\numberline {4}Estrat\'egias de machine learning}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sobreajuste e o balan\c co entre vi\'es e vari\^ancia}{56}{section.4.1}
+\contentsline {section}{\numberline {4.2}Estimando a performance do modelo}{58}{section.4.2}
+\contentsline {section}{\numberline {4.3}M\'etodos de reamostragem}{59}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Valida\c c\~ao cruzada}{59}{subsection.4.3.1}
+\contentsline {subsubsection}{Amostra de valida\c c\~ao}{59}{section*.43}
+\contentsline {subsubsection}{Valida\c c\~ao cruzada \textit {leave-one-out} (LOOCV)}{59}{section*.44}
+\contentsline {subsubsection}{K-fold}{60}{section*.46}
+\contentsline {subsection}{\numberline {4.3.2}Bootstrapping}{61}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Sele\c c\~ao de vari\'aveis}{61}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Selecionando o melhor subconjunto de preditores}{62}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Stepwise}{62}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Regulariza\c c\~ao}{63}{section.4.5}
+\contentsline {subsubsection}{Regress\~ao Ridge}{63}{section*.49}
+\contentsline {subsubsection}{Least absolute shrinkage and selection operator (LASSO)}{64}{section*.50}
+\contentsline {section}{\numberline {4.6}Quantificando a import\^ancia dos preditores}{65}{section.4.6}
+\contentsline {section}{\numberline {4.7}Modelos de \'arvores}{65}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}\'Arvores de decis\~ao}{66}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Random Forests}{66}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.3}XGBoost}{68}{subsection.4.7.3}
+\contentsline {section}{\numberline {4.8}Interpretando modelos caixa-preta}{69}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Gr\'afico de depend\^encia parcial}{69}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}Gr\'afico da esperan\c ca condicional individual}{69}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.3}Gr\'afico de efeitos locais acumulados}{70}{subsection.4.8.3}
+\contentsline {subsection}{\numberline {4.8.4}LIME}{71}{subsection.4.8.4}
+\contentsline {chapter}{\numberline {5}Polui\c c\~ao e uso de combust\IeC {\'\i }veis}{73}{chapter.5}
+\contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{73}{section.5.1}
+\contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{74}{section.5.2}
+\contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{76}{section.5.3}
+\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{80}{section.5.4}
+\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{82}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{83}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Modelo de regress\~ao segmentada}{86}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Random Forest}{86}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}XGBoosting}{89}{subsection.5.5.4}
+\contentsline {section}{\numberline {5.6}Outras estrat\'egias de an\'alise}{89}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Sele\c c\~ao de vari\'aveis}{89}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Transformando a vari\'avel resposta}{89}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Ajustando a m\'axima di\'aria}{91}{subsection.5.6.3}
+\contentsline {subsection}{\numberline {5.6.4}Ajustando cada esta\c c\~ao separadamente}{92}{subsection.5.6.4}
+\contentsline {section}{\numberline {5.7}Coment\'arios}{93}{section.5.7}
+\contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{97}{chapter.6}
+\contentsline {section}{\numberline {6.1}Etanol, oz\^onio e mortalidade}{98}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{99}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{100}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Modelo ARIMA e regress\~ao linear}{100}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Outras an\'alises realizadas}{102}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Associando mortalidade e concentra\c c\~ao de oz\^onio}{102}{subsection.6.1.5}
+\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{105}{chapter.7}
+\contentsline {section}{\numberline {7.1}Web scraping}{106}{section.7.1}
+\contentsline {subsubsection}{Identificar}{106}{section*.87}
+\contentsline {subsubsection}{Navegar}{106}{section*.88}
+\contentsline {subsubsection}{Replicar}{107}{section*.89}
+\contentsline {subsubsection}{Parsear}{107}{section*.90}
+\contentsline {subsubsection}{Validar}{107}{section*.91}
+\contentsline {subsubsection}{Iterar}{107}{section*.92}
+\contentsline {section}{\numberline {7.2}Dados no Brasil}{107}{section.7.2}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{109}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{111}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{113}{appendix*.95}
 \contentsfinish 

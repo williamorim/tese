@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 589 of file tese.aux
+---line 608 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -14,12 +14,13 @@ format.pages is an unknown function---line 725 of file plainnat-ime.bst
 format.pages is an unknown function---line 873 of file plainnat-ime.bst
 format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
-I was expecting a `,' or a `}'---line 591 of file ../../Latex/Bibs/atlas.bib.bib
+I was expecting a `,' or a `}'---line 655 of file ../../Latex/Bibs/atlas.bib.bib
  :  
  :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--there's a number but no volume in Beer2011
+Warning--empty journal Em Chavent2009
 You can't pop an empty literal stack for entry Gower1971
 while executing---line 1434 of file plainnat-ime.bst
 You can't pop an empty literal stack for entry Adel2014
@@ -29,45 +30,45 @@ Warning--there's a number but no volume in Kalman1961
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
 Warning--empty institution Em WHO2004
-You've used 80 entries,
+You've used 90 entries,
             2743 wiz_defined-function locations,
-            1145 strings with 20282 characters,
-and the built_in function-call counts, 35908 in all, are:
-= -- 3101
-> -- 2513
-< -- 50
-+ -- 858
-- -- 777
-* -- 2840
-:= -- 5867
-add.period$ -- 267
-call.type$ -- 80
-change.case$ -- 401
-chr.to.int$ -- 79
-cite$ -- 166
-duplicate$ -- 1373
-empty$ -- 2598
-format.name$ -- 897
-if$ -- 7382
+            1220 strings with 23189 characters,
+and the built_in function-call counts, 41576 in all, are:
+= -- 3609
+> -- 2946
+< -- 53
++ -- 1003
+- -- 912
+* -- 3354
+:= -- 6787
+add.period$ -- 312
+call.type$ -- 90
+change.case$ -- 465
+chr.to.int$ -- 89
+cite$ -- 187
+duplicate$ -- 1550
+empty$ -- 2964
+format.name$ -- 1046
+if$ -- 8547
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 97
-newline$ -- 430
-num.names$ -- 320
-pop$ -- 955
+missing$ -- 108
+newline$ -- 494
+num.names$ -- 360
+pop$ -- 1077
 preamble$ -- 1
-purify$ -- 339
+purify$ -- 394
 quote$ -- 0
-skip$ -- 989
+skip$ -- 1127
 stack$ -- 0
-substring$ -- 1128
-swap$ -- 83
+substring$ -- 1370
+swap$ -- 92
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 775
-warning$ -- 6
-while$ -- 288
+type$ -- 880
+warning$ -- 7
+while$ -- 327
 width$ -- 0
-write$ -- 1244
+write$ -- 1421
 (There were 10 error messages)

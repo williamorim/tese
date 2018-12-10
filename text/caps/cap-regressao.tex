@@ -621,37 +621,30 @@ Na linguagem R, uma maneira conveniente de se ajustar um modelo ARIMA é utilizar
 
 \section{Modelos não-supervisionados}
 
-Modelos não-supervisionados são aqueles que não consideram uma variável resposta. Geralmente são utilizados para criar agrupamentos e fazer redução de dimensionalidade. Em estudos de poluição do ar, modelos não-supervisionados são muito utilizados para detecção de fontes de poluentes. A seguir, discutiremos os modelos usualmente utilizados.
+Os modelos apresentados nas seções anteriores são chamados de supervisionados pois uma variável resposta \textit{supervisiona} o aprendizado sobre fenômeno de interesse. Em alguns problemas, nós não temos acesso à variável resposta, nos restando buscar informação sobre o fenômeno de interesse apenas a partir da correlação entre os preditores. Essa estratégia é chamada de \textit{análise não-supervisionada} e é geralmente utilizada para realizar agrupamentos e redução de dimensionalidade.
 
-In contrast, unsupervised learning is often much more challenging. The
-exercise tends to be more subjective, and there is no simple goal for the
-analysis, such as prediction of a response. Unsupervised learning is often
-performed as part of an exploratory data analysis. Furthermore, it can be
-hard to assess the results obtained from unsupervised learning methods,
-since there is no universally accepted mechanism for performing cross-
-validation or validating results on an independent data set. The reason
-for this difference is simple. If we fit a predictive model using a supervised
-learning technique, then it is possible to check our work by seeing how
-well our model predicts the response Y on observations not used in fitting
-the model. However, in unsupervised learning, there is no way to check our
-work because we don?t know the true answer?the problem is unsupervised.
+Devido ao seu carácter subjetivo e a impossibilidade de testar a qualidade dos ajustes, as conclusões de uma análise não-supervisionada devem ser tratadas com o mesmo cuidado de uma análise exploratória.
+
+Em estudos de poluição do ar, modelos não-supervisionados são utilizados principalmente para a detecção de fontes de poluentes, isto é, dadas as medidas de concentração de diversos poluentes ao longo de um período, formamos grupos com as emissões mais correlacionadas e, a partir de inventários de poluição e conhecimento teórico, identificamos quais fontes podem ser representadas por cada grupo \citep{Thurston1985, Buhr1992, Chavent2009}. Em estudos epidemiológicos, essas técnicas também podem ser utilizados para determinar quais doenças são as principais causas de internação em hospitais \citep{Tecer2009}. 
+
+A seguir, apresentaremos a análise de componentes principais e a análise fatorial, dois modelos não-supervisionados bastante utilizados em estudos de poluição do ar.
 
 \subsection{Análise de componentes principais}
 
-Imagine que em um estudo estamos investigando a concentração de dois poluentes, digamos $X_1$ e $X_2$. Dada uma amostra de tamanho $n$ dessas variáveis, se quiséssemos explorar esses dados descritivamente, poderíamos construir um gráfico de dispersão de $X_1$ contra $X_2$ e, a partir dele, observar a variabilidade desses poluentes e também como eles estão correlacionados. Se eles apresentarem correlação positiva, teríamos indícios de que eles são gerados pela mesma fonte ou pelas mesmas condições atmosféricas.
+Suponha que queiramos investigar a concentração de dois poluentes, digamos $X_1$ e $X_2$. Dada uma amostra de tamanho $n$ dessas variáveis, para explorar esses dados descritivamente, poderíamos construir um gráfico de dispersão de $X_1$ contra $X_2$ e, a partir dele, observar tanto a variabilidade desses poluentes quanto como eles estão correlacionados. Se eles apresentarem correlação positiva, teríamos indícios de que eles são gerados pela mesma fonte ou sob as mesmas condições atmosféricas.
 
-Imagine agora que, em vez de 2 poluentes, tivéssemos 10. Se quiséssemos construir todos os gráficos de dispersão para as combinações dois a dois, precisaríamos analisar 45 gráficos, sendo que cada um deles só traria uma pequena parte da informação contida nos dados.
+Suponha agora que, em vez de 2 poluentes, tivéssemos 10. Para construir gráficos de dispersão para todas as combinações dois a dois, precisaríamos analisar 45 gráficos, sendo que cada um deles só traria uma pequena parte da informação contida nos dados, pois estaríamos ignorando possíveis interações entre as variáveis.
 
-Em um contexto geral, para $p$ poluentes, gostaríamos de uma maneira de visualizar o máximo possível da informação contida nas $p$ dimensões geradas pelos preditores $X_1, \dots, X_p$ em uma representação com poucas dimensões. Esse é exatamente o objetivo da análise de componentes principais.
+Em geral, para $p$ poluentes, gostaríamos de uma maneira de visualizar o máximo possível da informação contida no espaço $p$-dimensional gerado pelos preditores $X_1, \dots, X_p$ em uma representação (gráfica) com poucas (duas) dimensões. Esse é o objetivo da análise de componentes principais.
 
 Dado um conjunto de preditores $X_1, X_2, \dots, X_p$, a análise de componentes principais visa encontrar uma projeção ortogonal $Z_1, Z_2, \dots, Z_p$, tal que
 
 \[
 VAR(Z_1) \geq VAR(Z_2) \geq \cdots, VAR(Z_p).
 \]
-Isso implica que, em geral, com apenas as primeiras variáveis $Z$'s, digamos $Z_1$ e $Z_2$, podemos explicar a maior parte da variabilidade dos preditores $X$'s. Assim, $Z_1$ e $Z_2$ representariam em apenas 2 dimensões a maior parte da informação contida nos dados.
+Isso implica que, em geral, com apenas as primeiras variáveis $Z_1, Z_2, \dots, Z_p$, digamos $Z_1$ e $Z_2$, podemos explicar a maior parte da variabilidade dos preditores $X_1, X_2, \dots, X_p$. Assim, $Z_1$ e $Z_2$ representariam em apenas 2 dimensões a maior parte da informação contida nos dados originais.
 
-Cada variável $Z_i$, chamada de $i$-ésima componente principal, é uma combinação linear dos preditores $X_1, X_2, \dots, X_p$ dada por
+Cada variável $Z_i$, chamada de $i$-ésima componente principal, é uma combinação linear dos preditores $X_1, X_2, \dots, X_p$, isto é,
 
 \begin{equation}
 Z_i = \phi_{1i} X_1 + \phi_{2i} X_2 + \cdots \phi_{pi} X_p,
@@ -660,16 +653,28 @@ sendo que os elementos $\phi_{1i}, \dots, \phi_{pi}$ são os \textit{pesos} do $i
 
 Como $Z_1, Z_2, \dots, Z_p$ representa uma projeção ortogonal, cada par de componentes ($Z_i$, $Z_j$) é não-correlacionado. Dessa forma, o componente $Z_2$, por exemplo, é a combinação linear de $X_1, X_2, \dots, X_p$ de maior variância entre todas as combinações lineares que são não-correlacionadas com $Z_1$. Isso quer dizer que as fontes de variação representadas por $Z_2$ são não-correlacionadas com as encontradas em $Z_1$.
 
-Voltando ao nosso exemplo com os poluentes, se a análise de componentes principais indicasse os poluentes $X_1$, $X_3$ e $X_5$ como aqueles como maiores pesos para o componente $Z_1$ e os poluentes $X_2$, $X_3$ e $X_4$ como aqueles com maior peso para o componente $Z_2$, então esses dois grupos de poluentes caracterizariam duas fontes não-correlacionadas de poluição\footnote{ A identificação da fonte deve então ser feita a partir dos poluentes que a compõe utilizando conhecimento teórico sobre emissões ou resultados de estudo anteriores.}.
+Voltando ao nosso exemplo com os poluentes, se a análise de componentes principais indicasse os poluentes $X_1$, $X_3$ e $X_5$ como aqueles com maiores pesos para o componente $Z_1$ e os poluentes $X_2$, $X_3$ e $X_4$ como aqueles com maior peso para o componente $Z_2$, então esses dois grupos de poluentes caracterizariam duas fontes não-correlacionadas de poluição\footnote{ A identificação da fonte deve então ser feita a partir dos poluentes que a compõe utilizando conhecimento teórico sobre emissões, inventários de emissão e resultados de estudo anteriores.}.
 
-Os cálculos por trás da análise de componentes principais envolvem decomposição espectral \citep{Nicholson2006}, uma técnica de álgebra linear para representar matrizes em função de seus autovetores e autovalores. 
+Os cálculos por trás da análise de componentes principais envolvem decomposição espectral \citep{Nicholson2006}, uma técnica de álgebra linear para decompor matrizes em função de seus autovetores e autovalores. 
 
 Na linguagem R, podemos realizar uma análise de componentes principais utilizando a função \texttt{prcomp()} do pacote \texttt{stats}.
 
-
-\subsection{Positive Matrix Factorization}
-
 \subsection{Análise Fatorial}
+
+Assim como a análise de componentes principais, a análise fatorial também pode ser utilizada para redução de dimensionalidade. A segunda técnica difere da primeira em dois pontos principais. Primeiro, a análise fatorial supõe que a variância e covariância contida em um conjunto de variáveis $X_1, X_2, \dots, X_p$ pode ser explicada por um conjunto menor de fatores latentes (não-observáveis). Se esses fatores são definidos a priori, o modelo pode ser utilizado para testar teorias sobre a relação entre os fatores e as variáveis observadas. O segundo ponto diz respeito à inclusão de erros aleatórios. Enquanto a análise de componentes principais calcula um novo conjunto de variáveis que explica 100\% da variabilidade das variáveis originais, a análise fatorial considera que parte da variabilidade das variáveis originais pode ser explicada pelos fatores latentes, mas uma outra parte é devida a ruído aleatório.
+
+No exemplo da seção anterior, no qual queremos identificar fontes de emissão a partir da concentração de poluentes medidas ao longo de um determinado período, poderíamos pensar em cada fonte como um fator latente, que pode ser representado por uma combinação linear das concentrações observadas. A inclusão de erros aleatórios seria justificada, por exemplo, pela variação nas concentrações causadas por condições atmosféricas.
+
+Dada uma amostra de tamanho $n$ dos preditores $X_1, X_2, \dots, X_p$, a análise fatorial procura estimar os pesos $l_{ij}$, $i = 1, \dots, p$ e $j = 1, \dots, m$, tais que
+
+\[
+Z_{ik} = l_{i1}F_{1k} + \cdots l_{im}F_{mk} + \epsilon_{ik},
+\]
+sendo que, para a $k$-ésima observação da amostra, $Z_{ik} = \frac{X_{ik} - \bar{X}_i}{\sigma_i}$ é o $i$-ésimo preditor normalizado, $F_{jk}$ é o $j$-ésimo fator e $\epsilon_{ik}$ é o erro associado ao $i$-ésimo preditor.
+
+O número de fatores $m$ deve ser escolhido antes do ajuste, sendo que a interpretação de cada fator é externa ao modelo. Mesmo quando cada fator é construído teoricamente a priori, o modelo não indica qual dos termos $F_{jk}$ representa cada fator.
+
+Mais informações sobre análise fatorial, como o processo de estimação e interpretação geométrica, podem ser encontradas em \cite{Everitt2011}. Na linguagem R, esse modelo pode ser ajustado utilizando a função \texttt{factanal} do pacote \texttt{stats}.
 
 \section{Outros modelos}
 

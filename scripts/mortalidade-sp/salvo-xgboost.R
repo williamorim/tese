@@ -16,10 +16,11 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 cria_formula <- function(mort) {
   
-  padrao <- "share_gas + hm + tp + trend + dayofweek + dv_workday + month"
+  padrao <- "hm + tp + trend + month + dayofweek "
   
   padrao %>% 
-    str_c(mort, ., sep = " ~ ")
+    str_c(mort, ., sep = " ~ ") %>% 
+    as.formula()
   
 }
 
@@ -27,7 +28,7 @@ cria_receita <- function(df_model, formula) {
   df_model %>%
     recipe(formula = formula) %>%
     step_naomit(all_predictors(), all_outcomes()) %>% 
-    step_dummy(dayofweek, month, one_hot = TRUE)
+    step_dummy(month, dayofweek, one_hot = TRUE)
 }
 
 vars <- c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas")
@@ -46,7 +47,7 @@ tuning_grid <- expand.grid(
   nrounds = 250,
   max_depth = 5,
   eta = 0.4,
-  colsample_bytree = 0.7,
+  colsample_bytree = 1,
   subsample = 1
 )
 
@@ -54,11 +55,11 @@ set.seed(5893524)
 
 model <- train(
   x = receitas[[1]],
-  data = df_model,
+  data = na.omit(df_model),
   method = "xgbTree",
-  trControl = train_control,
-  #tuneGrid = tuning_grid,
-  importance = 'impurity'
+  trControl = train_control
+  #tuneGrid = tuning_grid
+  #importance = 'impurity'
 )
 
 model

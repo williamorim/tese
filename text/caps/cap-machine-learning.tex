@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------- %%
-\chapter{Estratégias de modelagem preditiva}
+\chapter{Estratégias de machine learning}
 \label{cap:aprendizado_estatistico}
 
 \begin{flushright}
@@ -358,11 +358,64 @@ Ao contrário dos modelos apresentados no capítulo anterior, modelos como o \text
 
 Neste capítulo, vamos apresentar algumas técnicas que, sob algumas suposições ou restrições, visam elucidar qual é a relação dos preditores com os valores preditos, abrindo um pouco a caixa-preta dos modelos de \textit{machine learning}.
 
-\subsection{Gráficos de dependência parcial}
+\subsection{Gráfico de dependência parcial}
 
-\subsection{Esperança condicional individual}
+O objetivo do gráfico de dependência parcial é mostrar o efeito marginal de um preditor no valor predito pelo modelo. A partir dele, podemos investigar qual é a forma e o sentido da relação entre cada preditor e a variável resposta.
 
-\subsection{Gráficos de efeitos locais acumulados}
+Dado um modelo não-interpretável $f(X, Z)$, um preditor sob investigação $X$ e um vetor $Z$ representando os outros preditores do modelo, a ideia por trás da construção do gráfico de dependência parcial consiste em:
+
+\begin{itemize}
+	\item[1.] fixar alguns valores para $X$, digamos $x = (x_{1}, \dots, x_{M})$;
+	\item[2.] para cada $x_i$, $i = 1, \dots, M$, repetir:
+	\subitem a) para cada uma das $n$ observações na amostra, substituir o valor observado de $X$ por $x_i$ e calcular o valor predito do modelo, $\hat{f}(x_i, z_{.})$;
+	\subitem b) calcular a média das $n$ predições, $\bar{f}_i(x_i) = \frac{1}{n}\sum_{j=1}^{n}\hat{f}(x_i, z_j)$;
+	\item[3.] plotar o gráfico dos valores $x$ contra as médias das predições $\bar{f}(x)$.
+\end{itemize}
+
+A função $\bar{f}(x)$ podem ser interpretada como uma estimativa da distribuição marginal das predições que depende apenas do preditor X, obtida calculando-se a média das predições sobre os outros preditores. Essa estratégia é razoável apenas se os preditores $X$ e $Z$ são não correlacionados. Caso contrário, o uso dessa média como estimativa da distribuição marginal $\bar{f}(x)$ pode colocar peso em regiões inverossímeis ou de probabilidade zero.
+
+\subsection{Gráfico da esperança condicional individual}
+
+O gráfico da esperança condicional individual é equivalente ao gráfico de dependência parcial, com a diferença que aqui plotamos uma linha para cada observação da amostra, sendo que o gráfico de dependência parcial é a média das linhas do gráfico da esperança condicional individual.
+
+O algoritmo para construção desse gráfico consiste nos passos (1) e (2a) da seção anterior, sendo que plotamos as $n$ curvas formadas pelos pontos $(x_1, \hat{f}(x_1, z_{j})), \dots, (x_M, \hat{f}(x_M, z_{j}))$, $j = 1, \dots, n$. Além de serem ainda mais intuitivo que o gráfico de dependência parcial, a grande vantagem do gráfico da esperança condicional individual é mostrar relações heterogêneas geradas por interações entre os preditores.
+
+\subsection{Gráfico de efeitos locais acumulados}
+
+O gráfico de efeitos locais acumulados é uma alternativa para o gráfico de dependência parcial no caso de preditores correlacionados. A estratégia aqui é, para cada valor $x$ do preditor sob investigação $X$, estimar a distribuição marginal das predições $\hat{f}(x)$ utilizando apenas as observações da amostra similares a $x$. Esse gráfico mostra como a predição do modelo em uma pequena região ao redor de $x$ para observações da base dentro dessa região.
+
+Dado o preditor $X$ de interesse, o algoritmo  para construção desse gráfico é dado por:
+
+\begin{enumerate}
+	\item dividir os valores observados de $X$ em $M$ intervalos (usualmente os quantis de $X$ são utilizados);
+	\item para cada uma das $m_i$ observações dentro do $i$-ésimo intervalo, calcular
+	\[
+	\hat{f}_i^d = \hat{f}(x_i^{+}, z_j) - \hat{f}(x^{-}_i, z_j), \quad j = 1, \dots, m_i,
+	\]
+	sendo $x_i^{+}$ e $x_i^{-}$, respectivamente, os limites superior e inferior do intervalo $i$.
+	\item Para cada valor $x$ de $X$, calcular a média acumulada 
+	\[
+	\bar{f}_a(x) = \sum_{i = 1}^{k(x)} \frac{1}{m_i} \sum_{1}^{m_i} \hat{f}_i^d,
+	\]
+	sendo $k(x)$ o intervalo ao qual o valor $x$ pertence.
+	\item Calcular $\bar{f}_{ac}(x)$, o valor centralizado de $\bar{f}_a(x)$ considerando todas as $n$ observações da amostra:
+	\[
+	\bar{f}_{ac}(x) = \bar{f}_a(x) - \sum_{i = 1}^{n}\bar{f}_a(x_i).
+	\]
+	\item Para cada valor observado de $X$, plotar $\bar{f}_{ac}(x) \times x$. 
+	
+\end{enumerate}
+
+A partir desse algoritmo, podemos fazer algumas considerações sobre o gráfico de efeitos locais acumulados:
+
+\begin{itemize}
+	\item As diferenças calculadas no passo (2) explicam o termo \textit{efeitos locais}. Para cada valor $x$ do preditor $X$, essas diferenças estimam o quanto a predição é alterada por pequenas mudanças no valor de $x$. 
+	\item Calcular a média das diferenças das predições em cada intervalo (em vez de apenas a média das predições) também garante que o efeito estimado para o preditor $X$ não seja influenciado pelo efeito de algum outro preditor correlacionado com $X$.
+	\item Como cada $\frac{1}{m_i} \sum_{1}^{m_i} \hat{f}_i^d$ representa a diferença média nas predições quando $X$ varia localmente, dentro do intervalo $i$, a soma acumulada no passo (3) é realizada para que $\bar{f}_a(x)$ represente o efeito do preditor $X$ nas predições.
+	\item Ao contrário do gráfico de dependência parcial e do gráfico de esperança condicional individual, que apresentam no eixo $y$ o valor predito, o gráfico de efeitos locais acumulados consideram nesse eixo o efeito estimado do preditor $X$ na variável resposta.
+\end{itemize}
+
+
 
 \subsection{LIME}
 

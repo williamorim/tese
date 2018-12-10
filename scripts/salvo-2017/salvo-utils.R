@@ -31,7 +31,7 @@ rmse_table <- function(fit) {
 
 # Plots -------------------------------------------------------------------
 
-gam_plot <- function(fit, smooth, xlab) {
+gam_plot <- function(fit, smooth, xlab, ylab) {
   
   x <- fit$model[,smooth$term]
   
@@ -65,7 +65,7 @@ gam_plot <- function(fit, smooth, xlab) {
                 fill = "grey80") +
     geom_line(color = 'blue', size = 1) +
     #geom_point(aes(x = x.val, y = min(value-2*se)-sd(value))) +
-    labs(y = 's(.)', x = xlab) +
+    labs(y = ylab, x = xlab) +
     theme_bw()
   
 }
