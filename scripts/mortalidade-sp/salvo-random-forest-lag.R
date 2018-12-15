@@ -14,119 +14,113 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 # Formula -----------------------------------------------------------------
 
-formulas <- df_model %>%
-  select(
-    -n_mortes_geral, -n_mortes_idosos, -n_mortes_criancas,
-    -date, -dayofweek,
-    -pp, -dv_pp_20_150,
-    -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
-  ) %>%
-  names() %>%
-  str_c(collapse = " + ") %>%
-  str_c(
-    c("n_mortes_geral ~ ", "n_mortes_idosos ~ ", "n_mortes_criancas ~ "), .
-  ) %>%
-  map(as.formula)
-
-make_recs <- function(df_model, formula, lag) {
-  df_model %>%
-    recipe(formula = formula) %>%
-    step_lag(share_gas, lag = lag) %>%
-    step_dummy(week, one_hot = TRUE) %>% 
-    step_rm(share_gas) %>% 
-    step_meanimpute(all_numeric())
+cria_formula <- function(mort) {
+  
+  padrao <- "share_gas + hm + tp + trend + dayofweek + dv_workday + month"
+  
+  padrao %>% 
+    str_c(mort, ., sep = " ~ ") %>% 
+    as.formula()
+  
 }
 
-recs_geral <- map(1:30, make_recs, df_model = df_model, formula = formulas[[1]])
-recs_idosos <- map(1:30, make_recs, df_model = df_model, formula = formulas[[2]])
-recs_criancas <- map(1:30, make_recs, df_model = df_model, formula = formulas[[3]])
+cria_receita <- function(df_model, formula) {
+  
+  rec <- recipe(formula = formula, data = df_model) %>% 
+    step_dummy(dayofweek, month, one_hot = TRUE)
+  
+}
+
+receitas <- expand.grid(
+  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
+  lag = 0:7
+) %>% 
+  as.tibble() %>% 
+  mutate(
+    formula = map(mortalidade, cria_formula),
+    receita = map(formula, cria_receita, df_model = df_model)
+  )
 
 # Model -------------------------------------------------------------------
 
-# Geral
+# Function to train the models
 
-run_model <- function(rec, df_model, train_control, tuning_grid) {
+train_model <- function(receita, lag, df_model, train_control, tuning_grid) {
+  
   set.seed(5893524)
-  model <- train(
-    x = rec,
-    data = df_model,
+  
+  df_model <- df_model %>% 
+    mutate(share_gas = lag(share_gas, lag))
+  
+  train(
+    receita,
+    data = na.omit(df_model),
     method = "ranger",
-    trControl = train_control,
+    trControl = train_control, 
     tuneGrid = tuning_grid,
     importance = 'impurity'
   )
-  model$results
+  
 }
 
-train_control <- trainControl(method = "cv", number = 5)
+# Fits
+
+train_control <- trainControl(method="cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = 61,
-  min.node.size = 6
-)
-
-results_geral <- map_dfr(
-  recs_geral, 
-  run_model, 
-  df_model = df_model,
-  train_control = train_control,
-  tuning_grid = NULL
-)
-
-# Melhor lag: 0
-# RMSE: 36.06
-# MAE: 28.60
-# % var: 64.57%  
-# share_gas imp: 3ª
-
-# Idosos
-
-train_control <- trainControl(method = "cv", number = 5)
-
-tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 68,
-  min.node.size = 5
-)
-
-results_adultos <- map_dfr(
-  recs_idosos, 
-  run_model, 
-  df_model = df_model,
-  train_control = train_control,
-  tuning_grid = NULL
-)
-
-
-# Melhor lag: 0
-# RMSE: 27.91
-# MAE: 21.85
-# % var: 69.47%  
-# share_gas imp: 2ª
-
-# Crianças
-
-train_control <- trainControl(method = "cv", number = 5)
-
-tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 2,
+  mtry = 12,
   min.node.size = 3
 )
 
-
-results_criancas <- map_dfr(
-  recs_criancas, 
-  run_model, 
-  df_model = df_model,
+ajustes <- map2(
+  receitas$receita,
+  receitas$lag,
+  train_model,
+  df_model = filter(df_model),
   train_control = train_control,
   tuning_grid = tuning_grid
 )
 
-# Melhor lag: 0
-# RMSE: 5.13
-# MAE: 4.12
-# % var: 1.7%  
-# share_gas imp: 4ª
+# Resultados
+
+extrai_resultados <- function(ajuste, preditor) {
+  
+  imp <-  ajuste %>% 
+    varImp() %>% 
+    .$importance %>% 
+    rownames_to_column("var") %>%
+    mutate(n = row_number(desc(Overall))) %>% 
+    filter(var == preditor) %>% 
+    .$n
+  
+  tibble(
+    RMSE = ajuste$results$RMSE,
+    R2 = ajuste$results$Rsquared,
+    MAE = ajuste$results$MAE,
+    varImp = imp
+  )
+  
+}
+
+resultados <- map_dfr(
+  ajustes,
+  extrai_resultados,
+  preditor = "share_gas"
+) %>% 
+  bind_cols(receitas, .) %>% 
+  select(-formula, -receita)
+
+# Idosos
+
+resultados %>% 
+  filter(mortalidade == "n_mortes_idosos") %>% 
+  arrange(RMSE) %>% 
+  View
+
+# Crianças
+
+resultados %>% 
+  filter(mortalidade == "n_mortes_criancas") %>% 
+  arrange(RMSE) %>% 
+  View

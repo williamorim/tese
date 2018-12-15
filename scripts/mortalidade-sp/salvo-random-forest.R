@@ -30,45 +30,11 @@ cria_receita <- function(df_model, formula) {
     step_dummy(dayofweek, month, one_hot = TRUE)
 }
 
-vars <- c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas")
+vars <- "n_mortes_idosos"
 formulas <- map(vars, cria_formula)
 receitas <- map(formulas, cria_receita, df_model = df_model)
   
 # Model -------------------------------------------------------------------
-
-# Geral
-
-train_control <- trainControl(method = "cv", number = 5)
-
-tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 12,
-  min.node.size = 3
-)
-
-set.seed(5893524)
-
-model <- train(
-  x = receitas[[1]],
-  data = df_model,
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
-)
-
-model
-model$finalModel
-varImp(model)
-# RMSE: 35.58922
-# MAE: 28.3302
-# % var: 0.6467966%  
-# share_gas imp: 5ª
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_geral,
-  pred = predict(model, newdata = na.omit(df_model))
-)
 
 # Idosos
 
@@ -83,7 +49,7 @@ tuning_grid <- expand.grid(
 set.seed(5893524)
 
 model <- train(
-  x = receitas[[2]],
+  x = receitas[[1]],
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -92,7 +58,6 @@ model <- train(
 )
 
 model
-model$finalModel
 varImp(model)
 # RMSE: 27.69438
 # MAE: 21.87697
@@ -101,40 +66,6 @@ varImp(model)
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_idosos,
-  pred = predict(model, newdata = na.omit(df_model))
-)
-# Crianças
-
-train_control <- trainControl(method = "cv", number = 5)
-
-tuning_grid <- expand.grid(
-  splitrule = "variance",
-  mtry = 2,
-  min.node.size = 5
-)
-
-
-set.seed(5893524)
-
-model <- train(
-  x = receitas[[3]],
-  data = na.omit(df_model),
-  method = "ranger",
-  trControl = train_control,
-  tuneGrid = tuning_grid,
-  importance = 'impurity'
-)
-
-model
-model$finalModel
-varImp(model)
-# RMSE: 5.045784
-# MAE: 4.061302
-# % var: 0.02881601%  
-# share_gas imp: 4ª
-
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_criancas,
   pred = predict(model, newdata = na.omit(df_model))
 )
 
@@ -175,8 +106,8 @@ explanation <- map_dfr(
   df = df_explain
 )
 
-# saveRDS(explanation, file = "explanation.rds")
-# explanation <- readRDS("explanation.rds")
+# saveRDS(explanation, file = "explanation_salvo-rf.rds")
+# explanation <- readRDS("explanation_salvo-rf.rds")
 
 # Explicação geral
 explanation %>% 

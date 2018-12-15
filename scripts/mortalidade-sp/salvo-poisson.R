@@ -183,7 +183,7 @@ p_criancas <- pred_obs_plot2(
   ggtitle("Crianças")
 
 
-p_geral + p_idosos + p_criancas
+p_idosos + p_criancas
 ggsave(filename = "text/figuras/cap-mort-res-plot-glm.pdf", 
        width = 6, height = 4)
 

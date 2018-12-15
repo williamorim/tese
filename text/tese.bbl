@@ -1,4 +1,4 @@
-\begin{thebibliography}{90}
+\begin{thebibliography}{91}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -386,6 +386,18 @@ Itai Kloog, Francesco Nordio, Brent~A. Coull e Joel Schwartz.
 Sadanori Konishi e Genshiro Kitagawa.
 \newblock \emph{Information Criteria and Statistical Modeling}.
 \newblock Springer.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Kumar e Ridder(2010)]{Kumar2010}{\bf Kumar e Ridder(2010)}
+Ujjwal Kumar e Koen~De Ridder.
+\newblock {GARCH} modelling in association with {FFT-ARIMA} to forecast ozone
+  episodes.
+\newblock \emph{Atmospheric Environment}, 44\penalty0 (34): \penalty0 4252 --
+  4265.
+\newblock ISSN 1352-2310.
+\newblock \doi{https://doi.org/10.1016/j.atmosenv.2010.06.055}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1352231010005340}.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Leiva(2015)]{Leiva2015}{\bf Leiva(2015)}
 Victor Leiva.

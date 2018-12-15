@@ -14,7 +14,7 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 # Formulas ----------------------------------------------------------------
 
-formula <- "residuos ~ share_gas + tp + hm + dayofweek + dv_workday"
+formula <- "residuos ~ share_gas + tp_var + hm + dayofweek + dv_workday"
 
 # Model -------------------------------------------------------------------
 
@@ -53,8 +53,7 @@ train_control <- trainControl(method="cv", number = 5)
 
 ajustes <- df_model %>% 
   gather(grupo, n_mortes, starts_with("n_mortes")) %>%
-  gather(tipo_tp, tp, starts_with("tp")) %>%
-  group_by(grupo, tipo_tp) %>% 
+  group_by(grupo) %>% 
   nest() %>%
   mutate(fit = map(
     data,
@@ -120,7 +119,7 @@ resultados %>%
 # varImp: 7
 # valor-p: 0.39975069
 
-summary(ajustes$fit[[7]]$glm_fit)
+summary(ajustes$fit[[1]]$glm_fit)
 
 predicao <- df_model %>% 
   mutate(

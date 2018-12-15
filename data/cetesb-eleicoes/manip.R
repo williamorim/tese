@@ -24,8 +24,8 @@ safe_scraper_cetesb <- possibly(
       parameter = parameter,
       start = start,
       end = end,
-      login = "thewilliam89@gmail.com",
-      password = "wouldy0uralauq?"
+      login = "",
+      password = ""
     )
   },
   otherwise = NULL

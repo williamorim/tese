@@ -731,7 +731,10 @@ Por ser um modelo com muitos parâmetros, a especificação do modelo GARCH($p$, $q
 	\item Avaliar valores de $\rho_i$ maiores que $1/\sqrt{T}$.
 \end{enumerate}
 
-A estimação desses modelos pode ser conduzida da mesma forma que para os modelos ARMA, discutida na Seção 3.6 de \cite{Shumway2006}.
+A estimação desses modelos pode ser conduzida da mesma forma que para os modelos ARMA, discutida na Seção 3.6 de \cite{Shumway2006}. Na linguagem R, esse modelo pode ser ajustado usando a função \texttt{garch()} do pacote \texttt{tseries}.
+
+
+Em estudos de poluição do ar, modelos GARCH são utilizados principalmente para aprimorar modelos de previsão, como feito por \cite{Kumar2010} para dados de ozônio em Bruxelas e Londres.
 
 \subsection{Modelos dinâmicos}
 

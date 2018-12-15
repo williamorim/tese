@@ -18,7 +18,7 @@ Em um primeiro momento, dado o impacto da poluição por ozônio na saúde pública, 
 
 Para cumprir esses objetivos, vamos utilizar os dados climáticos e de poluição disponibilizados por \cite{Salvo2017} e dados de mortalidade extraídos do \href{http://www2.datasus.gov.br/DATASUS/index.php?area=060701}{Sistema de Informações de Mortalidade} (SIM) do DATASUS, a plataforma de tecnologia da informação do Sistema Único de Saúde. O período avaliado será novamente de 2008 a 2013. Seguindo diversos estudos \REF, controlaremos as condições climáticas, a tendência e a sazonalidade através das seguintes variáveis: temperatura (mínima, média, máxima ou variação), umidade, dia da semana, mês (ou estação do ano), indicador de dia útil e termo tendência.
 
-Embora a poluição esteja associada com morbidade e mortalidade em geral, alguns grupos merecem atenção especial. Segundo relatório da OMS \citep{WHO2004}, crianças (até 5 anos) são mais suscetíveis aos efeitos adversos da poluição pois, entre outros fatores, elas respiram uma maior quantidade de ar proporcionalmente ao seu peso do que adultos, costumam praticar mais atividades físicas ao ar livre e possuem sistema imunológico pouco desenvolvido. Idosos compreendem outro grupo de risco, sendo altamente vulneráveis a casos extremos de poluição devido a maior incidência de doenças pré-existentes e sistema imunológico vulnerável. Assim, analisaremos tanto dados de mortalidade para a população em geral quanto para esses dois grupos.
+Embora a poluição esteja associada com morbidade e mortalidade em geral, alguns grupos merecem atenção especial. Segundo relatório da OMS \citep{WHO2004}, crianças (até 5 anos) são mais suscetíveis aos efeitos adversos da poluição pois, entre outros fatores, elas respiram uma maior quantidade de ar proporcionalmente ao seu peso do que adultos, costumam praticar mais atividades físicas ao ar livre e possuem sistema imunológico pouco desenvolvido. Idosos compreendem outro grupo de risco, sendo altamente vulneráveis a casos extremos de poluição devido a maior incidência de doenças pré-existentes e sistema imunológico vulnerável. Assim, focaremos a análise nesses dois grupos de maior risco.
 
 A seguir, ajustaremos alguns modelos para avaliar a associação da mortalidade com a proporção estimada de carros a gasolina. Em seguida, ajustaremos modelos utilizando a concentração de ozônio como preditor para comparmos os resultados obtidos.
 
@@ -26,7 +26,7 @@ A seguir, ajustaremos alguns modelos para avaliar a associação da mortalidade co
 
 Como a mortalidade diária é um dado de contagem, ajustamos inicialmente um modelo linear generalizado com distribuição Poisson (ver Seção \ref{sec:glm-contagem}) avaliar a relação dessa quantidade com a proporção estimada de carros a gasolina rodando na cidade de São Paulo.
 
-A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajustados para a população em geral, para idosos e para crianças. Observamos que, considerando toda a população, a proporção estimada de carros a gasolina é estatisticamente significante para explicar a mortalidade geral, sendo que um aumento de 10\% na proporção de carros a gasolina está associado a um aumento médio de 74\% na mortalidade. Ao separarmos por grupo, o ajuste melhora quando consideramos apenas idosos (R$^2$ passa de 52.17 para 56.40\%) e o efeito da gasolina parece ser mais nocivo (variação na mortalidade passa de 74 para 100\%). Analisando apenas as crianças, os preditores considerados não foram suficiente para explicar a mortalidade, já que apenas 3.03\% da variação foi explicada. Neste caso, a proporção de carros a gasolina não foi considerada estatisticamente significativa para explicar a variação da mortalidade.
+A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajustados para idosos e crianças. Observamos que a proporção estimada de carros a gasolina é estatisticamente significante para explicar a mortalidade geral, sendo que um aumento de 10\% na proporção de carros a gasolina está associado a um aumento médio de 100\% na mortalidade em idosos. Analisando os resultados para as crianças, os preditores considerados não foram suficiente para explicar a mortalidade, já que apenas 3.03\% da variação foi explicada. Neste caso, a proporção de carros a gasolina não foi considerada estatisticamente significativa para explicar a variação da mortalidade.
 
 \begin{table}[h!]
 	\centering
@@ -35,7 +35,6 @@ A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajus
 		\hline
 		Grupo & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & Variação na mortalidade & \\
 		\hline
-		Geral & 40.72  & 52.17 & < 0.001 & 74\% & \\
 		Idosos & 31.69 & 56.40 & < 0.001 & 100\% & \\
 		Crianças & 5.08  & 3.03 & 0.24 & - & \\
 		\hline
@@ -43,7 +42,7 @@ A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajus
 	\label{tab:cap-mort-glm-poisson}
 \end{table}
 
-Observamos melhor a qualidade de cada ajusto pelo gráfico dos valores preditos contra os valores observados apresentado na Figura \ref{fig:cap-mort-res-plot-glm}. Para as crianças, a associação entre essas duas quantidades é bem baixa, ilustrando o baixo poder preditivo do modelo. Para a população em geral e para os idosos, o modelo erra mais para valores baixos da mortalidade.
+Observamos melhor a qualidade de cada ajusto pelo gráfico dos valores preditos contra os valores observados apresentado na Figura \ref{fig:cap-mort-res-plot-glm}. Para as crianças, a associação entre essas duas quantidades é bem baixa, ilustrando o baixo poder preditivo do modelo. Para os idosos, o modelo erra mais para valores baixos da mortalidade.
 
 \begin{figure}[h!]
 	\centering
@@ -52,7 +51,7 @@ Observamos melhor a qualidade de cada ajusto pelo gráfico dos valores preditos c
 	\label{fig:cap-mort-res-plot-glm}
 \end{figure}
 
-Para avaliar a melhor escolha de preditores, ajustamos modelos com mês ou estação do ano para controlar a sazonalidade e temperatura média, mínima, máxima ou variação de temperatura ao longo do dia para controlar a temperatura. Utilizando o RMSE como métrica de performance, o melhor modelo para os 3 grupos foi aquele com os preditores mês e temperatura média.
+Para avaliar a melhor escolha de preditores, ajustamos modelos com mês ou estação do ano para controlar a sazonalidade e temperatura média, mínima, máxima ou variação de temperatura ao longo do dia para controlar a temperatura. Utilizando o RMSE como métrica de performance, o melhor modelo para os 2 grupos foi aquele com os preditores mês e temperatura média.
 
 A seguir, vamos ajustar um modelo aditivo generalizado para verificar se obtemos resultados mais precisos e se as conclusões se mantêm.
 
@@ -60,7 +59,7 @@ A seguir, vamos ajustar um modelo aditivo generalizado para verificar se obtemos
 
 Na tentativa de obtermos estimativas mais precisas do que as obtidas pelos modelos lineares generalizados, ajustamos agora modelos aditivos generalizados com distribuição Poisson (ver Seção \ref{sec:gam}) para associar a mortalidade geral com a proporção estimada de carros a gasolina.
 
-Os resultados para cada um dos três grupos considerados se encontram na Tabela \ref{tab:cap-mort-gam-poisson}. Observamos aumento na performance do modelo (menor RMSE) e poder preditivo (maior R$^2$) para os idosos e a população em geral. Além disso, a proporção de carros a gasolina continua estatisticamente significativa para explicar a variação da mortalidade.
+Os resultados para cada um dos grupos considerados se encontram na Tabela \ref{tab:cap-mort-gam-poisson}. Observamos aumento na performance do modelo (menor RMSE) e poder preditivo (maior R$^2$) para os idosos. Além disso, a proporção de carros a gasolina continua estatisticamente significativa para explicar a variação da mortalidade.
 
 \begin{table}[h!]
 	\centering
@@ -69,7 +68,6 @@ Os resultados para cada um dos três grupos considerados se encontram na Tabela \
 		\hline
 		Grupo & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & \\
 		\hline
-		Geral & 37.80  & 59.40 & < 0.001 & \\
 		Idosos & 29.55 & 62.92 & < 0.001 & \\
 		Crianças & 5.08  & 3.5 & 0.26  & \\
 		\hline
@@ -77,7 +75,7 @@ Os resultados para cada um dos três grupos considerados se encontram na Tabela \
 	\label{tab:cap-mort-gam-poisson}
 \end{table}
 
-Observando agora os gráficos das funções não-lineares ajustadas para a proporção de carros a gasolina (Figura \ref{fig:cap-mort-gam-plot-poisson}), notamos que a associação com a mortalidade, antes positiva, agora parece ser negativa. De uma forma geral, esses gráficos apontam que, para os idosos e a população em geral, quando aumentamos a proporção de carros a gasolina, a mortalidade tende a diminuir, com valor mínimo quando a proporção está próxima a 68\%. Esses indícios contrariam os encontrados no modelo linear da seção anterior. No entanto, uma ressalva sobre essa conclusão deve ser feita. As regiões do gráfico onde as curvas decaem são aquelas com menos observações (isso pode ser observado pela maior amplitude dos intervalos de confiança). Além disso, pela Figura \ref{fig:cap-mort-boxplot-share}, notamos que a distribuição da proporção de carros a gasolina apresenta uma sazonalidade: os maiores valores tendem a acontecer no verão e os menos valores no inverno. Com a mortalidade, essa relação é inversa: a mortalidade é maior no inverno. Assim, se essa associação entre mortalidade e proporção de carros a gasolina for espúria, isso explicaria o comportamento das funções estimadas pelo modelo aditivo. 
+Observando agora os gráficos das funções não-lineares ajustadas para a proporção de carros a gasolina (Figura \ref{fig:cap-mort-gam-plot-poisson}), notamos que a associação com a mortalidade, antes positiva, agora parece ser negativa. De uma forma geral, esses gráficos apontam que, para os idosos, quando aumentamos a proporção de carros a gasolina, a mortalidade tende a diminuir, com valor mínimo quando a proporção está próxima a 68\%. Esses indícios contrariam os encontrados no modelo linear da seção anterior. No entanto, uma ressalva sobre essa conclusão deve ser feita. As regiões do gráfico onde as curvas decaem são aquelas com menos observações (isso pode ser observado pela maior amplitude dos intervalos de confiança). Além disso, pela Figura \ref{fig:cap-mort-boxplot-share}, notamos que a distribuição da proporção de carros a gasolina apresenta uma sazonalidade: os maiores valores tendem a acontecer no verão e os menos valores no inverno. Com a mortalidade, essa relação é inversa: a mortalidade é maior no inverno. Assim, se essa associação entre mortalidade e proporção de carros a gasolina for espúria, isso explicaria o comportamento das funções estimadas pelo modelo aditivo. 
 
 \begin{figure}[h!]
 	\centering
@@ -104,7 +102,7 @@ O modelo de séries temporais escolhido foi o modelo ARIMA($p$, $d$, $q$), discut
 
 O modelo de regressão ajustado nos resíduos do modelo ARIMA considera os seguintes preditores: proporção estimada de carros a gasolina, temperatura, umidade, dia da semana e indicador de dia útil. Assim como anteriormente, testamos modelos com a média, mínima, máxima e variação diária da temperatura.
 
-Os resultados para os modelos ajustados estão apresentados na Tabela \ref{tab:cap-mort-reg-lin-arima}. Reparamos que em nenhum dos modelos a proporção de carros a gasolina é significativa para explicar os resíduos do modelo ARIMA, sugerindo que realmente havia algum componente sazonal induzindo a associação entre esse preditor e a mortalidade. Repare que, para o grupo geral por exemplo, os preditores considerados explicam apenas 11\% da variabilidade não explicada pelo modelo ARIMA. Em todos os modelos, a variável escolhida para a temperatura foi a variação diária.
+Os resultados para os modelos ajustados estão apresentados na Tabela \ref{tab:cap-mort-reg-lin-arima}. Reparamos que em nenhum dos modelos a proporção de carros a gasolina é significativa para explicar os resíduos do modelo ARIMA, sugerindo que realmente havia algum componente sazonal induzindo a associação entre esse preditor e a mortalidade. Repare que, para idosos por exemplo, os preditores considerados explicam apenas 5\% da variabilidade não explicada pelo modelo ARIMA. Em todos os modelos, a variável escolhida para a temperatura foi a variação diária.
 
 \begin{table}[h!]
 	\centering
@@ -121,15 +119,36 @@ Os resultados para os modelos ajustados estão apresentados na Tabela \ref{tab:ca
 	\label{tab:cap-mort-reg-lin-arima}
 \end{table}
 
-Calculando o RSME para o modelo final (combinação do modelo ARIMA e da regressão linear), temos os valores 37.6, 28.8 e 5.03 para os grupos geral, idosos e crianças, respectivamente. Esses valores são ligeiramente inferiores aos encontrados para o modelo aditivo Poisson.
+Calculando o RSME para o modelo final (combinação do modelo ARIMA e da regressão linear), temos os valores 28.8 e 5.03 para os grupos idosos e crianças, respectivamente. Esses valores são ligeiramente inferiores aos encontrados para o modelo aditivo Poisson.
 
 A seguir, apresentaremos alguns resultados de analises complementares que realizamos para testar a robustez das conclusões encontradas até aqui.
 
-\subsection{Outras análises realizadas}
+\subsection{Análises complementares}
 
-- Modelos com lag
-- Random forest
-- XGBoost
+Para testar a sensibilidade dos resultados obtidos pelo modelo anterior, nós realizamos análises complementares, variando algumas variáveis mantidas fixas e testando outros modelos. Focamos essas análises apenas no grupo de idosos pois nenhum dos modelos considerados sugeriu associação entre os preditores a mortalidade infantil.
+
+Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina na mortalidade pode estar defasado no tempo, isto é, se o valor deste preditor em um determinado dia vai afetar a mortalidade no futuro. Para isso, defasamos essa variável em até 21 dias e ajustamos o modelo ARIMA + regressão linear da seção anterior, mas a proporção de carros a gasolina não foi estatisticamente significante para nenhuma defasagem ajustada. Os resultados para as primeiras 7 defasagens estão apresentados na Tabela \ref{tab:cap-mort-reg-arima-defasada}..
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultados do modelo de regressão linear ajustado nos resíduos do modelo ARIMA.}
+	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{2cm}|M{4cm} N}
+		\hline
+		Grupo & Defasagem & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & \\
+		\hline
+		\multirow{7}{1cm}{Idosos} & 1 & 0.0001273 & 0.05 & 0.42 & \\
+		& 2 & 0.0001271 & 0.05 & 0.49 & \\
+		& 3 & 0.0001269 & 0.05 & 0.52 & \\
+		& 4 & 0.0001267 & 0.06 & 0.53 & \\
+		& 5 & 0.0001269 & 0.06 & 0.58 & \\
+		& 6 & 0.0001269 & 0.06 & 0.66 & \\
+		& 7 & 0.0001265 & 0.05 & 0.63 & \\
+		\hline
+	\end{tabular}
+\label{tab:cap-mort-reg-arima-defasada}
+\end{table}
+
+Os modelos linear e aditivo com distribuição Poisson também foram ajustados utilizando a semana do ano (em vez do mês do ano) para o controle da sazonalidade, mas as conclusões obtidas para cada modelo foram as mesmas.
 
 \subsection{Associando mortalidade e concentração de ozônio}
 

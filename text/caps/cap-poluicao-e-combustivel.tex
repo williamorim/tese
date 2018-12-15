@@ -316,12 +316,12 @@ A Figura \ref{fig:cap-comb-forest-pred-obs-plot} apresenta o gráfico dos valores
 
 Apesar de termos um ajuste mais preciso, a partir deste modelo não conseguimos interpretar a diretamente a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio. Não sabemos se esse preditor é estatisticamente significativo e, em caso positivo, em qual direção ela está associada à resposta. Sem essa interpretação, não conseguimos responder à pergunta de interesse do estudo.
 
-Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:random-forest}. Como exemplo, vamos avaliar as predições para os 100 dias com maiores níveis de ozônio e para os 100 dias com menores dias de ozônio. A Figura \ref{fig:cap-comb-lime-pinheiros} sugere que, para os dias com maiores médias de ozônio, o efeito protetor da proporção estimada de carros a gasolina acontece com maior frequência quando temos cerca de 50\% da frota ou mais rodando a gasolina. O mesmo acontece para os dias com menores médias. Esse comportamento reforça a relação não-linear encontrada pelo modelo aditivo generalizado ajustado na seção anterior.
+Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:lime}. Para cada observação na base, nós aplicamos o LIME para explicar os preditores que mais influenciaram em sua própria predição. A Figura \ref{fig:cap-comb-lime-pinheiros} apresenta a proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}). Podemos observar que, para valores da proporção estimada de carros a gasolina menor que 0.48, há modelos que consideram esse preditor tanto negativamente quanto positivamente associado ao ozônio. A partir de 0.48, os coeficientes do modelo simples são predominantemente negativos. Esse resultado reforça dois indícios encontrados nas análises apresentadas até aqui. Primeiro, não é clara a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio quando o valor deste preditor é menor que 50\% (aproximadamente). Segundo, quando a proporção estimada de carros a gasolina está aproximadamente 50\% e 60\%, todos os modelos sugeriram uma associação negativa com a concentração de ozônio.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-lime-pinheiros.pdf}
-	\caption{Proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}). À esquerda, utilizamos os 100 dias com as menores médias de ozônio e, à direita, os 100 dias com as maiores médias. }
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-rf-explanation.pdf}
+	\caption{Proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}).}
 	\label{fig:cap-comb-lime-pinheiros}
 \end{figure}
 

@@ -156,7 +156,8 @@ resultados %>%
 p_idosos <- gam_plot(
   ajustes[[2]]$finalModel, 
   ajustes[[2]]$finalModel$smooth[[1]],
-  xlab = ""
+  xlab = "",
+  ylab = "Efeito na mortalidade"
 )+
   ggtitle("Idosos")
 
@@ -184,7 +185,8 @@ resultados %>%
 p_criancas <- gam_plot(
   ajustes[[3]]$finalModel, 
   ajustes[[3]]$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina"
+  xlab = "Proporção estimada de carros a gasolina",
+  ylab = "Efeito na mortalidade"
 ) +
   ggtitle("Crianças")
 
@@ -195,6 +197,6 @@ gam_plot(
 )
 
 
-patchwork::wrap_plots(p_geral, p_idosos, p_criancas, ncol = 1)
+patchwork::wrap_plots(p_idosos, p_criancas, ncol = 1)
 ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson.pdf", 
        width = 5, height = 5)

@@ -89,8 +89,6 @@ ggsave(
 # Cenários com baixo e alto share -----------------------------------------
 
 prep <- prep(rec, na.omit(df_model))
-
-
 # Baixo
 df_share_baixo <- df_model %>% 
   mutate(share_gas = 0.2) %>% 
@@ -173,7 +171,7 @@ explanation %>%
   theme_bw()
 
 ggsave(
-  filename = "text/figuras/cap-comb-rf-explanation.pfd",
+  filename = "text/figuras/cap-comb-rf-explanation.pdf",
   width = 6,
   height = 4
 )

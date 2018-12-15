@@ -5,6 +5,71 @@
 library(tidyverse)
 library(lubridate)
 
+
+# Baixando dados de NOx ----------------------------------------------------
+
+library(koffing)
+
+stations <-  c(92, 63, 83, 85, 99, 98, 72, 96, 86, 254, 65, 95)
+params <- c(17, 15, 18)
+
+safe_scraper_cetesb <- possibly(
+  function(station, parameter, start, end) {
+    koffing::scraper_cetesb(
+      station = station,
+      parameter = parameter,
+      start = start,
+      end = end,
+      login = "thewilliam89@gmail.com",
+      password = "wouldy0uralauq?"
+    )
+  },
+  otherwise = NULL
+)
+
+get_cetesb_data <- function(station, parameter) {
+  
+  start <- "01/11/2008"
+  end <- "31/05/2013"
+  
+  df <- safe_scraper_cetesb(station, parameter, start, end)
+  
+  if(!is.null(df)) {
+    
+    write_csv(
+      x = df, 
+      path = str_c(
+        "data/artaxo-salvo-geiger/cetesb/df-", 
+        parameter, "-", station, ".csv"
+      )
+    )
+    
+    print(
+      str_c(
+        "Dados de ", parameter, " da estação ", 
+        station, " baixados com sucesso."
+      )
+    )
+  } else {
+    print(
+      str_c(
+        "Não foi possível baixar dados de ", parameter, " da estação ", 
+        station
+      )
+    )
+  }
+  
+}
+
+for(j in 1:length(params)) {
+  walk(
+    stations, 
+    get_cetesb_data,
+    params[j]
+  )
+}
+
+
 # Transformations ---------------------------------------------------------
 
 df <- read_rds("data/artaxo-salvo-geiger/dados_originais.rds")
@@ -100,7 +165,7 @@ write_rds(
 )
 
 
-# Transformin (df_model) --------------------------------------------------
+# Transfor (df_model) --------------------------------------------------
 
 df_salvo <- read_rds("data/artaxo-salvo-geiger/data-asg.rds")
 
