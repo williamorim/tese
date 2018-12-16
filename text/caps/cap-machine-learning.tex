@@ -400,9 +400,9 @@ Dado o preditor $X$ de interesse, o algoritmo  para construção desse gráfico é d
 	sendo $k(x)$ o intervalo ao qual o valor $x$ pertence.
 	\item Calcular $\bar{f}_{ac}(x)$, o valor centralizado de $\bar{f}_a(x)$ considerando todas as $n$ observações da amostra:
 	\[
-	\bar{f}_{ac}(x) = \bar{f}_a(x) - \sum_{i = 1}^{n}\bar{f}_a(x_i).
+	\bar{f}_{ac}(x) = \bar{f}_a(x) - \frac{1}{n}\sum_{i = 1}^{n}\bar{f}_a(x_i).
 	\]
-	\item Para cada valor observado de $X$, plotar $\bar{f}_{ac}(x) \times x$. 
+	\item Para cada valor observado de $X$, plotar $\bar{f}_{ac}(x^c_.) \times x^c_.$, sendo $x^c_1, \dots, x^c_{M-1}$ os pontos de corte utilizados para construir os $M$ intervalos em (1). 
 	
 \end{enumerate}
 
@@ -412,7 +412,7 @@ A partir desse algoritmo, podemos fazer algumas considerações sobre o gráfico de
 	\item As diferenças calculadas no passo (2) explicam o termo \textit{efeitos locais}. Para cada valor $x$ do preditor $X$, essas diferenças estimam o quanto a predição é alterada por pequenas mudanças no valor de $x$. 
 	\item Calcular a média das diferenças das predições em cada intervalo (em vez de apenas a média das predições) também garante que o efeito estimado para o preditor $X$ não seja influenciado pelo efeito de algum outro preditor correlacionado com $X$.
 	\item Como cada $\frac{1}{m_i} \sum_{1}^{m_i} \hat{f}_i^d$ representa a diferença média nas predições quando $X$ varia localmente, dentro do intervalo $i$, a soma acumulada no passo (3) é realizada para que $\bar{f}_a(x)$ represente o efeito do preditor $X$ nas predições.
-	\item Ao contrário do gráfico de dependência parcial e do gráfico de esperança condicional individual, que apresentam no eixo $y$ o valor predito, o gráfico de efeitos locais acumulados consideram nesse eixo o efeito estimado do preditor $X$ na variável resposta.
+	\item Ao contrário do gráfico de dependência parcial e do gráfico de esperança condicional individual, que apresentam no eixo $y$ o valor predito, o gráfico de efeitos locais acumulados consideram nesse eixo a diferença em relação ao valor predito médio.
 \end{itemize}
 
 

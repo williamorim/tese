@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  14 DEC 2018 00:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  15 DEC 2018 19:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1529,12 +1529,13 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 386.
  [69]
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 416.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 416.
+ [70]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 420.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 424.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 424.
- [70])
+)
 (./caps/cap-poluicao-e-combustivel.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
@@ -1999,31 +2000,29 @@ Overfull \hbox (1.00423pt too wide) in paragraph at lines 139--139
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 151.
+(babel)             in language  on input line 152.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 154.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 154.
+(babel)             in language  on input line 152.
 [102]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
 <figuras/cap-mort-gam-plot-poisson-ozonio.pdf, id=2546, 578.16pt x 289.08pt>
 File: figuras/cap-mort-gam-plot-poisson-ozonio.pdf Graphic file (type pdf)
 <use figuras/cap-mort-gam-plot-poisson-ozonio.pdf>
 Package pdftex.def Info: figuras/cap-mort-gam-plot-poisson-ozonio.pdf  used on 
-input line 181.
+input line 183.
 (pdftex.def)             Requested size: 327.83136pt x 163.91275pt.
-) (./caps/cap-coletando-dados.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 189.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 189.
+ [103 <./figuras/cap-mort-gam-plot-poisson-ozonio.pdf>])
+(./caps/cap-coletando-dados.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
- [103 <./figuras/cap-mort-gam-plot-poisson-ozonio.pdf>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
- [104
-
-]
+ [104]
 Cap\'{\i }tulo 7.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
@@ -2033,7 +2032,9 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 30.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 30.
-[105]
+[105
+
+]
 <figuras/cap-webscraping-cycle.png, id=2568, 877.2775pt x 362.35374pt>
 File: figuras/cap-webscraping-cycle.png Graphic file (type png)
 <use figuras/cap-webscraping-cycle.png>
@@ -2157,7 +2158,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 369.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
 Package rerunfilecheck Info: File `tese.out' has not changed.
-(rerunfilecheck)             Checksum: 5CAA0FBBEE114D757A2E2CDEAACBA9B8;6943.
+(rerunfilecheck)             Checksum: 5518FC37B3AB4EEEF5D5DAFC11F38AA1;6921.
 Package rerunfilecheck Info: File `tese.brf' has not changed.
 (rerunfilecheck)             Checksum: 3021E180D58B5F315085EC9600EE1F4B;10790.
 
@@ -2168,7 +2169,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
  ) 
 Here is how much of TeX's memory you used:
  12684 strings out of 494903
- 198033 string characters out of 6179960
+ 198023 string characters out of 6179960
  327758 words of memory out of 5000000
  15193 multiletter control sequences out of 15000+600000
  32768 words of font info for 79 fonts, out of 8000000 for 9000
@@ -2210,9 +2211,9 @@ fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on tese.pdf (139 pages, 4823457 bytes).
+Output written on tese.pdf (139 pages, 4823639 bytes).
 PDF statistics:
- 3870 PDF objects out of 4296 (max. 8388607)
+ 3869 PDF objects out of 4296 (max. 8388607)
  2764 compressed objects within 28 object streams
  520 named destinations out of 1000 (max. 500000)
  1031 words of extra memory for PDF output out of 10000 (max. 10000000)
