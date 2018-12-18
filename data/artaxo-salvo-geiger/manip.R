@@ -63,7 +63,7 @@ get_cetesb_data <- function(station, parameter) {
 
 for(j in 3) {
   walk(
-    stations, 
+    stations[7:12], 
     get_cetesb_data,
     params[j]
   )
