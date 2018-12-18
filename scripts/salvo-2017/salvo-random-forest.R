@@ -8,6 +8,7 @@ library(caret)
 library(recipes)
 library(lime)
 library(patchwork)
+library(iml)
 
 source("scripts/salvo-2017/salvo-utils.R")
 
@@ -37,11 +38,7 @@ rec <-
   na.omit() %>% 
   recipe(formula = formula) %>%
   step_naomit(all_predictors(), all_outcomes()) %>% 
-  step_dummy(stationname, week, one_hot = TRUE) %>% 
-  step_interact(
-    terms = ~ matches("^stationname"):trend +
-      matches("^stationname"):dv_beltway_open
-  )
+  step_dummy(stationname, week, one_hot = TRUE)
 
 # Model -------------------------------------------------------------------
 
@@ -49,8 +46,8 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = 48,
-  min.node.size = 1
+  mtry = c(40, 50, 60),
+  min.node.size = c(3, 5, 7)
 )
 
 # Caret
@@ -84,6 +81,49 @@ ggsave(
   width = 6, 
   height = 4
 )
+
+
+# Interpretação ------------------------------------------------------------
+
+df_train <- rec %>% 
+  prep(df_model) %>% 
+  bake(df_model)
+
+X <- df_train %>% 
+  select(-o3_mass_conc) %>% 
+  as.matrix()
+
+model <- train(
+  x = X,
+  y = df_train$o3_mass_conc,
+  method = "ranger",
+  trControl = train_control,
+  tuneGrid = tuning_grid,
+  importance = 'impurity'
+)
+
+predictor <- Predictor$new(model, data = df_train, y = df_train$o3_mass_conc)
+
+# PDP
+pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp")
+p_pdp <- pdp$plot() + 
+  theme_bw() +
+  labs(x = "Umidade") +
+  scale_y_continuous(name = expression(paste(NO[x], " estimado (", mu, "g/", m^3, ")"))) +
+  ggtitle("PDP")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Cenários com baixo e alto share -----------------------------------------
@@ -134,7 +174,9 @@ make_explanation <- function(i, explainer, df, n_features = 10) {
     ) %>% 
     mutate(feature_value = as.character(feature_value))
   
-  print(paste("Another one bites the dust!", i))
+  if(i%%100 == 0) {
+    print(paste("Another one bites the dust!", i))
+  }
   
   explanation
   

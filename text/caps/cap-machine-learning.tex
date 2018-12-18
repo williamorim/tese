@@ -420,7 +420,7 @@ A partir desse algoritmo, podemos fazer algumas considerações sobre o gráfico de
 \subsection{LIME}
 \label{sec:lime}
 
-Uma outra técnica utilizada para interpretar modelos caixa-preta é o LIME (\textit{Local snterpretable Model-Agnostic Explanations}) \citep{Ribeiro2016}. Dado um modelo não-interpretável, essa técnica consiste em entender por que o modelo fez uma certa predição, explicando quais preditores foram responsáveis por ela. Nos últimos anos, o LIME vem sendo muito utilizado para explicar, corrigir e aperfeiçoar modelos não-interpretáveis.
+Uma outra técnica utilizada para interpretar modelos caixa-preta é o LIME (\textit{Local snterpretable Model-Agnostic Explanations}) \citep{Ribeiro2016}. Ela vem sendo muito utilizada para detectar, explicar e corrigir problemas com modelos preditivos, pois permite avaliar para cada observação quais preditores mais influenciaram em sua própria predição. 
 
 O LIME assume que todo modelo complexo prevê valores parecidos para duas observações muito próximas, sendo possível encontrar um modelo simples que seja uma boa aproximação do modelo complexo na vizinhança da observação que queremos explicar. Assim, a partir de um modelo interpretável podemos obter para cada observação uma explicação sobre a predição feita pelo modelo não-interpretável.
 
@@ -435,4 +435,55 @@ O algoritmo consiste em:
 	\item Usar as estimativas desse modelo simples como as explicações para o comportamento local do modelo complexo.	 
 \end{enumerate}
 
+Embora o LIME possa ser utilizado para explicar o modelo globalmente, explicando uma grande quantidade de pontos da base de treino, essa abordagem funciona bem para problemas \textit{bem comportados}, como classificação de imagens, em que cada preditor representa um pixel, e textos, em que cada preditor representa uma palavra. Em problemas muito complexos, principalmente de regressão (variável resposta numérica) com muitos preditores, pode ser difícil encontrar modelos simples que expliquem bem as predições localmente.
+
 A implementação do LIME exige definir como as observações serão permutadas, qual medida de similaridade será usada, qual o valor de $m$ e qual modelo interpretável será utilizado. Uma boa discussão sobre esses pontos pode ser encontrada no \href{https://cran.r-project.org/web/packages/lime/vignettes/Understanding_lime.html}{vignette} do pacote \texttt{lime}, no qual a técnica foi implementada na linguagem R.
+
+\subsection{Exemplo}
+
+Para ilustrar a utilização desses métodos gráficos de interpretação, vamos considerar um problema simples no qual queremos associar a média diária de NO$_x$ com as médias diárias de temperatura e umidade. Vamos então ajustar uma \textit{random forest} para esses dados e tentar interpretar os resultados do modelo.
+
+Na Figura \ref{fig:cap-aprend-estat-tp-hm-nox} apresentamos o gráfico de dispersão do NO$_x$ contra cada uma das variáveis explicativas. Embora os gráficos de dispersão não deixe claro essa relação, podemos observar pela série temporal do NO$_x$ (Figura \ref{fig:cap-aprend-estat-series-tp-hm-nox}) que as maiores concentrações desse poluente tendem a acontecer no inverno, onde é clima\footnote{Dados para a cidade de São Paulo, de 2008 a 2011.} é mais frio e seco. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-tp-hm-nox.pdf}
+	\caption{Gráficos de dispersão da média diária de NO$_x$ contra as médias diárias de temperatura (Celsius) e umidade relativa do ar (\%).}
+	\label{fig:cap-aprend-estat-tp-hm-nox}
+\end{figure}
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-series-tp-hm-nox.pdf}
+	\caption{Gráficos de dispersão da média diária de NO$_x$ contra as médias diárias de temperatura (Celsius) e umidade relativa do ar (\%).}
+	\label{fig:cap-aprend-estat-series-tp-hm-nox}
+\end{figure}
+
+Inicialmente, ajustamos modelos de regressão linear para esses dados, pois eles são interpretáveis e podemos comparar seus resultados com os da \textit{random forest}. Focando o exemplo apenas na interpretação da umidade, ajustamos modelos considerando (1) apenas a umidade como preditor, (2) umidade e temperatura como preditores e (3) umidade, temperatura e a interação entre as duas variáveis como preditores. Na Figura \ref{fig:cap-aprend-estat-interp-lm}, apresentamos os gráficos do valor predito contra a umidade para cada um dos modelos. Repare que, para os modelos (2) e (3), avaliamos o efeito de umidade para diferentes temperaturas, que é constante no modelo sem interação e diminui conforme a temperatura aumenta no modelo com interação.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-interp-lm.pdf}
+	\caption{Valores preditos do NO$_x$ para cada modelo em função da umidade e da temperatura.}
+	\label{fig:cap-aprend-estat-interp-lm}
+\end{figure}
+
+Ajustamos então uma \textit{random forest} para os mesmos dados e construímos os gráficos de dependência parcial (PDP), esperança condicional individual (ICE) e efeitos locais acumulados (ALE) para interpretar os resultados (Figura \ref{fig:cap-aprend-estat-graficos-iml}). Pelo PDP e ICE, observamos um efeito estranho nos preditores para valores baixos de umidade. Isso acontece porque a temperatura e a umidade são correlacionadas, como podemos observar pelo gráfico de dispersão na Figura \ref{fig:cap-aprend-estat-tp-hm}. Como há poucos dias com baixa umidade, esses gráficos acabam apresentando o efeito da temperatura na concentração de NO$_x$. Nessa situação, o gráfico adequado para analisar o efeito da umidade seria o ALE, pois ele avalia localmente o efeito de cada valor da umidade na predição, desconsiderando regiões com poucas observações e eliminando a influência dos outros preditores.
+
+O ALE também nos mostra que a relação entre umidade e concentração de NO$_x$ pode ser não-linear, dado o aumento na predição quando aumentamos a umidade de 85\% para 100\%. Essa relação pode estar apenas sendo induzida pela ausência de outros preditores importantes para explicara a variabilidade do NO$_x$, mas, independentemente se ela tem uma explicação prática ou é uma deficiência do ajuste, é interessante notar que os modelos lineares não são flexíveis o suficiente para detectá-la.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-graficos-iml.pdf}
+	\caption{Gráficos de dependência parcial (PDP), esperança condicional individual (ICE) e efeitos locais acumulados (ALE) para a \textit{random forest}. A curva amarela no ICE representa a média de todas as retas individuais, isto é, o PDP.}
+	\label{fig:cap-aprend-estat-graficos-iml}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-aprend-estat-tp-hm.pdf}
+	\caption{Gráfico de dispersão entre as médias diárias da temperatura e umidade.}
+	\label{fig:cap-aprend-estat-tp-hm}
+\end{figure}
+

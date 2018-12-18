@@ -59,32 +59,33 @@
 \BOOKMARK [2][]{subsection.4.8.2}{Gr\341fico da esperan\347a condicional individual}{section.4.8}% 59
 \BOOKMARK [2][]{subsection.4.8.3}{Gr\341fico de efeitos locais acumulados}{section.4.8}% 60
 \BOOKMARK [2][]{subsection.4.8.4}{LIME}{section.4.8}% 61
-\BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 62
-\BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 63
-\BOOKMARK [1][]{section.5.2}{Dimensionando a an\341lise}{chapter.5}% 64
-\BOOKMARK [1][]{section.5.3}{An\341lise explorat\363ria}{chapter.5}% 65
-\BOOKMARK [1][]{section.5.4}{A an\341lise conduzida por Salvo2017}{chapter.5}% 66
-\BOOKMARK [1][]{section.5.5}{Ajustando outros modelos}{chapter.5}% 67
-\BOOKMARK [2][]{subsection.5.5.1}{Modelos aditivos generalizados}{section.5.5}% 68
-\BOOKMARK [2][]{subsection.5.5.2}{Modelo de regress\343o segmentada}{section.5.5}% 69
-\BOOKMARK [2][]{subsection.5.5.3}{Random Forest}{section.5.5}% 70
-\BOOKMARK [2][]{subsection.5.5.4}{XGBoosting}{section.5.5}% 71
-\BOOKMARK [1][]{section.5.6}{Outras estrat\351gias de an\341lise}{chapter.5}% 72
-\BOOKMARK [2][]{subsection.5.6.1}{Sele\347\343o de vari\341veis}{section.5.6}% 73
-\BOOKMARK [2][]{subsection.5.6.2}{Transformando a vari\341vel resposta}{section.5.6}% 74
-\BOOKMARK [2][]{subsection.5.6.3}{Ajustando a m\341xima di\341ria}{section.5.6}% 75
-\BOOKMARK [2][]{subsection.5.6.4}{Ajustando cada esta\347\343o separadamente}{section.5.6}% 76
-\BOOKMARK [1][]{section.5.7}{Coment\341rios}{chapter.5}% 77
-\BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 78
-\BOOKMARK [1][]{section.6.1}{Uso de etanol e mortalidade}{chapter.6}% 79
-\BOOKMARK [2][]{subsection.6.1.1}{Modelo linear Poisson}{section.6.1}% 80
-\BOOKMARK [2][]{subsection.6.1.2}{Modelo aditivo Poisson}{section.6.1}% 81
-\BOOKMARK [2][]{subsection.6.1.3}{Modelo ARIMA e regress\343o linear}{section.6.1}% 82
-\BOOKMARK [2][]{subsection.6.1.4}{An\341lises complementares}{section.6.1}% 83
-\BOOKMARK [1][]{section.6.2}{Concentra\347\343o de oz\364nio e mortalidade}{chapter.6}% 84
-\BOOKMARK [0][]{chapter.7}{Obtendo dados de polui\347\343o}{}% 85
-\BOOKMARK [1][]{section.7.1}{Web scraping}{chapter.7}% 86
-\BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 87
-\BOOKMARK [1][]{section.7.3}{Dados em outros pa\355ses}{chapter.7}% 88
-\BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 89
-\BOOKMARK [0][]{appendix*.96}{Refer\352ncias Bibliogr\341ficas}{}% 90
+\BOOKMARK [2][]{subsection.4.8.5}{Exemplo}{section.4.8}% 62
+\BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 63
+\BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 64
+\BOOKMARK [1][]{section.5.2}{Dimensionando a an\341lise}{chapter.5}% 65
+\BOOKMARK [1][]{section.5.3}{An\341lise explorat\363ria}{chapter.5}% 66
+\BOOKMARK [1][]{section.5.4}{A an\341lise conduzida por Salvo2017}{chapter.5}% 67
+\BOOKMARK [1][]{section.5.5}{Ajustando outros modelos}{chapter.5}% 68
+\BOOKMARK [2][]{subsection.5.5.1}{Modelos aditivos generalizados}{section.5.5}% 69
+\BOOKMARK [2][]{subsection.5.5.2}{Modelo de regress\343o segmentada}{section.5.5}% 70
+\BOOKMARK [2][]{subsection.5.5.3}{Random Forest}{section.5.5}% 71
+\BOOKMARK [2][]{subsection.5.5.4}{XGBoosting}{section.5.5}% 72
+\BOOKMARK [1][]{section.5.6}{Outras estrat\351gias de an\341lise}{chapter.5}% 73
+\BOOKMARK [2][]{subsection.5.6.1}{Sele\347\343o de vari\341veis}{section.5.6}% 74
+\BOOKMARK [2][]{subsection.5.6.2}{Transformando a vari\341vel resposta}{section.5.6}% 75
+\BOOKMARK [2][]{subsection.5.6.3}{Ajustando a m\341xima di\341ria}{section.5.6}% 76
+\BOOKMARK [2][]{subsection.5.6.4}{Ajustando cada esta\347\343o separadamente}{section.5.6}% 77
+\BOOKMARK [1][]{section.5.7}{Coment\341rios}{chapter.5}% 78
+\BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 79
+\BOOKMARK [1][]{section.6.1}{Uso de etanol e mortalidade}{chapter.6}% 80
+\BOOKMARK [2][]{subsection.6.1.1}{Modelo linear Poisson}{section.6.1}% 81
+\BOOKMARK [2][]{subsection.6.1.2}{Modelo aditivo Poisson}{section.6.1}% 82
+\BOOKMARK [2][]{subsection.6.1.3}{Modelo ARIMA e regress\343o linear}{section.6.1}% 83
+\BOOKMARK [2][]{subsection.6.1.4}{An\341lises complementares}{section.6.1}% 84
+\BOOKMARK [1][]{section.6.2}{Concentra\347\343o de oz\364nio e mortalidade}{chapter.6}% 85
+\BOOKMARK [0][]{chapter.7}{Obtendo dados de polui\347\343o}{}% 86
+\BOOKMARK [1][]{section.7.1}{Web scraping}{chapter.7}% 87
+\BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 88
+\BOOKMARK [1][]{section.7.3}{Dados em outros pa\355ses}{chapter.7}% 89
+\BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 90
+\BOOKMARK [0][]{appendix*.99}{Refer\352ncias Bibliogr\341ficas}{}% 91

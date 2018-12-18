@@ -20,23 +20,49 @@ dados <- dados %>%
 
 # Temperatura e umidade vs NOX
 dados %>% 
-  gather(variavel, valor, tp, hm) %>% 
+  gather(variavel, valor, tp, hm) %>%
+  mutate(variavel = ifelse(variavel == "tp", "Temperatura", "Umidade")) %>% 
   ggplot() +
   geom_point(aes(x = valor, y = NOX), alpha = 0.5) +
-  facet_wrap(~variavel, scales = "free")
+  facet_wrap(~variavel, scales = "free") +
+  theme_bw() +
+  labs(x = "Média diária", y = "Média diária de NOx")
+ggsave(
+  filename = "text/figuras/cap-aprend-estat-tp-hm-nox.pdf", 
+  width = 6, height = 4
+)
 
 # Temperatura vs umidade
 dados %>% 
   ggplot() +
-  geom_point(aes(x = tp, y = hm))
+  geom_point(aes(y = tp, x = hm)) +
+  theme_bw() +
+  labs(y = "Temperatura (Celsius)", x = "Umidade (%)")
+ggsave(
+  filename = "text/figuras/cap-aprend-estat-tp-hm.pdf", 
+  width = 6, height = 4
+)
 
+# Séries
 dados %>% 
   gather(variavel, valor, NOX, tp, hm) %>%
+  mutate(
+    variavel = case_when(
+      variavel == "hm" ~ "Umidade",
+      variavel == "tp" ~ "Temperatura",
+      TRUE ~ "NOx"
+    )
+  ) %>% 
   ggplot() +
   geom_line(aes(x = date, y = valor)) +
   geom_smooth(aes(x = date, y = valor)) +
-  facet_wrap(~variavel, scales = "free")
-
+  facet_wrap(~variavel, scales = "free") +
+  labs(x = "Ano", y = "Média diária") +
+  theme_bw()
+ggsave(
+  filename = "text/figuras/cap-aprend-estat-series-tp-hm-nox.pdf", 
+  width = 6, height = 4
+)
 
 # Regressão linear ---------------------------------------------------------
 
@@ -52,6 +78,7 @@ p_hm <- dados %>%
   ggplot() +
   geom_line(aes(x = hm, y = efeito)) +
   labs(x = "Umidade", y = expression(paste(NO[x], " (", mu, "g/", m^3, ")"))) +
+  ggtitle("Modelo (1)") +
   theme_bw()
 
 # Efeito modelo linear sem interação
@@ -77,7 +104,8 @@ p_hm_tp <- map_dfc(
   geom_line(aes(x = hm, y = efeito, color = Temperatura, group = Temperatura)) +
   scale_color_gradient(low = "light blue", high = "orange") +
   labs(x = "Umidade", y = expression(paste(NO[x], " (", mu, "g/", m^3, ")"))) +
-  theme_bw()
+  theme_bw() +
+  ggtitle("Modelo (2)")
 
 
 # Efeito modelo linear com interação
@@ -104,13 +132,14 @@ p_hm_tp_int <- map_dfc(
   geom_line(aes(x = hm, y = efeito, color = Temperatura, group = Temperatura)) +
   scale_color_gradient(low = "light blue", high = "orange") +
   labs(x = "Umidade", y = expression(paste(NO[x], " (", mu, "g/", m^3, ")"))) +
-  theme_bw()
+  theme_bw() +
+  ggtitle("Modelo (3)")
 
 
 wrap_plots(p_hm, p_hm_tp, p_hm_tp_int, nrow = 3)
 ggsave(
   filename = "text/figuras/cap-aprend-estat-interp-lm.pdf", 
-  width = 7, height = 7
+  width = 6, height = 8
 )
 
 
@@ -129,6 +158,7 @@ ajuste <- train(
   tuneGrid = data.frame(splitrule = "extratrees", mtry = 1, min.node.size = 5)
 )
 ajuste
+ajuste$finalModel$variable.importance
 varImp(ajuste)
 
 predictor <- Predictor$new(ajuste, data = dados[,c("hm", "tp")], y = dados$NOX)
