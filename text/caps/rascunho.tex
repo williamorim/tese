@@ -115,3 +115,24 @@ sendo $a_t$ e $\phi$ parâmetros do modelo e $w_t \sim N(0, \sigma_w)$. A primei
 %%% VALIDAÇÃO CRUZADA
 
 Muitas vezes, quando a classe de modelos escolhida exige a escolha de hiperparâmetros, como o grau de suavização de um modelo aditivo generalizado (Seção \ref{sec:gam}) ou o $\lambda$ do LASSO (Seção \ref{sec:lasso}), é comum separarmos a amostra em três partes: uma amostra de treino, uma amostra de validação e uma amostra de teste. Nesse caso, os modelos são treinados com a amostra de treino e, para diversos valores do hiperparâmetro, calculamos o erro de teste na amostra de validação. Escolhemos então o hiperparâmetro que leva ao menor erro de teste e utilizamos a amostra de teste para calcular o erro de teste do modelo final. Geralmente utiliza-se LOOOCV ou \textit{k-fold} para a validação e uma amostra separada para o teste. Essa estratégia é utilizada para garantir que o erro de teste não seja calculado em observações utilizadas no ajuste do modelo e reflita o erro que obteríamos ao aplicá-lo no mundo real.
+
+
+%% LIME RF SALVO 2017
+
+Uma maneira alternativa de interpretar os dados é utilizar o LIME, discutido na Seção \ref{sec:lime}. Para cada observação na base, nós aplicamos o LIME para explicar os preditores que mais influenciaram em sua própria predição. A Figura \ref{fig:cap-comb-lime-pinheiros} apresenta a proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}). Podemos observar que, para valores da proporção estimada de carros a gasolina menor que 0.48, há modelos que consideram esse preditor tanto negativamente quanto positivamente associado ao ozônio. A partir de 0.48, os coeficientes do modelo simples são predominantemente negativos. Esse resultado reforça dois indícios encontrados nas análises apresentadas até aqui. Primeiro, não é clara a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio quando o valor deste preditor é menor que 50\% (aproximadamente). Segundo, quando a proporção estimada de carros a gasolina está aproximadamente 50\% e 60\%, todos os modelos sugeriram uma associação negativa com a concentração de ozônio.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-rf-explanation.pdf}
+	\caption{Proporção estimada de carros a gasolina contra o coeficiente estimado para esse preditor no modelo simples (regressão \textit{ridge}).}
+	\label{fig:cap-comb-lime-pinheiros}
+\end{figure}
+
+Como a suposição de que a proporção de carros a gasolina não está associada diretamente a nenhum outro preditor, podemos predizer o ozônio substituindo o verdadeiro valor da proporção por um valor hipotético, que simule um cenário com poucos carros a gasolina rodando na cidade e outro com muito carros a gasolina. Na Figura \ref{fig:cap-comb-random-forest-cenarios}, apresentamos as curvas suavizadas do ozônio predito para esses dois cenários, além do cenário de fato observado. Os valores fixados para a proporção de carro a gasolina foram: 20\% para representar o cenário com poucos carros a gasolina e 70\% para o cenário com muitos carros. Esses valores foram escolhidos com base na distribuição da variável original. Observamos pelo gráfico que, os cenários observado e com baixa proporção são bem parecidos, enquanto o cenário com alta proporção apresenta menores concentrações em algumas estações.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-random-forest-cenarios.pdf}
+	\caption{Curvas suavizadas do ozônio predito para os cenários observado, com alta proporção de carros a gasolina (70\% durante todo o período) e baixa proporção de carros a gasolina (20\% durante todo o período).}
+	\label{fig:cap-comb-random-forest-cenarios}
+\end{figure}
