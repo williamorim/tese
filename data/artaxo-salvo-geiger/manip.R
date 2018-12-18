@@ -61,7 +61,7 @@ get_cetesb_data <- function(station, parameter) {
   
 }
 
-for(j in 1:length(params)) {
+for(j in 3) {
   walk(
     stations, 
     get_cetesb_data,
