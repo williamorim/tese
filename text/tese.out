@@ -69,13 +69,13 @@
 \BOOKMARK [2][]{subsection.5.5.1}{Modelos aditivos generalizados}{section.5.5}% 69
 \BOOKMARK [2][]{subsection.5.5.2}{Modelo de regress\343o segmentada}{section.5.5}% 70
 \BOOKMARK [2][]{subsection.5.5.3}{Random Forest}{section.5.5}% 71
-\BOOKMARK [2][]{subsection.5.5.4}{XGBoosting}{section.5.5}% 72
-\BOOKMARK [1][]{section.5.6}{Outras estrat\351gias de an\341lise}{chapter.5}% 73
-\BOOKMARK [2][]{subsection.5.6.1}{Sele\347\343o de vari\341veis}{section.5.6}% 74
-\BOOKMARK [2][]{subsection.5.6.2}{Transformando a vari\341vel resposta}{section.5.6}% 75
-\BOOKMARK [2][]{subsection.5.6.3}{Ajustando a m\341xima di\341ria}{section.5.6}% 76
-\BOOKMARK [2][]{subsection.5.6.4}{Ajustando cada esta\347\343o separadamente}{section.5.6}% 77
-\BOOKMARK [1][]{section.5.7}{Coment\341rios}{chapter.5}% 78
+\BOOKMARK [1][]{section.5.6}{XGBoost}{chapter.5}% 72
+\BOOKMARK [1][]{section.5.7}{Outras estrat\351gias de an\341lise}{chapter.5}% 73
+\BOOKMARK [2][]{subsection.5.7.1}{Sele\347\343o de vari\341veis}{section.5.7}% 74
+\BOOKMARK [2][]{subsection.5.7.2}{Transformando a vari\341vel resposta}{section.5.7}% 75
+\BOOKMARK [2][]{subsection.5.7.3}{Ajustando a m\341xima di\341ria}{section.5.7}% 76
+\BOOKMARK [2][]{subsection.5.7.4}{Ajustando cada esta\347\343o separadamente}{section.5.7}% 77
+\BOOKMARK [1][]{section.5.8}{Coment\341rios}{chapter.5}% 78
 \BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 79
 \BOOKMARK [1][]{section.6.1}{Uso de etanol e mortalidade}{chapter.6}% 80
 \BOOKMARK [2][]{subsection.6.1.1}{Modelo linear Poisson}{section.6.1}% 81
@@ -88,4 +88,4 @@
 \BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 88
 \BOOKMARK [1][]{section.7.3}{Dados em outros pa\355ses}{chapter.7}% 89
 \BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 90
-\BOOKMARK [0][]{appendix*.99}{Refer\352ncias Bibliogr\341ficas}{}% 91
+\BOOKMARK [0][]{appendix*.100}{Refer\352ncias Bibliogr\341ficas}{}% 91

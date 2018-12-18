@@ -316,8 +316,20 @@ A Figura \ref{fig:cap-comb-forest-pred-obs-plot} apresenta o gráfico dos valores
 
 Apesar de termos um ajuste mais preciso, a partir deste modelo não conseguimos interpretar a diretamente a relação entre a proporção estimada de carros a gasolina e a concentração de ozônio. Não sabemos se esse preditor é estatisticamente significativo e, em caso positivo, em qual direção ela está associada à resposta. Sem essa interpretação, não conseguimos responder à pergunta de interesse do estudo.
 
+Para transpor esse problema, vamos utilizar as técnicas gráficas apresentadas na Seção \ref{sec:iml} para investigar o efeito da proporção estimada de carros a gasolina na concentração de ozônio. Na Figura \ref{}, apresentamos os gráficos de dependência parcial (PDP) e de efeitos locais acumulados para esse preditor. Observamos que o efeito é muito parecido com o encontrado no modelo aditivo generalizado. A semelhança entre as curvas dos dois gráficos sugere que a proporção de carros a gasolina não é correlacionada com outros preditores.
 
-\subsection{XGBoosting}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras//cap-comb-rf-graficos-iml.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos locais acumulados para o modelo \textit{random forest}.}
+	\label{fig:/cap-comb-rf-graficos-iml}
+\end{figure}
+
+Os resultados encontrados aqui mostraram que a \textit{random forest} ratificou as conclusões encontradas pelo modelo aditivo generalizado. Na próxima seção, vamos dar mais um passo na direção da precisão e ajustar um \textit{XGboost} aos dados.
+
+\section{XGBoost}
+
+
 
 \section{Outras estratégias de análise}
 

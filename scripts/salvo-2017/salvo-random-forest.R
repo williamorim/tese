@@ -46,8 +46,8 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = c(40, 50, 60),
-  min.node.size = c(3, 5, 7)
+  mtry = 60,
+  min.node.size = 3
 )
 
 # Caret
@@ -93,6 +93,14 @@ X <- df_train %>%
   select(-o3_mass_conc) %>% 
   as.matrix()
 
+train_control <- trainControl(method = "cv", number = 5)
+
+tuning_grid <- expand.grid(
+  splitrule = "variance",
+  mtry = 60,
+  min.node.size = 3
+)
+
 model <- train(
   x = X,
   y = df_train$o3_mass_conc,
@@ -105,25 +113,26 @@ model <- train(
 predictor <- Predictor$new(model, data = df_train, y = df_train$o3_mass_conc)
 
 # PDP
-pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp")
+pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp", grid.size = 20)
 p_pdp <- pdp$plot() + 
   theme_bw() +
-  labs(x = "Umidade") +
-  scale_y_continuous(name = expression(paste(NO[x], " estimado (", mu, "g/", m^3, ")"))) +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = expression(paste(O[3], " estimado (", mu, "g/", m^3, ")"))) +
   ggtitle("PDP")
 
+# ALE
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 20)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = "Diferença em relação à predição média") +
+  ggtitle("ALE")
 
-
-
-
-
-
-
-
-
-
-
-
+p_pdp + p_ale
+ggsave(
+  filename = "text/figuras/cap-comb-rf-graficos-iml.pdf", 
+  width = 7, height = 5
+)
 
 
 # Cenários com baixo e alto share -----------------------------------------
