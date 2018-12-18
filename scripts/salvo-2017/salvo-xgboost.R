@@ -8,6 +8,7 @@ library(caret)
 library(recipes)
 library(lime)
 library(patchwork)
+library(iml)
 
 source("scripts/salvo-2017/salvo-utils.R")
 
@@ -37,11 +38,7 @@ rec <-
   na.omit() %>% 
   recipe(formula = formula) %>%
   step_naomit(all_predictors(), all_outcomes()) %>% 
-  step_dummy(stationname, week, one_hot = TRUE) %>% 
-  step_interact(
-    terms = ~ matches("^stationname"):trend +
-      matches("^stationname"):dv_beltway_open
-  )
+  step_dummy(stationname, week, one_hot = TRUE) 
 
 # Model -------------------------------------------------------------------
 
@@ -50,7 +47,7 @@ train_control <- trainControl(method = "cv", number = 5)
 tuning_grid <- expand.grid(
   gamma = 0,
   min_child_weight = 1,
-  nrounds = 250,
+  nrounds = 300,
   max_depth = 5,
   eta = 0.4,
   colsample_bytree = 0.7,
@@ -71,135 +68,75 @@ model <- train(
 )
 
 model
-
-# RMSE: 12.60
-# MAE: 9.03
-# % var: 87.89%  
-# share_gas imp: 6ª
-
 varImp(model)
+
+# RMSE: 12.31828
+# MAE: 8.802116
+# % var: 0.8843525  
+# share_gas imp: 6ª
 
 pred_obs_plot(
   obs = na.omit(df_model)$o3_mass_conc,
   pred = predict(model, newdata = na.omit(df_model))
 )
 ggsave(
-  filename = "text/figuras/cap-comb-forest-pred-obs-plot.pdf", 
+  filename = "text/figuras/cap-comb-xgboost-pred-obs-plot.pdf", 
   width = 6, 
   height = 4
 )
 
+# Interpretação ------------------------------------------------------------
 
-# Cenários com baixo e alto share -----------------------------------------
+df_train <- rec %>% 
+  prep(df_model) %>% 
+  bake(df_model)
 
-prep <- prep(rec, na.omit(df_model))
+X <- df_train %>% 
+  select(-o3_mass_conc) %>% 
+  as.matrix()
 
+train_control <- trainControl(method = "cv", number = 5)
 
-# Baixo
-df_share_baixo <- df_model %>% 
-  mutate(share_gas = 0.2) %>% 
-  na.omit
+tuning_grid <- expand.grid(
+  gamma = 0,
+  min_child_weight = 1,
+  nrounds = 300,
+  max_depth = 5,
+  eta = 0.4,
+  colsample_bytree = 0.7,
+  subsample = 1
+)
 
-df_share_alto <- df_model %>% 
-  mutate(share_gas = 0.7) %>% 
-  na.omit
+set.seed(5893524)
 
-df_model %>% 
-  na.omit %>% 
-  mutate(
-    pred_baixa = predict(model, df_share_baixo),
-    pred_alta = predict(model, df_share_alto),
-    pred = predict(model, na.omit(df_model))
-  ) %>%
-  group_by(stationname) %>% 
-  gather(var, o3, pred, pred_baixa, pred_alta) %>% 
-  ggplot(aes(x = date, y = o3, color = var)) +
-  geom_smooth(se = FALSE) +
-  facet_wrap(~stationname) +
-  labs(color = "Cenário", x = "Ano", y = "Ozônio predito") +
-  scale_color_discrete(labels = c(
-    "Proporção observada", "Proporção Alta", "Proporção baixa"
-  )) +
-  theme(legend.position = "bottom")
+model <- train(
+  x = X,
+  y = df_train$o3_mass_conc,
+  method = "xgbTree",
+  trControl = train_control,
+  tuneGrid = tuning_grid
+)
+predictor <- Predictor$new(model, data = df_train, y = df_train$o3_mass_conc)
+
+# PDP
+pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp", grid.size = 20)
+p_pdp <- pdp$plot() + 
+  theme_bw() +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = expression(paste(O[3], " estimado (", mu, "g/", m^3, ")"))) +
+  ggtitle("PDP")
+
+# ALE
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 50)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = "Diferença em relação à predição média") +
+  ggtitle("ALE")
+
+p_pdp + p_ale
 ggsave(
-  filename = "text/figuras/cap-comb-random-forest-cenarios.pdf", 
-  width = 9, 
-  height = 6
+  filename = "text/figuras/cap-comb-xgboost-graficos-iml.pdf", 
+  width = 7, height = 5
 )
-
-# Lime --------------------------------------------------------------------
-
-make_explanation <- function(i, explainer, df, n_features = 10) {
-  
-  explanation <- explain(df_explain[i,], explainer, n_features = n_features) %>% 
-    select(
-      feature, 
-      feature_value,
-      feature_weight,
-      prediction,
-      model_r2
-    ) %>% 
-    mutate(feature_value = as.character(feature_value))
-  
-  if(i%%100 == 0) {
-    print(paste("Another one bites the dust!", i))
-  }
-  
-  explanation
-  
-}
-
-explainer <- lime(
-  na.omit(df_model), 
-  model
-)
-
-df_explain <- na.omit(df_model)
-m <- nrow(df_explain)
-
-explanation <- map_dfr(
-  1:m,
-  make_explanation,
-  explainer = explainer,
-  df = df_explain
-)
-
-# saveRDS(explanation, file = "explanation.rds")
-# explanation <- readRDS("explanation.rds")
-
-# Explicação geral
-explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  theme_bw()
-
-write_rds(explanation, "explanation_xg.rds")
-
-ggsave(
-  filename = "text/figuras/cap-comb-xgboost-explanation.pdf",
-  width = 6,
-  height = 4
-)
-
-# Explicação por estação
-explanation %>% 
-  mutate(
-    stationname = rep(df_explain$stationname, rep(10, length(df_explain$stationname)))
-  ) %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  facet_wrap(~stationname, nrow=10) +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simple"
-  ) +
-  theme_bw()
 
