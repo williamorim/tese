@@ -52,7 +52,7 @@ train_model <- function(df_model, formula, train_control) {
 train_control <- trainControl(method="cv", number = 5)
 
 ajustes <- df_model %>% 
-  gather(grupo, n_mortes, starts_with("n_mortes")) %>%
+  gather(grupo, n_mortes, n_mortes_idosos, n_mortes_criancas) %>%
   group_by(grupo) %>% 
   nest() %>%
   mutate(fit = map(
@@ -62,6 +62,17 @@ ajustes <- df_model %>%
     train_control = train_control
   )) %>% 
   select(-data)
+
+df_model %>% 
+  mutate(res = ajustes$fit[[1]]$arima_fit$residuals) %>% 
+  ggplot(aes(x = date, y = res)) +
+  geom_line()
+
+df_model %>% 
+  mutate(res = ajustes$fit[[1]]$arima_fit$residuals) %>% 
+  ggplot(aes(x = tp, y = res)) +
+  geom_point()
+
 
 # Resultados
 

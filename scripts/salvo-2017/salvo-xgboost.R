@@ -6,7 +6,6 @@
 library(tidyverse)
 library(caret)
 library(recipes)
-library(lime)
 library(patchwork)
 library(iml)
 
@@ -70,9 +69,9 @@ model <- train(
 model
 varImp(model)
 
-# RMSE: 12.31828
-# MAE: 8.802116
-# % var: 0.8843525  
+# RMSE: 12.24488
+# MAE: 8.802512
+# % var: 0.8855881  
 # share_gas imp: 6ª
 
 pred_obs_plot(
@@ -95,7 +94,7 @@ X <- df_train %>%
   select(-o3_mass_conc) %>% 
   as.matrix()
 
-train_control <- trainControl(method = "cv", number = 5)
+train_control <- trainControl(method = "repeatedcv", number = 5, repeats = 10)
 
 tuning_grid <- expand.grid(
   gamma = 0,
@@ -127,7 +126,7 @@ p_pdp <- pdp$plot() +
   ggtitle("PDP")
 
 # ALE
-ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 50)
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 10)
 p_ale <- ale$plot() + 
   theme_bw() +
   labs(x = "Proporção estimada de carros a gasolina") +
@@ -138,5 +137,37 @@ p_pdp + p_ale
 ggsave(
   filename = "text/figuras/cap-comb-xgboost-graficos-iml.pdf", 
   width = 7, height = 5
+)
+
+# Interpretação para outras variáveis
+
+ale <- FeatureEffect$new(predictor, feature = "tp", grid.size = 10)
+p_tp <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Temperatura") +
+  scale_y_continuous(name = "Diferença em relação à predição média")
+
+ale <- FeatureEffect$new(predictor, feature = "hm", grid.size = 10)
+p_hm <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Umidade") +
+  scale_y_continuous(name = "Diferença em relação à predição média")
+
+ale <- FeatureEffect$new(predictor, feature = "rd", grid.size = 10)
+p_rd <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Radiação") +
+  scale_y_continuous(name = "Diferença em relação à predição média")
+
+ale <- FeatureEffect$new(predictor, feature = "ws", grid.size = 10)
+p_ws <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Velocidade do vento") +
+  scale_y_continuous(name = "Diferença em relação à predição média")
+
+wrap_plots(p_tp, p_hm, p_rd, p_ws, nrow = 2)
+ggsave(
+  filename = "text/figuras/cap-comb-xgboost-graficos-clima-iml.pdf", 
+  width = 7, height = 7
 )
 
