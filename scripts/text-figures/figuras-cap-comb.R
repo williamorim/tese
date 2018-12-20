@@ -7,6 +7,23 @@ library(tidyverse)
 library(ggridges)
 set.seed("5893524")
 
+
+# Boxplot share ------------------------------------------------------------
+
+df <- read_rds("data/artaxo-salvo-geiger/dados_originais.rds")
+
+df %>% 
+  filter(siteid == 1) %>% 
+  group_by(date) %>% 
+  summarise(share_gas = mean(share_gas, na.rm = TRUE)) %>% 
+  mutate(month = lubridate::month(date), month = as.factor(month)) %>% 
+  ggplot(aes(x = month, y = share_gas)) +
+  geom_boxplot() +
+  theme_bw() +
+  labs(x = "Mês do ano", y = "Prop. estimada de carros a gasolina")
+ggsave(filename = "text/figuras/cap-comb-share-boxplot.pdf", 
+       width = 6, height = 5)
+
 # Climate graphics ----------------------------------------------
 
 df_O3 <- readr::read_rds("scripts/data/df_O3_clima_2008_2013.rds")

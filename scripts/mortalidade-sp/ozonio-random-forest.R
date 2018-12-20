@@ -3,14 +3,14 @@
 library(tidyverse)
 library(caret)
 library(recipes)
-library(lime)
+library(iml)
 library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
 df_model <- read_rds("data/datasus-sim/model_mort_diaria_salvo.rds")
 
-source("scripts/salvo-2017/salvo-utils.R")
+# source("scripts/salvo-2017/salvo-utils.R")
 
 # Formula -----------------------------------------------------------------
 
@@ -30,7 +30,7 @@ cria_receita <- function(df_model, formula) {
     step_dummy(dayofweek, month, one_hot = TRUE)
 }
 
-vars <- c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas")
+vars <- c("n_mortes_idosos", "n_mortes_criancas")
 formulas <- map(vars, cria_formula)
 receitas <- map(formulas, cria_receita, df_model = df_model)
 
@@ -42,14 +42,14 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = 13,
-  min.node.size = 4
+  mtry = 20,
+  min.node.size = 3
 )
 
 set.seed(5893524)
 
 model <- train(
-  x = receitas[[2]],
+  x = receitas[[1]],
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -58,11 +58,10 @@ model <- train(
 )
 
 model
-model$finalModel
 varImp(model)
-# RMSE: 28.46537
-# MAE: 21.87697
-# % var: 0.6557702 
+# RMSE: 28.40017
+# MAE: 22.49468
+# % var: 0.6573975 
 # o3 imp: 6ª
 
 pred_obs_plot(
@@ -84,7 +83,7 @@ tuning_grid <- expand.grid(
 set.seed(5893524)
 
 model <- train(
-  x = receitas[[3]],
+  x = receitas[[2]],
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
@@ -105,63 +104,54 @@ pred_obs_plot(
   pred = predict(model, newdata = na.omit(df_model))
 )
 
-# Lime --------------------------------------------------------------------
+# Interpretação ------------------------------------------------------------
 
-make_explanation <- function(i, explainer, df, n_features = 5) {
-  
-  explanation <- explain(df_explain[i,], explainer, n_features = n_features) %>% 
-    select(
-      feature, 
-      feature_value,
-      feature_weight,
-      prediction,
-      model_r2
-    ) %>% 
-    mutate(feature_value = as.character(feature_value))
-  
-  if(i%%100 == 0) {
-    print(paste("Another one bites the dust!", i))
-  }
-  
-  explanation
-  
-}
+df_train <- receitas[[1]] %>% 
+  prep(df_model) %>% 
+  bake(df_model)
 
-explainer <- lime(
-  na.omit(df_model), 
-  model
+X <- df_train %>% 
+  select(-n_mortes_idosos) %>% 
+  as.matrix()
+
+train_control <- trainControl(method = "cv", number = 5)
+
+tuning_grid <- expand.grid(
+  splitrule = "variance",
+  mtry = 20,
+  min.node.size = 3
 )
 
-df_explain <- na.omit(df_model)
-m <- nrow(df_explain)
-
-explanation <- map_dfr(
-  1:m,
-  make_explanation,
-  explainer = explainer,
-  df = df_explain
+model <- train(
+  x = X,
+  y = df_train$n_mortes_idosos,
+  method = "ranger",
+  trControl = train_control,
+  tuneGrid = tuning_grid,
+  importance = 'impurity'
 )
 
-# saveRDS(explanation, file = "explanation.rds")
-# explanation <- readRDS("explanation.rds")
+predictor <- Predictor$new(model, data = df_train, y = df_train$n_mortes_idosos)
 
-# Explicação geral
-explanation %>% 
-  filter(feature == "o3_mass_conc") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  theme_bw()
+# PDP
+pdp <- FeatureEffect$new(predictor, feature = "o3_mass_conc", method = "pdp", 
+                         grid.size = 20)
+p_pdp <- pdp$plot() + 
+  theme_bw() +
+  labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")"))) +
+  scale_y_continuous(name = "Mortalidade diária estimada") +
+  ggtitle("PDP")
 
+# ALE
+ale <- FeatureEffect$new(predictor, feature = "o3_mass_conc", grid.size = 15)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")"))) +
+  scale_y_continuous(name = "Diferença em relação à predição média") +
+  ggtitle("ALE")
+
+p_pdp + p_ale
 ggsave(
-  filename = "text/figuras/cap-mort-share-rf-explanation.pdf",
-  width = 6,
-  height = 4
+  filename = "text/figuras/cap-mort-ozonio-rf-graficos-iml.pdf", 
+  width = 7, height = 5
 )
-
-
-

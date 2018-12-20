@@ -70,35 +70,35 @@
 \contentsline {section}{\numberline {5.1}Etanol e oz\^onio}{75}{section.5.1}
 \contentsline {section}{\numberline {5.2}Dimensionando a an\'alise}{76}{section.5.2}
 \contentsline {section}{\numberline {5.3}An\'alise explorat\'oria}{78}{section.5.3}
-\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{82}{section.5.4}
-\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{84}{section.5.5}
+\contentsline {section}{\numberline {5.4}A an\'alise conduzida por \cite {Salvo2017}}{83}{section.5.4}
+\contentsline {section}{\numberline {5.5}Ajustando outros modelos}{85}{section.5.5}
 \contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{85}{subsection.5.5.1}
 \contentsline {subsection}{\numberline {5.5.2}Modelo de regress\~ao segmentada}{88}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Random Forest}{88}{subsection.5.5.3}
-\contentsline {section}{\numberline {5.6}XGBoost}{90}{section.5.6}
+\contentsline {subsection}{\numberline {5.5.3}Random Forest}{89}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}XGBoost}{91}{section.5.6}
 \contentsline {section}{\numberline {5.7}Outras estrat\'egias de an\'alise}{92}{section.5.7}
 \contentsline {subsection}{\numberline {5.7.1}Sele\c c\~ao de vari\'aveis}{92}{subsection.5.7.1}
 \contentsline {subsection}{\numberline {5.7.2}Transformando a vari\'avel resposta}{93}{subsection.5.7.2}
-\contentsline {subsection}{\numberline {5.7.3}Ajustando a m\'axima di\'aria}{93}{subsection.5.7.3}
+\contentsline {subsection}{\numberline {5.7.3}Ajustando a m\'axima di\'aria}{94}{subsection.5.7.3}
 \contentsline {subsection}{\numberline {5.7.4}Ajustando cada esta\c c\~ao separadamente}{95}{subsection.5.7.4}
-\contentsline {section}{\numberline {5.8}Coment\'arios}{96}{section.5.8}
+\contentsline {section}{\numberline {5.8}Coment\'arios}{97}{section.5.8}
 \contentsline {chapter}{\numberline {6}Polui\c c\~ao e sa\'ude p\'ublica}{99}{chapter.6}
 \contentsline {section}{\numberline {6.1}Uso de etanol e mortalidade}{100}{section.6.1}
 \contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{101}{subsection.6.1.1}
 \contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{102}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Modelo ARIMA e regress\~ao linear}{102}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}An\'alises complementares}{104}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.3}Random forest}{102}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}An\'alises complementares}{103}{subsection.6.1.4}
 \contentsline {section}{\numberline {6.2}Concentra\c c\~ao de oz\^onio e mortalidade}{105}{section.6.2}
 \contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{107}{chapter.7}
 \contentsline {section}{\numberline {7.1}Web scraping}{108}{section.7.1}
-\contentsline {subsubsection}{Identificar}{108}{section*.95}
-\contentsline {subsubsection}{Navegar}{108}{section*.96}
-\contentsline {subsubsection}{Replicar}{109}{section*.97}
-\contentsline {subsubsection}{Parsear}{109}{section*.98}
-\contentsline {subsubsection}{Validar}{109}{section*.99}
-\contentsline {subsubsection}{Iterar}{109}{section*.100}
+\contentsline {subsubsection}{Identificar}{108}{section*.97}
+\contentsline {subsubsection}{Navegar}{108}{section*.98}
+\contentsline {subsubsection}{Replicar}{109}{section*.99}
+\contentsline {subsubsection}{Parsear}{109}{section*.100}
+\contentsline {subsubsection}{Validar}{109}{section*.101}
+\contentsline {subsubsection}{Iterar}{109}{section*.102}
 \contentsline {section}{\numberline {7.2}Dados no Brasil}{109}{section.7.2}
 \contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{111}{section.7.3}
 \contentsline {chapter}{\numberline {8}Discuss\~ao}{113}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{115}{appendix*.103}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{115}{appendix*.105}
 \contentsfinish 

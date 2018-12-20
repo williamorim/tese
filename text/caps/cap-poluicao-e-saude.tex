@@ -84,43 +84,59 @@ Observando agora os gráficos das funções não-lineares ajustadas para a proporção
 	\label{fig:cap-mort-gam-plot-poisson}
 \end{figure}
 
+Na próxima seção, ajustaremos uma \textit{random forest} para avaliarmos qual conclusão podemos obter de um modelo precisamente mais preciso.
+
+\subsection{Random forest}
+
+Como o modelo linear e aditivo apontaram conclusões diferentes sobre o efeito da proporção estimada de carros a gasolina na mortalidade de idosos, vamos agora ajustar uma \textit{random forest} na esperança de obter um ajuste mais preciso. A partir daqui, ajustaremos os modelos apenas para o grupo de idosos, tendo vista a impossibilidade de explicar a mortalidade geral a partir das variáveis consideradas.
+
+A \textit{random forest} ajustada obteve um RMSE de 27.69 (contra 31.69 do modelo linear e 29.55 do modelo aditivo) e uma variação da proporção explicada igual a 67.43\% (contra 56.40\% do modelo linear e 62.92\% do modelo aditivo). Na Figura \ref{fig:cap-mort-rf-graficos-iml} apresentamos os gráficos de dependência parcial  e de efeitos acumulados para a variável proporção estimada de carros a gasolina. A associação deste preditor na mortalidade parece ser, de uma forma geral, negativa: quanto maior a proporção de carros a gasolina, menor a mortalidade. Um padrão semelhante foi indicado pelo modelo aditivo (Figura \ref{fig:cap-mort-gam-plot-poisson}). Analisando o gráfico com mais cuidado, observamos que o efeito na mortalidade estimada tem duas quedas: uma quando variamos o preditor aproximadamente de 10 para 20\% e outra quando variamos aproximadamente de 40 para 50\%. O efeito também volta a subir para valores maiores de 50\%. É difícil encontrarmos uma explicação prática para essa relação estranha (altamente não-linear), sendo que ela pode indicar dois problemas: a relação entre as variáveis é, de fato, complexa e difícil de ser modelada ou, assim como observamos no capítulo anterior, a distribuição desbalanceada da proporção de carros a gasolina pode estar gerando correlações espúrias.
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-boxplot-share.pdf}
-	\caption{Distribuição da mortalidade e geral e da proporção de carros a gasolina por mês.}
-	\label{fig:cap-mort-boxplot-share}
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-rf-graficos-iml}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} para a variável proporção estimada de carros a gasolina.}
+	\label{fig:cap-mort-rf-graficos-iml}
 \end{figure}
 
-Na próxima seção, avaliaremos melhor a relação entre mortalidade e proporção de carros a gasolina...
-
+A seguir, apresentaremos algumas análises adicionais realizadas na tentativa de entender melhor a relação da proporção de carros a gasolina com a mortalidade.
 
 
 \subsection{Análises complementares}
 
 Para testar a sensibilidade dos resultados obtidos pelo modelo anterior, nós realizamos análises complementares, variando algumas variáveis mantidas fixas e testando outros modelos. Focamos essas análises apenas no grupo de idosos pois nenhum dos modelos considerados sugeriu associação entre os preditores a mortalidade infantil.
 
-Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina na mortalidade pode estar defasado no tempo, isto é, se o valor deste preditor em um determinado dia vai afetar a mortalidade no futuro. Para isso, defasamos essa variável em até 21 dias e ajustamos o modelo ARIMA + regressão linear da seção anterior, mas a proporção de carros a gasolina não foi estatisticamente significante para nenhuma defasagem ajustada. Os resultados para as primeiras 7 defasagens estão apresentados na Tabela \ref{tab:cap-mort-reg-arima-defasada}..
+Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina na mortalidade pode estar defasado no tempo, isto é, se o valor deste preditor em um determinado dia vai afetar a mortalidade no futuro. Para isso, defasamos essa variável em até 21 dias e ajustamos a \textit{random forest} da seção anterior.
+
+ mas a proporção de carros a gasolina não foi estatisticamente significante para nenhuma defasagem ajustada. Os resultados para as 5 defasagens com menor RMSE estão apresentados na Tabela \ref{tab:cap-mort-rf-defasada}. Observamos que não houve redução substancial do erro do modelo em comparação o ajuste sem defasagem (RMSE igual a 27.69) e não há consistência na ordem das melhores defasagens, indicando apenas uma variação aleatória entre a qualidade dos ajustes.
 
 \begin{table}[h!]
 	\centering
 	\caption{Resultados do modelo de regressão linear ajustado nos resíduos do modelo ARIMA.}
-	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{2cm}|M{4cm} N}
+	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{4cm} N}
 		\hline
-		Grupo & Defasagem & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & \\
+		Grupo & Defasagem & RMSE & \% var. explicada & \\
 		\hline
-		\multirow{7}{1cm}{Idosos} & 1 & 0.0001273 & 0.05 & 0.42 & \\
-		& 2 & 0.0001271 & 0.05 & 0.49 & \\
-		& 3 & 0.0001269 & 0.05 & 0.52 & \\
-		& 4 & 0.0001267 & 0.06 & 0.53 & \\
-		& 5 & 0.0001269 & 0.06 & 0.58 & \\
-		& 6 & 0.0001269 & 0.06 & 0.66 & \\
-		& 7 & 0.0001265 & 0.05 & 0.63 & \\
+		\multirow{7}{1cm}{Idosos} & 3 & 27.52 & 67.74 & \\
+		& 5 & 27.52 & 67.66 & \\
+		& 2 & 27.53 & 67.73 & \\
+		& 12 & 27.55 & 67.09 & \\
+		& 14 & 27.61 & 67.03 & \\
 		\hline
 	\end{tabular}
-\label{tab:cap-mort-reg-arima-defasada}
+\label{tab:cap-mort-rf-defasada}
 \end{table}
 
-Os modelos linear e aditivo com distribuição Poisson também foram ajustados utilizando a semana do ano (em vez do mês do ano) para o controle da sazonalidade, mas as conclusões obtidas para cada modelo foram as mesmas.
+O gráfico de dependência parcial  e de efeitos locais acumulados para o modelo com proporção estimada de carros a gasolina defasada em 3 dias (Figura \ref{fig:cap-mort-rf-defasada-graficos-iml}) indica a mesma relação do que o modelo ajustado sem defasagem, mas um pouco melhor comportada (menos variação no efeito).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-rf-defasada-graficos-iml.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} para a variável proporção estimada de carros a gasolina defasada em 3 dias.}
+	\label{fig:cap-mort-rf-defasada-graficos-iml}
+\end{figure}
+
+Os modelos linear e aditivo com distribuição Poisson, assim como a \textit{random forest}, também foram ajustados utilizando a semana do ano (em vez do mês do ano) para o controle da sazonalidade e máxima, mínima e variação diária da temperatura (em vez da temperatura média), mas as conclusões obtidas para cada modelo foram as mesmas.
 
 \section{Concentração de ozônio e mortalidade}
 
@@ -128,7 +144,7 @@ Nesta seção, apresentaremos os resultados dos modelos ajustados para a mortalida
 
 Os modelos ajustados aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil.
 
-A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que tanto o modelo linear quanto o modelo aditivo indicam uma associação positiva entre mortalidade em idosos e concentração de ozônio. Para o modelo linear, um aumento de 10 $\mu$g/m$^3$ está associado com um aumento médio de 0.36 na mortalidade de idosos. A relação para o modelo aditivo pode ser observada pelo gráfico da função não-linear apresentado na Figura \ref{fig:cap-mort-gam-plot-poisson-ozonio}. Mais uma vez, as variáveis consideradas não explicam a variabilidade da mortalidade infantil.
+A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que todos os modelos indicam uma associação positiva entre mortalidade em idosos e concentração de ozônio. Para o modelo linear, um aumento de 10 $\mu$g/m$^3$ está associado com um aumento médio de 0.36 na mortalidade de idosos. A relação para o modelo aditivo pode ser observada pelo gráfico da função não-linear apresentado na Figura \ref{fig:cap-mort-gam-plot-poisson-ozonio} e a interpretação do efeito da concentração de ozônio para a \textit{random forest} se encontra na Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml}. Mais uma vez, as variáveis consideradas não explicam a variabilidade da mortalidade infantil.
 
 \begin{table}[h!]
 	\centering
@@ -157,7 +173,14 @@ A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajust
 	\label{fig:cap-mort-gam-plot-poisson-ozonio}
 \end{figure}
 
-Aqui, também utilizamos a mesma estratégia da Seção \ref{sec:mort-arima} e ajustamos um modelo ARIMA para a mortalidade e um modelo de regressão linear com a concentração de ozônio e variáveis controles nos resíduos. Para este modelo, a concentração de ozônio não foi considerada estatisticamente significativa para explicar a variabilidade da mortalidade, tanto em idosos quanto em crianças. No entanto, como observamos anteriormente, a concentração de ozônio é altamente sazonal e, portanto, ao eliminarmos esse componente temporal da mortalidade, possivelmente estamos eliminando também o efeito do ozônio.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} para a concentração de ozônio.}
+	\label{fig:cap-mort-ozonio-rf-graficos-iml}
+\end{figure}
 
-
+Os resultados aqui indicam uma relação bem clara entre a concentração de ozônio e mortalidade. Isso sugere que, se a proporção de carros a gasolina e a concentração de ozônio tivessem uma relação simples (linear, por exemplo) esperaríamos que os modelos ajustados na seção anterior reproduzissem uma relação próxima a encontra aqui (mesmo que contrária) entre a proporção estimada de carros a gasolina e a mortalidade em idosos. 
  
+Podemos concluir que o a concentração de ozônio está associado com um aumento na mortalidade em idosos e, em embora o modelo aditivo Poisson e a \textit{random forest} indiquem uma associação negativa entre proporção de carros a gasolina e a mortalidade (principalmente por meio do modelo com o preditor defasado em 3 dias), a forma dessa relação não é muito clara, o que deixa difícil encontrar uma explicação prática e distinguir esse possível efeito de uma correlação espúria.
+

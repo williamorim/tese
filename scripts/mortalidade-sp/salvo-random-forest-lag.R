@@ -3,7 +3,7 @@
 library(tidyverse)
 library(caret)
 library(recipes)
-library(lime)
+library(iml)
 library(patchwork)
 
 # Dados -------------------------------------------------------------------
@@ -32,8 +32,8 @@ cria_receita <- function(df_model, formula) {
 }
 
 receitas <- expand.grid(
-  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
-  lag = 0:7
+  mortalidade = c("n_mortes_idosos"),
+  lag = 1:21
 ) %>% 
   as.tibble() %>% 
   mutate(
@@ -118,9 +118,59 @@ resultados %>%
   arrange(RMSE) %>% 
   View
 
-# Crianças
 
-resultados %>% 
-  filter(mortalidade == "n_mortes_criancas") %>% 
-  arrange(RMSE) %>% 
-  View
+# Interpretação ------------------------------------------------------------
+
+df_model_ <- df_model %>% 
+  mutate(share_gas = lag(share_gas, 3)) %>% 
+  na.omit()
+
+df_train <- receitas$receita[[3]] %>%
+  prep(df_model_) %>% 
+  bake(na.omit(df_model_))
+
+X <- df_train %>% 
+  select(-n_mortes_idosos) %>% 
+  as.matrix()
+
+train_control <- trainControl(method="cv", number = 5)
+
+tuning_grid <- expand.grid(
+  splitrule = "variance",
+  mtry = 12,
+  min.node.size = 3
+)
+
+model <- train(
+  x = X,
+  y = df_train$n_mortes_idosos,
+  method = "ranger",
+  trControl = train_control,
+  tuneGrid = tuning_grid,
+  importance = 'impurity'
+)
+
+predictor <- Predictor$new(model, data = df_train, y = df_train$n_mortes_idosos)
+
+# PDP
+pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp", 
+                         grid.size = 10)
+p_pdp <- pdp$plot() + 
+  theme_bw() +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = "Mortalidade diária estimada") +
+  ggtitle("PDP")
+
+# ALE
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 10)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Proporção estimada de carros a gasolina") +
+  scale_y_continuous(name = "Diferença em relação à predição média") +
+  ggtitle("ALE")
+
+p_pdp + p_ale
+ggsave(
+  filename = "text/figuras/cap-mort-rf-defasada-graficos-iml.pdf", 
+  width = 7, height = 5
+)

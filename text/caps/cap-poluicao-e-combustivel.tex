@@ -67,7 +67,9 @@ Na Seção \ref{sec:grafico-da-serie}, vimos como a concentração do ozônio se comp
 
 Mesmo considerando apenas a concentração de ozônio medida entre meio-dia e 17 horas, as condições climáticas e de tráfego no período da manhã podem ser fatores importantes na formação do poluente. Assim, além das médias dessas variáveis no período da tarde, poderíamos considerar também valores médios pela manhã (entre 8 e 11 horas).
 
-Vamos investigar inicialmente a associação entre a concentração de ozônio e a proporção estimada de carros a gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia pouco, próximo a 50\%. Analisando o gráfico de dispersão na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
+Vamos investigar inicialmente a associação entre a concentração de ozônio e a proporção estimada de carros a gasolina rodando na cidade. Pela Figura \ref{fig:cap-comb-series-share-ozone}, observamos que existem dois picos de utilização de gasolina durante o período analisado, um no começo de 2010 e outro no começo de 2011. Após o segundo pico, a proporção estimada de carros a gasolina varia pouco, próximo a 50\%. Repare que os dois picos acontecem no começo do ano, o que gera um desbalanço deste preditor quando observamos sua distribuição em cada mês (Figura \ref{fig:cap-comb-share-boxplot}). Como a concentração de ozônio é naturalmente maior no verão, esse desbalanço pode gerar correlação espúria, isto é, uma possível associal entre as variáveis estar sendo induzida por uma coincidência. 
+
+Analisando agora o gráfico de dispersão na Figura \ref{fig:cap-comb-scatter-share-ozone}, não encontramos indícios claros de associação entre o ozônio e a proporção estimada de carros a gasolina. Isso significa que, se as variáveis estão associadas, essa relação está sendo mascarada pelo efeito dos outros preditores.
 
 \begin{figure}[!h]
 	\centering
@@ -81,6 +83,13 @@ Vamos investigar inicialmente a associação entre a concentração de ozônio e a pr
 	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-scatter-share-ozone.pdf}
 	\caption{Gráfico de dispersão da concentração de ozônio contra a proporção estimada de carros rodando a gasolina na cidade. Dados da estação Dom Pedro II, de 2008 a 2013.}
 	\label{fig:cap-comb-scatter-share-ozone}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-share-boxplot.pdf}
+	\caption{Boxplot da proporção estimada de carros a gasolina para cada mês.}
+	\label{fig:cap-comb-share-boxplot}
 \end{figure}
 
 Nas Figuras \ref{fig:cap-comb-temperature-ridge-graph} e \ref{fig:cap-comb-series-temperature-ozone}, podemos observar a distribuição da temperatura média, pela manhã e pela tarde, para cada mês do ano, e também comparar as séries de cada variável. Repare que a temperatura de manhã é muito mais sensível às estações do ano, enquanto a temperatura à tarde varia mais. Pela Figura \ref{fig:cap-comb-scatter-temperature-ozone}, observamos que a concentração de ozônio parece mais associada com a temperatura pela tarde, o que é razoável devido ao papel da luz solar no mecanismo gerador do poluente. 

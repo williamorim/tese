@@ -168,3 +168,7 @@ Os resultados para os modelos ajustados estão apresentados na Tabela \ref{tab:c
 Calculando o RSME para o modelo final (combinação do modelo ARIMA e da regressão linear), temos os valores 28.8 e 5.03 para os grupos idosos e crianças, respectivamente. Esses valores são ligeiramente inferiores aos encontrados para o modelo aditivo Poisson.
 
 A seguir, apresentaremos alguns resultados de analises complementares que realizamos para testar a robustez das conclusões encontradas até aqui.
+
+%% 
+
+Aqui, também utilizamos a mesma estratégia da Seção \ref{sec:mort-arima} e ajustamos um modelo ARIMA para a mortalidade e um modelo de regressão linear com a concentração de ozônio e variáveis controles nos resíduos. Para este modelo, a concentração de ozônio não foi considerada estatisticamente significativa para explicar a variabilidade da mortalidade, tanto em idosos quanto em crianças. No entanto, como observamos anteriormente, a concentração de ozônio é altamente sazonal e, portanto, ao eliminarmos esse componente temporal da mortalidade, possivelmente estamos eliminando também o efeito do ozônio.
