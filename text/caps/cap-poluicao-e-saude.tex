@@ -117,7 +117,7 @@ Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina n
 		\hline
 		Grupo & Defasagem & RMSE & \% var. explicada & \\
 		\hline
-		\multirow{7}{1cm}{Idosos} & 3 & 27.52 & 67.74 & \\
+		\multirow{5}{1cm}{Idosos} & 3 & 27.52 & 67.74 & \\
 		& 5 & 27.52 & 67.66 & \\
 		& 2 & 27.53 & 67.73 & \\
 		& 12 & 27.55 & 67.09 & \\
@@ -137,6 +137,8 @@ O gráfico de dependência parcial  e de efeitos locais acumulados para o modelo c
 \end{figure}
 
 Os modelos linear e aditivo com distribuição Poisson, assim como a \textit{random forest}, também foram ajustados utilizando a semana do ano (em vez do mês do ano) para o controle da sazonalidade e máxima, mínima e variação diária da temperatura (em vez da temperatura média), mas as conclusões obtidas para cada modelo foram as mesmas.
+
+Também ajustamos um \textit{XGBoost} para a mortalidade em idosos, mas os resultados não foram melhor do que os da \textit{random forest}: RMSE igual a 28.13 e 67.45\% da variação total da mortalidade explicada. A interpretação do efeito da proporção estimada de carros a gasolina foi similar ao encontrado na \textit{random forest}.
 
 \section{Concentração de ozônio e mortalidade}
 
