@@ -1,4 +1,4 @@
-\begin{thebibliography}{91}
+\begin{thebibliography}{89}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -77,6 +77,11 @@ M.~P. Buhr, M.~Trainer, D.~D. Parrish, R.~E. Sievers e F.~C. Fehsenfeld.
   1009--1012.
 \newblock \doi{10.1029/92GL01020}.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Bussab e Morettin(2013)]{Bussab2013}{\bf Bussab e Morettin(2013)}
+W.~O. Bussab e P.~A. Morettin.
+\newblock \emph{Estat{\'i}stica B{\'a}sica}.
+\newblock Editora Saraiva, S{\~a}o Paulo.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Cameron e Miller(2015)]{Cameron2015}{\bf Cameron e Miller(2015)}
 Adrian~C. Cameron e Douglas~L. Miller.
 \newblock A practitioner's guide to cluster-robust inference.
@@ -95,17 +100,6 @@ David~C. Carslaw, Sean~D. Beevers e James~E. Tate.
 George Casella e Roger~L. Berger.
 \newblock \emph{Statistical Inference}.
 \newblock Duxbury Press; 2nd edition.   {\scriptsize Citado na p\'{a}g.}
-
-\bibitem[Chang {\rm{\em et~al.}}(2017)Chang, Vizuete, Serre, Vennam, Omary,
-  Isakov, Breen, e Arunachalam]{Chang2017}{\bf Chang {\rm{\em et~al.}}(2017)}
-Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
-  Omary, Vlad Isakov, Michael Breen e Saravanan Arunachalam.
-\newblock Finely resolved on-road {PM}2.5 and estimated premature mortality in
-  central {N}orth {C}arolina.
-\newblock \emph{Risk Analysis}.
-\newblock \doi{10.1111/risa.12775}.
-\newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
-  na p\'{a}g.}
 
 \bibitem[Chavent {\rm{\em et~al.}}(2009)Chavent, Guegan, Kuentz, Patouille, e
   Saracco]{Chavent2009}{\bf Chavent {\rm{\em et~al.}}(2009)}
@@ -382,11 +376,6 @@ Itai Kloog, Francesco Nordio, Brent~A. Coull e Joel Schwartz.
 \newblock \emph{American Chemical Society}, 46: \penalty0 11913--11921.
   {\scriptsize Citado na p\'{a}g.}
 
-\bibitem[Konishi e Kitagawa(2008)]{Konishi2008}{\bf Konishi e Kitagawa(2008)}
-Sadanori Konishi e Genshiro Kitagawa.
-\newblock \emph{Information Criteria and Statistical Modeling}.
-\newblock Springer.   {\scriptsize Citado na p\'{a}g.}
-
 \bibitem[Kumar e Ridder(2010)]{Kumar2010}{\bf Kumar e Ridder(2010)}
 Ujjwal Kumar e Koen~De Ridder.
 \newblock {GARCH} modelling in association with {FFT-ARIMA} to forecast ozone
@@ -448,6 +437,11 @@ Sacha Madronich.
 \newblock Ethanol and ozone.
 \newblock \emph{Nature Geoscience: news \& views}, 7: \penalty0 395--397.
   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Magalh{\~a}es e Lima(2013)]{Lima2013}{\bf Magalh{\~a}es e Lima(2013)}
+Marcos Magalh{\~a}es e Antonio Carlos~Pedroso Lima.
+\newblock \emph{No\c{c}{\~o}es de {P}robabilidade e {E}stat{\'i}stica}.
+\newblock Edusp.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
 Charles~E. McCulloch e Shayle~R. Searle.
@@ -612,27 +606,6 @@ Joel Schwartz e Douglas~W. Dockery.
 \newblock Particulate air pollution and daily mortality in {S}teubenville,
   {O}hio.
 \newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
-  {\scriptsize Citado na p\'{a}g.}
-
-\bibitem[Schwartz e Marcus(1990)]{SchwartzMarcus1990}{\bf Schwartz e
-  Marcus(1990)}
-Joel Schwartz e Allan Marcus.
-\newblock Mortality and air pollution in {L}ondon: a time series analysis.
-\newblock \emph{American Journal of Epidemiology}, 131\penalty0 (1): \penalty0
-  185.
-\newblock \doi{10.1093/oxfordjournals.aje.a115473}.
-\newblock URL \url{+ http://dx.doi.org/10.1093/oxfordjournals.aje.a115473}.
-  {\scriptsize Citado na p\'{a}g.}
-
-\bibitem[Shumway e Stoffer(1982)]{Shumway1982}{\bf Shumway e Stoffer(1982)}
-Robert Shumway e David Stoffer.
-\newblock An approach to time series smoothing and forecasting using the {EM}
-  algorithm.
-\newblock \emph{Journal of Time Series Analysis}, 3\penalty0 (4): \penalty0
-  253--264.
-\newblock ISSN 1467-9892.
-\newblock \doi{10.1111/j.1467-9892.1982.tb00349.x}.
-\newblock URL \url{http://dx.doi.org/10.1111/j.1467-9892.1982.tb00349.x}.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Shumway e Stoffer(2006)]{Shumway2006}{\bf Shumway e Stoffer(2006)}

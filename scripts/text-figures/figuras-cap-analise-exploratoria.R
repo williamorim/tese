@@ -61,7 +61,7 @@ ggsave(filename = "figuras/cap-analise-explo-scatter-ozone-no2-morning.pdf",
 
 # hist-ozone  
 
-df <- readr::read_rds("scripts/data/df_O3_clima_2008_2013.rds")
+df <- readr::read_rds("scripts/text-figures/data/df_O3_clima_2008_2013.rds")
 
 df %>% 
   filter(siteid == 1, hour %in% 12:16) %>% 
@@ -75,9 +75,23 @@ df %>%
 ggsave(filename = "figuras/cap-analise-explo-hist-ozone.pdf", 
        width = 6, height = 4)
 
+# boxplot-ozone-month
+
+p1 <- df %>%
+  filter(siteid == 1, hour %in% 12:16) %>% 
+  group_by(date) %>% 
+  summarise(o3_mass_conc = mean(o3_mass_conc, na.rm = TRUE)) %>% 
+  mutate(month = lubridate::month(date),
+         month = as.factor(month)) %>% 
+  ggplot(aes(y = o3_mass_conc, x = month)) + 
+  geom_boxplot(show.legend = FALSE) +
+  labs(y = expression(paste(O[3], " (", mu, "g/", m^3, ")")), x = "Mês") +
+  theme_bw() +
+  ggtitle("Boxplot")
+
 # ridges-ozone-month
 
-df %>%
+p2 <- df %>%
   filter(siteid == 1, hour %in% 12:16) %>% 
   group_by(date) %>% 
   summarise(o3_mass_conc = mean(o3_mass_conc, na.rm = TRUE)) %>% 
@@ -86,8 +100,11 @@ df %>%
   ggplot(aes(x = o3_mass_conc, y = month, fill = month)) + 
   geom_density_ridges(show.legend = FALSE) +
   labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")")), y = "Mês") +
-  theme_bw()
-ggsave(filename = "figuras/cap-analise-explo-ridges-ozone-month.pdf", 
-       width = 6, height = 4)
+  theme_bw() +
+  ggtitle("Ridges graph")
+
+p1+p2
+ggsave(filename = "text/figuras/cap-analise-explo-ridges-ozone-month.pdf", 
+       width = 7, height = 5)
 
   

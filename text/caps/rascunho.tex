@@ -172,3 +172,43 @@ A seguir, apresentaremos alguns resultados de analises complementares que realiz
 %% 
 
 Aqui, também utilizamos a mesma estratégia da Seção \ref{sec:mort-arima} e ajustamos um modelo ARIMA para a mortalidade e um modelo de regressão linear com a concentração de ozônio e variáveis controles nos resíduos. Para este modelo, a concentração de ozônio não foi considerada estatisticamente significativa para explicar a variabilidade da mortalidade, tanto em idosos quanto em crianças. No entanto, como observamos anteriormente, a concentração de ozônio é altamente sazonal e, portanto, ao eliminarmos esse componente temporal da mortalidade, possivelmente estamos eliminando também o efeito do ozônio.
+
+
+%%
+\\
+Algumas classes de modelos utilizados para o ajuste de séries temporais assumem que a série estudada é \textit{estacionária}, isto é, mantem um mesmo comportamento ao longo do tempo\footnote{Em termos probabilísticos, isso significa que a sua distribuição de probabilidades não muda no tempo.}. Mesmo quando o modelo não assume estacionariedade, queremos Além de simplificar o processo de estimação, a estacionariedade garante que algumas quantidades sejam interpretáveis. No entanto, a não estacionariedade é muito comum no mundo real, o que gera a necessidade de identificá-la e, se necessário, removê-la antes do ajuste.
+
+Dada uma série $Y_t$, a definição de estacionariedade\footnote{Formalmente, a definição de estacionariedade se divide em \textit{fraca} e \textit{forte}. A estacionariedade forte faz restrições sobre as distribuições multivariadas de todos os subconjuntos de observações da série, sendo uma suposição muito limitante para a maioria das aplicações \citep{Shumway2006}. A definição utilizada neste trabalho corresponde à estacionariedade fraca.} depende da sua média, $\mu_t = E(Y_t)$, e da sua função de autocovariância, $\gamma(s,t) = E[(Y_s - \mu_s)(Y_t - \mu_t)]$, que mede a dependência linear entre duas observações da série \citep{Shumway2006}. Dizemos que $Y_t$ é estacionária se
+
+\begin{itemize}
+	\item[i.] a média $\mu_t$ é constante e não depende de $t$; e
+	\item[ii.] a função de covariância $\gamma(s,t)$ depende de $t$ e $s$ apenas pela distância $h = t - s$.
+\end{itemize}
+Dessa forma, se a série $Y_t$ for estacionária, seu valor médio pode ser representado por $\mu_t = \mu$, para todo $t \geq 0$,  e a função de autocovariância $\gamma(s,t)$ pode ser simplificada para $\gamma(h)$. Neste caso, a autocovariância é interpretada como a dependência linear entre observações separadas por $h$ unidades de tempo, independentemente do período em que foram observadas. Sem a estacionariedade, essa função não tem interpretação prática. %É fácil mostrar que a variância da série, $\sigma^2_t = VAR(Y_t)$, também será constante ao longo do tempo, isto é, $\sigma^2_t = \sigma^2$ para todo $t \geq 0$.
+
+
+
+Embora a função de autocovariância seja útil para medir a associação linear entre observações de uma série, ela não nos fornece a magnitude dessa relação, pois seus valores dependem da grandeza da variável sob estudo. Para contornar esse problema, podemos padronizar a função de autocovariância, restringindo-a a um intervalo fixo. Definimos então a \textit{função de autocorrelação} dada por
+
+\begin{equation}
+\rho(s,t) = \frac{\gamma(s, t)}{\sqrt{\gamma(s,s)\gamma(t,t)}}.
+\label{def:ACF}
+\end{equation}
+
+Repare que os termos $\gamma(t,t)$ e $\gamma(s,s)$ em (\ref{def:ACF}) representam, respectivamente, a variância de $Y_t$ e $Y_s$. Se a série é estacionária, sua variância é constante, isto é, $\gamma(t,t) = \gamma(s,s)$, e a função de autocorreção dependerá apenas da diferença $h = s-t$. Neste caso, o gráfico da função de autocorrelação em função de $h$ se torna uma ferramenta descritiva importante para investigarmos se existem relações lineares substanciais entre a série e suas observações defasadas. Sem a suposição de estacionariedade, o gráfico de autocorrelação pode ser utilizado para detectar tendência e sazonalidade.
+
+
+\begin{equation}
+\rho_{XY}(s,t) = \frac{\gamma_{XY}(s,t)}{\sqrt{\gamma_X(s,s) \gamma_Y(t,t)}}
+\label{def:CCF}
+\end{equation}
+sendo,
+
+\begin{displaymath}
+\gamma_{XY} = E\left[(X_s - \mu_s)(Y_t - \mu_t)\right]
+\end{displaymath}
+a função de covariância cruzada. Se as séries $Y_t$ e $X_s$ forem estacionárias, a expressão (\ref{def:CCF}) se reduz a 
+
+\begin{equation}
+\rho_{XY}(h) = \frac{\gamma_{XY}(h)}{\sqrt{\gamma_X(0,0) \gamma_Y(0,0)}}.
+\end{equation}
