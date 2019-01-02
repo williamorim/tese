@@ -1,4 +1,4 @@
-\begin{thebibliography}{89}
+\begin{thebibliography}{90}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -270,6 +270,14 @@ Ronald Fisher.
 Andrzej Galecki e Tomasz Burzykowski.
 \newblock \emph{Linear Mixed-Effects Models Using R}.
 \newblock Springer.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Goodfellow {\rm{\em et~al.}}(2016)Goodfellow, Bengio, e
+  Courville]{Goodfellow2016}{\bf Goodfellow {\rm{\em et~al.}}(2016)}
+Ian Goodfellow, Yoshua Bengio e Aaron Courville.
+\newblock \emph{Deep Learning}.
+\newblock MIT Press.
+\newblock \url{http://www.deeplearningbook.org}.   {\scriptsize Citado na
+  p\'{a}g.}
 
 \bibitem[Gower(1971)]{Gower1971}{\bf Gower(1971)}
 C.~John Gower.

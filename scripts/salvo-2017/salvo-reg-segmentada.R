@@ -6,6 +6,7 @@
 library(tidyverse)
 library(caret)
 library(segmented)
+library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
@@ -95,8 +96,8 @@ validacao_cruzada <- function(pontos, formula, df, k = 5) {
 }
 
 pontos <- expand.grid(
-  p1 = 0.2,
-  p2 = 0.6
+  p1 = c(0.19, 0.2, 0.21),
+  p2 = c(0.59, 0.6, 0.61)
   #p3 = seq(0.57, 0.63, 0.01)
 ) %>% 
   split(x = ., seq(nrow(.))) %>% 
@@ -111,7 +112,7 @@ resultados <- map_dfr(
   df = df_model
 )
 
-saveRDS(resultados, file = "scripts/salvo-2017/seg-reg-res.rds")
+#saveRDS(resultados, file = "scripts/salvo-2017/seg-reg-res.rds")
 
 resultados_ <- resultados %>% 
   bind_rows() %>% 
@@ -120,7 +121,14 @@ resultados_ <- resultados %>%
 resultados_ %>% 
   arrange(rmse)
 
-# Melhor modelo
+# Melhor modelo (2 pontos)
+
+# pontos: 0.21 - 0.6
+# R2 = 0.705
+# RMSE = 19.6
+
+
+# Melhor modelo (3 pontos)
 
 # pontos: 0.21 - 0.51 - 0.59
 # R2 = 0.71
@@ -128,7 +136,7 @@ resultados_ %>%
 
 set.seed(5893524)
 model <- lm(formula, data = df_model)
-seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.15, 0.17, 0.5, 0.6))
+seg_model <- segmented(model, seg.Z = ~share_gas, psi = c(0.21, 0.6))
 
 summary(seg_model)
 
@@ -140,7 +148,55 @@ seg_model %>%
   arrange(desc(statistic)) %>% 
   select(term, statistic)
 
-df_model %>% 
+# Gráfico 2 pontos
+
+p1 <- df_model %>% 
+  filter(siteid == 1) %>% 
+  ggplot(aes(x = share_gas, y = -9)) +
+  geom_point(size = 0.1) +
+  geom_segment(
+    x = 0.1395, 
+    y = 10.72212, 
+    xend = 0.5127, 
+    yend = 9.898471,
+    size = 0.2,
+    color = "blue"
+  ) +
+  geom_segment(
+    x = 0.5127, 
+    y = 9.898471,
+    xend = 0.5756, 
+    yend = -7.890089,
+    size = 0.2,
+    color = "blue"
+  ) +
+  geom_segment(
+    x = 0.5756, 
+    y = -7.890089, 
+    xend = 0.7552, 
+    yend = 11.11033,
+    size = 0.2,
+    color = "blue"
+  ) +
+  theme_bw() +
+  labs(
+    x = "Proporção estimada de carros a gasolina", 
+    y = "Efeito na concentração de ozônio"
+  ) +
+  coord_cartesian(ylim = c(-10, 13)) +
+  ggtitle("2 pontos")
+
+11.03 - 2.207*0.1395
+11.03 - 2.207*0.5127
+
+11.03 - 2.207 * 0.5756 -2.806e+02 * (0.5756 - 0.5127)
+11.03 - 2.207 * 0.7552 - 2.806e+02 * (0.7552 -  0.5127) +
+  3.886e+02 * (0.7552 - 0.5756)
+
+
+# Gráfico 3 pontos
+
+p2 <- df_model %>% 
   filter(siteid == 1) %>% 
   ggplot(aes(x = share_gas, y = -8)) +
   geom_point(size = 0.1) +
@@ -181,9 +237,12 @@ df_model %>%
     x = "Proporção estimada de carros a gasolina", 
     y = "Efeito na concentração de ozônio"
   ) +
-  coord_cartesian(ylim = c(-10, 14))
-  ggsave(filename = "text/figuras/cap-comb-seg-reg-plot.pdf", 
-         width = 6, height = 4)
+  coord_cartesian(ylim = c(-10, 14)) +
+  ggtitle("3 pontos")
+
+p1 + p2 
+ggsave(filename = "text/figuras/cap-comb-seg-reg-plot.pdf", 
+       width = 6, height = 4)
 
 25.32680 - 83.33890*0.1395
 25.32680 - 83.33890*0.2625

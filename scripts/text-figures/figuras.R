@@ -132,8 +132,8 @@ S2 <- b*X + rnorm(n)
 
 fit2 <- lm(S2 ~ X)
 
-tibble(`Dados auto-correlacionados` = fit$residuals,
-       `Dados não-correlacionados` = fit2$residuals,
+tibble(`Dados autocorrelacionados` = fit$residuals,
+       `Dados não correlacionados` = fit2$residuals,
        time = 1:n) %>%
   filter(time > 10) %>% 
   gather(key = "modelo", value = "residuos", -time) %>% 
@@ -144,7 +144,7 @@ tibble(`Dados auto-correlacionados` = fit$residuals,
   facet_wrap(~modelo, scales = "free_y") +
   labs(x = "Instante", y = "Resíduos") +
   theme_bw() 
-  ggsave(filename = "figuras/exemplo-serie-correlacao.pdf")
+  ggsave(filename = "text/figuras/exemplo-serie-correlacao.pdf", width = 6, height = 4)
 
 
 
@@ -199,3 +199,37 @@ tibble(x = 1:10,
   theme(panel.grid.minor=element_blank(),
         panel.grid.major=element_blank())
 ggsave(filename = "figuras/suposicao-linearidade.pdf")
+
+
+# --------------------------------------------------------------------------
+
+n <- 200
+q <- 100
+b0 <- 1
+b1 <- 2
+a <- 3
+
+dados <- tibble(
+  id = factor(rep(1:q, rep(n/q, q))),
+  x = rpois(n, lambda = 2),
+  z = rep(rnorm(q, 0, a), rep(n/q, q)),
+  e = rnorm(n),
+  y = b0 + b1*x + z + e
+)
+
+dados %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+
+dados %>% 
+  group_by(x) %>% 
+  summarise(var = var(y), mean = mean(y)) %>% 
+  mutate(true_mean = b0 + b1*x)
+
+fit <- lm(y ~ x + as.factor(id), dados)
+lm(y ~ x, dados) %>% summary
+lme4::lmer(y ~ x + (1|id), dados) %>% summary()
+
+coef <- fit$coefficients %>% as.numeric()
+coef2 <- coef[-c(1,2)]
+mean(coef[1] + coef2)
