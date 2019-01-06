@@ -20,11 +20,14 @@ df_model_longo <- df_model %>%
 # Série -------------------------------------------------------------------
 
 df_model_longo %>% 
+  filter(grupo != "Geral") %>% 
   ggplot(aes(x = date, y = n_mortes)) +
   geom_line(aes(color = grupo), show.legend = FALSE) +
   geom_smooth(se = FALSE, method = "lm", show.legend = FALSE, color = "grey") +
   facet_wrap(~grupo, scales = "free") +
-  theme_bw()
+  theme_bw() +
+  labs(x = "Data", y = "Mortalidade diária")
+ggsave("text/figuras/cap-mort-serie-mort.pdf", width = 6, height = 4)
 
 
 # Associação --------------------------------------------------------------

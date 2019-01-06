@@ -20,6 +20,15 @@ Para cumprir esses objetivos, vamos utilizar os dados climáticos e de poluição d
 
 Embora a poluição esteja associada com morbidade e mortalidade em geral, alguns grupos merecem atenção especial. Segundo relatório da OMS \citep{WHO2004}, crianças (até 5 anos) são mais suscetíveis aos efeitos adversos da poluição pois, entre outros fatores, elas respiram uma maior quantidade de ar proporcionalmente ao seu peso do que adultos, costumam praticar mais atividades físicas ao ar livre e possuem sistema imunológico pouco desenvolvido. Idosos compreendem outro grupo de risco, sendo altamente vulneráveis a casos extremos de poluição devido a maior incidência de doenças pré-existentes e sistema imunológico vulnerável. Focaremos a análise nesses dois grupos de maior risco.
 
+A Figura \ref{fig:cap-mort-serie-mort} apresenta as séries da mortalidade diária para crianças e idosos. Observamos que no período observado há uma leve tendência negativa para as crianças e forte tendência positiva para os idosos. Também notamos o comportamento sazonal da série de idosos, com maiores picos acontecendo nos meses de inverno, ao contrário da concentração de ozônio, cujos picos tendem a acontecer no verão.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-serie-mort.pdf}
+	\caption{Séries da mortalidade diária para crianças e idosos.}
+	\label{fig:cap-mort-serie-mort}
+\end{figure}
+
 A seguir, ajustaremos alguns modelos para avaliar a associação da mortalidade com a proporção estimada de carros a gasolina. Em seguida, ajustaremos modelos utilizando a concentração de ozônio como preditor para comparmos os resultados obtidos.
 
 \subsection{Modelo linear Poisson}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{93}
+\begin{thebibliography}{94}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -592,6 +592,13 @@ Alberto Salvo e Franz~M. Geiger.
   shift from ethanol to gasoline use.
 \newblock \emph{Nature Geoscience}, 7: \penalty0 450--458.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Salvo e Huse(2013)]{Salvo2013}{\bf Salvo e Huse(2013)}
+Alberto Salvo e Cristian Huse.
+\newblock Build it, but will they come? {E}vidence from consumer choice between
+  gasoline and sugarcane ethanol.
+\newblock \emph{Journal of Environmental Economics and Management}, \penalty0
+  (66): \penalty0 251--279.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Salvo e Wang(2017)]{Salvo2017b}{\bf Salvo e Wang(2017)}
 Alberto Salvo e Yi~Wang.

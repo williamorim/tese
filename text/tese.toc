@@ -74,7 +74,7 @@
 \contentsline {subsection}{\numberline {5.5.1}Modelos aditivos generalizados}{88}{subsection.5.5.1}
 \contentsline {subsection}{\numberline {5.5.2}Modelo de regress\~ao segmentada}{90}{subsection.5.5.2}
 \contentsline {subsection}{\numberline {5.5.3}Random Forest}{92}{subsection.5.5.3}
-\contentsline {section}{\numberline {5.6}XGBoost}{94}{section.5.6}
+\contentsline {section}{\numberline {5.6}XGBoost}{93}{section.5.6}
 \contentsline {section}{\numberline {5.7}Outras estrat\'egias de an\'alise}{95}{section.5.7}
 \contentsline {subsection}{\numberline {5.7.1}Sele\c c\~ao de vari\'aveis}{96}{subsection.5.7.1}
 \contentsline {subsection}{\numberline {5.7.2}Transformando a vari\'avel resposta}{96}{subsection.5.7.2}
@@ -85,19 +85,19 @@
 \contentsline {section}{\numberline {6.1}Uso de etanol e mortalidade}{104}{section.6.1}
 \contentsline {subsection}{\numberline {6.1.1}Modelo linear Poisson}{105}{subsection.6.1.1}
 \contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{106}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Random forest}{106}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}An\'alises complementares}{107}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.3}Random forest}{107}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}An\'alises complementares}{108}{subsection.6.1.4}
 \contentsline {section}{\numberline {6.2}Concentra\c c\~ao de oz\^onio e mortalidade}{110}{section.6.2}
 \contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{113}{chapter.7}
 \contentsline {section}{\numberline {7.1}Web scraping}{114}{section.7.1}
-\contentsline {subsubsection}{Identificar}{115}{section*.99}
-\contentsline {subsubsection}{Navegar}{115}{section*.100}
-\contentsline {subsubsection}{Replicar}{115}{section*.101}
-\contentsline {subsubsection}{Parsear}{115}{section*.102}
-\contentsline {subsubsection}{Validar}{115}{section*.103}
-\contentsline {subsubsection}{Iterar}{115}{section*.104}
+\contentsline {subsubsection}{Identificar}{115}{section*.100}
+\contentsline {subsubsection}{Navegar}{115}{section*.101}
+\contentsline {subsubsection}{Replicar}{115}{section*.102}
+\contentsline {subsubsection}{Parsear}{115}{section*.103}
+\contentsline {subsubsection}{Validar}{115}{section*.104}
+\contentsline {subsubsection}{Iterar}{115}{section*.105}
 \contentsline {section}{\numberline {7.2}Dados no Brasil}{116}{section.7.2}
 \contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{117}{section.7.3}
 \contentsline {chapter}{\numberline {8}Discuss\~ao}{119}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{121}{appendix*.107}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{121}{appendix*.108}
 \contentsfinish 
