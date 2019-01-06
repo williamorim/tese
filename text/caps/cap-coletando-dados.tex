@@ -16,21 +16,25 @@
 	\vspace{5mm}
 \end{flushright}
 
-Uma etapa crucial da análise de dados, muitas vezes menosprezada pelos estatísticos como não sendo parte da Estatística, é a coleta e a estruturação de dados. De uma maneira geral, a obtenção de dados para análise requer a realização de experimentos, medições ou aplicação de questionários, e a sua estruturação se refere à transferência dos registros obtidos na coleta para uma base de dados retangular\footnote{Em que cada linha representa uma observação (unidade amostral) e cada coluna representa uma variável.}. Às vezes, no entanto, os dados que queremos analisar já foram coletados por terceiros e estão disponíveis (mas nem sempre acessíveis) na internet.
+Duas etapas cruciais da análise de dados são a coleta e a estruturação dos dados. Na maioria dos estudos, a obtenção de dados requer a realização de experimentos, medições ou aplicação de questionários. Não é raro encontrarmos trabalhos comprometidos por falhas na coleta, seja por ausência de variáveis importantes, por má especificação da população alvo, por falta de randomização ou questionários mal construídos. Na Estatística, as áreas de amostragem, planejamento de experimentos e teoria da resposta ao item dão atenção especial à coleta de dados, criando delineamentos amostrais a depender do objetivo do estudo.
 
-Dados de poluição, pela sua relevância para a saúde pública, costumam ser medidos e disponibilizados gratuitamente por órgãos públicos. Embora dificilmente haja interesse político para dificultar o acesso desses dados, como muitas vezes acontece com dados públicos governamentais e de tribunais, o acesso a eles nem sempre é construído maneira ótima e raramente a base se encontra estruturada para análise. A principal causa disso é falta de comunicação entre o responsável pela disponibilização dos dados e a pessoa que vai de fato analisá-los.
+A estruturação dos dados consiste na transferência dos registros obtidos na coleta para uma base de dados retangular\footnote{Em que cada linha representa uma observação (unidade amostral) e cada coluna representa uma variável.}. Para diminuir o tempo e esforço gastos nessa etapa, que muitas vezes chega a ser a parte mais demorada da análise estatística, é essencial estar claro como a base deve estar estruturada para a análise e dispor de ferramentas que auxiliem a execução dessa tarefa. Na linguagem R, os pacotes \texttt{janitor}, \texttt{tidyr} e \texttt{dplyr} possuem funções especializadas em limpeza, manipulação e transformação de dados.
 
-Com o aumento da disponibilização de dados na internet ao lado da dificuldade de acesso e estruturação, um \textit{framework} de coleta de dados conhecido \textit{web scraping} vem se tornando cada vez mais popular. Seu objetivo é criar rotinas computacionais para baixar dados de páginas e sistemas na internet de forma automática e estruturada. Embora essas rotinas exijam conhecimento de programação web, elas podem ser realizadas no mesmo ambiente da análise de dados quando utilizamos linguagens como o R ou o Python. 
+Em estudos de poluição do ar, a coleta de dados é realizada principalmente por experimentos laboratoriais ou por meio de instrumentos de medição colocados em vias de grande movimento, túneis, parques, próximos a fábricas e outros locais de interesse. Também é comum a instalação de estações de monitoramento automático que medem diversos parâmetros periodicamente. Essas estações geralmente são controladas por órgãos ambientais, que disponibilizam os dados gratuitamente\footnote{No Brasil. Em outros países, pode ser necessário pagar para a obtenção dos dados.} pela internet\footnote{Alguns portais, como o do Instituo Nacional de Meteriologia (INMET), requerem uma solicitação informando os dados desejados. Após o pedido ser processado, os dados são enviados por e-mail ou, quando o volume é muito grande, são postados em uma mídia física para o endereço do solicitante.}.
+
+A obtenção de dados já coletados pela internet, no entanto, nem sempre é uma tarefa simples, em especial quando o volume de informação que precisamos baixar é muito grande. Embora dificilmente haja interesse político em dificultar o acesso desses dados, como muitas vezes acontece com dados públicos governamentais e de tribunais, o acesso a eles nem sempre é construído de maneira ótima para quem vai analisá-los. Além disso, raramente a base se encontra formatada para análise, sendo preciso passar também por uma etapa de estruturação. 
+
+Com o aumento da disponibilização de dados na internet ao lado da dificuldade de acesso e estruturação, um \textit{framework} de coleta de dados conhecido \textit{web scraping}\footnote{Ou raspagem de dados web.} vem se tornando cada vez mais popular. Seu objetivo é criar rotinas computacionais para baixar dados de páginas e sistemas na internet de forma automática e estruturada. Embora essas rotinas exijam conhecimento de programação web, elas podem ser realizadas no mesmo ambiente da análise de dados quando utilizamos linguagens como o R ou o Python. 
  
-Nesta seção, discutiremos os conceitos básicos de web scraping e apresentaremos algumas formas de se obter dados de poluição do ar, tanto no Brasil quanto em outros lugares do mundo.
+Neste capítulo, discutiremos os conceitos básicos de web scraping e apresentaremos alguns portais para se obter dados meteorológicos e de poluição do ar, tanto no Brasil quanto em outros lugares do mundo.
 
 \section{Web scraping}
   
-\textit{Web scraping}\footnote{O termo em português \textit{raspagem de dados web} existe, mas é bem pouco utilizado.} é a tarefa de extrair dados da internet de forma automatizada. Hoje em dia é muito comum termos acesso rápido e fácil a qualquer conjunto de informações pela web, mas raramente esses dados estão estruturados e em uma forma de fácil obtenção pelo usuário.
+\textit{Web scraping} é a tarefa de se extrair dados da internet de forma automatizada. Hoje em dia é muito comum termos acesso rápido e fácil a qualquer conjunto de informações pela web, mas raramente esses dados estão estruturados e em uma forma de fácil obtenção pelo usuário.
 
-O web scraping é necessário quando os dados são disponibilizados publicamente, mas o acesso manual a eles é exaustivo ou impraticável, como, por exemplo, quando queremos baixar uma série de 30 anos de um poluente, mas os dados são disponibilizados mês a mês, com cada arquivo em uma página diferente. Quando os dados não são públicos, a construção de \textit{scrapers} deve levar em conta os termos de uso da página, pois algumas não permitem a extração dos dados ou o acesso via algoritmo. Também é recomendável sempre verificar se o órgão ou a empresa já não possui uma API (\textit{Application Programming Interface}), isto é, um sistema criado para facilitar o acesso de terceiros aos dados.
+Fazer \textit{web scraping} é necessário quando os dados são disponibilizados publicamente, mas o acesso manual a eles é exaustivo ou impraticável, como, por exemplo, quando queremos baixar uma série de 30 anos de um poluente, mas os dados são disponibilizados mês a mês, com cada arquivo em uma página diferente. Quando os dados não são públicos, a construção de \textit{scrapers} deve levar em conta os termos de uso da página, pois algumas não permitem a extração dos dados ou o acesso via algoritmo. Também é recomendável sempre verificar se o órgão ou a empresa já não possui uma API (\textit{Application Programming Interface}), isto é, um sistema criado para facilitar o acesso de terceiros aos dados.
 
-O fluxo do web scraping, como podemos observar no diagrama a seguir, é composto por seis etapas: identificar, navegar, replicar, parsear, validar e iterar.
+O fluxo do web scraping, como podemos observar no diagrama a seguir (Figura \ref{fig:cap-webscraping-cycle}), é composto por seis etapas: identificar, navegar, replicar, parsear, validar e iterar.
 
 \begin{figure}[!h]
 	\centering
@@ -39,7 +43,7 @@ O fluxo do web scraping, como podemos observar no diagrama a seguir, é composto 
 	\label{fig:cap-webscraping-cycle}
 \end{figure}
 
-A seguir, descreveremos de uma forma geral cada uma dessas etapas.
+A seguir, descreveremos de forma geral cada uma dessas etapas.
 
 \subsubsection{Identificar}
 
@@ -76,11 +80,11 @@ O último passo consiste em colocar o \textit{scraper} em produção. Aqui, ele já 
   
 \section{Dados no Brasil}
 
-Dados de poluição do ar no Brasil geralmente são disponibilizados pelas Órgãos Estaduais de Meio Ambiente, sendo que o acesso a esses dados, em geral, pode ser feito direta ou indiretamente no portal de cada órgão. 
+Dados de poluição do ar no Brasil geralmente são disponibilizados pelas Órgãos Estaduais de Meio Ambiente, sendo que o acesso a esses dados, em geral, pode ser feito direta ou indiretamente no portal de cada órgão. Dos 27 estados brasileiros, apenas 9 monitoram a qualidade do ar: Bahia, Espírito Santo, Minas Gerais, São Paulo, Rio de Janeiro, Rio Grande do Sul, Paraná, Goiás e Distrito Federal. 
 
 Uma solução integrada para acessar esses dados foi desenvolvida pelo Instituo de Energia e Meio Ambiente (IEMA), que compilou os dados de monitoramento dos órgãos ambientais de todo o país em uma plataforma unificada e acessível. A \href{http://qualidadedoar.org.br/}{Plataforma de Qualidade do Ar}, em sua primeira versão, compilou os valores anuais da concentração de poluentes atmosféricos, criando uma base de dados entre os anos de 2000 e 2014 de todos os estados que disponibilizam tais informações. Com o objetivo de explorar em mais detalhes os poluentes monitorados, a plataforma passou a incorporar dados horários e diários a partir de 2015.
 
-Na Figura \ref{fig:cap-webscraping-mapa-iema}, apresentamos um mapa das estações de monitoramento disponíveis na plataforma do IEMA. Fica claro a falta de dados nas regiões Norte e Nordeste do país.
+Na Figura \ref{fig:cap-webscraping-mapa-iema}, apresentamos um mapa das estações de monitoramento disponíveis na plataforma do IEMA. Fica claro a falta de dados sobre as regiões Norte e Nordeste do país.
 
 
 \begin{figure}[!h]
@@ -92,13 +96,19 @@ Na Figura \ref{fig:cap-webscraping-mapa-iema}, apresentamos um mapa das estações
 
 Para o estado de São Paulo, a CETESB (Companhia Ambiental do Estado de São Paulo) oferece um sistema de consulta de medidas em tempo real e de relatórios diários, mensais e anuais. O sistema, chamado \textit{Qualar}, também permite a exportação de diversas séries históricas de poluentes e parâmetros meteorológicos, além de informações sobre as estações de monitoramento. 
 
-Para facilitar o acesso aos dados, já que o sistema possui restrições estruturais (como baixar dados de vários poluentes ou estações de uma única vez) e também pode se tornar lento quando precisamos acessar séries muito longas, nós criamos o pacote \texttt{koffing}, em R. O processo se resume ao uso da função \texttt{scraper\_cetesb()}, que tem, entre outros argumentos, o parâmetro a ser baixado, a estação medidora e o login e senha de acesso ao Qualar. Dada uma lista de parâmetros e estações, a função pode ser utilizada dentro de um \textit{looping} para baixar os dados de diversas estações e poluentes automaticamente. Para instalar o pacote, basta rodar o seguinte comando \texttt{devtools::install\_github("atmoschem/koffing")}.
+Para facilitar o acesso aos dados, já que o sistema possui restrições estruturais (como baixar dados de vários poluentes ou estações de uma única vez) e também pode se tornar lento quando precisamos acessar séries muito longas, nós criamos o pacote \texttt{koffing}, na linguagem R. O processo se resume ao uso da função \texttt{scraper\_cetesb()}, que tem, entre outros argumentos, o parâmetro a ser baixado, a estação medidora e o login e senha de acesso ao Qualar. Dada uma lista de parâmetros e estações, a função pode ser utilizada dentro de um \textit{looping} para baixar os dados de diversas estações e poluentes automaticamente. Para instalar o pacote, basta rodar o seguinte comando \texttt{devtools::install\_github("atmoschem/koffing")}.
 
-Dados de emissão podem ser obtidos no portal do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG), que produz estimativas anuais das emissões de gases de efeito estufa (GEE) no Brasil e documentos analíticos sobre a evolução das emissões. O SEEG avalia os cinco setores que são fontes de emissões --- Agropecuária, Energia, Mudanças de Uso da Terra, Processos Industriais e Resíduos. Os dados constituem uma série que cobre o período de 1970 até 2017, exceto para o setor de Mudança de Uso da Terra que tem a série de 1990 a 2017. São considerados todos os gases de efeito estufa contidos no inventário nacional como CO$_2$, CH$_4$, N$_2$O e os HFC. 
+Dados de emissão podem ser obtidos no portal do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG), que produz estimativas anuais das emissões de gases de efeito estufa (GEE) no Brasil e documentos analíticos sobre a evolução das emissões. O SEEG avalia os cinco setores que são fontes de emissões --- Agropecuária, Energia, Mudanças de Uso da Terra, Processos Industriais e Resíduos. Os dados constituem uma série que cobre o período de 1970 até 2017, exceto para o setor de Mudança de Uso da Terra que tem a série de 1990 a 2017. São considerados todos os gases de efeito estufa contidos no inventário nacional como CO$_2$, CH$_4$, N$_2$O e os HFC.
+
+A maioria dos órgãos de monitoramento ambiental também disponibilizam dados climáticos, como temperatura, radiação solar, umidade, velocidade e direção do vento e precipitação. Bases mais consolidadas podem ser encontradas no \href{http://www.inmet.gov.br/portal/}{portal do Instituto Nacional de Meteorologia} (INMET).
+
+A seguir, apresentaremos os principais portais com acesso a dados internacionais de clima e poluição.
 
 \section{Dados em outros países}
 
-Lançado em março de 2000, o programa MOPPIT (\textit{Measurements Of Pollution In The Troposphere}) lançado pela NASA tem como objetivo medir o monóxido de carbono troposférico em escala global. Os dados podem ser baixados diretamente do seguinte site: \url{https://search.earthdata.nasa.gov/}. A NASA também possui outros canais de visualização e disponibilização de dados, como o portal \href{https://eosweb.larc.nasa.gov/}{Atmospheric Science Data Center}, para dados atmosféricos, e o ambiente \href{https://giovanni.gsfc.nasa.gov/giovanni/}{Giovanni}, para parâmetros geofísicos.
+Lançado em março de 2000, o programa MOPPIT (\textit{Measurements Of Pollution In The Troposphere}) lançado pela NASA tem como objetivo medir o monóxido de carbono troposférico em escala global. Os dados podem ser baixados diretamente do seguinte site: \url{https://search.earthdata.nasa.gov/}. 
+
+A NASA também possui outros canais de visualização e disponibilização de dados, como o portal \href{https://eosweb.larc.nasa.gov/}{Atmospheric Science Data Center}, para dados atmosféricos, e o ambiente \href{https://giovanni.gsfc.nasa.gov/giovanni/}{Giovanni}, para parâmetros geofísicos.
 
 O portal suíço \href{https://www.airvisual.com}{AirVisual} disponibiliza visualizações, métricas e previsões para dados de material particulado e meteorológicos em mais de 10000 pontos de monitoramento espalhadas em todo o mundo (Figura \ref{fig:cap-webscraping-airVisual}).
 
@@ -108,3 +118,7 @@ O portal suíço \href{https://www.airvisual.com}{AirVisual} disponibiliza visuali
 	\caption{Exemplo de visualização do portal AirVisual para a estação Parque Dom Pedro II, em São Paulo.}
 	\label{fig:cap-webscraping-airVisual}
 \end{figure}
+
+Nos EUA, a Agência de Proteção Ambiental (EPA) é o órgão federal que regulamenta e monitora os níveis de poluição da terra, água e ar com o objetivo de proteger a saúde humana e o meio ambiente. Em conjunto com outras agências ambientais, a EPA criou o \href{https://www.airnow.gov/index.cfm?action=airnow.main}{Airnow}, uma plataforma de monitoramento da qualidade do ar com informações horárias de ozônio e material particulado para todos os estados americanos, totalizando mais de 400 cidades.
+
+Na Europa, a Agência Europeia de Meio Ambiente (EEA) é a responsável por implementar as diretivas da União Europeia com respeito ao controle de emissões e à qualidade do ar. A agência mantem um \href{https://www.eea.europa.eu/data-and-maps/explore-interactive-maps/up-to-date-air-quality-data}{portal de monitoramento} horário de ozônio, material particulado, dióxido de nitrogênio, dióxido de enxofre e monóxido de carbono para diversas cidades em toda a Europa. Os dados do portal podem ser baixados na página de \href{https://www.eea.europa.eu/data-and-maps/data/aqereporting-8}{Air Quality e-Reporting}.

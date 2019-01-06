@@ -59,9 +59,9 @@ model <- train(
 
 model
 varImp(model)
-# RMSE: 28.40017
-# MAE: 22.49468
-# % var: 0.6573975 
+# RMSE: 27.84613
+# MAE: 21.7684
+# % var: 0.6799401
 # o3 imp: 6ª
 
 pred_obs_plot(
@@ -94,9 +94,9 @@ model <- train(
 model
 model$finalModel
 varImp(model)
-# RMSE: 5.054336
-# MAE: 4.06617
-# % var: 0.02515931%  
+# RMSE: 5.109349
+# MAE: 4.110133
+# % var: 0.0278116%  
 # o3 imp: 3ª
 
 pred_obs_plot(

@@ -2,31 +2,31 @@
 \chapter{Poluição e saúde pública}
 \label{cap:saude}
 
-Embora o estudo da poluição do ar só ter passado a ser tratada como ciência no século 20, relatos  milenares de problemas de saúde e ambientais envolvendo a queima de madeira e o derretimento de cobre foram encontrados em cidades como a Grécia antiga e a Roma antiga \citep{Jacobson2002}. Nos países que formam o Reino Unido, há registros descrevendo as consequências da queima de madeira, carvão e o derretimento de metais ao longo de toda a Idade Média. A criação das máquinas a vapor no século XVII e XVIII e a utilização de combustíveis fósseis iniciada no século XIX pioraram os eventos de poluição do ar nos países industrializados, exigindo a criação de regulamentações e órgãos de controle e monitoramento  \citep{Jacobson2002}.
+Embora o estudo da poluição do ar só tenha passado a ser tratada como ciência no século 20, relatos  milenares de problemas ambientais e de saúde pública envolvendo queima de compostos e derretimento de metais foram encontrados em cidades da antiguidade, como Grécia e Roma \citep{Jacobson2002}. Nos países que formam o Reino Unido, há registros descrevendo as consequências da queima de madeira, carvão e o derretimento de metais ao longo de toda a Idade Média. A criação das máquinas a vapor no século XVII e XVIII e a utilização de combustíveis fósseis iniciada no século XIX pioraram os eventos de poluição do ar nos países industrializados, exigindo a criação de regulamentações e órgãos de controle e monitoramento  \citep{Jacobson2002}.
 
 No último capítulo, discutimos estudos que associavam os índices de poluição ao uso de combustíveis. Agora, o foco será o impacto da poluição do ar na saúde pública. A literatura contemporânea sobre o tema é vasta. \cite{SchwartzDockery1992}, por exemplo, concluíram que a concentração de partículas suspensas no ar estava positivamente associada com a mortalidade no dia seguinte em Steubenville, Ohio. \cite{Saldiva1995} encontraram associação positiva entre a mortalidade diária em idosos (com idade maior que 65 anos) e a concentração de PM10. Os autores não concluíram não existir um nível seguro para a concentração do poluente no cenário estudado. \cite{Peters2000} estudaram a chance de intervenções de desfibriladores cardiovasculares implantados em pacientes com histórico alto de arritmia. A partir dos resultados de um modelo logístico, eles concluíram que havia associação positiva entre o aumento de óxidos de nitrogênio e o número de arritmias que geravam intervenções. \cite{Hoek2002} acompanharam uma coorte de 5000 holandeses entre 55 e 59 para investigar a associação entre exposição a material particulado e morte por doenças cardiopulmonares. Os autores concluíram que o risco de morte estava associado com os níveis atmosféricos do poluente e, mais consistentemente, com viver perto de vias de tráfego intenso. Utilizando uma função de impacto na saúde, \cite{Fann2012} estimaram que 80 mil mortes prematuras seriam evitadas se os níveis de PM2.5 nos Estados Unidos fossem reduzidos em 5 $\mu g/m^3$ e que, em 2005, os níveis de PM2.5 causaram cerca de 130 mil mortes prematuras em pessoas com mais de 29 anos de idade. \cite{Cox2012}, no entanto, em nota ao editor, afirmou que \cite{Fann2012} interpretaram coeficientes de dose-resposta como se eles representassem relações causais entre a concentração de poluentes e o número de mortes. Segundo o autor, a análise realizada por \cite{Fann2012} não garante a causalidade proposta em suas conclusões, que deveriam ser interpretadas apenas como associação estatística.
 
-Neste capítulo, utilizaremos dois problemas como exemplo. Primeiro, vamos expandir a análise do capítulo anterior e avaliar se a proporção estimada de carros rodando a gasolina está associada com a mortalidade na cidade de São Paulo, com foco em crianças e idosos. Em seguida, avaliaremos também o efeito do material particulado na mortalidade.
+Neste capítulo, utilizaremos dois problemas como exemplo. Primeiro, vamos expandir a análise do capítulo anterior e investigar se a proporção estimada de carros rodando a gasolina está associada com a mortalidade na cidade de São Paulo, com foco em crianças e idosos. Em seguida, vamos comparar esses resultados com os de uma análise utilizando a própria concentração de ozônio como preditora da mortalidade.
 
 %Referências de PM/mortalidade: \cite{Chang2017}.
 
 \section{Uso de etanol e mortalidade}
 
-No último capítulo, utilizamos os dados disponibilizados por \cite{Salvo2017} para estudar a relação entre a proporção estimada de carros bicombustíveis rodando a gasolina na cidade de São Paulo e a concentração troposférica de ozônio. As análises feitas tanto pelos autores quanto aqui levantaram indícios de um efeito protetor da gasolina, isto é, o aumento do uso de gasolina estaria associado com uma diminuição da concentração de ozônio. Enquanto \cite{Salvo2017} estimaram uma relação linear entre as variáveis, os modelos do capítulo anterior sugeriram que essa associação é não-linear, sendo que sua direção e intensidade podem depender da proporção de carros rodando a gasolina na cidade.
+No último capítulo, utilizamos os dados disponibilizados por \cite{Salvo2017} para estudar a relação entre a proporção estimada de carros bicombustíveis rodando a gasolina na cidade de São Paulo e a concentração troposférica de ozônio. As análises conduzidas tanto pelos autores quanto neste trabalho levantaram indícios de um efeito protetor da gasolina, isto é, o aumento do uso de gasolina estaria associado com uma diminuição da concentração de ozônio. Enquanto \cite{Salvo2017} estimaram uma relação linear entre as variáveis, os modelos do capítulo anterior sugeriram que essa associação é não-linear, sendo que sua direção e intensidade podem depender do valor da proporção de carros rodando a gasolina na cidade.
 
-Em um primeiro momento, dado o impacto da poluição por ozônio na saúde pública, é razoável pensarmos em políticas públicas visando um maior controle do uso do etanol, com o objetivo de diminuir os níveis do ozônio. Contudo, \cite{Salvo2017} mostraram também que o aumento da proporção estimada de carros a gasolina está associado com o aumento de partículas finas, enquanto \cite{Salvo2014} mostraram que o aumento dessa variável está associada com maiores concentrações de monóxido de carbono e de nitrogênio. Sendo assim, é interessante avaliarmos a associação da proporção estimada de carros a gasolina diretamente na mortalidade, investigando assim o impacto do uso de etanol na saúde pública. Além disso, podemos utilizar a concentração de ozônio agora como preditor para explicar a variação da mortalidade e comparar se o uso de etanol e a concentração de ozônio impactam a mortalidade da mesma forma.
+Se esse indício for verdadeiro, dado o impacto do ozônio na saúde pública, é razoável pensarmos em políticas públicas para controlar o uso do etanol, visando diminuir os níveis do ozônio. Contudo, \cite{Salvo2017} mostraram também que o aumento da proporção estimada de carros a gasolina está associado com o aumento de partículas finas, enquanto \cite{Salvo2014} mostraram que o aumento dessa variável está associada com maiores concentrações de monóxido de carbono e de nitrogênio. Assim, é interessante avaliarmos a associação da proporção estimada de carros a gasolina diretamente na mortalidade, investigando o impacto do uso de etanol na saúde pública independentemente dos poluentes aos quais ele está associado. Além disso, podemos utilizar a concentração de ozônio agora como preditor para explicar a variação da mortalidade e comparar se o uso de etanol e a concentração de ozônio impactam a mortalidade da mesma forma.
 
-Para cumprir esses objetivos, vamos utilizar os dados climáticos e de poluição disponibilizados por \cite{Salvo2017} e dados de mortalidade extraídos do \href{http://www2.datasus.gov.br/DATASUS/index.php?area=060701}{Sistema de Informações de Mortalidade} (SIM) do DATASUS, a plataforma de tecnologia da informação do Sistema Único de Saúde. O período avaliado será novamente de 2008 a 2013. Seguindo diversos estudos \REF, controlaremos as condições climáticas, a tendência e a sazonalidade através das seguintes variáveis: temperatura (mínima, média, máxima ou variação), umidade, dia da semana, mês (ou estação do ano), indicador de dia útil e termo tendência.
+Para cumprir esses objetivos, vamos utilizar os dados climáticos e de poluição disponibilizados por \cite{Salvo2017} e dados de mortalidade extraídos do \href{http://www2.datasus.gov.br/DATASUS/index.php?area=060701}{Sistema de Informações de Mortalidade} (SIM) do DATASUS, a plataforma de tecnologia da informação do Sistema Único de Saúde. O período avaliado será novamente de 2008 a 2013. Seguindo diversos estudos \citep{Schwartz1992, Saldiva1995, Gleice2001a, Garrett2011, Chang2017}, controlaremos as condições climáticas, a tendência e a sazonalidade por meio das seguintes variáveis: temperatura (mínima, média, máxima ou variação), umidade, dia da semana, mês (ou estação do ano), indicador de dia útil e termo tendência. Para os modelos com a concentração de ozônio como preditor, vamos considerar a concentração média na cidade, calculada nas 12 estações de monitoramento consideradas em \cite{Salvo2017}.
 
-Embora a poluição esteja associada com morbidade e mortalidade em geral, alguns grupos merecem atenção especial. Segundo relatório da OMS \citep{WHO2004}, crianças (até 5 anos) são mais suscetíveis aos efeitos adversos da poluição pois, entre outros fatores, elas respiram uma maior quantidade de ar proporcionalmente ao seu peso do que adultos, costumam praticar mais atividades físicas ao ar livre e possuem sistema imunológico pouco desenvolvido. Idosos compreendem outro grupo de risco, sendo altamente vulneráveis a casos extremos de poluição devido a maior incidência de doenças pré-existentes e sistema imunológico vulnerável. Assim, focaremos a análise nesses dois grupos de maior risco.
+Embora a poluição esteja associada com morbidade e mortalidade em geral, alguns grupos merecem atenção especial. Segundo relatório da OMS \citep{WHO2004}, crianças (até 5 anos) são mais suscetíveis aos efeitos adversos da poluição pois, entre outros fatores, elas respiram uma maior quantidade de ar proporcionalmente ao seu peso do que adultos, costumam praticar mais atividades físicas ao ar livre e possuem sistema imunológico pouco desenvolvido. Idosos compreendem outro grupo de risco, sendo altamente vulneráveis a casos extremos de poluição devido a maior incidência de doenças pré-existentes e sistema imunológico vulnerável. Focaremos a análise nesses dois grupos de maior risco.
 
 A seguir, ajustaremos alguns modelos para avaliar a associação da mortalidade com a proporção estimada de carros a gasolina. Em seguida, ajustaremos modelos utilizando a concentração de ozônio como preditor para comparmos os resultados obtidos.
 
 \subsection{Modelo linear Poisson}
 
-Como a mortalidade diária é um dado de contagem, ajustamos inicialmente um modelo linear generalizado com distribuição Poisson (ver Seção \ref{sec:glm-contagem}) avaliar a relação dessa quantidade com a proporção estimada de carros a gasolina rodando na cidade de São Paulo.
+Como a mortalidade diária é um dado de contagem, ajustamos inicialmente um modelo linear generalizado com distribuição Poisson (ver Seção \ref{sec:glm-contagem}) para avaliar a relação dessa quantidade com a proporção estimada de carros a gasolina rodando na cidade de São Paulo.
 
-A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajustados para idosos e crianças. Observamos que a proporção estimada de carros a gasolina é estatisticamente significante para explicar a mortalidade geral, sendo que um aumento de 10\% na proporção de carros a gasolina está associado a um aumento médio de 100\% na mortalidade em idosos. Analisando os resultados para as crianças, os preditores considerados não foram suficiente para explicar a mortalidade, já que apenas 3.03\% da variação foi explicada. Neste caso, a proporção de carros a gasolina não foi considerada estatisticamente significativa para explicar a variação da mortalidade.
+A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajustados para idosos e crianças. Observamos que a proporção estimada de carros a gasolina é estatisticamente significante para explicar a mortalidade geral, sendo que um aumento de 10\% na proporção de carros a gasolina está associado a um aumento médio de 108\% na mortalidade em idosos. Analisando os resultados para as crianças, os preditores considerados não foram suficiente para explicar a mortalidade, já que apenas 2.64\% da variação foi explicada. Neste caso, a proporção de carros a gasolina não foi considerada estatisticamente significativa.
 
 \begin{table}[h!]
 	\centering
@@ -35,14 +35,14 @@ A Tabela \ref{tab:cap-mort-glm-poisson} apresenta os resultados dos modelos ajus
 		\hline
 		Grupo & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & Variação na mortalidade & \\
 		\hline
-		Idosos & 31.69 & 56.40 & < 0.001 & 100\% & \\
-		Crianças & 5.08  & 3.03 & 0.24 & - & \\
+		Idosos & 31.04 & 59.30 & < 0.001 & 108\% & \\
+		Crianças & 5.13  & 2.64 & 0.19 & - & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-mort-glm-poisson}
 \end{table}
 
-Observamos melhor a qualidade de cada ajusto pelo gráfico dos valores preditos contra os valores observados apresentado na Figura \ref{fig:cap-mort-res-plot-glm}. Para as crianças, a associação entre essas duas quantidades é bem baixa, ilustrando o baixo poder preditivo do modelo. Para os idosos, o modelo erra mais para valores baixos da mortalidade.
+Na Figura \ref{fig:cap-mort-res-plot-glm}, apresentamos o gráfico dos valores preditos contra os valores observados para cada modelo. Para as crianças, a associação entre essas duas quantidades é bem baixa, ilustrando o baixo poder preditivo do modelo. Para os idosos, o modelo erra mais para valores baixos da mortalidade.
 
 \begin{figure}[h!]
 	\centering
@@ -53,11 +53,11 @@ Observamos melhor a qualidade de cada ajusto pelo gráfico dos valores preditos c
 
 Para avaliar a melhor escolha de preditores, ajustamos modelos com mês ou estação do ano para controlar a sazonalidade e temperatura média, mínima, máxima ou variação de temperatura ao longo do dia para controlar a temperatura. Utilizando o RMSE como métrica de performance, o melhor modelo para os 2 grupos foi aquele com os preditores mês e temperatura média.
 
-A seguir, vamos ajustar um modelo aditivo generalizado para verificar se obtemos resultados mais precisos e se as conclusões se mantêm.
+A seguir, vamos ajustar um modelo aditivo generalizado para verificar possíveis relações não lineares são melhores ajustadas, gerando resultados mais precisos.
 
 \subsection{Modelo aditivo Poisson}
 
-Na tentativa de obtermos estimativas mais precisas do que as obtidas pelos modelos lineares generalizados, ajustamos agora modelos aditivos generalizados com distribuição Poisson (ver Seção \ref{sec:gam}) para associar a mortalidade geral com a proporção estimada de carros a gasolina.
+Na tentativa de obtermos estimativas mais precisas do que as obtidas pelos modelos lineares generalizados, caso exista relações não lineares entre as variáveis, ajustamos agora modelos aditivos generalizados com distribuição Poisson (ver Seção \ref{sec:gam}) para associar a mortalidade geral com a proporção estimada de carros a gasolina.
 
 Os resultados para cada um dos grupos considerados se encontram na Tabela \ref{tab:cap-mort-gam-poisson}. Observamos aumento na performance do modelo (menor RMSE) e poder preditivo (maior R$^2$) para os idosos. Além disso, a proporção de carros a gasolina continua estatisticamente significativa para explicar a variação da mortalidade.
 
@@ -68,14 +68,14 @@ Os resultados para cada um dos grupos considerados se encontram na Tabela \ref{t
 		\hline
 		Grupo & RMSE & \% var. explicada & Valor-p para a proporção de carros a gasolina & \\
 		\hline
-		Idosos & 29.55 & 62.92 & < 0.001 & \\
-		Crianças & 5.08  & 3.5 & 0.26  & \\
+		Idosos & 29.21 & 64.78 & < 0.001 & \\
+		Crianças & 5.10  & 3.4 & 0.50  & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-mort-gam-poisson}
 \end{table}
 
-Observando agora os gráficos das funções não-lineares ajustadas para a proporção de carros a gasolina (Figura \ref{fig:cap-mort-gam-plot-poisson}), notamos que a associação com a mortalidade, antes positiva, agora parece ser negativa. De uma forma geral, esses gráficos apontam que, para os idosos, quando aumentamos a proporção de carros a gasolina, a mortalidade tende a diminuir, com valor mínimo quando a proporção está próxima a 68\%. Esses indícios contrariam os encontrados no modelo linear da seção anterior. No entanto, uma ressalva sobre essa conclusão deve ser feita. As regiões do gráfico onde as curvas decaem são aquelas com menos observações (isso pode ser observado pela maior amplitude dos intervalos de confiança). Além disso, pela Figura \ref{fig:cap-mort-boxplot-share}, notamos que a distribuição da proporção de carros a gasolina apresenta uma sazonalidade: os maiores valores tendem a acontecer no verão e os menos valores no inverno. Com a mortalidade, essa relação é inversa: a mortalidade é maior no inverno. Assim, se essa associação entre mortalidade e proporção de carros a gasolina for espúria, isso explicaria o comportamento das funções estimadas pelo modelo aditivo. 
+Observando agora os gráficos das funções não-lineares ajustadas para a proporção de carros a gasolina (Figura \ref{fig:cap-mort-gam-plot-poisson}), notamos que a associação com a mortalidade, antes positiva, agora parece ser negativa. De uma forma geral, esses gráficos apontam que, para os idosos, quando aumentamos a proporção de carros a gasolina, a mortalidade tende a diminuir, com valor mínimo quando a proporção está próxima a 68\%. Esses indícios contrariam os encontrados no modelo linear da seção anterior. No entanto, uma ressalva sobre essa conclusão deve ser feita. As regiões do gráfico onde as curvas decaem são aquelas com menos observações (isso pode ser observado pela maior amplitude dos intervalos de confiança). Além disso, pela Figura \ref{fig:cap-comb-share-boxplot}, notamos que a distribuição da proporção de carros a gasolina apresenta uma sazonalidade: os maiores valores tendem a acontecer no verão e os menos valores no inverno. Com a mortalidade, essa relação é inversa: a mortalidade é maior no inverno. Assim, se essa associação entre mortalidade e proporção de carros a gasolina for espúria, isso explicaria o comportamento das funções estimadas pelo modelo aditivo. 
 
 \begin{figure}[h!]
 	\centering
@@ -88,9 +88,9 @@ Na próxima seção, ajustaremos uma \textit{random forest} para avaliarmos qual co
 
 \subsection{Random forest}
 
-Como o modelo linear e aditivo apontaram conclusões diferentes sobre o efeito da proporção estimada de carros a gasolina na mortalidade de idosos, vamos agora ajustar uma \textit{random forest} na esperança de obter um ajuste mais preciso. A partir daqui, ajustaremos os modelos apenas para o grupo de idosos, tendo vista a impossibilidade de explicar a mortalidade geral a partir das variáveis consideradas.
+Como o modelo linear e aditivo apontaram conclusões diferentes sobre o efeito da proporção estimada de carros a gasolina na mortalidade de idosos, vamos agora ajustar uma \textit{random forest} na tentativa de obter um ajuste mais preciso para compararmos os resultados. A partir daqui, ajustaremos os modelos apenas para o grupo de idosos, tendo vista a impossibilidade de explicar a mortalidade geral a partir dos preditores considerados.
 
-A \textit{random forest} ajustada obteve um RMSE de 27.69 (contra 31.69 do modelo linear e 29.55 do modelo aditivo) e uma variação da proporção explicada igual a 67.43\% (contra 56.40\% do modelo linear e 62.92\% do modelo aditivo). Na Figura \ref{fig:cap-mort-rf-graficos-iml} apresentamos os gráficos de dependência parcial  e de efeitos acumulados para a variável proporção estimada de carros a gasolina. A associação deste preditor na mortalidade parece ser, de uma forma geral, negativa: quanto maior a proporção de carros a gasolina, menor a mortalidade. Um padrão semelhante foi indicado pelo modelo aditivo (Figura \ref{fig:cap-mort-gam-plot-poisson}). Analisando o gráfico com mais cuidado, observamos que o efeito na mortalidade estimada tem duas quedas: uma quando variamos o preditor aproximadamente de 10 para 20\% e outra quando variamos aproximadamente de 40 para 50\%. O efeito também volta a subir para valores maiores de 50\%. É difícil encontrarmos uma explicação prática para essa relação estranha (altamente não-linear), sendo que ela pode indicar dois problemas: a relação entre as variáveis é, de fato, complexa e difícil de ser modelada ou, assim como observamos no capítulo anterior, a distribuição desbalanceada da proporção de carros a gasolina pode estar gerando correlações espúrias.
+A \textit{random forest} ajustada obteve um RMSE de 27.69 (contra 31.04 do modelo linear e 29.21 do modelo aditivo) e uma variação da proporção explicada igual a 67.43\% (contra 59.30\% do modelo linear e 64.78\% do modelo aditivo). Na Figura \ref{fig:cap-mort-rf-graficos-iml} apresentamos os gráficos de dependência parcial  e de efeitos acumulados para a variável proporção estimada de carros a gasolina. A associação deste preditor na mortalidade parece ser, de uma forma geral, negativa: quanto maior a proporção de carros a gasolina, menor a mortalidade. Um padrão semelhante foi indicado pelo modelo aditivo (Figura \ref{fig:cap-mort-gam-plot-poisson}). Analisando o gráfico com mais cuidado, observamos que o efeito na mortalidade estimada tem duas quedas: uma quando variamos o preditor aproximadamente de 10 para 20\% e outra quando variamos aproximadamente de 40 para 50\%. O efeito também volta a subir para valores maiores de 50\%. É difícil encontrarmos uma explicação prática para essa relação estranha (altamente não-linear), sendo que ela pode indicar dois problemas: a relação entre as variáveis é, de fato, complexa e difícil de ser modelada e interpretada ou, assim como observamos no capítulo anterior, a distribuição desbalanceada da proporção de carros a gasolina pode estar gerando correlações espúrias.
 
 \begin{figure}[h!]
 	\centering
@@ -106,28 +106,37 @@ A seguir, apresentaremos algumas análises adicionais realizadas na tentativa de 
 
 Para testar a sensibilidade dos resultados obtidos pelo modelo anterior, nós realizamos análises complementares, variando algumas variáveis mantidas fixas e testando outros modelos. Focamos essas análises apenas no grupo de idosos pois nenhum dos modelos considerados sugeriu associação entre os preditores a mortalidade infantil.
 
-Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina na mortalidade pode estar defasado no tempo, isto é, se o valor deste preditor em um determinado dia vai afetar a mortalidade no futuro. Para isso, defasamos essa variável em até 21 dias e ajustamos a \textit{random forest} da seção anterior.
+Inicialmente, avaliamos se o efeito da proporção estimada de carros a gasolina na mortalidade pode estar defasado no tempo, isto é, se o valor deste preditor em um determinado dia está associado com o número de mortes em idosos no futuro. Para isso, construímos o gráfico da função de correlação cruzada entre essas variáveis  com defasagem até 60 dias (Figura \ref{fig:cap-mort-ccf}) e observamos indícios de correlação para defasagens maiores que 20. Embora a forma desse gráfico sugira apenas um efeito sazonal, vamos ajustar a \textit{random forest} considerada na seção anterior com a proporção estimada de carros a gasolina defasada em 20, 25, 30, 35, 40, 45, 50, 55 e 60 dias. Os resultados estão apresentados na Tabela \ref{tab:cap-mort-rf-defasada}. Observamos que não houve redução substancial do erro do modelo em comparação o ajuste sem defasagem (RMSE igual a 27.69) e não há consistência na ordem das melhores defasagens.
 
- mas a proporção de carros a gasolina não foi estatisticamente significante para nenhuma defasagem ajustada. Os resultados para as 5 defasagens com menor RMSE estão apresentados na Tabela \ref{tab:cap-mort-rf-defasada}. Observamos que não houve redução substancial do erro do modelo em comparação o ajuste sem defasagem (RMSE igual a 27.69) e não há consistência na ordem das melhores defasagens, indicando apenas uma variação aleatória entre a qualidade dos ajustes.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ccf.pdf}
+	\caption{Gráfico de correção cruzada da mortalidade diária para idosos contra a proporção estimada de carros a gasolina.}
+	\label{fig:cap-mort-ccf}
+\end{figure}
 
 \begin{table}[h!]
 	\centering
-	\caption{Resultados do modelo de regressão linear ajustado nos resíduos do modelo ARIMA.}
+	\caption{Resultados do modelo da Random forest com proporção estimada de carros a gasolina defasada no tempo. Os valores estão ordenados do menor ao maior RMSE.}
 	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{4cm} N}
 		\hline
 		Grupo & Defasagem & RMSE & \% var. explicada & \\
 		\hline
-		\multirow{5}{1cm}{Idosos} & 3 & 27.52 & 67.74 & \\
-		& 5 & 27.52 & 67.66 & \\
-		& 2 & 27.53 & 67.73 & \\
-		& 12 & 27.55 & 67.09 & \\
-		& 14 & 27.61 & 67.03 & \\
+		\multirow{9}{1cm}{Idosos} & 30 & 27.30 & 68.55\% & \\		
+		& 20 & 27.39 & 68.52\% & \\		
+		& 45 & 27.45 & 68.18\% & \\		
+		& 25 & 27.49 & 68.29\% & \\		
+		& 35 & 27.59 & 67.88\% & \\		
+		& 60 & 27.62 & 67.49\% & \\		
+		& 50 & 27.64 & 67.59\% & \\		
+		& 55 & 27.64 & 67.64\% & \\		
+		& 40 & 27.78 & 67.48\% & \\
 		\hline
 	\end{tabular}
 \label{tab:cap-mort-rf-defasada}
 \end{table}
 
-O gráfico de dependência parcial  e de efeitos locais acumulados para o modelo com proporção estimada de carros a gasolina defasada em 3 dias (Figura \ref{fig:cap-mort-rf-defasada-graficos-iml}) indica a mesma relação do que o modelo ajustado sem defasagem, mas um pouco melhor comportada (menos variação no efeito).
+O gráfico de dependência parcial  e de efeitos locais acumulados para o modelo com proporção estimada de carros a gasolina defasada em 30 dias (Figura \ref{fig:cap-mort-rf-defasada-graficos-iml}) indica a mesma relação do que o modelo ajustado sem defasagem.
 
 \begin{figure}[h!]
 	\centering
@@ -144,9 +153,9 @@ Também ajustamos um \textit{XGBoost} para a mortalidade em idosos, mas os result
 
 Nesta seção, apresentaremos os resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio diretamente como preditor. O objetivo é comparar esses resultados com aqueles obtidos nas seções anteriores para avaliar se a proporção estimada de carros a gasolina estaria representando bem o efeito da poluição por ozônio na mortalidade.
 
-Os modelos ajustados aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil.
+Os modelos ajustados aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil. A concentração de ozônio utilizada foi a média diária para toda a cidade, calculada a partir das medidas das 12 estações consideradas por \cite{Salvo2017}.
 
-A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que todos os modelos indicam uma associação positiva entre mortalidade em idosos e concentração de ozônio. Para o modelo linear, um aumento de 10 $\mu$g/m$^3$ está associado com um aumento médio de 0.36 na mortalidade de idosos. A relação para o modelo aditivo pode ser observada pelo gráfico da função não-linear apresentado na Figura \ref{fig:cap-mort-gam-plot-poisson-ozonio} e a interpretação do efeito da concentração de ozônio para a \textit{random forest} se encontra na Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml}. Mais uma vez, as variáveis consideradas não explicam a variabilidade da mortalidade infantil.
+A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que todos os modelos indicam uma associação positiva entre mortalidade em idosos e concentração de ozônio. Para o modelo linear, um aumento de 10 $\mu$g/m$^3$ está associado com um aumento médio de 0.44\% na mortalidade de idosos. A relação para o modelo aditivo pode ser observada pelo gráfico da função não linear apresentado na Figura \ref{fig:cap-mort-gam-plot-poisson-ozonio} e a interpretação do efeito da concentração de ozônio para a \textit{random forest} se encontra na Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml}. Mais uma vez, as variáveis consideradas não explicam a variabilidade da mortalidade infantil.
 
 \begin{table}[h!]
 	\centering
@@ -155,14 +164,14 @@ A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajust
 		\hline
 		Modelo & Grupo & RMSE & \% var. explicada & Relação com a mortalidade (valor-p) & \\
 		\hline
-		\multirow{2}{2.5cm}{Linear Poisson} & Idosos & 31.76 & 56.20 & Positiva (< 0.001) & \\
-		& Crianças & 5.09 & 2.81 & Não há (0.71) & \\
+		\multirow{2}{2.5cm}{Linear Poisson} & Idosos & 31.10 & 59.10 & Positiva (< 0.001) & \\
+		& Crianças & 5.13 & 2.56 & Não há (0.59) & \\
 		\hline
-		\multirow{2}{2.9cm}{Aditivo Poisson} & Idosos & 29.66 & 62.64 & Positiva (0.003) & \\
-		& Crianças & 5.05 & 3.00 & Não há ($\approx$ 1) & \\
+		\multirow{2}{2.9cm}{Aditivo Poisson} & Idosos & 29.29 & 64.60 & Positiva (0.05) & \\
+		& Crianças & 5.11 & 2.90 & Não há (0.97) & \\
 		\hline
-		\multirow{2}{2.9cm}{\textit{Random forest}} & Idosos & 27.69 & 67.43 & Positiva & \\
-		& Crianças & 5.05 & 3.00 & Não há & \\
+		\multirow{2}{2.9cm}{\textit{Random forest}} & Idosos & 27.85 & 68.00 & Positiva & \\
+		& Crianças & 5.11 & 2.80 & Não há & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-mort-res-ozonio}
@@ -178,11 +187,11 @@ A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajust
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml.pdf}
-	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} para a concentração de ozônio.}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para a concentração de ozônio.}
 	\label{fig:cap-mort-ozonio-rf-graficos-iml}
 \end{figure}
 
-Os resultados aqui indicam uma relação bem clara entre a concentração de ozônio e mortalidade. Isso sugere que, se a proporção de carros a gasolina e a concentração de ozônio tivessem uma relação simples (linear, por exemplo) esperaríamos que os modelos ajustados na seção anterior reproduzissem uma relação próxima a encontra aqui (mesmo que contrária) entre a proporção estimada de carros a gasolina e a mortalidade em idosos. 
+Os resultados apresentados aqui indicam uma relação bem clara entre a concentração de ozônio e mortalidade. Isso sugere que, se a proporção de carros a gasolina e a concentração de ozônio tivessem uma relação simples (linear, por exemplo) esperaríamos que os modelos ajustados na seção anterior reproduzissem uma relação próxima a encontra aqui (mesmo que contrária) entre a proporção estimada de carros a gasolina e a mortalidade em idosos. 
  
 Podemos concluir que o a concentração de ozônio está associado com um aumento na mortalidade em idosos e, em embora o modelo aditivo Poisson e a \textit{random forest} indiquem uma associação negativa entre proporção de carros a gasolina e a mortalidade (principalmente por meio do modelo com o preditor defasado em 3 dias), a forma dessa relação não é muito clara, o que deixa difícil encontrar uma explicação prática e distinguir esse possível efeito de uma correlação espúria.
 

@@ -33,7 +33,7 @@ cria_receita <- function(df_model, formula) {
 
 receitas <- expand.grid(
   mortalidade = c("n_mortes_idosos"),
-  lag = 1:21
+  lag = seq(20, 60, 5)
 ) %>% 
   as.tibble() %>% 
   mutate(
@@ -118,6 +118,14 @@ resultados %>%
   arrange(RMSE) %>% 
   View
 
+resultados %>% 
+  filter(mortalidade == "n_mortes_idosos") %>% 
+  arrange(RMSE) %>% 
+  mutate(blank = "") %>% 
+  select(blank, lag, RMSE, R2) %>% 
+  mutate(R2 = scales::percent(R2), blank2 = blank) %>% 
+  knitr::kable(format = "latex")
+  
 
 # Interpretação ------------------------------------------------------------
 
@@ -154,7 +162,7 @@ predictor <- Predictor$new(model, data = df_train, y = df_train$n_mortes_idosos)
 
 # PDP
 pdp <- FeatureEffect$new(predictor, feature = "share_gas", method = "pdp", 
-                         grid.size = 10)
+                         grid.size = 20)
 p_pdp <- pdp$plot() + 
   theme_bw() +
   labs(x = "Proporção estimada de carros a gasolina") +
@@ -162,7 +170,7 @@ p_pdp <- pdp$plot() +
   ggtitle("PDP")
 
 # ALE
-ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 10)
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 20)
 p_ale <- ale$plot() + 
   theme_bw() +
   labs(x = "Proporção estimada de carros a gasolina") +
@@ -174,3 +182,37 @@ ggsave(
   filename = "text/figuras/cap-mort-rf-defasada-graficos-iml.pdf", 
   width = 7, height = 5
 )
+
+
+# Gráfico de correçalação cruzada ------------------------------------------
+
+calculate_ccf <- function(data, lag.max = 18) {
+  
+  ccf(x = data$x, y = data$y, lag.max = lag.max, plot = FALSE)
+  
+}
+
+make_ccf_df <- function(ccf) {
+  
+  tibble(
+    lag = as.numeric(ccf$lag), 
+    cc = as.numeric(ccf$acf),
+    liminf = -2/sqrt(ccf$n.used),
+    limsup = 2/sqrt(ccf$n.used)
+  )
+  
+}
+
+df_model %>% 
+  select(x = share_gas, y = n_mortes_idosos) %>%
+  na.exclude() %>% 
+  calculate_ccf(lag.max = 60) %>% 
+  make_ccf_df() %>% 
+  ggplot(aes(x = lag, ymin = min(0, abs(cc)), ymax = cc)) +
+  geom_hline(aes(yintercept = liminf), linetype = 3) +
+  geom_hline(aes(yintercept = limsup), linetype = 3) +
+  geom_linerange() +
+  theme_bw() +
+  labs(x = "Defasagem", y = "Função de correlação cruzada")
+ggsave("text/figuras/cap-mort-ccf.pdf", width = 12, height = 6)
+

@@ -27,7 +27,7 @@ cria_formula <- function(mort, temp, sazon) {
 }
 
 formulas <- expand.grid(
-  mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
+  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
   #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
   temperatura = "tp",
   #sazonalidade = c("month", "season")
@@ -105,26 +105,6 @@ resultados <- map_dfr(
 ) %>% 
   bind_cols(formulas, .)
 
-View(resultados)
-
-# Geral
-
-resultados %>% 
-  filter(mortalidade == "n_mortes_geral") %>% 
-  arrange(RMSE) %>% 
-  View
-
-# Melhor resultado:
-# temp média
-# month
-# RMSE: 40.75174
-# R2: 0.5208003
-# varImp: 13
-# variacao (+10 conc): 0.32%
-# valor-p: < 0.001
-
-ajustes[[1]]$finalModel %>% plot
-
 # Idosos
 
 resultados %>% 
@@ -136,10 +116,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 31.76168
-# R2: 0.5619809
-# varImp: 13
-# variação (+10 conc): 0.36%
+# RMSE: 31.10466
+# R2: 0.5910172
+# varImp: 15
+# variação (+10 conc): 0.44%
 # valor-p: < 000.1
 
 # Crianças
@@ -153,10 +133,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.090106
-# R2: 0.02815551
+# RMSE: 5.137262
+# R2: 0.02562265
 # varImp: 13
-# valor-p: 0.7142002
+# valor-p: 0.6053789
 
 
 # Gráficos de resíduos

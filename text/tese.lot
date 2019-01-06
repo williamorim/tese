@@ -19,8 +19,8 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {6.1}{\ignorespaces Resultados do modelo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{105}{table.caption.87}
 \contentsline {table}{\numberline {6.2}{\ignorespaces Resultados do modelo aditivo Poisson para mortalidade geral em crian\c cas, idosos e na popula\c c\~ao como um todo.\relax }}{106}{table.caption.89}
-\contentsline {table}{\numberline {6.3}{\ignorespaces Resultados do modelo de regress\~ao linear ajustado nos res\IeC {\'\i }duos do modelo ARIMA.\relax }}{108}{table.caption.92}
-\contentsline {table}{\numberline {6.4}{\ignorespaces Resultados dos modelos ajustados para a mortalidade di\'aria utilizando a concentra\c c\~ao de oz\^onio como preditor.\relax }}{109}{table.caption.94}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Resultados do modelo da Random forest com propor\c c\~ao estimada de carros a gasolina defasada no tempo. Os valores est\~ao ordenados do menor ao maior RMSE.\relax }}{109}{table.caption.93}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Resultados dos modelos ajustados para a mortalidade di\'aria utilizando a concentra\c c\~ao de oz\^onio como preditor.\relax }}{110}{table.caption.95}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsfinish 

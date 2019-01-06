@@ -83,7 +83,15 @@ df %>%
 
 df_salvo <- read_rds("data/artaxo-salvo-geiger/dados_originais.rds")
 
-# Usando estação D. Pedro II
+# Ozônio médio na cidade
+
+ozonio <- df_salvo %>% 
+  group_by(date, hour) %>% 
+  summarise(
+    o3_mass_conc = mean(o3_mass_conc, na.rm = TRUE)
+  ) %>% 
+  .$o3_mass_conc
+
 df_salvo <- df_salvo %>%
   filter(siteid == 1) %>% 
   select(
@@ -93,6 +101,7 @@ df_salvo <- df_salvo %>%
     o3_mass_conc
   ) %>% 
   mutate(
+    o3_mass_conc = ozonio,
     date = str_c(year, month, day, sep = "-") %>% lubridate::ymd(),
     dv_workday = ifelse(
       dayofweek != c(0, 6) & dv_publicholiday == 0, 1, 0

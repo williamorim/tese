@@ -289,13 +289,13 @@ Para explorar um modelo não linear mais simples do que o modelo aditivo generali
 	\label{tab:cap-comb-resultados-reg-seg}
 \end{table}
 
-Observamos que os modelos apresentam performance ligeiramente melhor do que a dos modelos lineares e aditivos (menor RMSE e maior R$^2$). As variáveis mais importantes para explicar a concentração de ozônio continuam as mesmas do modelo de regressão linear. A proporção de carros a gasolina foi considerada estatisticamente significante (valor-p < 0.001) em ambos os modelos, sendo que a Figura \ref{} apresenta as retas de regressão segmentada estimada para o efeito desse preditor na variação da concentração de ozônio. Quando comparamos esses gráficos com os gráficos do modelo aditivo generalizado (Figuras \ref{fig:comb-gam-plot} e \ref{fig:comb-gam-plot-bs}), notamos que ambos os modelos capturam relações não-lineares semelhantes, principalmente a queda acentuada do efeito por volta do valor 0.5 e o aumento próximo ao valor 0.6. A diferença entre o modelo com 2 pontos e o com 3 pontos é que o primeiro não captura o vale existente em torno do 0.28 que o segundo modelo sugere.
+Observamos que os modelos apresentam performance ligeiramente melhor do que a dos modelos lineares e aditivos (menor RMSE e maior R$^2$). As variáveis mais importantes para explicar a concentração de ozônio continuam as mesmas do modelo de regressão linear. A proporção de carros a gasolina foi considerada estatisticamente significante (valor-p < 0.001) em ambos os modelos, sendo que a Figura \ref{fig:cap-comb-seg-reg-plot} apresenta as retas de regressão segmentada estimada para o efeito desse preditor na variação da concentração de ozônio. Quando comparamos esses gráficos com os gráficos do modelo aditivo generalizado (Figuras \ref{fig:comb-gam-plot} e \ref{fig:comb-gam-plot-bs}), notamos que ambos os modelos capturam relações não-lineares semelhantes, principalmente a queda acentuada do efeito por volta do valor 0.5 e o aumento próximo ao valor 0.6. A diferença entre o modelo com 2 pontos e o com 3 pontos é que o primeiro não captura o vale existente em torno do 0.28 que o segundo modelo sugere.
 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-comb-seg-reg-plot.pdf}
-	\caption{Reta de regressão segmentada para a proporção estimada de carros a gasolina. O efeito representa o valor da concentração de ozônio para cada valor da proporção estimada de carros a gasolina se todos os outros preditores tivessem valor igual a 0. Essa medida não tem interpretação prática, mas pode ser utilizada para calcular a variação no ozônio quando variamos o a proporção de carros a gasolina.}
+	\caption{Retas de regressão segmentada para a proporção estimada de carros a gasolina. O efeito representa o valor da concentração de ozônio para cada valor da proporção estimada de carros a gasolina se todos os outros preditores tivessem valor igual a 0. Essa medida não tem interpretação prática, mas pode ser utilizada para calcular a variação no ozônio quando variamos o a proporção de carros a gasolina.}
 	\label{fig:cap-comb-seg-reg-plot}
 \end{figure}
 

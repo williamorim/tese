@@ -1,4 +1,4 @@
-\begin{thebibliography}{90}
+\begin{thebibliography}{93}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -100,6 +100,17 @@ David~C. Carslaw, Sean~D. Beevers e James~E. Tate.
 George Casella e Roger~L. Berger.
 \newblock \emph{Statistical Inference}.
 \newblock Duxbury Press; 2nd edition.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Chang {\rm{\em et~al.}}(2017)Chang, Vizuete, Serre, Vennam, Omary,
+  Isakov, Breen, e Arunachalam]{Chang2017}{\bf Chang {\rm{\em et~al.}}(2017)}
+Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
+  Omary, Vlad Isakov, Michael Breen e Saravanan Arunachalam.
+\newblock Finely resolved on-road {PM}2.5 and estimated premature mortality in
+  central {N}orth {C}arolina.
+\newblock \emph{Risk Analysis}.
+\newblock \doi{10.1111/risa.12775}.
+\newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
+  na p\'{a}g.}
 
 \bibitem[Chavent {\rm{\em et~al.}}(2009)Chavent, Guegan, Kuentz, Patouille, e
   Saracco]{Chavent2009}{\bf Chavent {\rm{\em et~al.}}(2009)}
@@ -270,6 +281,13 @@ Ronald Fisher.
 Andrzej Galecki e Tomasz Burzykowski.
 \newblock \emph{Linear Mixed-Effects Models Using R}.
 \newblock Springer.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Garrett e Casimiro(2011)]{Garrett2011}{\bf Garrett e Casimiro(2011)}
+Pedro Garrett e Elsa Casimiro.
+\newblock Short-term effect of fine particulate matter (pm2.5) and ozone on
+  daily mortality in {L}isbon, {P}ortugal.
+\newblock \emph{Environ Sci Pollut Res}, 18: \penalty0 1585--1582.
+  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Goodfellow {\rm{\em et~al.}}(2016)Goodfellow, Bengio, e
   Courville]{Goodfellow2016}{\bf Goodfellow {\rm{\em et~al.}}(2016)}
@@ -608,8 +626,16 @@ Joel Schwartz.
 \newblock \emph{Epidemiology}, 1\penalty0 (7): \penalty0 20--28.   {\scriptsize
   Citado na p\'{a}g.}
 
-\bibitem[Schwartz e Dockery(1992)]{SchwartzDockery1992}{\bf Schwartz e
-  Dockery(1992)}
+\bibitem[Schwartz e Dockery(1992{\natexlab{a}})]{Schwartz1992}{\bf Schwartz e
+  Dockery(1992{\natexlab{a}})}
+Joel Schwartz e Douglas Dockery.
+\newblock Particulate air pollution and daily mortality in {S}teubenville,
+  {O}hio.
+\newblock \emph{American Journal of Epidemiology}, 135\penalty0 (1): \penalty0
+  12--25.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Schwartz e Dockery(1992{\natexlab{b}})]{SchwartzDockery1992}{\bf
+  Schwartz e Dockery(1992{\natexlab{b}})}
 Joel Schwartz e Douglas~W. Dockery.
 \newblock Particulate air pollution and daily mortality in {S}teubenville,
   {O}hio.

@@ -27,7 +27,7 @@ cria_formula <- function(mort, temp, sazon) {
 }
 
 formulas <- expand.grid(
-  mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
+  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
   #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
   temperatura = "tp",
   #sazonalidade = c("month", "season")
@@ -106,24 +106,6 @@ resultados <- map_dfr(
   bind_cols(formulas, .)
 
 
-# Geral
-
-resultados %>% 
-  filter(mortalidade == "n_mortes_geral") %>% 
-  arrange(RMSE) %>% 
-  View
-
-# Melhor resultado:
-# temp média
-# month
-# RMSE: 40.71568
-# R2: 0.52166547
-# varImp: 12
-# variacao (+10% share): 74.74%
-# valor-p: < 000.1
-
-ajustes[[1]]$finalModel %>% plot
-
 # Idosos
 
 resultados %>% 
@@ -135,10 +117,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 31.59895
-# R2: 0.5762253
+# RMSE: 31.04122
+# R2: 0.5929606
 # varImp: 11
-# variação (+10% share): 107.99%
+# variação (+10% share): 108.64%
 # valor-p: < 000.1
 
 # Crianças
@@ -152,32 +134,24 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.057434
-# R2: 0.02815193
-# varImp: 7
-# variacao (+10% share): 118.69
-# valor-p: 0.16391250
+# RMSE: 5.133924
+# R2: 0.02642182
+# varImp: 8
+# valor-p: 0.1944008
 
 
 # Gráficos de resíduos
 
-p_geral <- pred_obs_plot2(
-  df = df_model, 
-  model = ajustes[[1]], 
-  y = "n_mortes_geral"
-) +
-  ggtitle("Geral")
-
 p_idosos <- pred_obs_plot2(
   df = df_model, 
-  model = ajustes[[2]], 
+  model = ajustes[[1]], 
   y = "n_mortes_idosos"
 ) +
   ggtitle("Idosos")
 
 p_criancas <- pred_obs_plot2(
   df = df_model, 
-  model = ajustes[[3]], 
+  model = ajustes[[2]], 
   y = "n_mortes_criancas"
 ) +
   ggtitle("Crianças")

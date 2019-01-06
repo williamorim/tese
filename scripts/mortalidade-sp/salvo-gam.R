@@ -27,7 +27,7 @@ cria_formula <- function(mort, temp, sazon) {
 }
 
 formulas <- expand.grid(
-  mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
+  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
   #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
   temperatura = "tp",
   #sazonalidade = c("month", "season")
@@ -109,35 +109,6 @@ resultados <- map_dfr(
 ) %>% 
   bind_cols(formulas, .)
 
-# Geral
-
-resultados %>% 
-  filter(mortalidade == "n_mortes_geral") %>% 
-  arrange(RMSE) %>% 
-  View
-
-# Melhor resultado:
-# temp média
-# month
-# RMSE: 37.80102
-# R2: 0.5941244
-# varImp: 11
-# valor-p: < 000.1
-
-p_geral <- gam_plot(
-  ajustes[[1]]$finalModel, 
-  ajustes[[1]]$finalModel$smooth[[1]],
-  xlab = ""
-) +
-  ggtitle("Geral")
-
-gam_plot(
-  ajustes[[1]]$finalModel, 
-  ajustes[[1]]$finalModel$smooth[[4]],
-  xlab = ajustes[[1]]$finalModel$smooth[[4]]$term
-)
-
-
 # Idosos
 
 resultados %>% 
@@ -148,14 +119,14 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 29.55081
-# R2: 0.6292175
-# varImp: 10
+# RMSE: 29.2054
+# R2: 0.6478457
+# varImp: 11
 # valor-p: < 000.1
 
 p_idosos <- gam_plot(
-  ajustes[[2]]$finalModel, 
-  ajustes[[2]]$finalModel$smooth[[1]],
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[1]],
   xlab = "",
   ylab = "Efeito na mortalidade"
 )+
@@ -177,14 +148,14 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.042236
-# R2: 0.03484929
-# varImp: 7
-# valor-p: < 0.26
+# RMSE: 5.10207
+# R2: 0.0341861
+# varImp: 13
+# valor-p: < 0.50
 
 p_criancas <- gam_plot(
-  ajustes[[3]]$finalModel, 
-  ajustes[[3]]$finalModel$smooth[[1]],
+  ajustes[[2]]$finalModel, 
+  ajustes[[2]]$finalModel$smooth[[1]],
   xlab = "Proporção estimada de carros a gasolina",
   ylab = "Efeito na mortalidade"
 ) +

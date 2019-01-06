@@ -27,7 +27,7 @@ cria_formula <- function(mort, temp, sazon) {
 }
 
 formulas <- expand.grid(
-  mortalidade = c("n_mortes_geral", "n_mortes_idosos", "n_mortes_criancas"),
+  mortalidade = c("n_mortes_idosos", "n_mortes_criancas"),
   #temperatura = c("tp", "tp_var", "tp_min", "tp_max"),
   temperatura = "tp",
   #sazonalidade = c("month", "season")
@@ -109,35 +109,6 @@ resultados <- map_dfr(
 ) %>% 
   bind_cols(formulas, .)
 
-# Geral
-
-resultados %>% 
-  filter(mortalidade == "n_mortes_geral") %>% 
-  arrange(RMSE) %>% 
-  View
-
-# Melhor resultado:
-# temp média
-# month
-# RMSE: 37.83918
-# R2: 0.5936414
-# varImp: 12
-# valor-p: < 000.1
-
-p_geral <- gam_plot(
-  ajustes[[1]]$finalModel, 
-  ajustes[[1]]$finalModel$smooth[[1]],
-  xlab = ""
-) +
-  ggtitle("Geral")
-
-gam_plot(
-  ajustes[[1]]$finalModel, 
-  ajustes[[1]]$finalModel$smooth[[4]],
-  xlab = ajustes[[1]]$finalModel$smooth[[4]]$term
-)
-
-
 # Idosos
 
 resultados %>% 
@@ -148,23 +119,24 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 29.65548
-# R2: 0.6263659
-# varImp: 11
-# valor-p:  0.003
+# RMSE: 29.29343
+# R2: 0.6460317
+# varImp: 13
+# valor-p:  0.048
 
 p_idosos <- gam_plot(
-  ajustes[[2]]$finalModel, 
-  ajustes[[2]]$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina",
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[3]],
+  xlab = "Concentração de ozônio",
   ylab = "Efeito na mortalidade"
 )+
   ggtitle("Idosos")
 
 gam_plot(
-  ajustes[[2]]$finalModel, 
-  ajustes[[2]]$finalModel$smooth[[4]],
-  xlab = ajustes[[2]]$finalModel$smooth[[4]]$term
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[3]],
+  xlab = ajustes[[1]]$finalModel$smooth[[3]]$term,
+  ylab = ""
 )
 
 # Crianças
@@ -177,14 +149,14 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.050102
-# R2: 0.03045240
+# RMSE: 5.116795
+# R2: 0.02948895
 # varImp: 22
-# valor-p: = 1
+# valor-p: = 0.965106083855084
 
 p_criancas <- gam_plot(
-  ajustes[[3]]$finalModel, 
-  ajustes[[3]]$finalModel$smooth[[1]],
+  ajustes[[2]]$finalModel, 
+  ajustes[[2]]$finalModel$smooth[[3]],
   xlab = "Proporção estimada de carros a gasolina",
   ylab = "Efeito na mortalidade"
 ) +

@@ -87,17 +87,17 @@
 \contentsline {subsection}{\numberline {6.1.2}Modelo aditivo Poisson}{106}{subsection.6.1.2}
 \contentsline {subsection}{\numberline {6.1.3}Random forest}{106}{subsection.6.1.3}
 \contentsline {subsection}{\numberline {6.1.4}An\'alises complementares}{107}{subsection.6.1.4}
-\contentsline {section}{\numberline {6.2}Concentra\c c\~ao de oz\^onio e mortalidade}{109}{section.6.2}
-\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{111}{chapter.7}
-\contentsline {section}{\numberline {7.1}Web scraping}{112}{section.7.1}
-\contentsline {subsubsection}{Identificar}{112}{section*.98}
-\contentsline {subsubsection}{Navegar}{112}{section*.99}
-\contentsline {subsubsection}{Replicar}{113}{section*.100}
-\contentsline {subsubsection}{Parsear}{113}{section*.101}
-\contentsline {subsubsection}{Validar}{113}{section*.102}
-\contentsline {subsubsection}{Iterar}{113}{section*.103}
-\contentsline {section}{\numberline {7.2}Dados no Brasil}{113}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{115}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{117}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{119}{appendix*.106}
+\contentsline {section}{\numberline {6.2}Concentra\c c\~ao de oz\^onio e mortalidade}{110}{section.6.2}
+\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{113}{chapter.7}
+\contentsline {section}{\numberline {7.1}Web scraping}{114}{section.7.1}
+\contentsline {subsubsection}{Identificar}{115}{section*.99}
+\contentsline {subsubsection}{Navegar}{115}{section*.100}
+\contentsline {subsubsection}{Replicar}{115}{section*.101}
+\contentsline {subsubsection}{Parsear}{115}{section*.102}
+\contentsline {subsubsection}{Validar}{115}{section*.103}
+\contentsline {subsubsection}{Iterar}{115}{section*.104}
+\contentsline {section}{\numberline {7.2}Dados no Brasil}{116}{section.7.2}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{117}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{119}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{121}{appendix*.107}
 \contentsfinish 
