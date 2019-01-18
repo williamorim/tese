@@ -69,6 +69,36 @@ for(j in 3) {
   )
 }
 
+files <- list.files(
+  path = "data/artaxo-salvo-geiger/cetesb/",
+  full.names = TRUE
+)
+files <- files[str_detect(files, ".csv")]
+files <- files[file.size(files) > 2000]
+
+df_nox <- map_dfr(
+  files, 
+  read_csv,
+  col_types = str_c(rep("c", 9), collapse = "")
+)
+
+df_nox <- df_nox %>% 
+  select(-mass_conc_movel, -date_time, -dayofweek, -valido) %>%
+  mutate(date = ymd(date)) %>%
+  mutate_at(.vars = vars(hour, mass_conc), .funs = funs(as.numeric)) %>% 
+  mutate(
+    stationname = case_when(
+      stationname == "Cid.Universitária-USP-Ipen" ~ "IPEN",
+      stationname == "Grajaú-Parelheiros" ~ "Parelheiros",
+      stationname == "Mauá" ~ "Maua",
+      stationname == "Parque D.Pedro II" ~ "Dom Pedro II",
+      stationname == "São Caetano do Sul" ~ "Sao Caetano do Sul",
+      TRUE ~ stationname
+    )
+  ) %>% 
+  spread(parameter, mass_conc)
+
+write_rds(df_nox, path = "data/artaxo-salvo-geiger/data-nox.rds")
 
 # Transformations ---------------------------------------------------------
 
@@ -144,7 +174,17 @@ df_salvo <-
   inner_join(other_vars, by = c("date", "stationname")) %>% 
   inner_join(afternoon_pp, by = c("date", "stationname"))
 
+df_nox <- read_rds("data/artaxo-salvo-geiger/data-nox.rds")
 
+df_salvo_nox <- df_nox %>%
+  filter(hour %in% 5:11, NOx < 300, NOx > 0) %>%
+  select(date, stationname, NOx) %>% 
+  group_by(date, stationname) %>% 
+  summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
+  ungroup()  %>% 
+  right_join(df_salvo, by = c("stationname", "date")) %>%
+  filter(!is.na(o3_mass_conc), !is.na(NOx), o3_mass_conc > 0.1) %>% 
+  mutate(indice = NOx/o3_mass_conc)
 
 # Validation --------------------------------------------------------------
 
@@ -164,6 +204,11 @@ write_rds(
   compress = "gz" 
 )
 
+write_rds(
+  df_salvo_nox,
+  path = "data/artaxo-salvo-geiger/data-asg-nox.rds", 
+  compress = "gz" 
+)
 
 # Transfor (df_model) --------------------------------------------------
 
@@ -247,10 +292,31 @@ df_model <-
   mutate(siteid = as.factor(siteid)) %>% 
   select(-dv_o3)
 
+
+
+df_nox <- read_rds("data/artaxo-salvo-geiger/data-nox.rds")
+
+df_model_nox <- df_nox %>%
+  filter(hour %in% 5:11, NOx < 300, NOx > 0) %>%
+  select(date, stationname, NOx) %>% 
+  group_by(date, stationname) %>% 
+  summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
+  ungroup()  %>% 
+  right_join(df_model, by = c("stationname", "date")) %>%
+  filter(!is.na(o3_mass_conc), !is.na(NOx), o3_mass_conc > 0.1) %>% 
+  mutate(indice = NOx/o3_mass_conc)
+  
+
 # Saving df_model ---------------------------------------------------------
 
 write_rds(
   df_model,
   path = "data/artaxo-salvo-geiger/data-asg-model.rds", 
+  compress = "gz" 
+)
+
+write_rds(
+  df_model_nox,
+  path = "data/artaxo-salvo-geiger/data-asg-model-nox.rds", 
   compress = "gz" 
 )
