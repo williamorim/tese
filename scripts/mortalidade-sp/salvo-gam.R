@@ -119,10 +119,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 29.2054
-# R2: 0.6478457
-# varImp: 11
-# valor-p: < 000.1
+# RMSE: 15.10263
+# R2: 0.4440485
+# varImp: 13
+# valor-p: 0.21212378890962
 
 p_idosos <- gam_plot(
   ajustes[[1]]$finalModel, 
@@ -131,12 +131,6 @@ p_idosos <- gam_plot(
   ylab = "Efeito na mortalidade"
 )+
   ggtitle("Idosos")
-
-gam_plot(
-  ajustes[[2]]$finalModel, 
-  ajustes[[2]]$finalModel$smooth[[4]],
-  xlab = ajustes[[2]]$finalModel$smooth[[4]]$term
-)
 
 # Crianças
 
@@ -148,10 +142,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.10207
-# R2: 0.0341861
-# varImp: 13
-# valor-p: < 0.50
+# RMSE: 3.238999
+# R2: 0.01031136
+# varImp: 20
+# valor-p: 0.873435434273231
 
 p_criancas <- gam_plot(
   ajustes[[2]]$finalModel, 
@@ -160,13 +154,6 @@ p_criancas <- gam_plot(
   ylab = "Efeito na mortalidade"
 ) +
   ggtitle("Crianças")
-
-gam_plot(
-  ajustes[[3]]$finalModel, 
-  ajustes[[3]]$finalModel$smooth[[4]],
-  xlab = ajustes[[3]]$finalModel$smooth[[4]]$term
-)
-
 
 patchwork::wrap_plots(p_idosos, p_criancas, ncol = 1)
 ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson.pdf", 

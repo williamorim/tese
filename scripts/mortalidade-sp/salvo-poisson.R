@@ -117,10 +117,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 31.04122
-# R2: 0.5929606
-# varImp: 11
-# variação (+10% share): 108.64%
+# RMSE: 15.55117
+# R2: 0.4045783
+# varImp: 13
+# variação (+10% share): 91.01%
 # valor-p: < 000.1
 
 # Crianças
@@ -134,10 +134,10 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.133924
-# R2: 0.02642182
-# varImp: 8
-# valor-p: 0.1944008
+# RMSE: 3.24
+# R2: 0.00720
+# varImp: 11
+# valor-p: 0.6101849
 
 
 # Gráficos de resíduos

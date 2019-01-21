@@ -59,9 +59,9 @@ model <- train(
 
 model
 varImp(model)
-# RMSE: 27.84613
+# RMSE: 15.26366
 # MAE: 21.7684
-# % var: 0.6799401
+# % var: 0.4328288
 # o3 imp: 6ª
 
 pred_obs_plot(
@@ -94,10 +94,10 @@ model <- train(
 model
 model$finalModel
 varImp(model)
-# RMSE: 5.109349
-# MAE: 4.110133
-# % var: 0.0278116%  
-# o3 imp: 3ª
+# RMSE: 3.23273
+# MAE: 2.584559
+# % var: 0.007760021%  
+# o3 imp: 4ª
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_criancas,

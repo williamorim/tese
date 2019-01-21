@@ -59,10 +59,10 @@ model <- train(
 
 model
 varImp(model)
-# RMSE: 27.69438
-# MAE: 21.87697
-# % var: 0.6743066 
-# share_gas imp: 5ª
+# RMSE: 15.08505
+# MAE: 11.91954
+# % var: 0.4451741 
+# share_gas imp: 4ª
 
 pred_obs_plot(
   obs = na.omit(df_model)$n_mortes_idosos,

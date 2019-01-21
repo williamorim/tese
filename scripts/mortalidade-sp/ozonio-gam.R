@@ -119,25 +119,18 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 29.29343
-# R2: 0.6460317
-# varImp: 13
-# valor-p:  0.048
+# RMSE: 15.0972
+# R2: 0.4441417
+# varImp: 17
+# valor-p:  0.540314478265218
 
 p_idosos <- gam_plot(
   ajustes[[1]]$finalModel, 
   ajustes[[1]]$finalModel$smooth[[3]],
   xlab = "Concentração de ozônio",
   ylab = "Efeito na mortalidade"
-)+
+) +
   ggtitle("Idosos")
-
-gam_plot(
-  ajustes[[1]]$finalModel, 
-  ajustes[[1]]$finalModel$smooth[[3]],
-  xlab = ajustes[[1]]$finalModel$smooth[[3]]$term,
-  ylab = ""
-)
 
 # Crianças
 
@@ -149,25 +142,18 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 5.116795
-# R2: 0.02948895
-# varImp: 22
-# valor-p: = 0.965106083855084
+  # RMSE: 3.228938
+# R2: 0.01212845
+# varImp: 16
+# valor-p: = 0.620995015019872
 
 p_criancas <- gam_plot(
   ajustes[[2]]$finalModel, 
   ajustes[[2]]$finalModel$smooth[[3]],
-  xlab = "Proporção estimada de carros a gasolina",
+  xlab = "Concentração de ozônio",
   ylab = "Efeito na mortalidade"
 ) +
   ggtitle("Crianças")
-
-gam_plot(
-  ajustes[[3]]$finalModel, 
-  ajustes[[3]]$finalModel$smooth[[4]],
-  xlab = ajustes[[3]]$finalModel$smooth[[4]]$term,
-  ylab = "Efeito na mortalidade"
-)
 
 
 patchwork::wrap_plots(p_idosos, p_criancas, ncol = 2)
