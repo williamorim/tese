@@ -4,6 +4,7 @@ library(tidyverse)
 library(caret)
 library(recipes)
 library(iml)
+library(patchwork)
 
 # Dados -------------------------------------------------------------------
 
@@ -42,13 +43,13 @@ X <- df_train %>%
 train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
-  gamma = 0.01,
-  min_child_weight = 0.1,
-  nrounds = 200,
+  gamma = 0,
+  min_child_weight = 1,
+  nrounds = 50,
   max_depth = 2,
   eta = 0.3,
-  colsample_bytree = 0.8,
-  subsample = 0.9
+  colsample_bytree = 0.6,
+  subsample = 1
 )
 
 set.seed(5893524)

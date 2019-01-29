@@ -206,6 +206,7 @@ Na Figura \ref{fig:cap-comb-lin-reg-pred-obs-plot}, apresentamos o gráfico dos v
 Nas próxima seções, vamos comparar o resultado obtido pelos autores com outras estratégias de análise, visando obter um ajustes mais precisos e avaliar se as conclusões encontradas pelos autores sem mantêm. Inicialmente, vamos utilizar as mesmas variáveis para explorar modelos mais flexíveis que o modelo de regressão linear. Em seguida, vamos testar novas estratégias de análise, alterando as variáveis e o dimensionamento do problema.
 
 \section{Ajustando outros modelos}
+\label{sec:cap-comb-modelos}
 
 O modelo de regressão linear, embora muito utilizado pela sua simplicidade e interpretabilidade, pode ser muito restritivo, já que faz muitas suposições fortes sobre a relação entre as variáveis. Para avaliar se modelos mais flexíveis são mais adequados para descrever a relação entre a concentração de ozônio e a proporção estimada de carros rodando a gasolina, vamos ajustar modelos aditivos generalizados, modelos de regressão segmentada, uma \textit{random forest} e um \textit{XGBoosting}. A variável resposta e os preditores serão os mesmos utilizados por \cite{Salvo2017}. As performances serão comparadas a partir do RMSE calculado usando validação cruzada 5-\textit{fold}. Também discutiremos como interpretar cada modelo e se as interpretações obtidas corroboram ou não as conclusões dos autores.
 

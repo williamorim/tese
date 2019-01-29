@@ -50,10 +50,11 @@ model
 model$finalModel %>% summary
 varImp(model)
 
-# RMSE: 19.74
-# MAE: 14.96
-# % var: 70.27%  
+# RMSE: 0.6384882
+# % var: 0.5552535  
 # share_gas imp: 15º
+# coef: 0.305
+# valor p: < 0.001
 
 pred_obs_plot(
   obs = log(na.omit(df_model)$indice),

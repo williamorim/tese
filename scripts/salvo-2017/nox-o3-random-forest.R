@@ -65,23 +65,21 @@ model <- train(
 )
 
 model
-# RMSE: 14.11
-# MAE: 10.20
-# % var: 85.72%  
-# share_gas imp: 6ª
-
 model$finalModel
 varImp(model)
+# RMSE: 0.5687838
+# % var: 0.6504149  
+# share_gas imp: 9ª
 
-pred_obs_plot(
-  obs = na.omit(df_model)$o3_mass_conc,
-  pred = predict(model, newdata = na.omit(df_model))
-)
-ggsave(
-  filename = "text/figuras/cap-comb-forest-pred-obs-plot.pdf", 
-  width = 6, 
-  height = 4
-)
+# pred_obs_plot(
+#   obs = na.omit(df_model)$o3_mass_conc,
+#   pred = predict(model, newdata = na.omit(df_model))
+# )
+# ggsave(
+#   filename = "text/figuras/cap-comb-forest-pred-obs-plot.pdf", 
+#   width = 6, 
+#   height = 4
+# )
 
 
 # Interpretação ------------------------------------------------------------

@@ -33,7 +33,7 @@ cria_receita <- function(df_model, formula) {
 
 receitas <- expand.grid(
   mortalidade = c("n_mortes_idosos"),
-  lag = seq(20, 60, 5)
+  lag = seq(1, 30, 1)
 ) %>% 
   as.tibble() %>% 
   mutate(
@@ -121,7 +121,8 @@ resultados %>%
 resultados %>% 
   filter(mortalidade == "n_mortes_idosos") %>% 
   arrange(RMSE) %>% 
-  mutate(blank = "") %>% 
+  top_n(10, -RMSE) %>% 
+  mutate(blank = "", RMSE = round(RMSE, 2)) %>% 
   select(blank, lag, RMSE, R2) %>% 
   mutate(R2 = scales::percent(R2), blank2 = blank) %>% 
   knitr::kable(format = "latex")
@@ -130,7 +131,7 @@ resultados %>%
 # Interpretação ------------------------------------------------------------
 
 df_model_ <- df_model %>% 
-  mutate(share_gas = lag(share_gas, 3)) %>% 
+  mutate(share_gas = lag(share_gas, 10)) %>% 
   na.omit()
 
 df_train <- receitas$receita[[3]] %>%
@@ -179,7 +180,7 @@ p_ale <- ale$plot() +
 
 p_pdp + p_ale
 ggsave(
-  filename = "text/figuras/cap-mort-rf-defasada-graficos-iml.pdf", 
+  filename = "text/figuras/cap-mort-rf-defasada-share-iml.pdf", 
   width = 7, height = 5
 )
 
@@ -206,7 +207,7 @@ make_ccf_df <- function(ccf) {
 df_model %>% 
   select(x = share_gas, y = n_mortes_idosos) %>%
   na.exclude() %>% 
-  calculate_ccf(lag.max = 60) %>% 
+  calculate_ccf(lag.max = 30) %>% 
   make_ccf_df() %>% 
   ggplot(aes(x = lag, ymin = min(0, abs(cc)), ymax = cc)) +
   geom_hline(aes(yintercept = liminf), linetype = 3) +
@@ -214,5 +215,5 @@ df_model %>%
   geom_linerange() +
   theme_bw() +
   labs(x = "Defasagem", y = "Função de correlação cruzada")
-ggsave("text/figuras/cap-mort-ccf.pdf", width = 12, height = 6)
+ggsave("text/figuras/cap-mort-ccf-share.pdf", width = 12, height = 6)
 

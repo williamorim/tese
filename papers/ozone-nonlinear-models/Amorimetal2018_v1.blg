@@ -3,9 +3,14 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Amorimetal2018_v1.aux
 The style file: amsplnat.bst
 Database file #1: ../../../Latex/Bibs/atlas.bib.bib
+I was expecting a `,' or a `}'---line 672 of file ../../../Latex/Bibs/atlas.bib.bib
+ :  
+ :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 You've used 7 entries,
             2865 wiz_defined-function locations,
-            682 strings with 5899 characters,
+            682 strings with 5905 characters,
 and the built_in function-call counts, 2768 in all, are:
 = -- 228
 > -- 133
@@ -44,3 +49,4 @@ warning$ -- 0
 while$ -- 18
 width$ -- 0
 write$ -- 75
+(There was 1 error message)
