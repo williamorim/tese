@@ -139,6 +139,16 @@ ggsave(
   width = 7, height = 5
 )
 
+# ALE (inglês)
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 10)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = "shareE25") +
+  scale_y_continuous(name = "ALE") +
+  ggtitle("XGBoost")
+p_ale
+
+
 # Interpretação para outras variáveis
 
 ale <- FeatureEffect$new(predictor, feature = "tp", grid.size = 10)
@@ -171,3 +181,34 @@ ggsave(
   width = 7, height = 7
 )
 
+# Interpretação para outras variáveis (inglês)
+
+ale <- FeatureEffect$new(predictor, feature = "tp", grid.size = 10)
+p_tp <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Temperature") +
+  scale_y_continuous(name = "ALE")
+
+ale <- FeatureEffect$new(predictor, feature = "hm", grid.size = 10)
+p_hm <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Humidity") +
+  scale_y_continuous(name = "ALE")
+
+ale <- FeatureEffect$new(predictor, feature = "rd", grid.size = 10)
+p_rd <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Radiation") +
+  scale_y_continuous(name = "ALE")
+
+ale <- FeatureEffect$new(predictor, feature = "ws", grid.size = 10)
+p_ws <- ale$plot() + 
+  theme_bw() +
+  labs(x = "Wind speed") +
+  scale_y_continuous(name = "ALE")
+
+wrap_plots(p_tp, p_hm, p_rd, p_ws, nrow = 2)
+ggsave(
+  filename = "text/figuras/cap-comb-xgboost-graficos-clima-ingles-iml.pdf", 
+  width = 7, height = 7
+)

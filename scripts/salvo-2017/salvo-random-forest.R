@@ -135,6 +135,22 @@ ggsave(
 )
 
 
+# ALE (inglês)
+ale <- FeatureEffect$new(predictor, feature = "share_gas", grid.size = 20)
+p_ale <- ale$plot() + 
+  theme_bw() +
+  labs(x = "shareE25") +
+  scale_y_continuous(name = "ALE") +
+  ggtitle("Random forest")
+
+p_ale_r <- p_ale
+
+p_ale_r + p_ale_x
+ggsave(
+  filename = "text/figuras/cap-comb-rf-xgboost-p-ale.pdf",
+  width = 7, height = 5
+)
+
 # Cenários com baixo e alto share -----------------------------------------
 
 prep <- prep(rec, na.omit(df_model))
@@ -169,77 +185,3 @@ ggsave(
   width = 9, 
   height = 6
 )
-
-# Lime --------------------------------------------------------------------
-
-make_explanation <- function(i, explainer, df, n_features = 10) {
-  
-  explanation <- explain(df_explain[i,], explainer, n_features = n_features) %>% 
-    select(
-      feature, 
-      feature_value,
-      feature_weight,
-      prediction
-    ) %>% 
-    mutate(feature_value = as.character(feature_value))
-  
-  if(i%%100 == 0) {
-    print(paste("Another one bites the dust!", i))
-  }
-  
-  explanation
-  
-}
-
-explainer <- lime(
-  na.omit(df_model), 
-  model
-)
-
-df_explain <- na.omit(df_model)
-m <- nrow(df_explain)
-
-explanation <- map_dfr(
-  1:m,
-  make_explanation,
-  explainer = explainer,
-  df = df_explain
-)
-
-# saveRDS(explanation, file = "explanation.rds")
-# explanation <- readRDS("explanation.rds")
-
-# Explicação geral
-explanation %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simples"
-  ) +
-  theme_bw()
-
-ggsave(
-  filename = "text/figuras/cap-comb-rf-explanation.pdf",
-  width = 6,
-  height = 4
-)
-
-# Explicação por estação
-explanation %>% 
-  mutate(
-    stationname = rep(df_explain$stationname, rep(10, length(df_explain$stationname)))
-  ) %>% 
-  filter(feature == "share_gas") %>%
-  mutate(feature_value = as.numeric(feature_value)) %>% 
-  ggplot(aes(x = feature_value, y = feature_weight)) +
-  geom_point() +
-  facet_wrap(~stationname, nrow=10) +
-  labs(
-    x = "Proporção de carros a gasolina",
-    y = "Coeficiente no modelo simple"
-  ) +
-  theme_bw()
-

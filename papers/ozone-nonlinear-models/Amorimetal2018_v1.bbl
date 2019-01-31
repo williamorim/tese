@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{Madronich(2014)}]{SashaMadronich2014}
@@ -33,5 +33,9 @@ M.~T. Ribeiro, S.~Singh, and C.~Guestrin, \textit{``{W}hy should {I} trust
 G.~James, D.~Witten, T.~Hastie, and R.~Tibshirani, \textit{An Introduction to
   Statistical Learning}, Springer Series in Statistics, Springer, New York,
   2013.
+
+\bibitem[{Apley(2016)}]{Apley2016}
+D.~Apley, \textit{Visualizing the effects of predictor variables in black box
+  supervised learning models}, arXiv  (2016).
 
 \end{thebibliography}

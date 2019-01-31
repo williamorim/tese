@@ -109,20 +109,20 @@ We fitted three generalized additive models, the first using the Normal distribu
 
 \begin{table}[h!]
 	\centering
-	\caption{Resultado dos modelos aditivos generalizados utilizados para ajustar os dados de \cite{Salvo2017}.}
+	\caption{Distribution used, root mean square error (RMSE), proportion of the variance explained and five more important variables for the generalized additive models.}
 	\begin{tabular}{M{2cm}|M{1cm}|M{2cm}|M{6cm} N}
 		\hline
-		Distribuição & RMSE & \% var. explicada & Variáveis mais importantes &\\
+		Distribution & RMSE & \% var. explained & More important variables &\\
 		\hline
-		Normal & 19.82 & 70.50 & Temperatura, vento, umidade, radiação e tendência &\\
-		Gama & 20.07 & 69.50 & Temperatura, vento, umidade, radiação e tendência  &\\
-		Normal inversa & 29.28 & 45.30 & Temperatura, radiação, umidade, vento e tendência &\\
-		\hline
+		Normal & 19.82 & 70.50 & Temperature, wind speed, humidity, radiation e trend &\\
+		Gamma & 20.07 & 69.50 & Temperature, wind speed, humidity, radiation e trend  &\\
+		Inverse Normal & 29.28 & 45.30 & Temperature, radiation, humidity, wind speed e trend &\\
+		\hline                                                             
 	\end{tabular}
 	\label{tab:cap-comb-resultados-gam}
 \end{table}
 
-The results from the Normal and Gama models were close to those for the linear regression fitted by \cite{Salvo2017}, while the Inverse Normal model got bigger RMSE and lower R$^2$, indicating that this distribution is not appropriated to fit the data. Contrary to the linear regression model, the trend term was held as one of the five most important variables to explain the variability of the ozone concentration in these three models. It presumably happened due to the flexibility of the GAM to represent the non-linearity of this temporal component. The \textit{shareE25} variable was the 13th more important in the Normal model, and the 9th in the Gama model and Inverse Normal model.
+The results from the Normal and Gama models were close to those for the linear regression fitted by \cite{Salvo2017}, while the Inverse Normal model got bigger RMSE and lower R$^2$, indicating that this distribution is not appropriated to fit the data. Contrary to the linear regression model, the trend term was held as one of the five most important variables to explain the variability of the ozone concentration in these three models. It presumably happened due to the flexibility of the GAM to represent the non-linearity of this temporal component. The \textit{shareE25} variable was the 13th more important\footnote{The variable importance measure for these models is the reduction in the generalized cross-validation estimate of error when each predictor's feature is added to the model.} in the Normal model, and the 9th in the Gama model and Inverse Normal model.
 
 The usual method to interpret the generalized additive models is to plot each predictor by its estimated non-linear function. Figure \ref{fig:comb-gam-plot} shows this plot for the \textit{shareE25} variable, suggesting a non-linear relation between this variable and the concentration of ozone: positive in the extremes (10\% - 20\% and 60\% - 80\%) and negative in the center (20\% - 60\%).
 
@@ -143,33 +143,53 @@ To evaluate the variability of the estimates, we also followed the strategy in \
 	\label{fig:comb-gam-plot-bs}
 \end{figure}
 
-The table \ref{tab:cap-comb-resultados-random-forest} shows the results of the random forest model. As expected we obtained a lower test error (RMSE = 14.11) and higher R$^2$ (85.72) than the linear regression and the additive models. The five most important predictors were: temperature, humidity, radiation, wind speed e trend, just like in the GAM. The \textit{shareE25} was the 6th most important variable. 
+The table \ref{tab:cap-comb-resultados-random-forest} shows the results of the random forest e XGBoost models. As expected we obtained lower test errors (14.11 and 12.24) and higher R$^2$ (85.72 and 88.56) than the linear regression and the additive models. The five most important predictors for both models were: temperature, humidity, radiation, wind speed e trend, just like in the GAM. The \textit{shareE25} was the 6th most important variable. 
 
 \begin{table}[h!]
 	\centering
-	\caption{Random forest model results for the \cite{Salvo2017} data. The hyperparameters for minimal node size and number of predictors sampled in each tree were chosen by cross validation.}
-	\begin{tabular}{M{2cm}|M{3cm}|M{2cm}|M{2cm}|M{5cm} N}
+	\caption{Root mean square error (RMSE), proportion of the variance explained and five most important variables for the random forest and the XGBoost models. The hyperparameters of this models were set using 5-fold cross validation.}
+	\begin{tabular}{M{2cm}|M{2cm}|M{2cm}|M{6cm} N}
 		\hline
-		Minimal node size  & Number of predictors sample & RMSE & \% var. explained & Most important variables & \\
+		Model  & RMSE & \% var. explained & Most important variables & \\
 		\hline
-		1 & 48  & 14.11 & 85.72 & Temperature, humidity, radiation, wind speed e trend & \\
+		Random forest & 14.11 & 85.72 & \multirow{1}{6cm}{Temperature, humidity, radiation, wind speed and trend} & \\ 
+		XGBoost & 12.24 & 88.56 & & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-comb-resultados-random-forest}
 \end{table}
 
-Although we have a more precise fit, we can not directly access  the relation between the \textit{shareE25} and the ozone concentration, i.e., we don't know if this predictor is statistically significant to explain the variability of the ozone levels and the direction of this supposed association. To solve this problem, we used the LIME technique to interpret the results of the random forest. With this goal in mind, we chose to evaluate the \textit{shareE25} effect on the 100 days with the lower levels of ozone and the 100 days with the higher levels. Figure \ref{fig:cap-comb-lime-pinheiros} suggests that, for the days with high ozone concentration, the protective effect of the \textit{shareE25} happens mostly when more then 50\% of the fleet is burning gasoline. The same happens on the days with lower ozone concentration. This pattern support the hypothesis of non-linear relation between these ozone concentration and ethanol/gasoline burning.
+Although we have more precise fits, we can not directly access the relation between the \textit{shareE25} and the ozone concentration, i.e., we don't know if this predictor is statistically significant to explain the variability of the ozone levels and the direction of this supposed association. To solve this problem, we used a graphic technique called \textit{accumulated local effects} (ALE) plot \citep{Apley2016}.
+
+The ALE plot for the random forest in the left panel of the Figure \ref{fig:cap-comb-rf-xgboost-p-ale} shows a \textit{shareE25} effect very similar of the one suggest by the additive model. However, the ALE plot for the XGBoost (in the right panel) does not show a clear relation between the variables. Moreover, it suggests now that the variables could be positively associated.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{cap-comb-lime-pinheiros.pdf}
-	\caption{\textit{shareE25} against the estimated coefficient for this predictor in the simple model used in LIME (ridge regression). On the left, the 100 days with lower ozone concentration. On the right, the 100 days with higher ozone concentration.}
-	\label{fig:cap-comb-lime-pinheiros}
+	\includegraphics[width=0.7\linewidth]{cap-comb-rf-xgboost-p-ale.pdf}
+	\caption{ALE plots of the \textit{shareE25} predictor for the random forest and XGBoost. The y-axis gives us the main effect of the \textit{shareE25} at a certain value compared to the average prediction of the data.}
+	\label{fig:cap-comb-rf-xgboost-p-ale}
 \end{figure}
 
+To evaluate the interpretations suggested by the ALE plots, the Figure \ref{fig:cap-comb-xgboost-graficos-clima-ingles-iml} shows these plots for the climates variables: temperature, humidity, radiation and wind speed. The interpretation found for each predictor is plausible with the available knowledge about the tropospheric ozone formation:  temperature and radiation are positively associated while wind speed and humidity are negatively associated.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{cap-comb-xgboost-graficos-clima-ingles-iml.pdf}
+	\caption{ALE plots of the climate predictors for the XGBoost. The y-axis gives us the main effect of these variables at a certain value compared to the average prediction of the data.}
+	\label{fig:cap-comb-xgboost-graficos-clima-ingles-iml}
+\end{figure}
 
 \section{Discussion}
+
+The analysis conducted in this work suggests that the relation between the ozone concentration in the city of Sao Paulo and the \textit{shareE25} is highly non-linear, and then it is not appropriate to use a linear model on the attempt to explain it.
+
+All the non-linear models apply to the data indicated a non-linear association, with abrupt increases and decreases of the effect of the \textit{shareE25} in the ozone concentration. Also, different models point in different directions: while the additive models and the random forest suggested a general negative association, the XGBoost suggested a positive association. 
+
+The findings here advocate for two hypotheses: (1) the relation between the use of ethanol/gasoline and ozone formation is too complex and cannot be fitted by the models considered and/or it does not have a practical explanation; or (2) the \textit{shareE25} variable does not quite capture the real proportion of cars burning gasoline in the city and the associations found by the models are spurious.
+
+Supporting the first hypothesis is known complex process behind the tropospheric ozone formation and the non-linear effect suggest by the models. The second hypothesis is supported by the different results found throughout the analysis and the possible measurement error in the \textit{shareE25} variable and the strong supposition of considering only one measure for the whole city.
+
+Considering also the practical relevance of the study, a decrease of 8.3 $\mu g/m^3$ in the daily mean ozone concentration pointed by \cite{Salvo2017} when \textit{shareE25} raises from 30\% to 80\% would decrease the mean ozone concentration found in the sample only from 72.2 to 63.9 $\mu g/m^3$. Even if the linear model is in fact expressing the true relation between these variables, while a very important finding, it could not be sufficient to motivate public policies to reduce ethanol emissions. Furthermore, the impact of a average 8.3 $\mu g/m^3$ decrease in ozone levels in morbidity and mortality must be evaluated to better access this issue. 
 
 %\newpage
 %\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}
