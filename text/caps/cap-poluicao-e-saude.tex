@@ -207,29 +207,30 @@ Na Tabela \ref{tab:cap-indice-resultados} apresentamos os resultados dos modelos
 
 Esses resultados sugerem que a associação entre a proporção de carros a gasolina e a relação NO$_\textnormal{x}$/O$_3$ não é muito clara, assim como observado nos modelos do Capítulo 5 para a concentração de ozônio. Na próxima seção, vamos investigar agora a relação desses poluentes diretamente na mortalidade.
 
-\section{Concentração de ozônio e mortalidade}
+\section{Concentração de O$_3$ e NO$_\textnormal{x}$ e mortalidade}
 
-Nesta seção, apresentaremos os resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio diretamente como preditor. O objetivo é comparar esses resultados com aqueles obtidos nas seções anteriores para avaliar se a proporção estimada de carros a gasolina estaria representando bem o efeito da poluição por ozônio na mortalidade.
+Nesta seção, apresentaremos os resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de O$_3$ e NO$_\textnormal{x}$ diretamente como preditores. O objetivo é comparar esses resultados com aqueles obtidos nas seções anteriores para avaliar se a proporção estimada de carros a gasolina estaria representando bem o efeito desses poluentes na mortalidade.
 
-Os modelos ajustados aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil. A concentração de ozônio utilizada foi a média diária para toda a cidade, calculada a partir das medidas das 12 estações consideradas por \cite{Salvo2017}.
+Os modelos ajustados aqui consideraram como controle os seguintes preditores: temperatura, umidade, tendência, mês do ano, dia da semana e variável indicadora de dia útil. As concentrações de ozônio e óxidos de nitrogênio utilizadas foram as médias diárias para toda a cidade, calculada a partir das medidas das 6 estações dentre as 12 consideradas por \cite{Salvo2017} que mediam ambos os poluentes.
 
-A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que nenhum modelo indica associação entre mortalidade em idosos ou crianças e concentração de ozônio. Para a \textit{random forest}, a interpretação desse coeficiente apresentada na Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml} não mostra uma relação clara.
+A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajustados. Observamos que nenhum modelo indica associação entre mortalidade em idosos ou crianças e concentração de ozônio. Por outro lado, todos indicaram relação positiva entre a concentração de NO$_\textnormal{x}$ e mortalidade em idosos. Entre os três modelos considerados, o que obteve melhor ajuste foi o modelo aditivo. Pelas Figuras \ref{fig:cap-mort-gam-plot-poisson-ozonio} e \ref{fig:cap-mort-ozonio-rf-graficos-iml}, observamos que tanto o modelo aditivo quanto a \textit{random forest} sugerem formas semelhantes para o efeito do NO$_\textnormal{x}$ na mortalidade em idosos.
 
 \begin{table}[h!]
 	\centering
 	\caption{Resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio como preditor.}
-	\begin{tabular}{M{3cm}|M{2cm}|M{2cm}|M{3cm}|M{4cm} N}
+	\begin{tabular}{M{3cm}|M{1.5cm}|M{1.5cm}|M{1.5cm}|M{3cm}|M{3cm} N}
 		\hline
-		Modelo & Grupo & RMSE & \% var. explicada & Relação com a mortalidade (valor-p) & \\
+		\multirow{2}{1cm}{Modelo} & \multirow{2}{1cm}{Grupo} & \multirow{2}{1cm}{RMSE} & \multirow{2}{1.5cm}{\% var. explicada} & \multicolumn{2}{c}{Relação com a mortalidade (valor-p)} & \\
+		& & & & O$_3$ & NO$_\textnormal{x}$ & \\
 		\hline
-		\multirow{2}{2.5cm}{Linear Poisson} & Idosos & 15.57 & 40.32 & Não há (0.97) & \\
-		& Crianças & 3.25 & 0.53 & Não há (0.18) & \\
+		\multirow{2}{2.5cm}{Linear Poisson} & Idosos & 15.44 & 41.21 & Não há (0.94) & Positiva (< 0.01) & \\
+		& Crianças & 3.25 & 0.56 & Não há (0.61) & Não há (0.61) & \\
 		\hline
-		\multirow{2}{2.9cm}{Aditivo Poisson} & Idosos & 15.10 & 44.41 & Não há (0.54) & \\
-		& Crianças & 3.23 & 1.21 & Não há (0.62) & \\
+		\multirow{2}{2.9cm}{Aditivo Poisson} & Idosos & 15.02 & 44.93 & Não há (0.99) & Positiva (< 0.01) & \\
+		& Crianças & 3.23 & 1.21 & Não há (0.80) & Não há (0.91) & \\
 		\hline
-		\multirow{2}{2.9cm}{\textit{Random forest}} & Idosos & 15.26 & 43.28 & - & \\
-		& Crianças & 3.23 & 0.72 & - & \\
+		\multirow{2}{2.9cm}{\textit{Random forest}} & Idosos & 15.20 & 44.63 & - & - & \\
+		& Crianças & 3.23 & 0.72 & - & - & \\
 		\hline
 	\end{tabular}
 	\label{tab:cap-mort-res-ozonio}
@@ -238,18 +239,29 @@ A Tabela \ref{tab:cap-mort-res-ozonio} apresenta os resultados dos modelos ajust
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-gam-plot-poisson-ozonio.pdf}
-	\caption{Gráfico da função não-linear estimada pelos modelos aditivos generalizados para a proporção estimada de carros a gasolina.}
+	\caption{Gráfico da função não-linear estimada pelos modelos aditivos generalizados para as concentrações de ozônio e de óxidos de nitrogênio.}
 	\label{fig:cap-mort-gam-plot-poisson-ozonio}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml.pdf}
-	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para a concentração de ozônio.}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para as concentrações de ozônio e de óxidos de nitrogênio.}
 	\label{fig:cap-mort-ozonio-rf-graficos-iml}
 \end{figure}
 
-%Os resultados apresentados aqui indicam uma relação bem clara entre a concentração de ozônio e mortalidade. Isso sugere que, se a proporção de carros a gasolina e a concentração de ozônio tivessem uma relação simples (linear, por exemplo) esperaríamos que os modelos ajustados na seção anterior reproduzissem uma relação próxima a encontra aqui (mesmo que contrária) entre a proporção estimada de carros a gasolina e a mortalidade em idosos. 
- 
-%Podemos concluir que o a concentração de ozônio está associado com um aumento na mortalidade em idosos e, em embora o modelo aditivo Poisson e a \textit{random forest} indiquem uma associação negativa entre proporção de carros a gasolina e a mortalidade (principalmente por meio do modelo com o preditor defasado em 3 dias), a forma dessa relação não é muito clara, o que deixa difícil encontrar uma explicação prática e distinguir esse possível efeito de uma correlação espúria.
+Os resultados encontrados indicam que a mortalidade em idosos aumenta com a concentração de NO$_\textnormal{x}$. Se a proporção estimada de carros a gasolina fosse uma boa representante da relação entre ozônio e óxidos de nitrogênio, esperaríamos que a mortalidade em idosos aumentasse também com o número de carros a gasolina. No entanto, embora os modelos da seção anterior mostrem sugerirem que esse preditor represente o balanço  NO$_\textnormal{x}$/O$_3$, nossa análise anterior encontrou uma associação negativa entre a proporção estimada de carros a gasolina e a mortalidade em idosos.
+
+Mais uma vez, assim como no capítulo anterior, a falta de robustez nos resultados pode apontar para diversas direções: ausência de preditores importantes, erros de medida ou problemas com as suposições por trás da proporção estimada de carros a gasolina ou até mesmo a impossibilidade dos modelos considerados explicarem um fenômeno inerentemente complexo.
+
+Para finalizar, ajustamos também \textit{random forest} com os valores de O$_3$ e NO$_\textnormal{x}$ defasados até 30 dias. Dentre as defasagens com menores RMSE, destacamos a de 1 dia, com RMSE igual a 14.90 e proporção da variabilidade explicada igual a 45.98\%. Pela Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml-lag}, vemos que o modelo sugere relação positiva tanto do O$_3$ quanto do NO$_\textnormal{x}$ com a mortalidade em idosos.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml-lag.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para as concentrações de ozônio e de óxidos de nitrogênio defasadas em 1 dia.}
+	\label{fig:cap-mort-ozonio-rf-graficos-iml-lag}
+\end{figure}
+
+\section{Efeino na mortalidade por doenças respiratórias e cardiovasculares}
 

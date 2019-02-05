@@ -16,7 +16,7 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 cria_formula <- function(mort, temp, sazon) {
   
-  padrao <- "o3_mass_conc + hm + trend + dayofweek + dv_workday"
+  padrao <- "o3_mass_conc + NOx + hm + trend + dayofweek + dv_workday"
   
   
   padrao %>% 
@@ -82,17 +82,21 @@ extrai_resultados <- function(ajuste, preditor) {
     .$importance %>% 
     rownames_to_column("var") %>%
     mutate(n = row_number(desc(Overall))) %>% 
-    filter(var == preditor) %>% 
+    filter(var %in% preditor) %>% 
+    arrange(var) %>% 
     .$n
+  
+  aux <- paste0("s(", preditor, ")")
   
   valor_p <- ajuste %>% 
     .$finalModel %>% 
     broom::tidy() %>% 
-    filter(str_detect(term, preditor)) %>% 
-    magrittr::extract(c("p.value")) %>% 
-    as.list()
+    filter(term %in% aux) %>% 
+    arrange(term) %>%
+    .$p.value
   
   res = tibble(
+    predictor = preditor,
     RMSE = ajuste$results$RMSE,
     R2 = ajuste$results$Rsquared,
     MAE = ajuste$results$MAE,
@@ -105,9 +109,9 @@ extrai_resultados <- function(ajuste, preditor) {
 resultados <- map_dfr(
   ajustes,
   extrai_resultados,
-  preditor = "o3_mass_conc"
+  preditor = c("NOx", "o3_mass_conc")
 ) %>% 
-  bind_cols(formulas, .)
+  bind_cols(slice(formulas, c(1, 1, 2, 2)), .)
 
 # Idosos
 
@@ -119,18 +123,28 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 15.0972
-# R2: 0.4441417
-# varImp: 17
-# valor-p:  0.540314478265218
+# RMSE: 15.02218
+# R2: 0.4492839
+# varImp O3: 23
+# varImp NOX: 9
+# valor-p O3: 1
+# valor-p NOX: < 0.001
 
-p_idosos <- gam_plot(
+p_idosos_o3 <- gam_plot(
   ajustes[[1]]$finalModel, 
   ajustes[[1]]$finalModel$smooth[[3]],
   xlab = "Concentração de ozônio",
   ylab = "Efeito na mortalidade"
 ) +
-  ggtitle("Idosos")
+  ggtitle("Ozônio (Idosos)")
+
+p_idosos_nox <- gam_plot(
+  ajustes[[1]]$finalModel, 
+  ajustes[[1]]$finalModel$smooth[[2]],
+  xlab = "Concentração de NOx",
+  ylab = "Efeito na mortalidade"
+) +
+  ggtitle("NOx (Idosos)")
 
 # Crianças
 
@@ -142,20 +156,37 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-  # RMSE: 3.228938
-# R2: 0.01212845
-# varImp: 16
-# valor-p: = 0.620995015019872
+  # RMSE: 3.228937
+# R2: 0.01212866
+# varImp O3: 19
+# varImp NOX: 21
+# valor-p O3: 0.80
+# valor-p NOX: 0.91
 
-p_criancas <- gam_plot(
+p_criancas_o3 <- gam_plot(
   ajustes[[2]]$finalModel, 
   ajustes[[2]]$finalModel$smooth[[3]],
   xlab = "Concentração de ozônio",
   ylab = "Efeito na mortalidade"
 ) +
-  ggtitle("Crianças")
+  ggtitle("Ozônio (Crianças)")
+
+p_criancas_nox <- gam_plot(
+  ajustes[[2]]$finalModel, 
+  ajustes[[2]]$finalModel$smooth[[2]],
+  xlab = "Concentração de NOx",
+  ylab = "Efeito na mortalidade"
+) +
+  ggtitle("NOx (Crianças)")
 
 
-patchwork::wrap_plots(p_idosos, p_criancas, ncol = 2)
+patchwork::wrap_plots(
+  p_idosos_o3, 
+  p_idosos_nox,
+  p_criancas_o3,
+  p_criancas_nox, 
+  ncol = 2
+)
+
 ggsave(filename = "text/figuras/cap-mort-gam-plot-poisson-ozonio.pdf", 
        width = 8, height = 4)

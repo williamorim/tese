@@ -16,7 +16,7 @@ source("scripts/salvo-2017/salvo-utils.R")
 
 cria_formula <- function(mort, temp, sazon) {
   
-  padrao <- "o3_mass_conc + hm + trend + dayofweek + dv_workday"
+  padrao <- "o3_mass_conc + NOx + hm + trend + dayofweek + dv_workday"
   
   
   padrao %>% 
@@ -74,17 +74,20 @@ extrai_resultados <- function(ajuste, preditor) {
     .$importance %>% 
     rownames_to_column("var") %>%
     mutate(n = row_number(desc(Overall))) %>% 
-    filter(var == preditor) %>% 
+    filter(var %in% preditor) %>% 
+    arrange(var) %>% 
     .$n
   
   estimativas <- ajuste %>% 
     .$finalModel %>% 
     broom::tidy() %>% 
-    filter(term == preditor) %>% 
+    filter(term %in% preditor) %>% 
+    arrange(term) %>% 
     magrittr::extract(c("estimate", "p.value")) %>% 
     as.list()
   
   tibble(
+    predictor = sort(preditor),
     RMSE = ajuste$results$RMSE,
     R2 = ajuste$results$Rsquared,
     MAE = ajuste$results$MAE,
@@ -101,9 +104,9 @@ extrai_resultados <- function(ajuste, preditor) {
 resultados <- map_dfr(
   ajustes,
   extrai_resultados,
-  preditor = "o3_mass_conc"
+  preditor = c("NOx", "o3_mass_conc")
 ) %>% 
-  bind_cols(formulas, .)
+  bind_cols(slice(formulas, c(1, 1, 2, 2)), .)
 
 # Idosos
 
@@ -116,11 +119,14 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 15.56526
-# R2: 0.4032064
-# varImp: 21
-# variação (+10 conc): 
-# valor-p: 0.9659869
+# RMSE: 15.44387
+# R2: 0.4120906
+# varImp O3: 22
+# varImp NOX: 8
+# variação O3 (+10 conc): -
+# variação NOX (+10 conc): 132.08
+# valor-p O3: 0.94
+# valor-p NOX: < 0.001
 
 # Crianças
 
@@ -133,10 +139,14 @@ resultados %>%
 # Melhor resultado:
 # temp média
 # month
-# RMSE: 3.24658
-# R2: 0.00529079
-# varImp: 13
-# valor-p: 0.1788591
+# RMSE: 3.245924
+# R2: 0.005596898
+# varImp O3: 12
+# varImp NOX: 15
+# variação O3 (+10 conc): -
+# variação NOX (+10 conc): -
+# valor-p O3: 0.61
+# valor-p NOX: 0.65
 
 
 # Gráficos de resíduos

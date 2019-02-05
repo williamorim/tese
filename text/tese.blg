@@ -14,7 +14,7 @@ format.pages is an unknown function---line 725 of file plainnat-ime.bst
 format.pages is an unknown function---line 873 of file plainnat-ime.bst
 format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
-I was expecting a `,' or a `}'---line 672 of file ../../Latex/Bibs/atlas.bib.bib
+I was expecting a `,' or a `}'---line 681 of file ../../Latex/Bibs/atlas.bib.bib
  :  
  :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
 (Error may have been on previous line)

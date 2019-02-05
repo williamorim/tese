@@ -86,17 +86,18 @@
 \contentsline {subsection}{\numberline {6.1.1}Modelos Poisson e Random Forest}{105}{subsection.6.1.1}
 \contentsline {subsection}{\numberline {6.1.2}Random Forest para a s\'erie defasada}{108}{subsection.6.1.2}
 \contentsline {section}{\numberline {6.2}Uso de etanol e a rela\c c\~ao entre oz\^onio e NO$_\textnormal {x}$}{109}{section.6.2}
-\contentsline {section}{\numberline {6.3}Concentra\c c\~ao de oz\^onio e mortalidade}{111}{section.6.3}
-\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{113}{chapter.7}
-\contentsline {section}{\numberline {7.1}Web scraping}{114}{section.7.1}
-\contentsline {subsubsection}{Identificar}{115}{section*.103}
-\contentsline {subsubsection}{Navegar}{115}{section*.104}
-\contentsline {subsubsection}{Replicar}{115}{section*.105}
-\contentsline {subsubsection}{Parsear}{115}{section*.106}
-\contentsline {subsubsection}{Validar}{115}{section*.107}
-\contentsline {subsubsection}{Iterar}{115}{section*.108}
-\contentsline {section}{\numberline {7.2}Dados no Brasil}{116}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{117}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{119}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{121}{appendix*.111}
+\contentsline {section}{\numberline {6.3}Concentra\c c\~ao de O$_3$ e NO$_\textnormal {x}$ e mortalidade}{111}{section.6.3}
+\contentsline {section}{\numberline {6.4}Efeino na mortalidade por doen\c cas respirat\'orias e cardiovasculares}{112}{section.6.4}
+\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{115}{chapter.7}
+\contentsline {section}{\numberline {7.1}Web scraping}{116}{section.7.1}
+\contentsline {subsubsection}{Identificar}{117}{section*.104}
+\contentsline {subsubsection}{Navegar}{117}{section*.105}
+\contentsline {subsubsection}{Replicar}{117}{section*.106}
+\contentsline {subsubsection}{Parsear}{117}{section*.107}
+\contentsline {subsubsection}{Validar}{117}{section*.108}
+\contentsline {subsubsection}{Iterar}{117}{section*.109}
+\contentsline {section}{\numberline {7.2}Dados no Brasil}{118}{section.7.2}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{119}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{121}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{123}{appendix*.112}
 \contentsfinish 

@@ -113,29 +113,36 @@ df %>%
   rename(date = data_obito) %>% 
   write_rds("data/datasus-sim/mort_doencas_criancas.rds")
 
-# Data.frame para modelagem (Salvo, 2017)
+#### Data.frame para modelagem (Salvo, 2017)
 
 df_salvo <- read_rds("data/artaxo-salvo-geiger/dados_originais.rds")
 
-# Ozônio médio na cidade
-
+# Ozônio diário médio na cidade
 ozonio <- df_salvo %>% 
-  group_by(date, hour) %>% 
+  filter(hour %in% 12:16) %>% 
+  group_by(date) %>% 
   summarise(
     o3_mass_conc = mean(o3_mass_conc, na.rm = TRUE)
   ) %>% 
   .$o3_mass_conc
+
+# NOX médio na cidade
+df_nox <- read_rds("data/artaxo-salvo-geiger/data-nox.rds")
+
+nox <- df_nox %>%
+  filter(hour %in% 5:11, NOx < 300, NOx > 0) %>%
+  group_by(date) %>% 
+  summarise_at(vars(NO, NO2, NOx), funs(mean), na.rm = TRUE) %>% 
+  .$NOx
 
 df_salvo <- df_salvo %>%
   filter(siteid == 1) %>% 
   select(
     date, year, month, week, day, dayofweek, dv_publicholiday,
     share_gas,
-    tp, hm,
-    o3_mass_conc
-  ) %>% 
+    tp, hm
+  ) %>%
   mutate(
-    o3_mass_conc = ozonio,
     date = str_c(year, month, day, sep = "-") %>% lubridate::ymd(),
     dv_workday = ifelse(
       dayofweek != c(0, 6) & dv_publicholiday == 0, 1, 0
@@ -143,10 +150,14 @@ df_salvo <- df_salvo %>%
   )
 
 mean_vars <- df_salvo %>%
-  select(date, hm, share_gas, o3_mass_conc) %>% 
+  select(date, hm, share_gas) %>% 
   group_by(date) %>% 
   summarise_all(.funs = funs(mean), na.rm = TRUE) %>% 
-  ungroup()
+  ungroup() %>% 
+  mutate(
+    o3_mass_conc = ozonio,
+    NOx = nox
+  )
 
 temperaturas <- df_salvo %>% 
   group_by(date) %>% 

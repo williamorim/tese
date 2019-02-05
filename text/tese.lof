@@ -76,11 +76,12 @@
 \contentsline {figure}{\numberline {6.6}{\ignorespaces Gr\'aficos de depend\^encia parcial (PDP) e de efeitos acumulados (ALE) da \textit {random forest} para a vari\'avel propor\c c\~ao estimada de carros a gasolina defasada em 3 dias.\relax }}{109}{figure.caption.94}
 \contentsline {figure}{\numberline {6.7}{\ignorespaces S\'eries do \IeC {\'\i }ndice NO$_\textnormal {x}$/O$_3$ de 2008 a 2013 para as 7 esta\c c\~oes na Regi\~ao Metropolitana de S\~ao Paulo que monitoram a concentra\c c\~ao de ambos os poluentes.\relax }}{110}{figure.caption.95}
 \contentsline {figure}{\numberline {6.8}{\ignorespaces S\'eries do \IeC {\'\i }ndice NO$_\textnormal {x}$/O$_3$ de 2008 a 2013 para as 7 esta\c c\~oes na Regi\~ao Metropolitana de S\~ao Paulo que monitoram a concentra\c c\~ao de ambos os poluentes.\relax }}{111}{figure.caption.98}
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Gr\'afico da fun\c c\~ao n\~ao-linear estimada pelos modelos aditivos generalizados para a propor\c c\~ao estimada de carros a gasolina.\relax }}{112}{figure.caption.100}
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Gr\'aficos de depend\^encia parcial (PDP) e de efeitos acumulados (ALE) da \textit {random forest} (idosos) para a concentra\c c\~ao de oz\^onio.\relax }}{112}{figure.caption.101}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Gr\'afico da fun\c c\~ao n\~ao-linear estimada pelos modelos aditivos generalizados para as concentra\c c\~oes de oz\^onio e de \'oxidos de nitrog\^enio.\relax }}{112}{figure.caption.100}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Gr\'aficos de depend\^encia parcial (PDP) e de efeitos acumulados (ALE) da \textit {random forest} (idosos) para as concentra\c c\~oes de oz\^onio e de \'oxidos de nitrog\^enio.\relax }}{113}{figure.caption.101}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Gr\'aficos de depend\^encia parcial (PDP) e de efeitos acumulados (ALE) da \textit {random forest} (idosos) para as concentra\c c\~oes de oz\^onio e de \'oxidos de nitrog\^enio defasadas em 1 dia.\relax }}{114}{figure.caption.102}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces O fluxo do web scraping.\relax }}{114}{figure.caption.102}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Mapa de esta\c c\~oes de monitoramento dispon\IeC {\'\i }veis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }}{116}{figure.caption.109}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Exemplo de visualiza\c c\~ao do portal AirVisual para a esta\c c\~ao Parque Dom Pedro II, em S\~ao Paulo.\relax }}{118}{figure.caption.110}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces O fluxo do web scraping.\relax }}{116}{figure.caption.103}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Mapa de esta\c c\~oes de monitoramento dispon\IeC {\'\i }veis na Plataforma de Qualidade do Ar do Instituto de Energia e Meio Ambiente.\relax }}{118}{figure.caption.110}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Exemplo de visualiza\c c\~ao do portal AirVisual para a esta\c c\~ao Parque Dom Pedro II, em S\~ao Paulo.\relax }}{120}{figure.caption.111}
 \addvspace {10\p@ }
 \contentsfinish 
