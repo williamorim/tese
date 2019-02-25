@@ -44,13 +44,15 @@ Paulo H.N. Saldiva \\
 
 Bio-ethanol, a quasi-renewable fuel widely used in some countries as a cleaner option than gasoline, has been in the focus of the energy agenda since the European Commission stated that by 2050 the European Union should cut 20\% of the greenhouse gas emissions relatively to 1990 levels and increase to 20\% the amount of renewable energy used.
 
-The ethanol/gasoline shift as vehicles fuel is directly associated with the atmospheric balance of nitrate oxides (NOx) and organic volatile composts (VOCs), since gasoline burning generates more NOx and ethanol evaporation and partial burning generates more VOCs. This balance is an important component to describe the tropospheric ozone formation along the day \cite{SashaMadronich2014}. 
+The ethanol/gasoline shift as vehicles fuel is directly associated with the atmospheric balance of nitrate oxides (NOx) and organic volatile composts (VOCs), since gasoline burning generates more NOx while partial burning of ethanol and its evaporation generates more VOCs. This balance is an important component to describe the tropospheric ozone formation along the day \citep{SashaMadronich2014}. 
 
-In the past years, some have discussed the actual impact of shifting gasoline to ethanol as primary fuel in bi-fuel light-duty vehicles. \cite{Salvo2014} showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.
+In the past years, some studies have discussed the actual impact of shifting gasoline to ethanol as primary fuel in bi-fuel light-duty vehicles. \cite{Salvo2014} showed that ozone concentration decreased as the share of bi-fuel vehicles burning gasoline rose from 14 to 76$\%$ in São Paulo, Brazil, analyzing data from 2008 to 2011, and shed a valid concern about whether ethanol is a safer substitute for gasoline with respect to its relation with ozone concentration.
 
-Besides ozone, particulate matter has also been subject of many air pollution studies, mostly for the lack of regulation, lack of a safe threshold, and its effects on public health. \cite{Salvo2017} extended this work analyzing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion for ozone concentration, but they observed that ambient number concentrations of 7?100nm diameter particles (ultra-fine particles) rise along with the use of gasoline.
+Besides ozone, particulate matter has also been subject of many air pollution studies, mostly for the lack of regulation, lack of a safe threshold, and its effects on public health. \cite{Salvo2017} extended this work analyzing data from 2008 to 2013 and other pollutants, like fine particles. The authors reached the same conclusion for ozone concentration, but they observed that ambient number concentrations of 7-100nm diameter particles (ultra-fine particles) rise along with the use of gasoline.
 
-This work has as primary goals (1)  analyze if the association between ozone and the estimated proportion of vehicles burning gasoline is in fact linear and (2) investigate the association between mortality and the estimated proportion of vehicles burning gasoline. To reach this goals, we used more sophisticated non-linear models, such as generalized addictive models and random forests, as well the LIME method to interpret the results of the latter.
+This work has as primary goal to analyze if the association between ozone and the estimated proportion of vehicles burning gasoline is in fact linear or it can be better describe with more sophisticated non-linear models, such as generalized additive models, and algorithmic models, such as random forests and XGBoost.
+
+%and (2) investigate the association between mortality and the estimated proportion of vehicles burning gasoline. To reach this goals, we used more sophisticated non-linear models.
 
 
 \section{Pollution, weather and traffic data}
@@ -59,19 +61,21 @@ The data used in this study was collected, organized and provide by \cite{Salvo2
 
 The \textit{shareE25} variable was estimated using information on the price of ethanol at the pump and the motorist-level revealed-choice survey data \citep{Salvo2013}. Such values were estimated weekly for the entire city, implying that the proportion of bi-fuel vehicles running on E25 was the same for all the monitoring stations where the pollutants were recorded hourly.
 
-The air pollution and meteorologic data was measured hourly in several monitoring stations along the city  maintained by the environmental authority of the state of São Paulo (CETESB). The traffic data, also measured hourly, was provided by the city traffic authority (CET).
+The air pollution and meteorologic data, namely ozone concentration, temperature, solar radiation, humidity, wind speed and precipitation, was measured hourly in several monitoring stations along the city  maintained by the environmental authority of the state of São Paulo (CETESB). The traffic data, also measured hourly, was provided by the city traffic authority (CET).
 
-More information about the data can be found in supplementary information of \cite{Salvo2014} and \cite{Salvo2017}.
+We also consider calendar data: day of week, week of year and indicators for public holidays and year end vacations.
+
+More information about the data can be found in supplementary information of \cite{Salvo2017}.
 
 \section{Statistical analysis}
 
 To analyze the effect of the \textit{shareE25} variation on the ozone levels, \cite{Salvo2017} used a linear regression model, which assumes that the relation between this to variables is the same for all the values of \textit{shareE25}.
 
-To investigate the linearity assumption, we applied two non-linear models on the exactly same variables considered by the authors. The first is the well established \textit{generalized additive model} \citep{Hastie2008}, which allows one to associate each one of the predictors to the response variable using a non-linear function. The second one is a \textit{bagging} tree model known as \textit{random forest}. This model consider a high number of regression trees and average its results to make predictions. Due to the lack of interpretation,  this type of predictive model is very little used in studies where the main goal is to make associations between variables. To work around this problem, we used a interpretation technique called LIME \citep{Ribeiro2016}.
+To investigate the linearity assumption, we applied three non-linear models on the exactly same variables considered by the authors. The first is the well established \textit{generalized additive model} (GAM), which allows one to associate each one of the predictors to the response variable using non-linear functions. The second one is a \textit{bagging} tree model known as \textit{random forest}. This model consider a high number of different regression trees and average its results to make predictions. The third is a \textit{boosting} model called XGBoost. This model applies regressions trees sequentially to the data, focusing the every fit where the previous model had the higher error.  Due to the lack of interpretation, the latter two models are very little used in studies where the main goal is to make associations between variables. To work around this problem, we used a graphic interpretation technique called \textit{accumulated local effects} (ALE) plot \citep{Apley2016}.
 
-More details about this models can be found in \cite{James2013}.
+More details about this models can be found in \cite{Hastie2008} and \cite{James2013}.
 
-Following \cite{Salvo2017}, we used as response the daily 12pm to 7pm ozone concentration average, excluding the cold months from June to September. We have ozone data available from 12 monitoring stations in the city. We also considered the same predictors as the authors presented in the Table \ref{tab:variaveis-modelo-salvo-2017}.
+Following \cite{Salvo2017}, we used as response the daily 12pm to 5pm ozone concentration average, excluding the cold months from June to September. We have ozone data available from 12 monitoring stations in the city. We also considered the same predictors as the authors presented in the Table \ref{tab:variaveis-modelo-salvo-2017}.
 
 \begin{table}[h!]
 	\centering
@@ -101,7 +105,7 @@ Following \cite{Salvo2017}, we used as response the daily 12pm to 7pm ozone conc
 	\label{tab:variaveis-modelo-salvo-2017}
 \end{table}
 
-The model considered by \cite{Salvo2017} estimated a coefficient of -16.66 $\pm$ 10.01 to the \textit{shareE25} variable, suggesting that the increase of the proportion of cars burnning E25 in the city is associated with the decrease of ozone levels. To compare the models, we used the root mean square error estimated by cross validation. We also compute the proportion of variance explained for each model. For the model used by \cite{Salvo2017}, these two quantities were, respectively, 19.74 and 70.65\%.
+The model considered by \cite{Salvo2017} estimated a coefficient of -16.66 $\pm$ 10.01 to the \textit{shareE25} variable, suggesting that an increase of the proportion of cars burnning E25 in the city is associated with a linear decrease of ozone levels. To compare Salvo's results with ours, we used the root mean square error estimated by cross validation and the proportion of variance explained. For the model used by \cite{Salvo2017}, these two quantities were, respectively, 19.74 and 70.65\%.
 
 \section{Results}
 
@@ -112,7 +116,7 @@ We fitted three generalized additive models, the first using the Normal distribu
 	\caption{Distribution used, root mean square error (RMSE), proportion of the variance explained and five more important variables for the generalized additive models.}
 	\begin{tabular}{M{2cm}|M{1cm}|M{2cm}|M{6cm} N}
 		\hline
-		Distribution & RMSE & \% var. explained & More important variables &\\
+		Distribution & RMSE & \% var. explained & 5 most important variables &\\
 		\hline
 		Normal & 19.82 & 70.50 & Temperature, wind speed, humidity, radiation e trend &\\
 		Gamma & 20.07 & 69.50 & Temperature, wind speed, humidity, radiation e trend  &\\
@@ -143,7 +147,7 @@ To evaluate the variability of the estimates, we also followed the strategy in \
 	\label{fig:comb-gam-plot-bs}
 \end{figure}
 
-The table \ref{tab:cap-comb-resultados-random-forest} shows the results of the random forest e XGBoost models. As expected we obtained lower test errors (14.11 and 12.24) and higher R$^2$ (85.72 and 88.56) than the linear regression and the additive models. The five most important predictors for both models were: temperature, humidity, radiation, wind speed e trend, just like in the GAM. The \textit{shareE25} was the 6th most important variable. 
+The Table \ref{tab:cap-comb-resultados-random-forest} shows the results of the random forest and the XGBoost. As expected we obtained lower test errors (14.11 and 12.24) and higher R$^2$ (85.72 and 88.56) than the linear regression and the additive models. The five most important predictors for both models were: temperature, humidity, radiation, wind speed and trend, just like in the GAM. The \textit{shareE25} was the 6th most important variable. 
 
 \begin{table}[h!]
 	\centering
@@ -158,8 +162,6 @@ The table \ref{tab:cap-comb-resultados-random-forest} shows the results of the r
 	\end{tabular}
 	\label{tab:cap-comb-resultados-random-forest}
 \end{table}
-
-Although we have more precise fits, we can not directly access the relation between the \textit{shareE25} and the ozone concentration, i.e., we don't know if this predictor is statistically significant to explain the variability of the ozone levels and the direction of this supposed association. To solve this problem, we used a graphic technique called \textit{accumulated local effects} (ALE) plot \citep{Apley2016}.
 
 The ALE plot for the random forest in the left panel of the Figure \ref{fig:cap-comb-rf-xgboost-p-ale} shows a \textit{shareE25} effect very similar of the one suggest by the additive model. However, the ALE plot for the XGBoost (in the right panel) does not show a clear relation between the variables. Moreover, it suggests now that the variables could be positively associated.
 
@@ -181,13 +183,13 @@ To evaluate the interpretations suggested by the ALE plots, the Figure \ref{fig:
 
 \section{Discussion}
 
-The analysis conducted in this work suggests that the relation between the ozone concentration in the city of Sao Paulo and the \textit{shareE25} is highly non-linear, and then it is not appropriate to use a linear model on the attempt to explain it.
+The analysis conducted in this work suggests that the relation between the ozone concentration in the city of Sao Paulo and the \textit{shareE25} (if it exists) is highly non-linear, and then it is not appropriate to use a linear model in the attempt to explain it.
 
 All the non-linear models apply to the data indicated a non-linear association, with abrupt increases and decreases of the effect of the \textit{shareE25} in the ozone concentration. Also, different models point in different directions: while the additive models and the random forest suggested a general negative association, the XGBoost suggested a positive association. 
 
 The findings here advocate for two hypotheses: (1) the relation between the use of ethanol/gasoline and ozone formation is too complex and cannot be fitted by the models considered and/or it does not have a practical explanation; or (2) the \textit{shareE25} variable does not quite capture the real proportion of cars burning gasoline in the city and the associations found by the models are spurious.
 
-Supporting the first hypothesis is known complex process behind the tropospheric ozone formation and the non-linear effect suggest by the models. The second hypothesis is supported by the different results found throughout the analysis and the possible measurement error in the \textit{shareE25} variable and the strong supposition of considering only one measure for the whole city.
+Supporting the first hypothesis we have the known complex process behind the tropospheric ozone formation and the non-linear effect suggest by the models. The second hypothesis is supported by the different results found throughout the analysis and the possible measurement error in the \textit{shareE25} variable and the strong supposition of considering only one value for the whole city.
 
 Considering also the practical relevance of the study, a decrease of 8.3 $\mu g/m^3$ in the daily mean ozone concentration pointed by \cite{Salvo2017} when \textit{shareE25} raises from 30\% to 80\% would decrease the mean ozone concentration found in the sample only from 72.2 to 63.9 $\mu g/m^3$. Even if the linear model is in fact expressing the true relation between these variables, while a very important finding, it could not be sufficient to motivate public policies to reduce ethanol emissions. Furthermore, the impact of a average 8.3 $\mu g/m^3$ decrease in ozone levels in morbidity and mortality must be evaluated to better access this issue. 
 

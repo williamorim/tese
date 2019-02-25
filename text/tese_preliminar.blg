@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese_preliminar.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 521 of file tese_preliminar.aux
+---line 580 of file tese_preliminar.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -14,50 +14,62 @@ format.pages is an unknown function---line 725 of file plainnat-ime.bst
 format.pages is an unknown function---line 873 of file plainnat-ime.bst
 format.pages is an unknown function---line 889 of file plainnat-ime.bst
 Database file #1: ../../Latex/Bibs/atlas.bib.bib
+I was expecting a `,' or a `}'---line 681 of file ../../Latex/Bibs/atlas.bib.bib
+ :  
+ :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--there's a number but no volume in Beer2011
+Warning--empty journal Em Chavent2009
+You can't pop an empty literal stack for entry Gower1971
+while executing---line 1434 of file plainnat-ime.bst
 You can't pop an empty literal stack for entry Adel2014
 while executing---line 1434 of file plainnat-ime.bst
+Warning--there's a number but no volume in Kalman1960
+Warning--there's a number but no volume in Kalman1961
 Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
-You've used 59 entries,
+Warning--there's a number but no volume in Salvo2013
+Warning--empty institution Em WHO2004
+You've used 95 entries,
             2743 wiz_defined-function locations,
-            1014 strings with 16904 characters,
-and the built_in function-call counts, 26969 in all, are:
-= -- 2328
-> -- 1930
-< -- 35
-+ -- 657
-- -- 597
-* -- 2153
-:= -- 4411
-add.period$ -- 202
-call.type$ -- 59
-change.case$ -- 303
-chr.to.int$ -- 58
-cite$ -- 121
-duplicate$ -- 1015
-empty$ -- 1921
-format.name$ -- 688
-if$ -- 5541
-int.to.chr$ -- 2
+            1251 strings with 24032 characters,
+and the built_in function-call counts, 43905 in all, are:
+= -- 3806
+> -- 3105
+< -- 56
++ -- 1057
+- -- 960
+* -- 3544
+:= -- 7154
+add.period$ -- 326
+call.type$ -- 95
+change.case$ -- 489
+chr.to.int$ -- 93
+cite$ -- 198
+duplicate$ -- 1637
+empty$ -- 3141
+format.name$ -- 1105
+if$ -- 9034
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 73
-newline$ -- 323
-num.names$ -- 236
-pop$ -- 718
+missing$ -- 115
+newline$ -- 518
+num.names$ -- 380
+pop$ -- 1140
 preamble$ -- 1
-purify$ -- 258
+purify$ -- 415
 quote$ -- 0
-skip$ -- 742
+skip$ -- 1187
 stack$ -- 0
-substring$ -- 825
-swap$ -- 62
-text.length$ -- 0
+substring$ -- 1475
+swap$ -- 99
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 564
-warning$ -- 3
-while$ -- 212
+type$ -- 925
+warning$ -- 8
+while$ -- 344
 width$ -- 0
-write$ -- 930
-(There were 8 error messages)
+write$ -- 1493
+(There were 10 error messages)

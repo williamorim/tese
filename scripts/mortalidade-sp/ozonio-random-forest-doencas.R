@@ -16,7 +16,7 @@ df_model <- read_rds("data/datasus-sim/model_mort_diaria_salvo.rds")
 
 cria_formula <- function(mort) {
   
-  padrao <- "o3_mass_conc + hm + tp + trend + dayofweek + dv_workday + month"
+  padrao <- "o3_mass_conc + NOx + hm + tp + trend + dayofweek + dv_workday + month"
   
   padrao %>% 
     str_c(mort, ., sep = " ~ ")
@@ -43,7 +43,7 @@ train_control <- trainControl(method = "cv", number = 5)
 tuning_grid <- expand.grid(
   splitrule = "variance",
   mtry = 13,
-  min.node.size = 5
+  min.node.size = 3
 )
 
 set.seed(5893524)
@@ -53,21 +53,22 @@ model <- train(
   data = na.omit(df_model),
   method = "ranger",
   trControl = train_control,
-  #tuneGrid = tuning_grid,
+  tuneGrid = tuning_grid,
   importance = 'impurity'
 )
 
 model
 varImp(model)
-# RMSE: 15.26366
-# MAE: 21.7684
-# % var: 0.4328288
-# o3 imp: 6ª
+# RMSE: 11.26933
+# MAE: 8.944304
+# % var: 0.4130512
+# o3 imp: 6
+# nox imp: 4
 
-pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_idosos,
-  pred = predict(model, newdata = na.omit(df_model))
-)
+# pred_obs_plot(
+#   obs = na.omit(df_model)$n_mortes_idosos,
+#   pred = predict(model, newdata = na.omit(df_model))
+# )
 
 # Crianças
 
@@ -92,15 +93,15 @@ model <- train(
 )
 
 model
-model$finalModel
 varImp(model)
-# RMSE: 3.23273
-# MAE: 2.584559
-# % var: 0.007760021%  
-# o3 imp: 4ª
+# RMSE: 1.190312
+# MAE: 0.9392175
+# % var: 0.002180552%
+# o3 imp: 3ª
+# nox imp: 4ª
 
 pred_obs_plot(
-  obs = na.omit(df_model)$n_mortes_criancas,
+  obs = na.omit(df_model)$n_mortes_criancas2,
   pred = predict(model, newdata = na.omit(df_model))
 )
 
@@ -118,8 +119,8 @@ train_control <- trainControl(method = "cv", number = 5)
 
 tuning_grid <- expand.grid(
   splitrule = "variance",
-  mtry = 13,
-  min.node.size = 5
+  mtry = 20,
+  min.node.size = 3
 )
 
 model <- train(
@@ -133,25 +134,48 @@ model <- train(
 
 predictor <- Predictor$new(model, data = df_train, y = df_train$n_mortes_idosos2)
 
-# PDP
+# PDP O3
 pdp <- FeatureEffect$new(predictor, feature = "o3_mass_conc", method = "pdp", 
                          grid.size = 20)
-p_pdp <- pdp$plot() + 
+p_pdp_o3 <- pdp$plot() + 
   theme_bw() +
   labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")"))) +
   scale_y_continuous(name = "Mortalidade diária estimada") +
   ggtitle("PDP")
 
-# ALE
+# ALE O3
 ale <- FeatureEffect$new(predictor, feature = "o3_mass_conc", grid.size = 20)
-p_ale <- ale$plot() + 
+p_ale_o3 <- ale$plot() + 
   theme_bw() +
   labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")"))) +
   scale_y_continuous(name = "Diferença em relação à predição média") +
   ggtitle("ALE")
 
-p_pdp + p_ale
+# PDP NOX
+pdp <- FeatureEffect$new(predictor, feature = "NOx", method = "pdp", 
+                         grid.size = 20)
+p_pdp_nox <- pdp$plot() + 
+  theme_bw() +
+  labs(x = expression(paste(NO[x], " (", mu, "g/", m^3, ")"))) +
+  scale_y_continuous(name = "Mortalidade diária estimada") +
+  ggtitle("PDP")
+
+# ALE NOX
+ale <- FeatureEffect$new(predictor, feature = "NOx", grid.size = 30)
+p_ale_nox <- ale$plot() + 
+  theme_bw() +
+  labs(x = expression(paste(NO[x], " (", mu, "g/", m^3, ")"))) +
+  scale_y_continuous(name = "Diferença em relação à predição média") +
+  ggtitle("ALE")
+
+patchwork::wrap_plots(
+  p_pdp_o3, 
+  p_ale_o3,
+  p_pdp_nox,
+  p_ale_nox, 
+  ncol = 2
+)
 ggsave(
-  filename = "text/figuras/cap-mort-ozonio-rf-graficos-iml.pdf", 
-  width = 7, height = 5
+  filename = "text/figuras/cap-mort-ozonio-rf-graficos-iml-doencas.pdf", 
+  width = 7, height = 7
 )

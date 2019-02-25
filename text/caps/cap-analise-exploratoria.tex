@@ -14,11 +14,11 @@
 \end{flushright}
 \vspace{5mm}
 
-A análise exploratória corresponde a etapa ``Visualizar'' do ciclo da ciência de dados (Figura \ref{fig:intro-ciclo}) e caracteriza a primeira tentativa de se extrair informação dos dados. Seu objetivo é gerar conhecimento inicial acerca do fenômeno sob estudo para guiar a etapa de modelagem. Existem diversas maneiras de conduzir uma análise exploratória, e a estratégia aplicada a cada problema depende do tipo de variável com que estamos trabalhando.
+A análise exploratória corresponde à etapa ``Visualizar'' do ciclo da ciência de dados (Figura \ref{fig:intro-ciclo}) e caracteriza a primeira tentativa de se extrair informação dos dados. Seu objetivo é gerar conhecimento inicial acerca do fenômeno sob estudo para guiar a etapa de modelagem. Existem diversas maneiras de conduzir uma análise exploratória, e a estratégia aplicada a cada problema depende do tipo de variável com que estamos trabalhando.
 
-Como estudos de poluição do ar geralmente envolvem \textit{séries temporais}, apresentaremos diversas técnicas para explorar variáveis dessa natureza. Uma visão mais geral sobre a análise exploratória de dados pode ser encontrada em \cite{R4DS2017}.
+Como estudos de poluição do ar geralmente envolvem \textit{séries temporais}, apresentaremos algumas técnicas para explorar variáveis dessa natureza. Uma visão mais geral sobre a análise exploratória de dados pode ser encontrada em \cite{R4DS2017}.
 
-Séries temporais compreendem variáveis observadas repetidas vezes ao longo de grandes períodos de tempo. Por simplicidade computacional, as metodologias usuais para a análise de séries temporais supõem que as observações são realizadas em intervalos equidistantes. Dado que esse é o cenário mais comum na prática, o enfoque deste trabalho será na análise de séries com essa característica. Para a análise de séries com observações não igualmente espaçadas, recomendamos a leitura de \cite{Eckner2018}.
+Séries temporais são variáveis observadas repetidas vezes ao longo de grandes períodos de tempo. Mesmo quando as observações são medidas em intervalos equidistantes, as séries podem apresentar ``buracos'' devidos a observações omissas ou delineamento do estudo. Como as técnicas abordadas nesta tese não supõem observações equidistantes, não discutiremos esse tema com detalhe durante as análises. Para a modelagem de séries com observações não igualmente espaçadas, recomendamos a leitura de \cite{Eckner2018}.
 
 O efeito do tempo nas observações é a grande peculiaridade das séries temporais, gerando características como \textit{tendência}, \textit{sazonalidade} e \textit{autocorrelação}, que influenciam diretamente a escolha do melhor modelo para os dados. A identificação dessas características é fundamental para a análise, o que torna a análise exploratória uma etapa de extrema importância no estudo de séries temporais. Discutiremos esse tópico na Seção \ref{sec:componentes-temporais}.
 
@@ -42,16 +42,16 @@ Sob o contexto de estudos de poluição do ar, apresentaremos nas próximas seções 
 
 Nós construímos gráficos para elucidar informações sobre as variáveis que estão ``escondidas'' na base de dados. Para cumprir esse objetivo, um gráfico precisa ser facilmente compreendido, dado que gráficos muito verbosos podem ser mal interpretados e gerar mais confusão do que esclarecimento.
 
-Embora o conceito de gráfico estatístico seja amplamente conhecido, não há um consenso geral sobre o que realmente é um gráfico e, por consequência, quais as melhores práticas para construí-lo. \cite{Leland2005} atacou esse problema definindo um gráfico estatístico como o mapeamento de variáveis em atributos estéticos de formas geométricas. Essa definição, conhecida como "a gramática dos gráficos", contempla os principais modelos gráficos já conhecidos e abre caminho para a criação de estratégias bem estruturadas para construção de gráficos.
+Embora o conceito de gráfico estatístico seja amplamente conhecido, não há um consenso geral sobre o que realmente é um gráfico e, por consequência, quais as melhores práticas para construí-lo. \cite{Leland2005} atacou esse problema definindo um gráfico estatístico como o mapeamento de variáveis em atributos estéticos de formas geométricas. Essa definição, conhecida como "a gramática dos gráficos", contempla os principais modelos gráficos já conhecidos e abre caminho para a criação de estratégias bem estruturadas para a construção de gráficos.
 
-\cite{Hadley2010}, por exemplo, utilizou a as ideias propostas por \cite{Leland2005} e definiu uma "gramática dos gráficos por camadas"\footnote{\textit{A layered grammar of graphics, em inglês.}}, acrescentando que cada elemento de um gráfico representa uma camada e que o gráfico em si é a sobreposição de todas as suas camadas. O resultado dessa definição foi a origem ao pacote de R \texttt{ggplot2}, sendo uma das melhores ferramentas atuais para criação de gráficos estáticos.
+\cite{Hadley2010}, por exemplo, utilizou a as ideias propostas por \cite{Leland2005} e definiu uma "gramática dos gráficos por camadas"\footnote{\textit{A layered grammar of graphics, em inglês.}}, acrescentando que cada elemento de um gráfico representa uma camada e que o gráfico em si é a sobreposição de todas as suas camadas. O resultado dessa definição foi a origem ao pacote de R \texttt{ggplot2}, sendo uma das melhores ferramentas atuais para criação de gráficos estáticos\footnote{Gráficos dinâmicos, muito utilizados na internet, são normalmente construídos com ferramentas baseadas em \textit{Java Script}, como o D3 e o Highcharts.}.
 
 A visualização mais comum para séries temporais é o \textit{gráfico da série}. Com base na definição criada por Leland, as variáveis mapeadas serão o par ($t$, $Y_t$), as formas geométricas são retas e o atributo estético é a posição dessas retas em um eixo coordenado (com $t$, o tempo, no eixo $x$ e $Y_t$ no eixo $y$). A seguir, apresentamos  alguns exemplos de como construir e interpretar esses gráficos.
 
 \subsection{O gráfico da série}
 \label{sec:grafico-da-serie}
 
-O gráfico da série é uma visualização da variável $Y_t$ contra o tempo. A partir dele, podemos observar a existência de diversos comportamentos, como tendência, sazonalidade e heteroscedasticidade\footnote{Variância não-constante ao longo do tempo.}, sendo a principal técnica de visualização de séries temporais.
+O gráfico da série é um gráfico da variável $Y_t$ contra o tempo. A partir dele, podemos observar a existência de diversos comportamentos, como tendência, sazonalidade e heterocedasticidade\footnote{Variância não constante ao longo do tempo.}, sendo a principal técnica de visualização de séries temporais.
 
 Apesar de ser uma ferramenta de fácil construção e interpretação, quando o volume de dados é muito grande, a simples construção do gráfico da série pode não trazer toda a informação disponível nos dados. Uma boa estratégia nesse cenário é tentar diminuir a complexidade do problema, trabalhando inicialmente com casos particulares e, em seguida, buscar os padrões encontrados nos casos mais gerais.
 
@@ -66,7 +66,7 @@ A base de dados contém medições de ozônio de 12 estações de monitoramento espalh
 	\label{fig:cap-analise-explo-O3-DPII}
 \end{figure}
 
-Como a série é horária, o grande volume de observações pode ocultar alguns padrões. Para avaliar o comportamento da concentração de ozônio ao longo do dia, vamos analisar a concentração média horária dentro do período analisado (Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}). Observamos que o pico de ozônio, em geral, acontece no começo da tarde, das 12 às 16 horas.
+Como a série é horária, o grande volume de observações pode ocultar alguns padrões. Para avaliar o comportamento da concentração de ozônio ao longo do dia, vamos analisar a média de cada hora dentro do período analisado (Figura \ref{fig:cap-analise-explo-O3-DPII-media-horaria}). Observamos que o pico de ozônio, em geral, acontece no começo da tarde, das 12 às 16 horas.
 
 \begin{figure}[h!]
 	\centering
@@ -104,14 +104,14 @@ Muitas vezes, também temos interesse em estudar a relação entre duas séries. Os 
 	\label{fig:cap-analise-explo-O3-NO}
 \end{figure}
 
-Embora plotar o gráfico de duas séries na mesma figura possa trazer informações sobre como essas variáveis estão relacionadas, gráficos de dispersão são mais eficientes nessa tarefa. Na próxima seção, traremos alguns exemplos de como construir e interpretar esses gráficos.
+Embora construir o gráfico de duas séries na mesma figura possa trazer informações sobre como essas variáveis estão relacionadas, gráficos de dispersão são mais eficientes nessa tarefa. Na próxima seção, apresentaremos alguns exemplos de como construir e interpretar esses gráficos.
 
 \subsection{Gráficos de dispersão}
 \label{sec:grafico-de-dispersao}
 
-Gráficos de dispersão são amplamente utilizados na Estatística. Sua principal função é estudar a associação entre duas variáveis, sendo possível levantar indícios sobre a forma, intensidade e direção dessa relação, caso ela exista. Construímos esses gráficos posicionando pontos em um eixo cartesiano, sendo a variável resposta mapeada no eixo $y$ e a variável explicativa no eixo $x$. Podemos também adicionar curvas suavizadas para facilitar a identificação da associação.
+Gráficos de dispersão são amplamente utilizados na Estatística. Sua principal função é estudar a associação entre duas variáveis, sendo possível encontrar indícios sobre a forma, intensidade e direção dessa relação, caso ela exista. Construímos esses gráficos posicionando pontos em um plano cartesiano, sendo a variável resposta mapeada no eixo $y$ e a variável explicativa no eixo $x$. Podemos também adicionar curvas suavizadas para facilitar a identificação da associação.
 
-Na Figura \ref{fig:cap-analise-explo-scatter-ozone-no}, apresentamos o gráfico de dispersão da concentração de ozônio contra a concentração de óxido de nitrogênio, ambas medidas das 12 às 16 horas, de 2008 a 2011. Observamos que a concentração de ozônio decresce exponencialmente conforme a concentração de NO aumenta. É conhecido que o ozônio ao longo da tarde reage com o NO, portanto espera-se que dias de alta concentração de ozônio tenham baixa concentração de NO e vice-versa.
+Na Figura \ref{fig:cap-analise-explo-scatter-ozone-no}, apresentamos o gráfico de dispersão da concentração de ozônio contra a concentração de óxido de nitrogênio, ambas medidas das 12 às 16 horas, de 2008 a 2011. Observamos que a concentração de ozônio decresce de forma exponencial conforme a concentração de NO aumenta. É conhecido que o ozônio ao longo da tarde reage com o NO, portanto espera-se que dias de alta concentração de ozônio tenham baixa concentração de NO e vice-versa.
 
 \begin{figure}[h!]
 	\centering
@@ -136,7 +136,7 @@ Apresentamos agora, na Figura \ref{fig:cap-analise-explo-scatter-ozone-no2}, o g
 	\label{fig:cap-analise-explo-scatter-ozone-no2-morning}
 \end{figure}
 
-Uma limitação dos gráficos de dispersão é não levar em conta o efeito de outras variáveis. Muitas vezes a associação dentre duas variáveis pode ser induzida ou mascarada pela ação de uma terceira. Portanto, é importante termos em mente que a interpretação desses gráficos levanta apenas indícios sobre a associação, que devem ser estudados com mais atenção, eliminando primeiro o possível efeito de outras variáveis.
+Uma limitação dos gráficos de dispersão é não levar em conta o efeito de outras variáveis. Muitas vezes a associação entre duas variáveis pode ser induzida ou mascarada pela ação de uma terceira. Portanto, é importante termos em mente que a interpretação desses gráficos nos dá apenas indícios sobre a associação, que devem ser estudados com mais atenção, eliminando o possível efeito de outras variáveis.
 
 \subsection{Gráficos de distribuição}
 \label{sec:grafico-ridges}
@@ -150,7 +150,7 @@ Muitas vezes queremos observar a distribuição amostral de uma variável. Um gráfi
 	\label{fig:cap-analise-explo-hist-ozone}
 \end{figure}
 
-Quando estamos interessados em, além de observar a distribuição amostral da variável resposta, compará-la entre os níveis de uma variável explicativa, podemos utilizar os \textit{boxplots}. A partir dos quantis da variável resposta, esses gráficos dão uma ideia geral da sua distribuição, para cada nível da variável explicativa. Eles também nos mostram a presença de pontos atípicos, isto é, observações com valores muito abaixo ou muito acima dos valores medianos. Os chamados \textit{ridges graphs} são outra boa alternativa para comparar a distribuição amostral de uma variável entre os níveis de um preditor. Eles são histogramas suavizados e trazem mais informação sobre a forma da distribuição do que os boxplots. Na Figura \ref{fig:cap-analise-explo-ridges-ozone-month}, apresentamos um exemplo desses gráficos. Podemos observar que as máximas de ozônio ocorrem nos meses mais quentes, sendo esses os períodos também de maior variação, provavelmente devido ao efeito conjunto da temperatura e da chuva.
+Quando queremos, além de observar a distribuição amostral da variável resposta, compará-la entre os níveis de uma variável explicativa, podemos utilizar os \textit{boxplots}. A partir dos quantis da variável resposta, esses gráficos dão uma ideia geral da sua distribuição, para cada nível da variável explicativa. Eles também nos mostram a presença de pontos atípicos, isto é, observações com valores muito abaixo ou muito acima dos valores medianos. Os chamados \textit{ridgelines plots} são outra boa alternativa para comparar a distribuição amostral de uma variável para cada nível de um preditor. Eles são histogramas suavizados e trazem mais informação sobre a forma da distribuição do que os boxplots. Na Figura \ref{fig:cap-analise-explo-ridges-ozone-month}, apresentamos um exemplo desses gráficos. Podemos observar que as máximas de ozônio ocorrem nos meses mais quentes, sendo esses os períodos também de maior variação, provavelmente devido ao efeito conjunto da temperatura e da chuva.
 
 \begin{figure}[h!]
 	\centering
@@ -159,16 +159,16 @@ Quando estamos interessados em, além de observar a distribuição amostral da vari
 	\label{fig:cap-analise-explo-ridges-ozone-month}
 \end{figure}
 
-Os gráficos apresentados até aqui geram bastante intuição sobre o comportamento do fenômeno sob estudo, mas seria interessante dispormos de medidas mais objetivas. Nas próximas seções, discutiremos os conceitos de estacionariedade e autocorrelação e como identificar essas características. Além disso, apresentaremos estratégias para conduzir a análise na presença de tendência e sazonalidade.
+Os gráficos apresentados até aqui podem gerar bastante conhecimento sobre o comportamento do fenômeno sob estudo, mas seria interessante dispormos de medidas mais objetivas. Nas próximas seções, discutiremos os conceitos de estacionariedade e autocorrelação e como identificar essas características. Além disso, apresentaremos estratégias para conduzir a análise na presença de tendência e sazonalidade.
 
 \section{Componentes temporais}
 \label{sec:componentes-temporais}
 
-Séries temporais normalmente sofrem influência de componentes temporais que não são causados pelo fenômeno que estamos estudando ou que estão ligados a variáveis que não puderam ser medidas. Imagine, por exemplo, que estamos investigando a associação da concentração de monóxido de carbono com o número de carros rodando no horário de pico na cidade de São Paulo. Sabemos que, historicamente, os níveis de monóxido de carbono vêm diminuindo, enquanto o número de carros na cidade de São Paulo tendem a aumentar. Se não controlarmos por nenhuma outra variável, nossa investigação pode concluir que o aumento do número de carros está diminuindo os níveis do poluente, o que não faria sentido prático pois sabemos que existe uma associação positiva entre as variáveis. Acontece que a diminuição histórica do monóxido de carbono se deve a regulamentações feitas em cima dos combustíveis e dos motores veiculares. Como podemos não ter dados disponíveis para incorporar essa informação no modelo, essa \textit{tendência} decrescente da série precisa ser eliminada ou controlada de alguma forma. Só assim conseguiremos quantificar corretamente o efeito do número de carros na concentração de monóxido de carbono.
+Imagine, por exemplo, que estamos investigando a associação da concentração de monóxido de carbono com o número de carros rodando no horário de pico na cidade de São Paulo. Sabemos que, historicamente, os níveis de monóxido de carbono vêm diminuindo, enquanto o número de carros na cidade de São Paulo tende a aumentar. Se não utilizarmos outras variáveis como controle, nossa investigação pode concluir que o aumento do número de carros está diminuindo os níveis do poluente, o que não faria sentido prático pois sabemos que existe uma associação positiva entre as variáveis. Na realidade, a diminuição histórica do monóxido de carbono se deve às regulamentações dos combustíveis e ao aumento da eficiência dos motores veiculares. Como podemos não ter dados disponíveis para incorporar essa informação no modelo, essa \textit{tendência} decrescente da série precisa ser eliminada ou controlada de alguma forma. Só assim conseguiremos quantificar corretamente o efeito do número de carros na concentração de monóxido de carbono.
 
 Tendências são os componentes temporais mais comuns em séries de tempo. Outro componente muito frequente é \textit{sazonalidade}, que representa comportamento cíclicos em intervalos fixos de tempo. Em estudos de poluição, as estações do ano são a principal causa de sazonalidade.
 
-A seguir discutiremos como identificar e eliminar esses componentes de uma série. No Capítulo \ref{cap:regressao} discutiremos como controlá-las incorporando termos de tendência e sazonalidade no modelo.
+A seguir discutiremos como identificar e eliminar esses componentes de uma série. No Capítulo \ref{cap:regressao}, discutiremos como controlá-las incorporando termos de tendência e sazonalidade ao modelo.
 
 \subsection{Tendência}
 
@@ -177,12 +177,12 @@ A tendência de uma série pode ser eliminada pela utilização da \textit{série de 
 \begin{displaymath}
 \Delta Y_t = Y_t - Y_{t-1}, \quad t = 1, 2, \dots.
 \end{displaymath}
-Ela é utilizada para eliminar uma tendência linear de uma série. A ordem da diferença está associada ao grau da tendência. No caso de uma tendência quadrática, por exemplo, podemos utilizar a diferenciação de segunda ordem
+Ela é utilizada para eliminar uma tendência linear de uma série. A ordem da diferença está associada ao grau da tendência. No caso de uma tendência quadrática, por exemplo, podemos utilizar a diferença de segunda ordem
 
 \begin{displaymath}
 \Delta^2 Y_t = \Delta Y_t - \Delta Y_{t-1}, \quad t = 1, 2, \dots.
 \end{displaymath}
-No caso geral, definimos a diferenciação de ordem $n$ como
+No caso geral, definimos a diferença de ordem $n$ como
 
 \begin{equation}
 \Delta^n Y_t = \Delta^{n-1} Y_t - \Delta^{n-1} Y_{t-1}, \quad t = 1, 2, \dots.
@@ -199,7 +199,7 @@ Como exemplo, observe a Figura \ref{fig:cap-analise-explo-asg-O3-trend}. No pain
 	\label{fig:cap-analise-explo-asg-O3-trend}
 \end{figure}
 
-Uma desvantagem de se utilizar a série de diferenças é a interpretação do modelo, já que a variável resposta ajustada terá sido a diferença entre duas observações consecutivas. As conclusões para essa nova variável nem sempre será interessante.
+Uma desvantagem de se utilizar a série de diferenças é a interpretação do modelo, já que a variável resposta ajustada terá sido a diferença entre duas observações consecutivas. As conclusões para essa nova variável podem não ser de interesse.
 
 \subsection{Sazonalidade}
 
@@ -227,7 +227,7 @@ Para mais informações sobre tendência e sazonalidade, recomendamos a leitura do 
 
 É natural supormos a existência de algum grau de associação entre as observações de uma série temporal coletadas em instantes próximos. Por exemplo, considere a concentração de um poluente medida às nove da manhã em uma certa localidade. Se o valor observado foi alto, as concentrações às oito e às dez da manhã provavelmente também foram altas. Essa informação extraída de $Y_t$ sobre o valor das observações anteriores, $Y_{t-1}, Y_{t-2}, \dots$, ou das seguintes, $Y_{t+1}, Y_{t+2}, \dots$, é chamada de \textit{autocorrelação} ou, neste contexto, \textit{correlação temporal}.
 
-Dependendo da forma como as observações estão associadas, podemos definir diferentes tipos de correlação. Uma das medidas mais simples e mais utilizadas na prática se chama \textit{correlação linear}. Ela supõe que a relação entre as observações pode ser descrita por uma função linear, ou seja, invariante ao valor das observações\footnote{Para mais detalhes sobre a interpretação de linearidade, consulte a Seção \ref{sec:linearidade}.}. Quando outro tipo de relação não for especificada, essa será a definição utilizada neste trabalho para descrevermos a correlação temporal entre as observações.
+Dependendo da forma como as observações estão associadas, podemos definir diferentes tipos de correlação. Uma das medidas mais simples e mais utilizadas na prática se chama \textit{correlação linear}. Ela supõe que a relação entre as observações pode ser descrita por uma função linear, ou seja, invariante com o valor das observações\footnote{Para mais detalhes sobre a interpretação de linearidade, consulte a Seção \ref{sec:linearidade}.}. Quando outro tipo de relação não for especificada, essa será a definição utilizada neste trabalho para descrevermos a correlação temporal entre as observações.
 
 A autocorrelação de uma série pode ser representada pela \textit{função de autocorrelação}, digamos $\rho(s,t)$, que mede a previsibilidade da série no instante $t$, a partir apenas do valor da variável no instante $s$. Essa medida varia no intervalo $[-1,1]$, com os extremos representando uma correlação perfeita entre as observações $Y_t$ e $Y_s$. Se $Y_t$ pode ser perfeitamente predita por $Y_s$ por meio de uma função linear, então a autocorrelação será 1, se a associação for positiva, ou -1, se a associação for negativa.
 
@@ -257,12 +257,12 @@ Na Figura \ref{fig:cap-analise-explo-acf-O3-DPII}, apresentamos a função de auto
 
 Note que se as observações $Y_t$ e $Y_{t-1}$ são correlacionadas, e da mesma forma as observações $Y_{t-1}$ e $Y_{t-2}$, parte da correlação entre $Y_t$ e $Y_{t-2}$ pode ser explicada por $Y_{t-1}$. Como a função de autocorrelação nos dá a correlação total entre $Y_t$ e $Y_{t-2}$, independentemente do fato de parte dela poder ser explicada por $Y_{t-1}$, se quisermos encontrar apenas a variabilidade explicada por $Y_{t-2}$ precisamos utilizar a \textit{função de autocorrelação parcial}. No caso geral, essa função mede a correlação entre as observações $Y_t$ e $Y_{t-m}$, controlando pelas observações intermediárias $Y_{t-1}, Y_{t-2}, \dots, Y_{t-m+1}$.
 
-Na Figura \ref{fig:cap-analise-explo-pacf-O3-DPII}, apresentamos a função de autocorreção parcial da concentração de ozônio, como no exemplo anterior. Podemos observar agora que a maioria das defasagens são não significativas. Mesmo assim, ainda encontramos algumas defasagens altas significativos, indicando que a série realmente apresenta alguma tendência.
+Na Figura \ref{fig:cap-analise-explo-pacf-O3-DPII}, apresentamos a função de autocorreção parcial da concentração de ozônio, como no exemplo anterior. Podemos observar agora que a maioria das defasagens são não significativas. Mesmo assim, ainda encontramos algumas defasagens altas significativas, indicando que a série realmente apresenta alguma tendência.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{figuras/cap-analise-explo-pacf-O3-DPII.pdf}
-	\caption{Função de autocorreção parcial da concentração de ozônio diária média, medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2011, das 12h às 16h. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significantemente diferentes de zero.}
+	\caption{Função de autocorreção parcial da concentração de ozônio diária média, medida na cidade de São Paulo (estação de monitoramento Dom Pedro II), no período de outubro de 2008 a junho de 2011, das 12h às 16h. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significativamente diferentes de zero.}
 	\label{fig:cap-analise-explo-pacf-O3-DPII}
 \end{figure}
 
@@ -275,7 +275,7 @@ Muitas vezes, queremos avaliar a previsibilidade de uma determinada série $Y_t$ 
 \begin{displaymath}
 \rho_{xy}(h) = \frac{\gamma_{xy}(h) }{\sqrt{\gamma_x(0) \gamma_y(0)}},
 \end{displaymath}
-sendo $\gamma_.(h)$ como definido em (\ref{def:sample-autocov}) e
+com $\gamma_.(h)$ como definido em (\ref{def:sample-autocov}) e
 
 \begin{displaymath}
 \gamma_{xy}(h) = \frac{1}{n}\sum_{t=1}^{n-h}(x_{t+h} - \bar{x})(y_{t} - \bar{y})
@@ -286,12 +286,12 @@ Em estudos de poluição do ar, é muito comum a inclusão de variáveis defasadas na
 
 A identificação de quais variáveis defasadas devem entrar na análise pode ser uma tarefa difícil, principalmente quando existe muita incerteza sobre o processo de geração do fenômeno sob estudo. A função de correlação cruzada é uma boa alternativa neste caso. Com ela, podemos avaliar quais são os valores da defasagem $h$ que geram maior correlação entre as séries e utilizá-los para definir as variáveis defasadas.
 
-A Figura \ref{fig:cap2_ccf} apresenta a função de correlação cruzada do ozônio em função da temperatura na estação Parque Dom Pedro II. Ambas as medidas são horárias. Observamos que a maior correlação (após a defasagem zero) é na defasagem -1, isto é, a concentração de ozônio parece ser altamente associada com a temperatura medida uma hora antes. Assim, a temperatura no instante $t-1$ é uma boa candidata para ser incluída no modelo.
+A Figura \ref{fig:cap2_ccf} apresenta a função de correlação cruzada do ozônio contra a temperatura na estação Parque Dom Pedro II. Ambas as medidas são horárias. Observamos que a maior correlação (após a defasagem zero) é na defasagem -1, isto é, a concentração de ozônio parece ser altamente associada com a temperatura medida uma hora antes. Assim, a temperatura no instante $t-1$ é uma boa candidata para ser incluída no modelo.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{ccf_temp.pdf}
-	\caption{Função de correlação cruzada do ozônio em função da temperatura na estação Dom Pedro II (São Paulo) no período de outubro de 2009 a junho de 2011. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significantemente diferentes de zero.}
+	\caption{Função de correlação cruzada do ozônio em função da temperatura na estação Dom Pedro II (São Paulo) no período de outubro de 2009 a junho de 2011. As linhas pontilhadas representam os limites $\pm 2/\sqrt{n}$, sendo $n$ o tamanho da amostra. Valores fora desse intervalo de confiança (95\%) podem ser considerados significativamente diferentes de zero.}
 	\label{fig:cap2_ccf}
 \end{figure}
 
@@ -307,12 +307,12 @@ Utilizando os dados disponibilizados pela Companhia de Ambiental do Estado de Sã
 
 As concentrações de cada poluente foram medidas em estações de monitoramento da CETESB: Osasco, Pinheiros, Parque Dom Pedro II e Ibirapuera. O critério para a escolha foi a disponibilidade de dados para os poluentes escolhidos e o perfil do tráfego de veículos na região das estações. As estações Parque Dom Pedro II e Pinheiros ficam em regiões de tráfego intenso, a primeira no centro da cidade e a segunda próxima à marginal Pinheiros, via expressa que liga as zonas sul, oeste e norte. A estação de Osasco também fica numa região de tráfego intenso e relativamente próxima a duas rodovias. A estação Ibirapuera não é muito afetada pelo tráfego pois fica dentro do Parque Ibirapuera e será utilizada como comparação.
 
-Para construir os gráficos das séries, utilizamos o gráfico apresentado na Figura \ref{fig:cap-explo-medias-diarias} para avaliar a média horária de cada poluente em cada dia da semana. Assim, em vez de utilizarmos as séries horárias, que apresentam sazonalidade diária, construímos as séries da média diária nos horários de pico. Esse gráfico mostra, por exemplo, que os picos de CO acontecem de manhã e no começo da noite e que os níveis desse poluente são bem menores nos fins de semana.
+Para construir os gráficos das séries, utilizamos a Figura \ref{fig:cap-explo-medias-diarias} para avaliar a média horária de cada poluente em cada dia da semana. Assim, em vez de utilizarmos as séries horárias, que apresentam sazonalidade diária, construímos as séries da média diária nos horários de pico. Esse gráfico mostra, por exemplo, que os picos de CO acontecem de manhã e no começo da noite e que os níveis desse poluente são bem menores nos fins de semana.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{cap-explo-medias-diarias.png}
-	\caption{Médias horárias por dia da semana durante o período observado dos poluentes considerados na análise.}
+	\caption{Médias por hora e dia da semana durante o período observado para cada poluentes considerado na análise.}
 	\label{fig:cap-explo-medias-diarias}
 \end{figure}
 

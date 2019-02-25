@@ -213,7 +213,7 @@ patchwork::wrap_plots(
 )
 
 ggsave(
-  filename = "text/figuras/cap-mort-ozonio-rf-graficos-iml-lag.pdf", 
+  filename = "text/figuras/cap-mort-ozonio-rf-graficos-iml-lag-doencas.pdf", 
   width = 7, height = 7
 )
 

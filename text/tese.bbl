@@ -1,4 +1,4 @@
-\begin{thebibliography}{94}
+\begin{thebibliography}{98}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -121,6 +121,12 @@ Marie Chavent, Herv{\'e} Guegan, Vanessa Kuentz, Brigitte Patouille e
 \newblock 20: \penalty0 928--942.
 \newblock URL
   \url{https://hal.archives-ouvertes.fr/hal-00332015/file/Env-2009-preprint.pdf}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Child(2006)]{Child2006}{\bf Child(2006)}
+D~Child.
+\newblock \emph{The Essentials of Factor Analysis}.
+\newblock Bloomsbury Academic Press, 3\textordfeminine{ }edi\c{c}\~{a}o.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Chuang {\rm{\em et~al.}}(2011)Chuang, Mazumdar, Park, Tang, Arena, e
@@ -359,6 +365,12 @@ Adel Javanmard e Andrea Montanari.
 \newblock \emph{arXiv:1301.4240v3 [stat.ME]}.   {\scriptsize Citado na
   p\'{a}g.}
 
+\bibitem[Jolliffe(2002)]{Jolliffe2002}{\bf Jolliffe(2002)}
+I.~T. Jolliffe.
+\newblock \emph{Principal Component Analysis}.
+\newblock Springer Series in Statistics. Springer, 2\textordfeminine{
+  }edi\c{c}\~{a}o.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Kalman(1960)]{Kalman1960}{\bf Kalman(1960)}
 R.~E. Kalman.
 \newblock A new approach to linear filtering and prediction problems.
@@ -548,6 +560,15 @@ Gabriela Polezer, Yara~S. Tadano, Hugo~V. Siqueira, Ana~F.L. Godoi, Carlos~I.
   \url{http://www.sciencedirect.com/science/article/pii/S0269749117337107}.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Pope {\rm{\em et~al.}}(2002)Pope, Burnett, Thun, Calle, Krewski, Ito,
+  e Thurston]{Pope2002}{\bf Pope {\rm{\em et~al.}}(2002)}
+C.~Arden Pope, Richard~T. Burnett, Michael~J. Thun, Eugenia~E. Calle, Daniel
+  Krewski, Kazuhiko Ito e George~D. Thurston.
+\newblock Lung cancer, cardiopulmonary mortality, and long-term exposure to
+  fine particulate air pollution.
+\newblock \emph{American Medical Association}, 287\penalty0 (9): \penalty0 1132
+  -- 1141.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[{R Core Team}(2016)]{R2016}{\bf {R Core Team}(2016)}
 {R Core Team}.
 \newblock \emph{R: A Language and Environment for Statistical Computing}.
@@ -649,14 +670,21 @@ Joel Schwartz e Douglas~W. Dockery.
 \newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Sen {\rm{\em et~al.}}(2009)Sen, da~Mota~Singer, e
+  de~Lima]{Sen2009}{\bf Sen {\rm{\em et~al.}}(2009)}
+Pranab~Kumar Sen, Julio da~Mota~Singer e Antonio Carlos~Pedroso de~Lima.
+\newblock \emph{From Finite Sample to Asymptotic Methods in Statistics}.
+\newblock Cambridge: Cambridge University Press, 1\textordfeminine{
+  }edi\c{c}\~{a}o.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Shumway e Stoffer(2006)]{Shumway2006}{\bf Shumway e Stoffer(2006)}
 Robert~H. Shumway e David~S. Stoffer.
 \newblock \emph{Time Series Analysis and Its Applications (with R examples)}.
 \newblock Springer Texts in Statistics. Springer, New York, 2\textordfeminine{
   }edi\c{c}\~{a}o.   {\scriptsize Citado na p\'{a}g.}
 
-\bibitem[Singer {\rm{\em et~al.}}(2012)Singer, Nobre, e Rocha]{Singer2012}{\bf
-  Singer {\rm{\em et~al.}}(2012)}
+\bibitem[Singer {\rm{\em et~al.}}(2018)Singer, Nobre, e Rocha]{Singer2018}{\bf
+  Singer {\rm{\em et~al.}}(2018)}
 Julio Singer, Juvêncio Nobre e Francisco~Marcelo Rocha.
 \newblock \emph{An{\'a}lise de Dados Longitudinais (vers{\~a}o parcial
   preliminar)}.

@@ -24,15 +24,15 @@ A.~Salvo and C.~Huse, \textit{Build it, but will they come? {E}vidence from
 T.~Hastie, R.~Tibshirani, and J.~Friedman, \textit{The Elements of Statistical
   Learning}, Springer Series in Statistics, Springer, 2008.
 
-\bibitem[{Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin}]{Ribeiro2016}
-M.~T. Ribeiro, S.~Singh, and C.~Guestrin, \textit{``{W}hy should {I} trust
-  you?'' {E}xplaining the predictions of any classifier}, arXiv:1602.04938v3
-  [cs.LG]  (2016).
-
 \bibitem[{James et~al.(2013)James, Witten, Hastie, and Tibshirani}]{James2013}
 G.~James, D.~Witten, T.~Hastie, and R.~Tibshirani, \textit{An Introduction to
   Statistical Learning}, Springer Series in Statistics, Springer, New York,
   2013.
+
+\bibitem[{Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin}]{Ribeiro2016}
+M.~T. Ribeiro, S.~Singh, and C.~Guestrin, \textit{``{W}hy should {I} trust
+  you?'' {E}xplaining the predictions of any classifier}, arXiv:1602.04938v3
+  [cs.LG]  (2016).
 
 \bibitem[{Apley(2016)}]{Apley2016}
 D.~Apley, \textit{Visualizing the effects of predictor variables in black box

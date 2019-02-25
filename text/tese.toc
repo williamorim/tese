@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {2.2.2}Sazonalidade}{17}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Autocorrela\c c\~ao}{18}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Fun\c c\~ao de correla\c c\~ao cruzada}{20}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Visualizando dados de polui\c c\~ao durante a greve de caminhoneiros}{21}{section.2.3}
+\contentsline {section}{\numberline {2.3}Visualizando dados de polui\c c\~ao durante a greve de caminhoneiros}{22}{section.2.3}
 \contentsline {chapter}{\numberline {3}Estrat\'egias usuais de modelagem}{29}{chapter.3}
 \contentsline {section}{\numberline {3.1}Regress\~ao linear}{31}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Especifica\c c\~ao do modelo}{31}{subsection.3.1.1}
@@ -24,16 +24,16 @@
 \contentsline {subsection}{\numberline {3.1.7}Avaliando a qualidade do ajuste}{40}{subsection.3.1.7}
 \contentsline {section}{\numberline {3.2}Modelos lineares generalizados}{41}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Especifica\c c\~ao do modelo}{41}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Modelos para dados positivos assim\'etricos}{42}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.2}Modelos para dados positivos assim\'etricos cont\IeC {\'\i }nuos}{42}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Modelos para dados de contagem}{44}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Modelos aditivos generalizados}{45}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Especifica\c c\~ao do modelo}{45}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Splines e regress\~ao local}{46}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Modelos de s\'eries temporais}{48}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Modelos autorregressivos (AR)}{49}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}Modelos autorregressivos (AR)}{48}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Modelos autorregressivos e de m\'edias m\'oveis (ARMA)}{49}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Modelos autorregressivos integrados e de m\'edias m\'oveis (ARIMA)}{50}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}Modelos n\~ao-supervisionados}{51}{section.3.5}
+\contentsline {section}{\numberline {3.5}Modelos n\~ao supervisionados}{51}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}An\'alise de componentes principais}{51}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}An\'alise Fatorial}{52}{subsection.3.5.2}
 \contentsline {section}{\numberline {3.6}Outros modelos}{53}{section.3.6}
@@ -87,17 +87,17 @@
 \contentsline {subsection}{\numberline {6.1.2}Random Forest para a s\'erie defasada}{108}{subsection.6.1.2}
 \contentsline {section}{\numberline {6.2}Uso de etanol e a rela\c c\~ao entre oz\^onio e NO$_\textnormal {x}$}{109}{section.6.2}
 \contentsline {section}{\numberline {6.3}Concentra\c c\~ao de O$_3$ e NO$_\textnormal {x}$ e mortalidade}{111}{section.6.3}
-\contentsline {section}{\numberline {6.4}Efeino na mortalidade por doen\c cas respirat\'orias e cardiovasculares}{112}{section.6.4}
-\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{115}{chapter.7}
-\contentsline {section}{\numberline {7.1}Web scraping}{116}{section.7.1}
-\contentsline {subsubsection}{Identificar}{117}{section*.104}
-\contentsline {subsubsection}{Navegar}{117}{section*.105}
-\contentsline {subsubsection}{Replicar}{117}{section*.106}
-\contentsline {subsubsection}{Parsear}{117}{section*.107}
-\contentsline {subsubsection}{Validar}{117}{section*.108}
-\contentsline {subsubsection}{Iterar}{117}{section*.109}
-\contentsline {section}{\numberline {7.2}Dados no Brasil}{118}{section.7.2}
-\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{119}{section.7.3}
-\contentsline {chapter}{\numberline {8}Discuss\~ao}{121}{chapter.8}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{123}{appendix*.112}
+\contentsline {section}{\numberline {6.4}Efeito na mortalidade por doen\c cas cardio pulmonares}{112}{section.6.4}
+\contentsline {chapter}{\numberline {7}Obtendo dados de polui\c c\~ao}{117}{chapter.7}
+\contentsline {section}{\numberline {7.1}Web scraping}{118}{section.7.1}
+\contentsline {subsubsection}{Identificar}{119}{section*.108}
+\contentsline {subsubsection}{Navegar}{119}{section*.109}
+\contentsline {subsubsection}{Replicar}{119}{section*.110}
+\contentsline {subsubsection}{Parsear}{119}{section*.111}
+\contentsline {subsubsection}{Validar}{119}{section*.112}
+\contentsline {subsubsection}{Iterar}{119}{section*.113}
+\contentsline {section}{\numberline {7.2}Dados no Brasil}{120}{section.7.2}
+\contentsline {section}{\numberline {7.3}Dados em outros pa\IeC {\'\i }ses}{121}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discuss\~ao}{123}{chapter.8}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{125}{appendix*.116}
 \contentsfinish 

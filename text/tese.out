@@ -23,7 +23,7 @@
 \BOOKMARK [2][]{subsection.3.1.7}{Avaliando a qualidade do ajuste}{section.3.1}% 23
 \BOOKMARK [1][]{section.3.2}{Modelos lineares generalizados}{chapter.3}% 24
 \BOOKMARK [2][]{subsection.3.2.1}{Especifica\347\343o do modelo}{section.3.2}% 25
-\BOOKMARK [2][]{subsection.3.2.2}{Modelos para dados positivos assim\351tricos}{section.3.2}% 26
+\BOOKMARK [2][]{subsection.3.2.2}{Modelos para dados positivos assim\351tricos cont\355nuos}{section.3.2}% 26
 \BOOKMARK [2][]{subsection.3.2.3}{Modelos para dados de contagem}{section.3.2}% 27
 \BOOKMARK [1][]{section.3.3}{Modelos aditivos generalizados}{chapter.3}% 28
 \BOOKMARK [2][]{subsection.3.3.1}{Especifica\347\343o do modelo}{section.3.3}% 29
@@ -32,7 +32,7 @@
 \BOOKMARK [2][]{subsection.3.4.1}{Modelos autorregressivos \(AR\)}{section.3.4}% 32
 \BOOKMARK [2][]{subsection.3.4.2}{Modelos autorregressivos e de m\351dias m\363veis \(ARMA\)}{section.3.4}% 33
 \BOOKMARK [2][]{subsection.3.4.3}{Modelos autorregressivos integrados e de m\351dias m\363veis \(ARIMA\)}{section.3.4}% 34
-\BOOKMARK [1][]{section.3.5}{Modelos n\343o-supervisionados}{chapter.3}% 35
+\BOOKMARK [1][]{section.3.5}{Modelos n\343o supervisionados}{chapter.3}% 35
 \BOOKMARK [2][]{subsection.3.5.1}{An\341lise de componentes principais}{section.3.5}% 36
 \BOOKMARK [2][]{subsection.3.5.2}{An\341lise Fatorial}{section.3.5}% 37
 \BOOKMARK [1][]{section.3.6}{Outros modelos}{chapter.3}% 38
@@ -81,10 +81,10 @@
 \BOOKMARK [2][]{subsection.6.1.2}{Random Forest para a s\351rie defasada}{section.6.1}% 81
 \BOOKMARK [1][]{section.6.2}{Uso de etanol e a rela\347\343o entre oz\364nio e NOx}{chapter.6}% 82
 \BOOKMARK [1][]{section.6.3}{Concentra\347\343o de O3 e NOx e mortalidade}{chapter.6}% 83
-\BOOKMARK [1][]{section.6.4}{Efeino na mortalidade por doen\347as respirat\363rias e cardiovasculares}{chapter.6}% 84
+\BOOKMARK [1][]{section.6.4}{Efeito na mortalidade por doen\347as cardio pulmonares}{chapter.6}% 84
 \BOOKMARK [0][]{chapter.7}{Obtendo dados de polui\347\343o}{}% 85
 \BOOKMARK [1][]{section.7.1}{Web scraping}{chapter.7}% 86
 \BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 87
 \BOOKMARK [1][]{section.7.3}{Dados em outros pa\355ses}{chapter.7}% 88
 \BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 89
-\BOOKMARK [0][]{appendix*.112}{Refer\352ncias Bibliogr\341ficas}{}% 90
+\BOOKMARK [0][]{appendix*.116}{Refer\352ncias Bibliogr\341ficas}{}% 90

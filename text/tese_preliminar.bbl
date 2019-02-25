@@ -1,4 +1,4 @@
-\begin{thebibliography}{59}
+\begin{thebibliography}{95}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,7 +15,8 @@ Christopher~H. Achen.
 \bibitem[Barros {\rm{\em et~al.}}(2009)Barros, Paula, e Leiva]{Barros2009}{\bf
   Barros {\rm{\em et~al.}}(2009)}
 Michelli Barros, Gilberto~A. Paula e Victor Leiva.
-\newblock An r implementation for generalized birnbaum-saunders distributions.
+\newblock An r implementation for generalized {B}irnbaum-{S}aunders
+  distributions.
 \newblock \emph{Computational Statistics and Data Analysis}, 53\penalty0 (4):
   \penalty0 1511--1528.   {\scriptsize Citado na p\'{a}g.}
 
@@ -44,14 +45,14 @@ Andreina Belusic, Ivana Herceg-Bulic e Zvjezdana~Bencetic Klaic.
   p\'{a}g.}
 
 \bibitem[Bollerslev(1986)]{Bollerslev1986}{\bf Bollerslev(1986)}
-T.~Bollerslev.
+Tim Bollerslev.
 \newblock Generalized autoregressive conditional heteroscedasticity.
 \newblock \emph{J. Econ.}, 31: \penalty0 307--327.   {\scriptsize Citado na
   p\'{a}g.}
 
 \bibitem[Box e Jenkins(1970)]{Box1970}{\bf Box e Jenkins(1970)}
-G.~E.~P. Box e G.~M. Jenkins.
-\newblock \emph{TIme series analysis: forecasting and control}.
+George E.~P. Box e Gwilym~M. Jenkins.
+\newblock \emph{Time series analysis: forecasting and control}.
 \newblock Holden-Day, San Francisco.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Breiman(2001)]{Breiman2001}{\bf Breiman(2001)}
@@ -61,14 +62,28 @@ Leo Breiman.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Breiman e Friedman(1985)]{Breiman1985}{\bf Breiman e Friedman(1985)}
-Leo Breiman e J.~H. Friedman.
+Leo Breiman e Jerome~H. Friedman.
 \newblock Estimating optimal transformations for multiple regression and
   correlations (with discussion).
 \newblock \emph{Journal of the American Statistical Association}, 80\penalty0
   (391): \penalty0 580--619.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Buhr {\rm{\em et~al.}}(1992)Buhr, Trainer, Parrish, Sievers, e
+  Fehsenfeld]{Buhr1992}{\bf Buhr {\rm{\em et~al.}}(1992)}
+M.~P. Buhr, M.~Trainer, D.~D. Parrish, R.~E. Sievers e F.~C. Fehsenfeld.
+\newblock Assessment of pollutant emission inventories by principal component
+  analysis of ambient air measurements.
+\newblock \emph{Geophysical Research Letters}, 19\penalty0 (10): \penalty0
+  1009--1012.
+\newblock \doi{10.1029/92GL01020}.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Bussab e Morettin(2013)]{Bussab2013}{\bf Bussab e Morettin(2013)}
+W.~O. Bussab e P.~A. Morettin.
+\newblock \emph{Estat{\'i}stica B{\'a}sica}.
+\newblock Editora Saraiva, S{\~a}o Paulo.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Cameron e Miller(2015)]{Cameron2015}{\bf Cameron e Miller(2015)}
-A.~Colin Cameron e Douglas~L. Miller.
+Adrian~C. Cameron e Douglas~L. Miller.
 \newblock A practitioner's guide to cluster-robust inference.
 \newblock \emph{J. Human Resources}, 50\penalty0 (2): \penalty0 317--372.
   {\scriptsize Citado na p\'{a}g.}
@@ -91,18 +106,41 @@ George Casella e Roger~L. Berger.
 Shih~Ying Chang, William Vizuete, Marc Serre, Lakshmi~Pradeepa Vennam, Mohammad
   Omary, Vlad Isakov, Michael Breen e Saravanan Arunachalam.
 \newblock Finely resolved on-road {PM}2.5 and estimated premature mortality in
-  central north carolina.
+  central {N}orth {C}arolina.
 \newblock \emph{Risk Analysis}.
 \newblock \doi{10.1111/risa.12775}.
 \newblock URL \url{http://dx.doi.org/10.1111/risa.12775}.   {\scriptsize Citado
   na p\'{a}g.}
 
+\bibitem[Chavent {\rm{\em et~al.}}(2009)Chavent, Guegan, Kuentz, Patouille, e
+  Saracco]{Chavent2009}{\bf Chavent {\rm{\em et~al.}}(2009)}
+Marie Chavent, Herv{\'e} Guegan, Vanessa Kuentz, Brigitte Patouille e
+  J{\'e}r{\^o}me Saracco.
+\newblock {PCA} and {PMF} based methodology for air pollution sources
+  identification and apportionment.
+\newblock 20: \penalty0 928--942.
+\newblock URL
+  \url{https://hal.archives-ouvertes.fr/hal-00332015/file/Env-2009-preprint.pdf}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Chuang {\rm{\em et~al.}}(2011)Chuang, Mazumdar, Park, Tang, Arena, e
+  Nicolich]{Chuang2011}{\bf Chuang {\rm{\em et~al.}}(2011)}
+Ya-Hsiu Chuang, Sati Mazumdar, Taeyoung Park, Gong Tang, Vincent.~C. Arena e
+  Mark~J. Nicolich.
+\newblock Generalized linear mixed models in time series studies of air
+  pollution.
+\newblock \emph{Atmospheric Pollution Research}, 2\penalty0 (4): \penalty0 428
+  -- 435.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215304694}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{a}})Concei{\c{c}}{\~a}o, Miraglia, Kishi, Saldiva, e
-  da~Motta~Singer]{Gleice2001a}{\bf Concei{\c{c}}{\~a}o {\rm{\em
+  Singer]{Gleice2001a}{\bf Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{a}})}
-Gleice~M.S. Concei{\c{c}}{\~a}o, Simone~G.E.K. Miraglia, Humberto~S. Kishi,
-  Paulo Hil{\'a}rio~Nascimento Saldiva e Julio da~Motta~Singer.
+Gleice M.~S. Concei{\c{c}}{\~a}o, Simone G. E.~K. Miraglia, Humberto~S. Kishi,
+  Paulo H.~N. Saldiva e Julio~M. Singer.
 \newblock Air pollution and child mortality: a time-series study in {S}{\~a}o
   {P}aulo, {B}razil.
 \newblock \emph{Environmental Health Perspectives}, 109\penalty0 (3): \penalty0
@@ -110,28 +148,85 @@ Gleice~M.S. Concei{\c{c}}{\~a}o, Simone~G.E.K. Miraglia, Humberto~S. Kishi,
 
 \bibitem[Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{b}})Concei{\c{c}}{\~a}o, Saldiva, e
-  da~Motta~Singer]{Gleice2001b}{\bf Concei{\c{c}}{\~a}o {\rm{\em
+  Singer]{Gleice2001b}{\bf Concei{\c{c}}{\~a}o {\rm{\em
   et~al.}}(2001{\natexlab{b}})}
-Gleice~M.S. Concei{\c{c}}{\~a}o, Paulo Hil{\'a}rio~Nascimento Saldiva e Julio
-  da~Motta~Singer.
+Gleice M.~S. Concei{\c{c}}{\~a}o, Paulo H.~N. Saldiva e Julio~M. Singer.
 \newblock Modelos {MLG} e {MAG} para an{\'a}lise da associa{\c{c}}{\~a}o entre
   polui{\c{c}}{\~a}o atmosf{\'e}rica e marcadores de morbi-mortalidade: uma
   introdu{\c{c}}{\~a}o baseada em dados da cidade de {S}{\~a}o {P}aulo.
 \newblock \emph{Revista Brasileira de Epidemiologia}, 4\penalty0 (3): \penalty0
   206--219.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Cortina-Januchs {\rm{\em et~al.}}(2015)Cortina-Januchs,
+  Quintanilla-Dominguez, Vega-Corona, e Andina]{Cortina2015}{\bf
+  Cortina-Januchs {\rm{\em et~al.}}(2015)}
+Maria~Guadalupe Cortina-Januchs, Joel Quintanilla-Dominguez, Antonio
+  Vega-Corona e Diego Andina.
+\newblock Development of a model for forecasting of pm10 concentrations in
+  salamanca, mexico.
+\newblock \emph{Atmospheric Pollution Research}, 6\penalty0 (4): \penalty0 626
+  -- 634.
+\newblock ISSN 1309-1042.
+\newblock \doi{https://doi.org/10.5094/APR.2015.071}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215301951}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Coull {\rm{\em et~al.}}(2001)Coull, Schwartz, e Wand]{Coull2001}{\bf
+  Coull {\rm{\em et~al.}}(2001)}
+Brent Coull, Joel Schwartz e Matt Wand.
+\newblock Respiratory health and air pollution: additivemixed model analyses.
+\newblock \emph{Biostatistics}, 2\penalty0 (3): \penalty0 337--349.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Cox(2012)]{Cox2012}{\bf Cox(2012)}
+L.~A. Cox.
+\newblock Miscommunicating risk, uncertainty, and causation: Fine particulate
+  air pollution and mortality risk as an example.
+\newblock \emph{Risk Analysis}, 32\penalty0 (5).   {\scriptsize Citado na
+  p\'{a}g.}
+
 \bibitem[Demidenko(2013)]{Demidenko2013}{\bf Demidenko(2013)}
-E.~Demidenko.
+Eugene Demidenko.
 \newblock \emph{Mixed models: theory and applications with R}.
 \newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Dobson(1990)]{Dobson1990}{\bf Dobson(1990)}
-A.~J. Dobson.
+Annette~J. Dobson.
 \newblock \emph{An introduction to generalized linear models}.
 \newblock Chapman and Hall, New York.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Dordonnat {\rm{\em et~al.}}(2008)Dordonnat, Koopman, Ooms,
+  Dessertaine, e Collet]{Collet2008}{\bf Dordonnat {\rm{\em et~al.}}(2008)}
+V.~Dordonnat, S.~J. Koopman, M.~Ooms, A.~Dessertaine e J.~Collet.
+\newblock An hourly periodic state space model for modelling french national
+  electricity load.
+\newblock \emph{International Institute of Forecasters}, 24: \penalty0
+  566--587.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Eckner(2018)]{Eckner2018}{\bf Eckner(2018)}
+Andreas Eckner.
+\newblock A framework for the analysis of unevenly spaced time series data.
+\newblock \emph{Journal of the American Statistical Association}.
+\newblock URL
+  \url{http://eckner.com/papers/unevenly_spaced_time_series_analysis.pdf}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Elangasinghe {\rm{\em et~al.}}(2014)Elangasinghe, Singhal, Dirks, e
+  Salmond]{Elangasinghe2014}{\bf Elangasinghe {\rm{\em et~al.}}(2014)}
+Madhavi~Anushka Elangasinghe, Naresh Singhal, Kim~N. Dirks e Jennifer~A.
+  Salmond.
+\newblock Development of an {ANN}-based air pollution forecasting system with
+  explicit knowledge through sensitivity analysis.
+\newblock \emph{Atmospheric Pollution Research}, 5\penalty0 (4): \penalty0 696
+  -- 708.
+\newblock ISSN 1309-1042.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1309104215302786}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Engle(1982)]{Engle1982}{\bf Engle(1982)}
-R.~F. Engle.
+Robert~F. Engle.
 \newblock Autoregressive conditional heteroscedasticity with estimates of the
   variance of united kingdom inflation.
 \newblock \emph{Econometrica}, 50: \penalty0 987--1007.   {\scriptsize Citado
@@ -150,6 +245,63 @@ R.~F. Engle.
 \newblock \url{https://ec.europa.eu/clima/policies/strategies/2050_en}, 2011.
 \newblock [Online; acessado 15-03-2017].   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Everitt e Hothorn(2011)]{Everitt2011}{\bf Everitt e Hothorn(2011)}
+Brian Everitt e Torsten Hothorn.
+\newblock \emph{An Introduction to Applied Multivariate Analysis with R}.
+\newblock Use R! Springer-Verlag New York.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Fann {\rm{\em et~al.}}(2012)Fann, Lamson, Anenberg, Wesson, Risley, e
+  Hubbel]{Fann2012}{\bf Fann {\rm{\em et~al.}}(2012)}
+Neal Fann, A.~D. Lamson, S.~C. Anenberg, K~Wesson, D.~Risley e B.~J. Hubbel.
+\newblock Estimating the national public health burden associated with exposure
+  to ambient {PM}2.5 and ozone.
+\newblock \emph{Risk Analysis}, 32: \penalty0 81--95.   {\scriptsize Citado na
+  p\'{a}g.}
+
+\bibitem[Feng {\rm{\em et~al.}}(2015)Feng, Li, Zhu, Hou, Jin, e
+  Wang]{Feng2015}{\bf Feng {\rm{\em et~al.}}(2015)}
+Xiao Feng, Qi~Li, Yajie Zhu, Junxiong Hou, Lingyan Jin e Jingjie Wang.
+\newblock Artificial neural networks forecasting of pm2.5 pollution using air
+  mass trajectory based geographic model and wavelet transformation.
+\newblock \emph{Atmospheric Environment}, 107: \penalty0 118 -- 128.
+\newblock \doi{https://doi.org/10.1016/j.atmosenv.2015.02.030}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1352231015001491}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Fisher(1918)]{Fisher1918}{\bf Fisher(1918)}
+Ronald Fisher.
+\newblock The correlation between relatives on the supposition of {M}endelian
+  inheritance.
+\newblock \emph{Transactions of the Royal Society of Edinburgh}, 652\penalty0
+  (2): \penalty0 399--433.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Galecki e Burzykowski(2013)]{Galecki2013}{\bf Galecki e
+  Burzykowski(2013)}
+Andrzej Galecki e Tomasz Burzykowski.
+\newblock \emph{Linear Mixed-Effects Models Using R}.
+\newblock Springer.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Garrett e Casimiro(2011)]{Garrett2011}{\bf Garrett e Casimiro(2011)}
+Pedro Garrett e Elsa Casimiro.
+\newblock Short-term effect of fine particulate matter (pm2.5) and ozone on
+  daily mortality in {L}isbon, {P}ortugal.
+\newblock \emph{Environ Sci Pollut Res}, 18: \penalty0 1585--1582.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Goodfellow {\rm{\em et~al.}}(2016)Goodfellow, Bengio, e
+  Courville]{Goodfellow2016}{\bf Goodfellow {\rm{\em et~al.}}(2016)}
+Ian Goodfellow, Yoshua Bengio e Aaron Courville.
+\newblock \emph{Deep Learning}.
+\newblock MIT Press.
+\newblock \url{http://www.deeplearningbook.org}.   {\scriptsize Citado na
+  p\'{a}g.}
+
+\bibitem[Gower(1971)]{Gower1971}{\bf Gower(1971)}
+C.~John Gower.
+\newblock A general coefficient of similarity and some of its properties.
+\newblock \emph{Biometrics}.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Hastie e Tibshirani(1990)]{Hastie1990}{\bf Hastie e Tibshirani(1990)}
 Trevor Hastie e Robert Tibshirani.
 \newblock \emph{Generalized additive models}.
@@ -162,10 +314,24 @@ Trevor Hastie, Robert Tibshirani e Jerome Friedman.
 \newblock Springer Series in Statistics. Springer.   {\scriptsize Citado na
   p\'{a}g.}
 
+\bibitem[Hoek {\rm{\em et~al.}}(2002)Hoek, Brunekreef, Goldbohm, Fischer, e
+  van~den Brandt]{Hoek2002}{\bf Hoek {\rm{\em et~al.}}(2002)}
+Gerard Hoek, Bert Brunekreef, Sandra Goldbohm, Paul Fischer e Piet~A van~den
+  Brandt.
+\newblock Association between mortality and indicators of traffic-related air
+  pollution in the netherlands: a cohort study.
+\newblock \emph{The Lancet}, 360: \penalty0 1203:1209.   {\scriptsize Citado na
+  p\'{a}g.}
+
+\bibitem[Jacobson(2002)]{Jacobson2002}{\bf Jacobson(2002)}
+Mark~Z. Jacobson.
+\newblock \emph{Atmospheric Pollution History, Science, and Regulation}.
+\newblock Cambridge.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Jacobson(2007)]{Jacobson2007}{\bf Jacobson(2007)}
 Mark~Z. Jacobson.
 \newblock Effects of ethanol ({E}85) versus gasoline vehicles on cancer and
-  mortality in the united states.
+  mortality in the {U}nited {S}tates.
 \newblock \emph{Environmental Science \& Technology}, 41\penalty0 (11):
   \penalty0 4150--4157.   {\scriptsize Citado na p\'{a}g.}
 
@@ -193,6 +359,18 @@ Adel Javanmard e Andrea Montanari.
 \newblock \emph{arXiv:1301.4240v3 [stat.ME]}.   {\scriptsize Citado na
   p\'{a}g.}
 
+\bibitem[Kalman(1960)]{Kalman1960}{\bf Kalman(1960)}
+R.~E. Kalman.
+\newblock A new approach to linear filtering and prediction problems.
+\newblock \emph{Trans. ASME J. of Basic Eng.}, \penalty0 (82): \penalty0
+  35--45.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Kalman e Bucy(1961)]{Kalman1961}{\bf Kalman e Bucy(1961)}
+R.~E. Kalman e R.~S. Bucy.
+\newblock New results in filtering and prediction problems.
+\newblock \emph{Trans. ASME J. of Basic Eng.}, \penalty0 (83): \penalty0
+  95--108.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Katsouyanni {\rm{\em et~al.}}(1996)Katsouyanni, Schwartz, Spix,
   Touloumi, Zmirou, Zanobetti, Wojtyniak, Vonk, Tobias, P{\"o}nk{\"a}, Medina,
   Bach{\'a}rov{\'a}, e Anderson]{Katsouyanni1996}{\bf Katsouyanni {\rm{\em
@@ -209,6 +387,12 @@ K.~Katsouyanni, J.~Schwartz, C.~Spix, G.~Touloumi, D.~Zmirou, A.~Zanobetti,
 \newblock URL \url{http://jech.bmj.com/content/50/Suppl_1/S12}.   {\scriptsize
   Citado na p\'{a}g.}
 
+\bibitem[Kiefer e Wolfowitz(1952)]{Kiefer1952}{\bf Kiefer e Wolfowitz(1952)}
+J.~Kiefer e J.~Wolfowitz.
+\newblock Stochastic estimation of the maximum of a regression function.
+\newblock \emph{Ann. Math. Statista}, 23: \penalty0 462--466.   {\scriptsize
+  Citado na p\'{a}g.}
+
 \bibitem[Kloog {\rm{\em et~al.}}(2012)Kloog, Nordio, Coull, e
   Schwartz]{Kloog2012}{\bf Kloog {\rm{\em et~al.}}(2012)}
 Itai Kloog, Francesco Nordio, Brent~A. Coull e Joel Schwartz.
@@ -218,9 +402,21 @@ Itai Kloog, Francesco Nordio, Brent~A. Coull e Joel Schwartz.
 \newblock \emph{American Chemical Society}, 46: \penalty0 11913--11921.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Kumar e Ridder(2010)]{Kumar2010}{\bf Kumar e Ridder(2010)}
+Ujjwal Kumar e Koen~De Ridder.
+\newblock {GARCH} modelling in association with {FFT-ARIMA} to forecast ozone
+  episodes.
+\newblock \emph{Atmospheric Environment}, 44\penalty0 (34): \penalty0 4252 --
+  4265.
+\newblock ISSN 1352-2310.
+\newblock \doi{https://doi.org/10.1016/j.atmosenv.2010.06.055}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1352231010005340}.
+  {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Leiva(2015)]{Leiva2015}{\bf Leiva(2015)}
 Victor Leiva.
-\newblock \emph{The Birnbaum-Saunders distribution}.
+\newblock \emph{The {B}irnbaum-{S}aunders distribution}.
 \newblock Academic Press; 1 edition.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Leiva {\rm{\em et~al.}}(2008)Leiva, Barros, Paula., e
@@ -230,6 +426,15 @@ Victor Leiva, Michelli Barros, Gilberto~A. Paula. e Antonio Sanhueza.
   concentration.
 \newblock \emph{Environmetrics}, 19: \penalty0 235--249.   {\scriptsize Citado
   na p\'{a}g.}
+
+\bibitem[Liao {\rm{\em et~al.}}(1999)Liao, Creason, Shy, Williams, Watfs, e
+  Zweidinger]{Liao1999}{\bf Liao {\rm{\em et~al.}}(1999)}
+Duanping Liao, John Creason, Card Shy, Ron Williams, Randall Watfs e Roy
+  Zweidinger.
+\newblock Daily variation of particulate air pollution and poor cardiac
+  autonomic control in the elderly.
+\newblock \emph{Environ Health Perspect}, 107\penalty0 (7): \penalty0 521--525.
+    {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Lin {\rm{\em et~al.}}(1999)Lin, Martins, Farhat, Pope,
   Concei{\c{c}}{\~a}o, Anast{\'a}cio, Hatanaka, Andrade, Hamaue, Bohm, e
@@ -259,15 +464,26 @@ Sacha Madronich.
 \newblock \emph{Nature Geoscience: news \& views}, 7: \penalty0 395--397.
   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Magalh{\~a}es e Lima(2013)]{Lima2013}{\bf Magalh{\~a}es e Lima(2013)}
+Marcos Magalh{\~a}es e Antonio Carlos~Pedroso Lima.
+\newblock \emph{No\c{c}{\~o}es de {P}robabilidade e {E}stat{\'i}stica}.
+\newblock Edusp.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[McCulloch e Searle(2001)]{McCulloch2001}{\bf McCulloch e Searle(2001)}
-C.~E. McCulloch e S.~R. Searle.
+Charles~E. McCulloch e Shayle~R. Searle.
 \newblock \emph{Generalized, linear, and mixed models}.
 \newblock Wiley, New York.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Morettin e Toloi(2004)]{Morettin2004}{\bf Morettin e Toloi(2004)}
-Pedro~A. Morettin e Clelia~M.C. Toloi.
+Pedro~A. Morettin e Clelia M.~C. Toloi.
 \newblock \emph{An{\'a}lise de Series Temporais}.
 \newblock ABE - Projeto Fisher e Editora Edgard Blucher, S{\~a}o Paulo.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Muggeo(2003)]{Muggeo2003}{\bf Muggeo(2003)}
+Vito Muggeo.
+\newblock Estimating regression models with unknown break-points.
+\newblock \emph{Statistics in Medicine}, 22: \penalty0 3055--3071.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Mulawa {\rm{\em et~al.}}(1997)Mulawa, Cadle, Knapp, Zweidinger, Snow,
@@ -280,7 +496,7 @@ Patricia~A. Mulawa, Steven~H. Cadle, Kenneth Knapp, Roy Zweidinger, Richard
   \penalty0 1302--1307.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Nelder e Wedderburn(1972)]{Nelder1972}{\bf Nelder e Wedderburn(1972)}
-J.~A. Nelder e R.~W.~M. Wedderburn.
+John~A. Nelder e R.~William~M. Wedderburn.
 \newblock Generalized linear models.
 \newblock \emph{Stat Soc A}, 135: \penalty0 370--384.   {\scriptsize Citado na
   p\'{a}g.}
@@ -307,6 +523,40 @@ Pedro~Afonso Pereira, Leilane Maria~B. Santos, Eliane~Teixeira Sousa e
 \newblock \emph{Journal of the Brazilian Chemical Society}, 15\penalty0 (5):
   \penalty0 646--651.   {\scriptsize Citado na p\'{a}g.}
 
+\bibitem[Peters {\rm{\em et~al.}}(2000)Peters, Liu, Verrier, Schwartz, Gold,
+  Mittleman, Baliff, Oh, Allen, Monahan, e Dockery]{Peters2000}{\bf Peters
+  {\rm{\em et~al.}}(2000)}
+Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
+  Murray Mittleman, Jeff Baliff, J.~Annie Oh, George Allen, Kevin Monahan e
+  Douglas~W. Dockery.
+\newblock Air pollution and incidence of cardiac arrhythmia.
+\newblock \emph{Lippincott Williams \& Wilkins}, 11\penalty0 (1): \penalty0
+  11--17.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Polezer {\rm{\em et~al.}}(2018)Polezer, Tadano, Siqueira, Godoi,
+  Yamamoto, de~André, Pauliquevis, de~Fatima~Andrade, Oliveira, Saldiva,
+  Taylor, e Godoi]{Polezer2018}{\bf Polezer {\rm{\em et~al.}}(2018)}
+Gabriela Polezer, Yara~S. Tadano, Hugo~V. Siqueira, Ana~F.L. Godoi, Carlos~I.
+  Yamamoto, Paulo~A. de~André, Theotonio Pauliquevis, Maria de~Fatima~Andrade,
+  Andrea Oliveira, Paulo~H.N. Saldiva, Philip~E. Taylor e Ricardo~H.M. Godoi.
+\newblock Assessing the impact of pm2.5 on respiratory disease using artificial
+  neural networks.
+\newblock \emph{Environmental Pollution}, 235: \penalty0 394 -- 403.
+\newblock ISSN 0269-7491.
+\newblock \doi{https://doi.org/10.1016/j.envpol.2017.12.111}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0269749117337107}.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Pope {\rm{\em et~al.}}(2002)Pope, Burnett, Thun, Calle, Krewski, Ito,
+  e Thurston]{Pope2002}{\bf Pope {\rm{\em et~al.}}(2002)}
+C.~Arden Pope, Richard~T. Burnett, Michael~J. Thun, Eugenia~E. Calle, Daniel
+  Krewski, Kazuhiko Ito e George~D. Thurston.
+\newblock Lung cancer, cardiopulmonary mortality, and long-term exposure to
+  fine particulate air pollution.
+\newblock \emph{American Medical Association}, 287\penalty0 (9): \penalty0 1132
+  -- 1141.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[{R Core Team}(2016)]{R2016}{\bf {R Core Team}(2016)}
 {R Core Team}.
 \newblock \emph{R: A Language and Environment for Statistical Computing}.
@@ -317,16 +567,15 @@ Pedro~Afonso Pereira, Leilane Maria~B. Santos, Eliane~Teixeira Sousa e
 \bibitem[Ribeiro {\rm{\em et~al.}}(2016)Ribeiro, Singh, e
   Guestrin]{Ribeiro2016}{\bf Ribeiro {\rm{\em et~al.}}(2016)}
 Marco~Tulio Ribeiro, Sameer Singh e Carlos Guestrin.
-\newblock ``why should i trust you?'' explaining the predictions of any
+\newblock ``{W}hy should {I} trust you?'' {E}xplaining the predictions of any
   classifier.
 \newblock \emph{arXiv:1602.04938v3 [cs.LG]}.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Saldiva {\rm{\em et~al.}}(1994)Saldiva, Lichtenfels, Paiva, Barone,
   Martins, Massad, Pereira, Xavier, Singer, e Bohm]{Saldiva1994}{\bf Saldiva
   {\rm{\em et~al.}}(1994)}
-P.~H.~N. Saldiva, A.~J. F.~C. Lichtenfels, P.~S.~O. Paiva, I.~A. Barone, M.~A.
-  Martins, E.~Massad, J.~C.~R. Pereira, V.~P. Xavier, J.~M. Singer e G.~M.
-  Bohm.
+P.~Saldiva, A.~Lichtenfels, P.~Paiva, I.~Barone, M.~Martins, E.~Massad,
+  J.~Pereira, V.~Xavier, J.~Singer e G.~Bohm.
 \newblock Association between air pollution and mortality due to respiratory
   diseases in children in {S}{\~a}o {P}aulo, {B}razil: a preliminary report.
 \newblock \emph{Environmental Research}, 65\penalty0 (2): \penalty0 218 -- 225.
@@ -353,6 +602,13 @@ Alberto Salvo e Franz~M. Geiger.
 \newblock \emph{Nature Geoscience}, 7: \penalty0 450--458.   {\scriptsize
   Citado na p\'{a}g.}
 
+\bibitem[Salvo e Huse(2013)]{Salvo2013}{\bf Salvo e Huse(2013)}
+Alberto Salvo e Cristian Huse.
+\newblock Build it, but will they come? {E}vidence from consumer choice between
+  gasoline and sugarcane ethanol.
+\newblock \emph{Journal of Environmental Economics and Management}, \penalty0
+  (66): \penalty0 251--279.   {\scriptsize Citado na p\'{a}g.}
+
 \bibitem[Salvo e Wang(2017)]{Salvo2017b}{\bf Salvo e Wang(2017)}
 Alberto Salvo e Yi~Wang.
 \newblock Ethanol-blended gasoline policy and ozone pollution in sao paulo.
@@ -365,14 +621,6 @@ Alberto Salvo, Joel Brito, Paulo Artaxo e Franz~M. Geiger.
   during shifts from gasoline to ethanol use.
 \newblock \emph{Nature Communications}, 8: \penalty0 1--14.   {\scriptsize
   Citado na p\'{a}g.}
-
-\bibitem[Schwartz e Dockery(1992)]{SchwartzDockery1992}{\bf Schwartz e
-  Dockery(1992)}
-J.~Schwartz e D.~W. Dockery.
-\newblock Particulate air pollution and daily mortality in {S}teubenville,
-  {O}hio.
-\newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
-  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Schwartz {\rm{\em et~al.}}(1996)Schwartz, Dockery, e
   Neas]{SchwartzDockeryNeas1996}{\bf Schwartz {\rm{\em et~al.}}(1996)}
@@ -394,25 +642,20 @@ Joel Schwartz.
 \newblock \emph{Epidemiology}, 1\penalty0 (7): \penalty0 20--28.   {\scriptsize
   Citado na p\'{a}g.}
 
-\bibitem[Schwartz e Marcus(1990)]{SchwartzMarcus1990}{\bf Schwartz e
-  Marcus(1990)}
-Joel Schwartz e Allan Marcus.
-\newblock Mortality and air pollution in {L}ondon: a time series analysis.
-\newblock \emph{American Journal of Epidemiology}, 131\penalty0 (1): \penalty0
-  185.
-\newblock \doi{10.1093/oxfordjournals.aje.a115473}.
-\newblock URL \url{+ http://dx.doi.org/10.1093/oxfordjournals.aje.a115473}.
-  {\scriptsize Citado na p\'{a}g.}
+\bibitem[Schwartz e Dockery(1992{\natexlab{a}})]{Schwartz1992}{\bf Schwartz e
+  Dockery(1992{\natexlab{a}})}
+Joel Schwartz e Douglas Dockery.
+\newblock Particulate air pollution and daily mortality in {S}teubenville,
+  {O}hio.
+\newblock \emph{American Journal of Epidemiology}, 135\penalty0 (1): \penalty0
+  12--25.   {\scriptsize Citado na p\'{a}g.}
 
-\bibitem[Shumway e Stoffer(1982)]{Shumway1982}{\bf Shumway e Stoffer(1982)}
-R.~H. Shumway e D.~S. Stoffer.
-\newblock An approach to time series smoothing and forecasting using the {EM}
-  algorithm.
-\newblock \emph{Journal of Time Series Analysis}, 3\penalty0 (4): \penalty0
-  253--264.
-\newblock ISSN 1467-9892.
-\newblock \doi{10.1111/j.1467-9892.1982.tb00349.x}.
-\newblock URL \url{http://dx.doi.org/10.1111/j.1467-9892.1982.tb00349.x}.
+\bibitem[Schwartz e Dockery(1992{\natexlab{b}})]{SchwartzDockery1992}{\bf
+  Schwartz e Dockery(1992{\natexlab{b}})}
+Joel Schwartz e Douglas~W. Dockery.
+\newblock Particulate air pollution and daily mortality in {S}teubenville,
+  {O}hio.
+\newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Shumway e Stoffer(2006)]{Shumway2006}{\bf Shumway e Stoffer(2006)}
@@ -423,11 +666,47 @@ Robert~H. Shumway e David~S. Stoffer.
 
 \bibitem[Singer {\rm{\em et~al.}}(2012)Singer, Nobre, e Rocha]{Singer2012}{\bf
   Singer {\rm{\em et~al.}}(2012)}
-J.M. Singer, J.S. Nobre e F.M.M. Rocha.
+Julio Singer, Juvêncio Nobre e Francisco~Marcelo Rocha.
 \newblock \emph{An{\'a}lise de Dados Longitudinais (vers{\~a}o parcial
   preliminar)}.
 \newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Stingone {\rm{\em et~al.}}(2017)Stingone, P.Pandey, Claudio, e
+  Pandey]{Chen2017}{\bf Stingone {\rm{\em et~al.}}(2017)}
+Jeanette~A. Stingone, Om~P.Pandey, Luz Claudio e Gaurav Pandey.
+\newblock Using machine learning to identify air pollution exposure profiles
+  associated with early cognitive skills among u.s. children.
+\newblock \emph{Environmental Pollution}, 230: \penalty0 230--240.
+  {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Tecer(2009)]{Tecer2009}{\bf Tecer(2009)}
+Lokman~Hakan Tecer.
+\newblock A factor analysis study: Air pollution, meteorology, and hospital
+  admissions for respiratory diseases.
+\newblock \emph{Toxicological \& Environmental Chemistry}, 91\penalty0 (7):
+  \penalty0 1399--1411.
+\newblock \doi{10.1080/02772240902732316}.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Thurston e Spengler(1985)]{Thurston1985}{\bf Thurston e
+  Spengler(1985)}
+George~D. Thurston e John~D. Spengler.
+\newblock A quantitative assessment of source contributions to inhalable
+  particulate matter pollution in metropolitan boston.
+\newblock \emph{Atmospheric Environment (1967)}, 19\penalty0 (1): \penalty0 9
+  -- 25.
+\newblock ISSN 0004-6981.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[WHO(2004)]{WHO2004}{\bf WHO(2004)}
+World Health~Organization WHO.
+\newblock Health aspects of air pollution.
+\newblock Relat\'{o}rio T\'{e}cnico E83080.   {\scriptsize Citado na p\'{a}g.}
+
+\bibitem[Wickham(2010)]{Hadley2010}{\bf Wickham(2010)}
+Hadley Wickham.
+\newblock A layered grammar of graphics.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 19\penalty0
+  (1): \penalty0 3--28.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Wickham e Grolemund(2017)]{R4DS2017}{\bf Wickham e Grolemund(2017)}
 Hadley Wickham e Garrett Grolemund.
@@ -442,7 +721,7 @@ Leland Wilkinson.
   Citado na p\'{a}g.}
 
 \bibitem[Williams(1987)]{Williams1987}{\bf Williams(1987)}
-A.~D. Williams.
+Alistair~D. Williams.
 \newblock Generalized linear model diagnostic using the deviance and single
   case deletion.
 \newblock \emph{Applied Statistics}, 36: \penalty0 181--191.   {\scriptsize
@@ -457,12 +736,19 @@ Simon~N. Wood.
 
 \bibitem[Yoon {\rm{\em et~al.}}(2009)Yoon, Ha, Roh, e Lee]{Yoon2009}{\bf Yoon
   {\rm{\em et~al.}}(2009)}
-S.~H. Yoon, S.~Y. Ha, H.~G. Roh e C.~S. Lee.
+S.~Yoon, S.~Ha, H.~Roh e C.~Lee.
 \newblock Effect of bioethanol as an alternative fuel on the emissions
   reduction characteristics and combustion stability in a spark ignition
   engine.
 \newblock \emph{Proceedings of the Institution of Mechanical Engineers, Part D:
   Journal of Automobile Engineering}, 223: \penalty0 941--951.   {\scriptsize
   Citado na p\'{a}g.}
+
+\bibitem[Zannetti(1990)]{Zannetti1990}{\bf Zannetti(1990)}
+P.~Zannetti.
+\newblock \emph{Air pollution modelling: theories, computational methods and
+  available software}.
+\newblock Springer Science+Business Media, LLC, New York.   {\scriptsize Citado
+  na p\'{a}g.}
 
 \end{thebibliography}

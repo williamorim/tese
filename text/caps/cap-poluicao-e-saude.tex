@@ -263,5 +263,62 @@ Para finalizar, ajustamos também \textit{random forest} com os valores de O$_3$ 
 	\label{fig:cap-mort-ozonio-rf-graficos-iml-lag}
 \end{figure}
 
-\section{Efeino na mortalidade por doenças respiratórias e cardiovasculares}
+Na próxima seção, encerraremos a investigação desse capítulo reajustando os modelos considerados até aqui agora para a mortalidade por doenças respiratórias e cardiovasculares.
 
+\section{Efeito na mortalidade por doenças cardio pulmonares}
+
+Na literatura, diversos trabalhos apontam associação entre mortalidade por doenças cardio pulmonares e exposição à poluição do ar (\cite{Peters2000, Gleice2001a, Pope2002, Garrett2011, Polezer2018}, entre outros). Podemos avaliar então se os resultados obtidos nas últimas seções para a mortalidade geral se mantêm quando filtramos a base apenas para essas causas específicas.
+
+Para filtrar a base de mortalidade, utilizamos a décima versão do CID (Classificação Internacional de Doenças). Os códigos considerados foram:
+
+\begin{itemize}
+	\item C34.9 --- câncer de pulmão;
+	\item I00 a I99 --- doenças do aparelho circulatório;
+	\item J00 a J99 --- doenças do aparelho respiratório. 
+\end{itemize}
+
+Os modelos considerados foram os mesmos da seção anterior: modelo Poisson linear e aditivo e \textit{random forest}. Apresentaremos aqui os resultados apenas para o grupo de idosos, pois mais uma vez os modelos não ajustaram bem aos dados de mortalidade infantil.
+
+Os resultados dos modelos ajustados estão apresentados na Tabela \ref{tab:cap-mort-res-ozonio-doencas}. Verificamos que os resultados dos três modelos estão de acordo com aqueles encontrados para a mortalidade geral: relação positiva com o NO$_\textnormal{x}$ e inexistência de associação com o ozônio. As Figuras \ref{fig:cap-mort-gam-plot-poisson-ozonio-doencas} e \ref{fig:cap-mort-ozonio-rf-graficos-iml-doencas} nos ajudam a interpretar o efeito do NO$_\textnormal{x}$ na mortalidade por doenças cardio pulmonares.
+
+\begin{table}[h!]
+	\centering
+	\caption{Resultados dos modelos ajustados para a mortalidade diária utilizando a concentração de ozônio como preditor.}
+	\begin{tabular}{M{3cm}|M{1.5cm}|M{1.5cm}|M{3cm}|M{3cm} N}
+		\hline
+		\multirow{2}{1cm}{Modelo} &  \multirow{2}{1cm}{RMSE} & \multirow{2}{1.5cm}{\% var. explicada} & \multicolumn{2}{c}{Relação com a mortalidade (valor-p)} & \\
+		& & & O$_3$ & NO$_\textnormal{x}$ & \\
+		\hline
+		Linear Poisson  & 11.42 & 39.32 & Não há (0.37) & Positiva (< 0.01) & \\
+		Aditivo Poisson & 11.13 & 42.79 & Não há (0.22) & Positiva (< 0.01) & \\
+		\textit{Random forest} & 11.27 & 41.30 & - & - & \\
+		\hline
+	\end{tabular}
+	\label{tab:cap-mort-res-ozonio-doencas}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-gam-plot-poisson-ozonio-doencas.pdf}
+	\caption{Gráfico da função não-linear estimada pelo modelo aditivo generalizado para as concentrações de ozônio e de óxidos de nitrogênio considerando a base de mortalidade filtrada para doenças cardio pulmonares.}
+	\label{fig:cap-mort-gam-plot-poisson-ozonio-doencas}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml-doencas.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para as concentrações de ozônio e de óxidos de nitrogênio, considerando a base de mortalidade filtrada para doenças cardio pulmonares.}
+	\label{fig:cap-mort-ozonio-rf-graficos-iml-doencas}
+\end{figure}
+
+Ajustamos também uma \textit{random forest} com os valores de O$_3$ e NO$_\textnormal{x}$ defasados até 30 dias. O modelo com defasagem de 1 dia ficou entre aqueles com menor RSME (11.17) e maior proporção da variabilidade explicada (42.40\%.). Pela Figura \ref{fig:cap-mort-ozonio-rf-graficos-iml-lag}, assim como para a mortalidade geral, vemos que o modelo sugere relação positiva tanto do O$_3$ quanto do NO$_\textnormal{x}$ com a mortalidade em idosos.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/cap-mort-ozonio-rf-graficos-iml-lag-doencas.pdf}
+	\caption{Gráficos de dependência parcial (PDP) e de efeitos acumulados (ALE) da \textit{random forest} (idosos) para as concentrações de ozônio e de óxidos de nitrogênio defasadas em 1 dia, considerando a base de mortalidade filtrada para doenças cardio pulmonares..}
+	\label{fig:cap-mort-ozonio-rf-graficos-iml-lag-doencas}
+\end{figure}
+
+Os resultados encontrados para a mortalidade geral são robustos quando filtramos a base apenas para mortes por doenças cardio pulmonares. Eles sugerem que a poluição por NO$_\textnormal{x}$ é mais sensível para a saúde pública do que a poluição por O$_3$. Muitas outras estratégias poderiam ser adotadas para continuar investigando a relação da poluição do ar com a mortalidade. Poderíamos, por exemplo, levar em consideração a distribuição espacial tanto das mortes quanto dos poluentes. Também poderíamos focar em morte por doenças mais específicas, cuja associação com o nível de poluição deseja-se ser estudada, ou considerar outros poluentes, como material particulado, monóxido de carbono ou dióxido de enxofre. Ao longos das análises, nós mostramos o quanto é complexo estudar os fenômenos que envolvem poluição atmosférica, e que dificilmente vamos encontrar respostas simples para as perguntas que os rodeiam. Cabe a nós pesquisadores identificar os principais indícios que os dados nos fornecem e motivar novos estudos e experimentos para continuar aprofundando o nosso conhecimento sobre o meio em que vivemos.

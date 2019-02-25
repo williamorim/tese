@@ -101,7 +101,7 @@ p2 <- df %>%
   geom_density_ridges(show.legend = FALSE) +
   labs(x = expression(paste(O[3], " (", mu, "g/", m^3, ")")), y = "Mês") +
   theme_bw() +
-  ggtitle("Ridges graph")
+  ggtitle("Ridgeline plot")
 
 p1+p2
 ggsave(filename = "text/figuras/cap-analise-explo-ridges-ozone-month.pdf", 

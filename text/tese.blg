@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tese.aux
 Case mismatch error between cite keys SALVO2017 and Salvo2017
----line 602 of file tese.aux
+---line 605 of file tese.aux
  : \citation{SALVO2017
  :                    }
 I'm skipping whatever remains of this command
@@ -19,6 +19,7 @@ I was expecting a `,' or a `}'---line 681 of file ../../Latex/Bibs/atlas.bib.bib
  :  url = {http://vita.had.co.nz/papers/layered-grammar.pdf}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Singer2012"
 Warning--there's a number but no volume in Beer2011
 Warning--empty journal Em Chavent2009
 You can't pop an empty literal stack for entry Gower1971
@@ -31,45 +32,45 @@ Warning--there's a number but no volume in Lockhart2014
 Warning--empty publisher Em Gilberto2013
 Warning--there's a number but no volume in Salvo2013
 Warning--empty institution Em WHO2004
-You've used 94 entries,
+You've used 98 entries,
             2743 wiz_defined-function locations,
-            1243 strings with 23719 characters,
-and the built_in function-call counts, 43195 in all, are:
-= -- 3748
-> -- 3039
-< -- 56
-+ -- 1035
-- -- 939
-* -- 3473
-:= -- 7040
-add.period$ -- 323
-call.type$ -- 94
-change.case$ -- 480
-chr.to.int$ -- 92
-cite$ -- 196
-duplicate$ -- 1619
-empty$ -- 3100
-format.name$ -- 1083
-if$ -- 8891
+            1267 strings with 24360 characters,
+and the built_in function-call counts, 44866 in all, are:
+= -- 3887
+> -- 3155
+< -- 58
++ -- 1075
+- -- 975
+* -- 3603
+:= -- 7316
+add.period$ -- 336
+call.type$ -- 98
+change.case$ -- 500
+chr.to.int$ -- 96
+cite$ -- 204
+duplicate$ -- 1689
+empty$ -- 3226
+format.name$ -- 1123
+if$ -- 9234
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 114
-newline$ -- 513
-num.names$ -- 376
-pop$ -- 1122
+missing$ -- 121
+newline$ -- 533
+num.names$ -- 392
+pop$ -- 1174
 preamble$ -- 1
-purify$ -- 407
+purify$ -- 423
 quote$ -- 0
-skip$ -- 1171
+skip$ -- 1216
 stack$ -- 0
-substring$ -- 1440
-swap$ -- 98
+substring$ -- 1481
+swap$ -- 102
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 914
+type$ -- 943
 warning$ -- 8
-while$ -- 340
+while$ -- 353
 width$ -- 0
-write$ -- 1478
+write$ -- 1539
 (There were 10 error messages)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  31 JAN 2019 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  7 FEB 2019 17:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -305,42 +305,39 @@ e
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (10.68579pt too wide) in paragraph at lines 79--98
+Overfull \hbox (10.68579pt too wide) in paragraph at lines 83--102
  [][] 
  []
 
 [3]
-Overfull \hbox (5.64583pt too wide) in paragraph at lines 115--115
+Overfull \hbox (5.64583pt too wide) in paragraph at lines 119--119
  []|\T1/cmr/m/n/12 Distribution| 
  []
 
 
-Overfull \hbox (5.47507pt too wide) in paragraph at lines 115--115
+Overfull \hbox (5.47507pt too wide) in paragraph at lines 119--119
  []|\T1/cmr/m/n/12 RMSE| 
  []
 
-<../../text/figuras/cap-comb-gam-plot.pdf, id=22, 433.62pt x 289.08pt>
+[4]
+<../../text/figuras/cap-comb-gam-plot.pdf, id=28, 433.62pt x 289.08pt>
 File: ../../text/figuras/cap-comb-gam-plot.pdf Graphic file (type pdf)
 <use ../../text/figuras/cap-comb-gam-plot.pdf>
 Package pdftex.def Info: ../../text/figuras/cap-comb-gam-plot.pdf  used on inpu
-t line 131.
+t line 135.
 (pdftex.def)             Requested size: 272.99881pt x 182.00667pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4]
 <../../text/figuras/cap-comb-gam-plot-bs.pdf, id=29, 433.62pt x 289.08pt>
 File: ../../text/figuras/cap-comb-gam-plot-bs.pdf Graphic file (type pdf)
 <use ../../text/figuras/cap-comb-gam-plot-bs.pdf>
 Package pdftex.def Info: ../../text/figuras/cap-comb-gam-plot-bs.pdf  used on i
-nput line 141.
+nput line 145.
 (pdftex.def)             Requested size: 272.99881pt x 182.00667pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \vbox (14.5pt too high) detected at line 155
+Overfull \vbox (14.5pt too high) detected at line 159
  []
 
 
@@ -351,7 +348,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../../text/figuras/cap-comb-rf-xgboost-p-ale.pdf Graphic file (type pdf)
 <use ../../text/figuras/cap-comb-rf-xgboost-p-ale.pdf>
 Package pdftex.def Info: ../../text/figuras/cap-comb-rf-xgboost-p-ale.pdf  used
- on input line 168.
+ on input line 170.
 (pdftex.def)             Requested size: 272.99881pt x 194.99928pt.
 
 
@@ -363,7 +360,7 @@ File: ../../text/figuras/cap-comb-xgboost-graficos-clima-ingles-iml.pdf Graphic
  file (type pdf)
 <use ../../text/figuras/cap-comb-xgboost-graficos-clima-ingles-iml.pdf>
 Package pdftex.def Info: ../../text/figuras/cap-comb-xgboost-graficos-clima-ing
-les-iml.pdf  used on input line 177.
+les-iml.pdf  used on input line 179.
 (pdftex.def)             Requested size: 272.99881pt x 272.99898pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -379,7 +376,7 @@ Here is how much of TeX's memory you used:
  6975 multiletter control sequences out of 15000+600000
  17120 words of font info for 44 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 41i,12n,25p,914b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,25p,1033b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.6
 00pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm070
 0.600pk> </home/william/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm
@@ -395,9 +392,9 @@ ic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
 .pfb>
-Output written on Amorimetal2018_v1.pdf (10 pages, 815391 bytes).
+Output written on Amorimetal2018_v1.pdf (10 pages, 815039 bytes).
 PDF statistics:
- 441 PDF objects out of 1000 (max. 8388607)
+ 440 PDF objects out of 1000 (max. 8388607)
  102 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
