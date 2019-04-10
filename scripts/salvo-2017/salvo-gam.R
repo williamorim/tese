@@ -26,7 +26,7 @@ df_model <-
       matches("^stationname"):dv_beltway_open
   ) %>% 
   prep(training = df_model) %>% 
-  bake(newdata = df_model)
+  bake(new_data = df_model)
 
 formula <- df_model %>%
   select(
@@ -36,7 +36,7 @@ formula <- df_model %>%
     -dv_kmregion_am_18_max, -dv_kmcity_am_80_max,
     -pp, -dv_pp_20_150,
     -dv_sun_reg,
-    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation, -dv_o3
+    -year, -month, -day, -dv_weekday_regular, -dv_yearendvacation
   ) %>%
   names() %>%
   str_c(collapse = " + ") %>%
@@ -69,7 +69,8 @@ varImp(model)
 gam_plot(
   model$finalModel, 
   model$finalModel$smooth[[1]],
-  xlab = "Proporção estimada de carros a gasolina"
+  xlab = "Proporção estimada de carros a gasolina",
+  ylab = 'Efeito na concentração de ozônio'
 )
 ggsave(filename = "text/figuras/cap-comb-gam-plot.pdf", width = 6, height = 4)
 
@@ -134,8 +135,6 @@ varImp(model)
 
 # Bootstrapping -----------------------------------------------------------
 
-source("scripts/salvo-2017/salvo-bootstrapping.R")
-
 fit_func <- function(data, formula, i) {
   
   model <- train(
@@ -170,10 +169,17 @@ df_gam_plot <- map_dfr(
   bs_df_gam_plot
 )
 
+#write_rds(df_gam_plot, "scripts/salvo-2017/gam-fits/df_gam_plot.rds")
+
+df_gam_plot <- read_rds("scripts/salvo-2017/gam-fits/df_gam_plot.rds")
+
 ggplot(df_gam_plot, aes(x = x.val, y = value)) +
   geom_line(aes(group = int), color = 'grey', alpha = 0.3) +
   geom_smooth() +
-  labs(y = 's(.)', x = "Proporção estimada de carros a gasolina") +
+  labs(
+    y = 'Efeito na concentração de ozônio', 
+    x = "Proporção estimada de carros a gasolina"
+  ) +
   theme_bw()
-ggsave(filename = "text/figuras/cap-comb-gam-plot-bs.pdf", width = 6, height = 4)
+ggsave(filename = "text/figuras/cap-comb-gam-plot-bs.pdf", width = 6, height = 5)
 

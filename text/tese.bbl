@@ -1,4 +1,4 @@
-\begin{thebibliography}{98}
+\begin{thebibliography}{97}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -546,11 +546,12 @@ Annette Peters, Emerson Liu, Richard~L. Verrier, Joel Schwartz, Diane~R. Gold,
   11--17.   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Polezer {\rm{\em et~al.}}(2018)Polezer, Tadano, Siqueira, Godoi,
-  Yamamoto, de~André, Pauliquevis, de~Fatima~Andrade, Oliveira, Saldiva,
-  Taylor, e Godoi]{Polezer2018}{\bf Polezer {\rm{\em et~al.}}(2018)}
+  Yamamoto, de~{\'A}ndre, Pauliquevis, de~F{\'a}tima~Andrade, Oliveira,
+  Saldiva, Taylor, e Godoi]{Polezer2018}{\bf Polezer {\rm{\em et~al.}}(2018)}
 Gabriela Polezer, Yara~S. Tadano, Hugo~V. Siqueira, Ana~F.L. Godoi, Carlos~I.
-  Yamamoto, Paulo~A. de~André, Theotonio Pauliquevis, Maria de~Fatima~Andrade,
-  Andrea Oliveira, Paulo~H.N. Saldiva, Philip~E. Taylor e Ricardo~H.M. Godoi.
+  Yamamoto, Paulo~A. de~{\'A}ndre, Theotonio Pauliquevis, Maria
+  de~F{\'a}tima~Andrade, Andrea Oliveira, Paulo~H.N. Saldiva, Philip~E. Taylor
+  e Ricardo~H.M. Godoi.
 \newblock Assessing the impact of pm2.5 on respiratory disease using artificial
   neural networks.
 \newblock \emph{Environmental Pollution}, 235: \penalty0 394 -- 403.
@@ -623,8 +624,10 @@ Alberto Salvo e Cristian Huse.
 
 \bibitem[Salvo e Wang(2017)]{Salvo2017b}{\bf Salvo e Wang(2017)}
 Alberto Salvo e Yi~Wang.
-\newblock Ethanol-blended gasoline policy and ozone pollution in sao paulo.
-\newblock \emph{JAERE}, 4\penalty0 (3).   {\scriptsize Citado na p\'{a}g.}
+\newblock Ethanol-blended gasoline policy and ozone pollution in {S}{\~a}o
+  {P}aulo.
+\newblock \emph{Journal of the Association of Environmental and Resource
+  Economists}, 4\penalty0 (3).   {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Salvo {\rm{\em et~al.}}(2017)Salvo, Brito, Artaxo, e
   Geiger]{Salvo2017}{\bf Salvo {\rm{\em et~al.}}(2017)}
@@ -654,21 +657,12 @@ Joel Schwartz.
 \newblock \emph{Epidemiology}, 1\penalty0 (7): \penalty0 20--28.   {\scriptsize
   Citado na p\'{a}g.}
 
-\bibitem[Schwartz e Dockery(1992{\natexlab{a}})]{Schwartz1992}{\bf Schwartz e
-  Dockery(1992{\natexlab{a}})}
+\bibitem[Schwartz e Dockery(1992)]{Schwartz1992}{\bf Schwartz e Dockery(1992)}
 Joel Schwartz e Douglas Dockery.
 \newblock Particulate air pollution and daily mortality in {S}teubenville,
   {O}hio.
 \newblock \emph{American Journal of Epidemiology}, 135\penalty0 (1): \penalty0
   12--25.   {\scriptsize Citado na p\'{a}g.}
-
-\bibitem[Schwartz e Dockery(1992{\natexlab{b}})]{SchwartzDockery1992}{\bf
-  Schwartz e Dockery(1992{\natexlab{b}})}
-Joel Schwartz e Douglas~W. Dockery.
-\newblock Particulate air pollution and daily mortality in {S}teubenville,
-  {O}hio.
-\newblock \emph{Am J Epidemiol.}, 1\penalty0 (135): \penalty0 12--19.
-  {\scriptsize Citado na p\'{a}g.}
 
 \bibitem[Sen {\rm{\em et~al.}}(2009)Sen, da~Mota~Singer, e
   de~Lima]{Sen2009}{\bf Sen {\rm{\em et~al.}}(2009)}
@@ -685,7 +679,7 @@ Robert~H. Shumway e David~S. Stoffer.
 
 \bibitem[Singer {\rm{\em et~al.}}(2018)Singer, Nobre, e Rocha]{Singer2018}{\bf
   Singer {\rm{\em et~al.}}(2018)}
-Julio Singer, Juvêncio Nobre e Francisco~Marcelo Rocha.
+Julio Singer, Juv{\^e}ncio Nobre e Francisco~Marcelo Rocha.
 \newblock \emph{An{\'a}lise de Dados Longitudinais (vers{\~a}o parcial
   preliminar)}.
 \newblock http://www.ime.usp.br/~jmsinger/Textos, S{\~a}o Paulo.   {\scriptsize

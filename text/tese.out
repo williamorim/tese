@@ -39,25 +39,25 @@
 \BOOKMARK [2][]{subsection.3.6.1}{Modelos mistos}{section.3.6}% 39
 \BOOKMARK [2][]{subsection.3.6.2}{Modelos GARCH}{section.3.6}% 40
 \BOOKMARK [2][]{subsection.3.6.3}{Modelos din\342micos}{section.3.6}% 41
-\BOOKMARK [0][]{chapter.4}{Estrat\351gias de machine learning}{}% 42
+\BOOKMARK [0][]{chapter.4}{Estrat\351gias de aprendizado autom\341tico}{}% 42
 \BOOKMARK [1][]{section.4.1}{Sobreajuste e o balan\347o entre vi\351s e vari\342ncia}{chapter.4}% 43
-\BOOKMARK [1][]{section.4.2}{Estimando a performance do modelo}{chapter.4}% 44
+\BOOKMARK [1][]{section.4.2}{Estimando o desempenho do modelo}{chapter.4}% 44
 \BOOKMARK [2][]{subsection.4.2.1}{Valida\347\343o cruzada}{section.4.2}% 45
 \BOOKMARK [2][]{subsection.4.2.2}{Bootstrapping}{section.4.2}% 46
 \BOOKMARK [1][]{section.4.3}{Sele\347\343o de vari\341veis}{chapter.4}% 47
 \BOOKMARK [2][]{subsection.4.3.1}{Selecionando o melhor subconjunto de preditores}{section.4.3}% 48
-\BOOKMARK [2][]{subsection.4.3.2}{Stepwise}{section.4.3}% 49
+\BOOKMARK [2][]{subsection.4.3.2}{M\351todos passo a passo}{section.4.3}% 49
 \BOOKMARK [1][]{section.4.4}{Regulariza\347\343o}{chapter.4}% 50
 \BOOKMARK [1][]{section.4.5}{Quantificando a import\342ncia dos preditores}{chapter.4}% 51
 \BOOKMARK [1][]{section.4.6}{Modelos de \341rvores}{chapter.4}% 52
 \BOOKMARK [2][]{subsection.4.6.1}{\301rvores de decis\343o}{section.4.6}% 53
-\BOOKMARK [2][]{subsection.4.6.2}{Random Forests}{section.4.6}% 54
+\BOOKMARK [2][]{subsection.4.6.2}{Florestas aleat\363rias}{section.4.6}% 54
 \BOOKMARK [2][]{subsection.4.6.3}{XGBoost}{section.4.6}% 55
 \BOOKMARK [1][]{section.4.7}{Interpretando modelos caixa-preta}{chapter.4}% 56
 \BOOKMARK [2][]{subsection.4.7.1}{Gr\341fico de depend\352ncia parcial}{section.4.7}% 57
 \BOOKMARK [2][]{subsection.4.7.2}{Gr\341fico da esperan\347a condicional individual}{section.4.7}% 58
 \BOOKMARK [2][]{subsection.4.7.3}{Gr\341fico de efeitos locais acumulados}{section.4.7}% 59
-\BOOKMARK [2][]{subsection.4.7.4}{LIME}{section.4.7}% 60
+\BOOKMARK [2][]{subsection.4.7.4}{Local interpretable Model-Agnostic Explanations \(LIME\)}{section.4.7}% 60
 \BOOKMARK [2][]{subsection.4.7.5}{Exemplo}{section.4.7}% 61
 \BOOKMARK [0][]{chapter.5}{Polui\347\343o e uso de combust\355veis}{}% 62
 \BOOKMARK [1][]{section.5.1}{Etanol e oz\364nio}{chapter.5}% 63
@@ -72,7 +72,7 @@
 \BOOKMARK [1][]{section.5.7}{Outras estrat\351gias de an\341lise}{chapter.5}% 72
 \BOOKMARK [2][]{subsection.5.7.1}{Sele\347\343o de vari\341veis}{section.5.7}% 73
 \BOOKMARK [2][]{subsection.5.7.2}{Transformando a vari\341vel resposta}{section.5.7}% 74
-\BOOKMARK [2][]{subsection.5.7.3}{Ajustando a m\341xima di\341ria}{section.5.7}% 75
+\BOOKMARK [2][]{subsection.5.7.3}{Modelo para a m\341xima di\341ria}{section.5.7}% 75
 \BOOKMARK [2][]{subsection.5.7.4}{Ajustando cada esta\347\343o separadamente}{section.5.7}% 76
 \BOOKMARK [1][]{section.5.8}{Coment\341rios}{chapter.5}% 77
 \BOOKMARK [0][]{chapter.6}{Polui\347\343o e sa\372de p\372blica}{}% 78
@@ -83,8 +83,8 @@
 \BOOKMARK [1][]{section.6.3}{Concentra\347\343o de O3 e NOx e mortalidade}{chapter.6}% 83
 \BOOKMARK [1][]{section.6.4}{Efeito na mortalidade por doen\347as cardio pulmonares}{chapter.6}% 84
 \BOOKMARK [0][]{chapter.7}{Obtendo dados de polui\347\343o}{}% 85
-\BOOKMARK [1][]{section.7.1}{Web scraping}{chapter.7}% 86
+\BOOKMARK [1][]{section.7.1}{Raspagem de dados web}{chapter.7}% 86
 \BOOKMARK [1][]{section.7.2}{Dados no Brasil}{chapter.7}% 87
 \BOOKMARK [1][]{section.7.3}{Dados em outros pa\355ses}{chapter.7}% 88
 \BOOKMARK [0][]{chapter.8}{Discuss\343o}{}% 89
-\BOOKMARK [0][]{appendix*.116}{Refer\352ncias Bibliogr\341ficas}{}% 90
+\BOOKMARK [0][]{appendix*.116}{Refer\352ncias}{}% 90
