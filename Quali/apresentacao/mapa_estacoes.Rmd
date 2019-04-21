@@ -1,0 +1,35 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(leaflet)
+
+dados <- read_rds(path = "../../Projeto Etanol/Rcodes/data/dados_geoposicao.rds")
+```
+
+<br>
+<br>
+
+<center>
+
+## Mapa das estações da CETESB na Grande SP
+
+<br>
+<br>
+
+```{r, echo = FALSE}
+dados %>%
+  leaflet() %>% 
+  #leaflet(width = "900px", height = "600px") %>% 
+  addTiles %>% 
+  addMarkers(lng = ~long, lat = ~lat, popup = ~stationname) %>% 
+  addProviderTiles(providers$OpenStreetMap)
+```
+
+</center>

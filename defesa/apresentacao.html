@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Ciência de dados, poluição do ar e saúde</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="William Nilson de Amorim   Antonio Carlos Pedroso de Lima   Julio Singer" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Ciência de dados, poluição do ar e saúde
+### William Nilson de Amorim <br> Antonio Carlos Pedroso de Lima <br> Julio Singer
+### 17 de maio de 2019
+
+---
+
+
+
+
+# Sumário
+
+- Poluição do ar
+   - Contextulização
+   - Pesquisa em poluição do ar
+   
+- Ciência de dados
+   - Ciência de dados vs Estatística
+   - O ciclo da ciência de dados
+   
+- Aplicação I: uso de etanol e concentração de ozônio
+
+- Aplicação II: etanol, ozônio  e saúde pública
+
+---
+class: center, middle, inverse
+
+# Poluição do ar
+
+---
+
+&lt;img src="imagens/img-poluicao.jpg" style="background:none; border:none; box-shadow:none; width: 1000px; height: 600px"&gt;
+
+---
+class: middle
+
+.pull-left[
+&lt;img src="imagens/marca-pneu.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px"&gt;
+]
+
+.pull-right[
+&lt;img src="imagens/metro.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px"&gt;
+]
+
+---
+class: middle
+
+&lt;img src="imagens/gado.jpg" style="background:none; border:none; box-shadow:none;"&gt;
+
+---
+
+class: middle
+
+.pull-left[
+&lt;img src="imagens/queimada.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px"&gt;
+]
+
+.pull-right[
+&lt;img src="imagens/vulcao.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px"&gt;
+]
+
+---
+
+&lt;img src="imagens/saara.png" style="background:none; border:none; box-shadow:none;"&gt;
+
+---
+
+# Interdisciplinaridade
+
+- A dispersão dos poluentes da atmosfera é um processo **físico**, geralmente modelado por modelos **matemáticos**.
+
+- A emissão dos compostos e a reação entre os gases da atmosfera são explicadas por equações **químicas**.
+
+- Os níves de poluição são altamente correlacionados com as condições **meteorológicas**.
+
+- Os equipamentos de medição dos poluentes são projetados por **engenheiros**.
+
+- Os principais efeitos da poluição do ar estão na **saúde pública** e no **meio ambiente**.
+
+- A análise do dados requer conhecimento de **estatística**.
+
+---
+class: center, middle, inverse
+
+## Faltam estatísticas e estatísticos no mundo!
+
+---
+
+# Complexidade
+
+- Problema muito mais complexo do que diz o senso comum.
+
+- É preciso estudar muitas áreas do conhecimento.
+
+- Geralmente estamos estudando a relação inerentemente complexa entre diversas variáveis.
+
+--
+
+- Modelos simples serão suficientes?
+
+---
+class: center, middle, inverse
+
+# Ciência de dados
+
+---
+
+# O que é?
+
+- Um sinônimo de Estatística.
+
+- Nome marketeiro para Estatística.
+
+- Um nome mais amplo, que incorpora tarefas deixadas de lado pela Estatística. 
+---
+
+# Ciclo da ciência de dados
+
+&lt;img src = "imagens/intro-ciclo.png"&gt;
+
+---
+
+# Machine learning
+
+- Termo criado em 1959.
+
+--
+
+- Existe um grande hype atualmente em cima desse termo (~50 artigos por dia no Arxiv!!!).
+
+--
+
+- Machine Learning é um nome (marketeiro) para modelagem preditiva.
+
+--
+
+- Machine Learning é uma abordagem de análise de dados que visa gerar a estimativa mais precisa possível para uma quantidade ou fenômeno (Max Kuhn, 2014).
+
+---
+class:: middle
+
+&lt;img src = "imagens/ml.png"&gt;
+
+---
+class: center, middle, inverse
+
+# Aplicações
+
+---
+
+# Uso de etanol e concentração de ozônio
+
+---
+
+# Etanol, ozônio e saúde pública
+
+---
+
+# Referências
+
+### Saara, plumas de poeira e saúde
+
+- [The Effects of African Dust on Coral Reefs and Human Health](https://archive.usgs.gov/archive/sites/coastal.er.usgs.gov/african_dust/)
+
+- [Saharan dust versus Atlantic hurricanes ](https://earthdata.nasa.gov/user-resources/sensing-our-planet/saharan-dust-versus-atlantic-hurricanes)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

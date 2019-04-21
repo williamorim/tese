@@ -1,0 +1,53 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(leaflet)
+library(stringr)
+
+dados_geo <- readr::read_rds(path = "../../Projeto Etanol/Rcodes/data/dados_geoposicao.rds")
+station_results <- readr::read_rds(path = "model_VI.rds")
+```
+<br>
+<br>
+
+<center>
+
+## Resultado modelo VI de Salvo and Geiger (2014) por estação
+
+<br>
+<br>
+
+```{r, echo = FALSE, }
+labels <- str_c(str_c("<strong>", 
+                          station_results$Station %>% str_to_upper, 
+                          "</strong>"),
+                    str_c("share = ", 
+                          round(station_results$share_gas, 1), 
+                          " (",
+                          round(station_results$se_share_gas, 1), 
+                          ")"),
+                    str_c("e20 = ", 
+                          round(station_results$dv_e20, 1), 
+                          " (",
+                          round(station_results$se_dv_e20, 1), 
+                          ")"),
+                    sep = "<br>")
+    
+dados_geo %>%
+  dplyr::filter(stationname %in% station_results$Station) %>% 
+  dplyr::arrange(stationname) %>%
+  dplyr::mutate(lab = labels) %>%
+  leaflet %>% 
+  addTiles %>% 
+  addMarkers(lng = ~long, lat = ~lat, popup = ~lab) %>% 
+  addProviderTiles(providers$OpenStreetMap)
+```
+
+</center>

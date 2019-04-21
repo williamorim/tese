@@ -1,0 +1,364 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------------------------------------------------------------------------- %
+% Pacotes 
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[pdftex]{graphicx}           % usamos arquivos pdf/png como figuras
+\usepackage{setspace}                   % espaçamento flexível
+\usepackage{indentfirst}                % indentação do primeiro parágrafo
+\usepackage{makeidx}                    % índice remissivo
+\usepackage[nottoc]{tocbibind}          % acrescentamos a bibliografia/indice/conteudo no Table of Contents
+\usepackage{courier}                    % usa o Adobe Courier no lugar de Computer Modern Typewriter
+\usepackage{type1cm}                    % fontes realmente escaláveis
+\usepackage{listings}                   % para formatar código-fonte (ex. em Java)
+\usepackage{titletoc}
+
+%\usepackage[bf,small,compact]{titlesec} % cabeçalhos dos títulos: menores e compactos
+
+\usepackage[fixlanguage]{babelbib}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[a4paper,top=2.54cm,bottom=2.0cm,left=2.0cm,right=2.54cm]{geometry} % margens
+%\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,filecolor=black,bookmarksopen=true]{hyperref} % links em preto
+\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=green,bookmarksopen=true]{hyperref} % links coloridos
+\usepackage[all]{hypcap}                    % soluciona o problema com o hyperref e capitulos
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+
+% Bibliografia
+
+%\usepackage[sorting=nyt, citestyle=authoryear, natbib=true, backend=bibtex]{biblatex}
+%\bibliography{../../../Latex/Bibs/atlas.bib}
+\usepackage[round,sort]{natbib} % citação bibliográfica textual(plainnat-ime.bst)
+
+
+\usepackage{bm}
+
+% Comandos
+\newcommand{\REF}{\textcolor{red}{(REF) }}
+\newcommand{\Ex}{\textcolor{blue}{(EXEMPLO)}}
+\newcommand{\sigmatwo}{\sigma^2}
+
+% ---------------------------------------------------------------------------- %
+% Cabeçalhos similares ao TAOCP de Donald E. Knuth
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------------------------------------------------------------------------- %
+\graphicspath{{./figuras/}}             % caminho das figuras (recomendável)
+\frenchspacing                          % arruma o espaço: id est (i.e.) e exempli gratia (e.g.) 
+\urlstyle{same}                         % URL com o mesmo estilo do texto e não mono-spaced
+\makeindex                              % para o índice remissivo
+\raggedbottom                           % para não permitir espaços extra no texto
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+\normalsize
+
+% ---------------------------------------------------------------------------- %
+% Opções de listing usados para o código fonte
+% Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\lstset{ %
+language=Java,                  % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                % adds a frame around the code
+framerule=0.6pt,
+tabsize=2,	                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},         % if you want to add a comment within your code
+backgroundcolor=\color[rgb]{1.0,1.0,1.0}, % choose the background color.
+rulecolor=\color[rgb]{0.8,0.8,0.8},
+extendedchars=true,
+xleftmargin=10pt,
+xrightmargin=10pt,
+framexleftmargin=10pt,
+framexrightmargin=10pt
+}
+
+% ---------------------------------------------------------------------------- %
+% Corpo do texto
+\begin{document}
+% cabeçalho para as páginas das seções anteriores ao capítulo 1 (frontmatter)
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+\setcounter{tocdepth}{2}
+\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+\fancyhead[RE,LO]{}
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+
+\onehalfspacing  % espaçamento
+
+% ---------------------------------------------------------------------------- %
+% CAPA
+% Nota: O título para as dissertações/teses do IME-USP devem caber em um 
+% orifício de 10,7cm de largura x 6,0cm de altura que há na capa fornecida pela SPG.
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{2.3cm}
+    \textbf{\Large{Estratégias para análise de dados de poluição do ar}}\\
+    
+    \vspace*{1.2cm}
+    \Large{William Nilson de Amorim}
+    
+    \vskip 2cm
+    \textsc{
+    Projeto de pesquisa}
+    
+    \vskip 1.5cm
+    Programa: Doutorado em Estatística\\
+    Orientador: Prof. Dr. Antonio Carlos Pedroso de Lima\\
+    Coorientador: Prof. Dr. Julio da Motta Singer
+
+   	\vskip 1cm
+    \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio
+    financeiro da CAPES e do CNPq.}
+    
+    \vskip 0.5cm
+    \normalsize{São Paulo, 2 junho de 2017}
+\end{center}
+
+        
+
+% ---------------------------------------------------------------------------- %
+% Capítulos do trabalho
+
+%\singlespacing              % espaçamento simples
+\onehalfspacing            % espaçamento um e meio
+
+\newpage
+
+\section*{Introdução}
+
+A poluição do ar, considerada pela Organização Mundial da Saúde (OMS) o maior risco ambiental à saúde humana, é responsável por aproximadamente 7 milhões de mortes por ano, um oitavo do total global \citep{WHO-pollution-2012}. Poluentes como óxidos de carbono, nitrogênio e enxofre, ozônio e material particulado trazem diversos prejuízos à nossa qualidade de vida e ao equilíbrio do planeta. Eles são agentes sistemáticos no desenvolvimento de irritação dos olhos, obstrução nasal, tosse, asma e redução da função pulmonar. À exposição contínua, estão associadas diversas doenças respiratórias e cardiovasculares, problemas digestivos e do sistema nervoso, câncer e aumento da mortalidade infantil \citep{EC1999}. Além disso, vários deles estão diretamente ligados ao aquecimento global e ao efeito estufa.
+
+Nas últimas décadas, diversos estudos têm alertado sobre os riscos da poluição atmosférica. Seus principais objetivos compreendem a descrição dos níveis de poluição em determinada região, o acompanhamento das concentrações dos poluentes ao longo do tempo, a busca de relação entre a mortalidade (ou morbidade) e a concentração de poluentes e o desenvolvimento de soluções mais limpas (ou menos poluentes) economicamente viáveis.
+
+\cite{Carslaw2007}, por exemplo, modelaram concentrações diárias de óxidos e dióxidos de nitrogênio, monóxido de carbono, benzeno e 1,3-butadieno para avaliar a tendência das concentrações desses poluentes durante o período de 1998 a 2005 no movimentado centro de Londres. Já \cite{Beer2011} avaliaram os impactos à saúde ao se utilizar etanol como aditivo na gasolina em regiões urbanas da Austrália. Os autores examinaram emissões de escapamento e evaporativas de veículos leves em câmaras de poluição, medindo níveis de ozônio, dióxido de nitrogênio e material particulado. \cite{Kloog2012} utilizaram medidas de profundidade óptica de aerossóis feitas por satélites para prever concentrações diárias de material particulado na costa leste dos Estados Unidos. \cite{Belusic2015} estudaram a relação das concentrações horárias de monóxido de carbono, dióxido de enxofre, dióxido de nitrogênio e material particulado com as condições climáticas da cidade de Zagrebe, na Croácia.
+
+%\cite{SchwartzDockery1992}; \cite{Schwartz1994,Schwartz1996}; \cite{Saldiva1994,Saldiva1995}; \cite{SchwartzDockeryNeas1996}; \cite{Lin1999}; \cite{Gleice2001a,Gleice2001b}; \cite{Chang2017}
+
+Os estudos citados --- e muitos outros, como \cite{Chang2017}, \cite{Gleice2001a,Gleice2001b}, \cite{Lin1999}, \cite{SchwartzDockeryNeas1996}, \cite{Katsouyanni1996}, \cite{Schwartz1994,Schwartz1996}, \cite{Saldiva1994,Saldiva1995}, \cite{SchwartzDockery1992}, \cite{SchwartzMarcus1990} e \cite{Shumway1982} ---, embora abordem temas diferentes, concordam sobre a importância da diminuição da emissão de poluentes. Devido à forte dependência de combustíveis fósseis, o setor de transportes é considerado pela União Europeia o mais resiliente aos esforços para a redução de emissões \citep{EC_Climate_Action}. Como soluções que visam controlar o tamanho da frota de veículos ou restringir o seu uso são limitadas por fatores políticos e econômicos, os estudos nessa área buscam encontrar combustíveis menos poluentes, alternativas ao diesel e à gasolina.
+
+Em um experimento controlado na cidade de Fairbanks, no Alasca, \cite{Mulawa1997} coletaram amostras de material particulado de carros a gasolina e as compararam com dados de emissões de carros abastecidos com E10 (gasolina com 10\% de álcool). Os autores constataram que os carros com E10 emitiam menos material particulado e que os níveis desse poluente aumentavam conforme a temperatura dos dois combustíveis diminuía. \cite{Yoon2009} conduziram uma investigação similar e concluíram que a combustão de etanol e da mistura E85 (85\% etanol e 15\% gasolina) emitiam concentrações inferiores de hidrocarbonetos, monóxido de carbono e óxidos de nitrogênio quando comparados com a gasolina sem aditivos sob diversas condições experimentais. Já \cite{AfonsoPereira2004} expuseram ao sol câmaras contendo etanol puro e gasool (mistura de 22-24\% etanol em gasolina) para estudar a formação do ozônio e concluíram que as concentrações máximas do poluente eram, em média, 28\% maiores para o álcool do que para o gasool.
+
+As grandes cidades funcionam como um laboratório natural para os estudos de poluição do ar. Com a disponibilidade de dados meteorológicos e de tráfego, é possível avaliar grande parte dos fatores que influenciam a formação dos poluentes. Muitos trabalhos vêm trocando os ambientes controlados por dados de poluição urbana. Nesse contexto, \cite{Jacobson2007} relacionou a substituição da gasolina por etanol (E85) com dados epidemiológicos em Los Angeles, em particular, e nos Estados Unidos como um todo. Os resultados do estudo mostraram que a utilização de E85 aumentou as taxas de mortalidade, hospitalização e asma devido a maiores concentrações de ozônio. \cite{Salvo2014} utilizaram uma mudança real na preferência por gasolina ocasionada em flutuações de larga escala no preço do etanol para analisar a associação entre as proporções de carros a gasolina rodando na cidade de São Paulo\footnote{Proporção de carros a gasolina entre os carros bicombustíveis.} com os níveis de ozônio medidos no começo da tarde durante os anos de 2008 a 2011. Os autores concluíram que o uso do etanol está associado a maiores concentrações do poluente.
+
+Uma das grandes dificuldades associadas ao estudo de dados de poluição atmosférica é o grande número de efeitos confundidores. Em áreas urbanas, pode existir uma complexa mistura de fatores que contribuem de maneiras diferentes para a formação e dispersão dos poluentes. Diversas variáveis podem ser consideradas, como aquelas relacionadas ao clima, ao tráfego, à química atmosférica local, às mudanças climáticas sazonais, a eventos esporádicos que podem alterar o trânsito em algumas áreas da cidade, ao tamanho e idade da frota de veículos, às emissões evaporativas, entre outras. Além disso, a relação entre essas variáveis pode não ser muito simples, o que exige modelos menos restritivos, e não é rara a presença de dados omissos ou grande períodos sem observação, complicando ainda mais a análise. Embora diferentes técnicas estatísticas venham sendo empregadas na modelagem desses dados, nenhuma delas é robusta o suficiente para atacar sozinha todos esses problemas. Na maioria dos casos, a abordagem mais adequada dependeria de uma formulação de estratégias que envolvessem a combinação de duas ou mais técnicas, além de ferramentas estatísticas ainda não utilizadas nesse contexto. 
+%A carência, no entanto, dessas estratégias na literatura especializada é uma das motivações desta tese.
+
+O objetivo desta tese é comparar estratégias para analisar séries temporais de poluentes atmosféricos, avaliando o desempenho dos diferentes modelos na presença de variáveis com erro de medida, períodos sem informação, diferentes especificações para a distribuição dos dados e observações correlacionadas.
+
+\section*{Técnicas estatísticas empregadas na análise e suas deficiências}
+
+As principais metodologias para abordar dados de poluição e epidemiologia ambiental envolvem modelos lineares \citep{Saldiva1995, Salvo2014}, modelos lineares generalizados \citep{Gleice2001b,Lin1999, Saldiva1994,SchwartzDockery1992}, modelos aditivos generalizados \citep{Carslaw2007,Gleice2001a, Gleice2001b,Schwartz1994,Schwartz1996,SchwartzDockeryNeas1996} e séries temporais \citep{Shumway1982,SchwartzMarcus1990,Katsouyanni1996}. A escolha de uma estratégia de análise adequada é muito importante, pois dados de poluição do ar\footnote{Consideraremos tanto séries de poluentes quanto dados epidemiológicos, como número de mortes ou casos de doenças associadas à poluição do ar.} usualmente violam as suposições associadas a esses modelos. \cite{Salvo2014}, por exemplo, utilizam um modelo linear, que supõe independência entre as observações, para ajustar uma série horária de concentração de ozônio, possivelmente autocorrelacionada. No trabalho, a variável explicativa de maior interesse, a proporção de carros a gasolina na cidade de São Paulo, é estimada, isto é, existe um erro associado a essas observações, tornando um modelo com erros nas variáveis mais adequado para essa análise. Além disso, a escolha dos autores por variáveis indicadoras para a hora, o dia da semana e a semana do ano pode não ser a mais adequada para controlar a sazonalidade da série. De uma forma geral, autocorrelação, heteroscedasticidade, superdispersão, tendência, sazonalidade, componentes espaciais, variáveis com erro de medida e grandes períodos sem observação, acarretando um grande número de observações omissas, são características comuns em dados de poluição do ar e precisam ser contempladas pelo modelo escolhido.
+
+Modelos lineares são uma boa alternativa devido à facilidade de implementação e interpretação de seus coeficientes. Além disso, grandes intervalos sem observações não geram maiores problemas no processo de estimação. Por outro lado, a concentração de poluentes é uma medida positiva e, em muitos casos, assimétrica e autocorrelacionada, tornando as suposições de normalidade e de independência muito restritivas. Os modelos lineares generalizados flexibilizam a suposição de normalidade e de homoscedasticidade, permitindo modelar também a dispersão dos dados, mas ainda estão restritos a observações independentes. Em geral, os efeitos temporais são representados por variáveis indicadoras para a hora do dia, dia da semana, semana do ano etc. Nessa abordagem, muitas vezes é difícil especificar quais termos devem ser incluídos no modelo e determinar se eles realmente controlam esses componentes.
+
+Os modelos aditivos generalizados são uma boa alternativa nesse contexto. Eles permitem incluir um componente não-paramétrico para ajustar uma curva suavizada da resposta em função do tempo, controlando os efeitos sazonais e de tendência, e um componente paramétrico para associar as variáveis explicativas à variável resposta. No entanto, a especificação do modelo pode ser complicada, pois a escolha dos parâmetros que controlam a suavização nem sempre é trivial. Grandes períodos sem observação também atrapalham o ajuste, pois a curva suavizada ao longo do tempo é considerada contínua durante todo o intervalo.
+
+Os modelos de séries temporais também sofrem com dados omissos, mas são mais adequados para controlar a tendência e a sazonalidade, além de permitirem especificar o grau de autocorrelação entre as observações. Contudo, as técnicas usuais regridem a variável resposta em função apenas de suas observações defasadas, não sendo possível associar a ela fatores confundidores ou de controle. Dessa maneira, os resíduos dos modelos de séries temporais podem ser ajustados contra as variáveis explicativas a partir de um modelo linear sem a necessidade de controlar o efeito do tempo.
+
+\section*{Modelos lineares}
+
+Seja $Y_t$ a variável resposta sob estudo,  $\mathbf{X_t} = (X_{1t}, ..., X_{pt})$ um vetor de variáveis explicativas cuja associação com $Y_t$ estamos interessados em avaliar, $\mathbf{Z_t} = (Z_{1t}, ..., Z_{st})$ um vetor de variáveis de confundimento cuja associação com $Y_t$ é, a priori, conhecida e $t$ o instante no qual essas variáveis foram medidas, com $t = 1, ..., n$. Aqui não são feitas suposições sobre a natureza dos preditores $\mathbf{X_t}$ e $\mathbf{Z_t}$, isto é, essas variáveis podem ser fixas ou aleatórias, qualitativas ou quantitativas. Dado os vetores de parâmetros desconhecidos $\boldsymbol{\beta} = (\beta_1, ..., \beta_p)$ e $\boldsymbol{\gamma} = (\gamma_1, ..., \gamma_s)$, a formulação mais simples para um modelo linear é dada por
+
+\begin{equation}
+Y_t = \alpha + \beta_1 X_{1t} + ... + \beta_p X_{pt} + \gamma_1 Z_{1t} + ... + \gamma_s Z_{st} + \epsilon_t.
+\label{modelo-linear}
+\end{equation}
+
+Em geral, supõe-se que os erros $(\epsilon_1, ..., \epsilon_n)$ sejam independentes, homoscedásticos e, em certos casos, normalmente distribuídos. Além disso, a especificação (\ref{modelo-linear}) impõe que a relação entre a resposta $Y_t$ e os preditores $\mathbf{X_t}$ e $\mathbf{Z_t}$ seja linear e aditiva.
+
+Os coeficientes $(\beta_1, ..., \beta_p)$ e $(\gamma_1, ..., \gamma_s)$ podem ser estimados pelo método de mínimos quadrados \citep{Hastie2008} ou de máxima verossimilhança \citep{Sprott2000}. Sob a suposição de normalidade, as duas abordagens são equivalentes. O método de mínimos quadrados não exige a distribuição Normal no processo de estimação, mas ela pode ser necessária para se fazer inferências sobre os parâmetros (intervalos de confiança e testes de hipóteses) em amostras pequenas\footnote{Em geral, o tamanho amostral não é um problema em estudos de poluição do ar.}.
+
+Apesar de suas restrições, alguns autores optam por modelos lineares para analisar dados de poluição atmosférica. \cite{Saldiva1995} utilizaram um modelo linear para modelar a associação entre poluição do ar e mortalidade diária, justificando que a escolha do modelo gaussiano (em detrimento de um modelo Poisson) é razoável devido ao elevado número médio de mortes diárias (maior que 60). \cite{Salvo2014}, como citado anteriormente, ajustaram um modelo linear para estudar a associação entre a proporção de carros a gasolina e a concentração de ozônio em São Paulo. 
+
+Como as estimativas do modelo são calculadas com base na suposição de independência, variáveis $Y_1, ..., Y_n$ muito correlacionadas podem levar a estimativas enviesadas e conclusões equivocadas. Mais especificamente, se as observações apresentarem correlação, os erros-padrão estimados tenderão a subestimar a verdadeira variabilidade, o que comprometeria toda a inferência feita a partir deste modelo, já que os valores $p$ associados seriam menores do que deveriam ser. Variáveis indicadoras para a unidade de tempo em que as medidas foram realizadas (hora, dia da semana, semana do mês etc) podem ajudar a reduzir o efeito da correlação.  
+
+Em modelos lineares, uma forma de tratar observações heteroscedásticas é ajustar certas transformações da variável resposta $Y$, como $\log Y$ e $\sqrt{Y}$, que são boas tentativas para estabilizar a variância das observações. Observe que, nesse caso, a relação entre $Y$ e os preditores deixa de ser linear, e a modelagem é toda feita com base na variável resposta, inclusive a interpretação dos parâmetros. Essa estratégia também pode ser utilizada quando a violação da suposição de normalidade é um problema \citep{Hastie2008}. Uma outra alternativa consiste em ponderar as observações com pesos proporcionais ao inverso de sua variância, mas se limita aos casos em que a variabilidade é conhecida ou pode ser estimada com precisão. Fazendo o gráfico de resíduos para um dos modelos lineares ajustados por \cite{Salvo2014}, observa-se pela Figura \ref{fig:residualsdpii} que a variância não parece ser constante em todo o período observado.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/residuals_DPII}
+	\caption{Gráfico dos resíduos padronizados contra o índice das observações para o modelo VI ajustado por \cite{Salvo2014} para a estação Dom Pedro II. As faixas sem pontos se referem a períodos sem observação.}
+	\label{fig:residualsdpii}
+\end{figure}
+
+
+A suposição de linearidade estabelece que a variação esperada em $Y_t$ causada pelo acréscimo de uma unidade em $X_{it}$ é constante e igual a $\beta_i$, independentemente do valor de $X_{it}$.	O mesmo vale para as variáveis $\mathbf{Z_t}$ e os coeficientes $(\gamma_1, ..., \gamma_s)$, mas, em geral, não há interesse em interpretá-los. Para contornar problemas com a suposição de linearidade no modelo linear, costuma-se aplicar transformações nos preditores, tais como $\log (X)$, $\sqrt{X}$ e $X^2$. Quando há interesse inferencial, é preciso ter cuidado com a nova interpretação dos parâmetros após aplicar essas transformações. Já suposição de aditividade implica que a variação esperada na resposta $Y_t$ causada por uma mudança no preditor $X_{it}$ (ou $Z_{jt}$) independe do valor dos outros preditores. Essa suposição pode ser relaxada com a introdução de termos de interação.
+
+É natural pressupor que séries de variáveis ambientais ou epidemiológicas não sejam estacionárias, isto é, que as suas médias não são constantes ao longo do tempo. Para acrescentar um termo de tendência linear ao modelo (\ref{modelo-linear}), podemos especificar $Z_{1t} = t$, $t = 1, ..., n$. Assim, um coeficiente $\gamma_1$ positivo indica que a resposta cresce linearmente com o tempo, enquanto um coeficiente negativo indica que a resposta decresce linearmente. Podemos definir outras formas para a tendência, como quadrática, $Z_{1t} = t^2$, ou logarítmica, $Z_{1t} = \log(t)$.
+
+Uma outra forma de controle da tendência de uma série é transformar os dados originais para gerar uma série estacionária. A transformação mais comum é dada pela diferenciação
+
+\begin{displaymath}
+\Delta Y_t = Y_{t} - Y_{t-1}.
+\end{displaymath}
+Caso o cálculo dessa primeira diferença não tenha sido suficiente para alcançar a estacionariedade, diferenças de maior grau costumam ser aplicadas. Para $j < n$, define-se
+
+\begin{displaymath}
+\Delta^j Y_t = \Delta[\Delta^{j-1} Y_t].
+\end{displaymath}
+Usualmente, uma ou duas diferenças tornam a série estacionária \citep{Morettin2004}.
+
+A média da variável resposta também pode variar segundo fatores que se alteram periodicamente dentro de um intervalo de tempo. Esses padrões, conhecidos como sazonalidade, se repetem ao longo das semanas, meses e anos, e também precisam ser controlados. O termo sazonal pode ser incluído no modelo linear (\ref{modelo-linear}) a partir de variáveis indicadoras. Se, por exemplo, acredita-se haver um efeito sazonal de mês, pode-se então adicionar ao modelo 11 variáveis indicadoras $Z_{it}$, $i = 1, ..., 11$, tais que
+
+\begin{displaymath}
+Z_{it} = \left\{
+\begin{array}{ll}
+1, & \textnormal{se a observação $t$ pertence ao $i$-ésimo mês do ano; e} \\
+0, & \textnormal{caso contrário}.
+\end{array}
+\right.
+\end{displaymath}
+Com essa formulação, o mês de dezembro será tomado como referência.
+
+\section*{Modelos lineares generalizados}
+
+O modelo linear definido em (\ref{modelo-linear}) tem três importantes restrições:
+
+\begin{enumerate}
+	\item[i.] para se fazer inferência, principalmente em amostras pequenas, a variável $Y$ precisa ter distribuição Normal; 
+	\item[ii.] a variância de $Y$ é considerada constante durante todo o período de observação; e
+	\item[iii.] as observações precisam ser independentes.
+\end{enumerate}
+Formalmente, o modelo admite que $\epsilon_t \stackrel{ind}{\sim} \mathcal{N}(0, \sigma^2)$, $t = 1, ..., n$, isto é, os erros aleatórios são normalmente distribuídos, independentes e homoscedásticos\footnote{A notação $X_i \stackrel{ind}{\sim} G$, $i = 1, ..., n$, indica que as variáveis $X_1, \dots, X_n$ são independentes e todas possuem a mesma distribuição $G$.}.
+
+Como discutido anteriormente, essas suposições podem não ser compatíveis com dados de poluição atmosférica, justificando a necessidade de modelos mais flexíveis, que contemplem a distribuição e a estrutura de variância e covariância das observações e continue interpretável.
+
+Os modelos lineares generalizados foram introduzidos por \cite{Nelder1972} e englobam uma série de modelos de regressão. Eles são uma das principais alternativas para o ajuste de dados não-normais, permitindo a utilização de distribuições como a Gama e a Log-normal para dados assimétricos, a Poisson e a Binomial negativa para dados de contagem e Binomial para dados categorizados.
+
+O modelo linear generalizado pode ser definido como 
+
+\begin{displaymath}
+Y_t|\mathbf{X_t},\mathbf{Z_t} \stackrel{ind}{\sim} \mathcal{D}(\mu_t, \phi)
+\end{displaymath}
+\begin{equation}
+g(\mu_t) = \alpha + \beta_1 X_{1t} + ... + \beta_p X_{pt} + \gamma_1 Z_{1t} + ... + \gamma_s Z_{st},
+\label{glm}
+\end{equation}
+em que $\mathcal{D}$ é uma distribuição pertencente à família exponencial, $\mu_t$ é um parâmetro de posição e $\phi$ é um parâmetro de precisão.
+
+Os parâmetros deste modelo podem ser estimados por máxima verossimilhança, e os cálculos envolvem o uso de procedimentos iterativos, como o Newton-Raphson e escore de Fisher \citep{Dobson1990}.
+
+Os modelos Gama e Log-normal são usualmente utilizados para ajustar dados positivos assimétricos, sendo, em geral, mais adequados para concentrações de poluentes do que a distribuição Normal. Como essas distribuições não assumem valores negativos, concentrações próximas de zero podem gerar problemas de convergência no algoritmo de estimação. Para ajustar um modelo Gama para os dados analisados por \cite{Salvo2014}, por exemplo, é preciso fazer algumas transformação na série de ozônio para lidar com as concentrações muito baixas.
+
+Dados de contagem, como o número de casos de uma doença ou mortalidade, são usualmente ajustados pelo modelo Poisson. \cite{Gleice2001b}, por exemplo, utilizaram esse modelo para avaliar a associação entre poluição atmosférica e marcadores de mortalidade em idosos na cidade de São Paulo. No entanto, a distribuição Poisson impõe que a média e a variância das observações são iguais e pode não se ajustar bem quando os dados apresentam sobredispersão (variância maior que a média). O modelo com resposta binomial negativa é uma alternativa nesses casos, já que permite a modelagem conjunta dos parâmetros de posição e dispersão.
+
+A primeira expressão em (\ref{glm}) impõe que as variáveis sejam homoscedásticos e independentes. A suposição de homoscedasticidade pode ser relaxada modelando-se a dispersão dos dados por meio dos modelos lineares generalizados duplos \citep{Smyth1989}. Já as equações de estimação generalizadas \citep{Liang1986} --- utilizadas por \cite{SchwartzDockery1992} para modelar dados de mortalidade nos Estados Unidos a partir de um modelo de Poisson com efeito aleatório de ano --- e os modelos lineares generalizados mistos \citep{Breslow1993} são uma extensão para dados não-gaussianos correlacionados.
+
+Aqui, a especificação dos termos de tendência e sazonalidade pode ser feita da mesma forma que no modelo linear. %, assim como a inclusão de componentes espaciais.
+
+\section*{Modelos aditivos generalizados}
+
+Modelos aditivos generalizados são uma extensão do modelo linear generalizado que permite associar cada um dos preditores à variável resposta a partir de funções não-lineares, mantendo a suposição de aditividade. Eles são muito utilizados no estudo de poluição do ar, em que a relação entre as variáveis muitas vezes não é linear. \cite{Gleice2001b}, por exemplo, ajustaram um modelo aditivo Poisson para a série de morbi-mortalidade e compararam os resultados com os do modelo linear Poisson. Os autores mostraram que a primeira classe de modelos apresentou mais poder para detectar os efeitos significantes, embora as conclusões de ambos terem sido coerentes. \cite{Carslaw2007} ajustaram modelos aditivos com distribuição Normal para estudar a série de diversos poluentes no centro de Londres, controlando por variáveis meteorológicas. A partir desses modelos, os autores analisaram a tendência das concentrações dos poluentes no período de 1998 a 2005.
+
+Formalmente, o modelo aditivo generalizado pode ser escrito como
+
+\begin{displaymath}
+Y_t|\mathbf{X_t},\mathbf{Z_t} \stackrel{ind}{\sim} \mathcal{D}(\mu_t, \phi)
+\end{displaymath}
+\begin{equation}
+g(\mu_t) = \beta_0 + f_1(X_{1t}) + ... + f_p(X_{pt}) + f_{p+1}(Z_{1t}) + ... + f_{p+s}(Z_{st}),
+\label{gam}
+\end{equation}
+em que $\mathcal{D}$ é uma distribuição pertencente à família exponencial. No caso mais simples, assim como nos modelos lineares generalizados, supõe-se que as variáveis $Y_t$ são homoscedásticas, independentes e normalmente distribuídas.
+
+Existem diversas propostas a respeito de como $f$ deve ser representada, incluindo o uso de splines naturais, splines penalizados, splines suavizados e loess \citep{Hastie1990}. Outra questão importante recai no grau de suavização de $f$, pois funções muito suaves geram maior viés e funções muito flexíveis geram maior variância. Em geral, utiliza-se validação cruzada para determinar a suavidade ótima de $f$ \citep{Hastie2008}. 
+
+O ajuste dos modelos aditivos generalizados consiste em incorporar um desses métodos de alisamento ao procedimento de estimação usual de um modelo linear generalizado. Para mais informações, consulte \cite{Hastie1990} ou \cite{Hastie2008}.
+
+A expressão (\ref{gam}) considera que todos os preditores serão estimados a partir de funções não-lineares. No entanto, em muitos casos, pode ser interessante considerar o alisamento de apenas algumas variáveis explicativas, enquanto outras são tratadas com estrutura paramétrica. Portanto, um ponto importante no ajuste destes modelos é a escolha de quais variáveis serão alisadas. Em estudos de poluição atmosférica, a utilização de modelos aditivos tem como objetivo o alisamento do tempo, sendo que, em alguns casos, outras variáveis confundidoras cujo efeito é supostamente não-linear, como temperatura, umidade, congestionamento etc, também são alisadas. A escolha dos parâmetros de suavização é outro ponto crucial. Em geral, os algorítimos de estimação permitem que os próprios dados estimem uma suavização ótima, que visa balancear a relação entre viés e variância das estimativas. No entanto, há casos em que a estrutura dos dados (sazonal, por exemplo) demanda que esses valores sejam pré-fixados.
+
+Na Figura \ref{fig:gamtrend}, pode-se observar a curva suavizada do tempo, representada pela variável \textit{trend}, dada pelo modelo aditivo generalizado ajustado aos dados de \cite{Salvo2014}. Os pontos paralelos ao eixo $x$ representam a faixa com observações disponíveis. Note que o intervalo de confiança representado pela sombra em volta da curva tende a aumentar na presença de dados faltantes.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/gam_trend}
+	\caption{Função suavizada do tempo para os dados de \cite{Salvo2014} (estação Dom Pedro II).}
+	\label{fig:gamtrend}
+\end{figure}
+
+
+\section*{Séries temporais}
+
+Os modelos utilizados para descrever séries temporais são processos estocásticos, isto é, famílias de variáveis aleatórias definidas em um mesmo espaço de probabilidades e indexadas por um conjunto de índices inteiros ou reais. De uma forma geral, há dois enfoques na análise de séries temporais. O primeiro se encontra no domínio temporal, com base em modelos paramétricos. O segundo, situado no domínio de frequências, se baseia em modelos não-paramétricos. Ambas as abordagens têm como objetivo investigar o mecanismo gerador da série temporal, fazer previsões de valores futuros e descrever tendências, ciclos, variações sazonais e periodicidades relevantes.
+
+Os modelos paramétricos mais utilizados para a análise de séries temporais são os modelos auto-regressivos integrados e de médias móveis (ARIMA) e os modelos sazonais (SARIMA). Dentre os modelos não-paramétricos, destaca-se a análise espectral.
+
+O modelo ARIMA é uma generalização do modelo auto-regressivo e de média móvel (ARMA). Mais especificamente, é um caso particular de um modelo de filtro linear, que supõe que as séries de tempo são geradas por um sistema linear cuja entrada é um ruído branco. Formalmente, 
+
+\begin{equation}
+	Y_t = \mu + a_t + \psi_1 a_{t-1} + \psi_2 a_{t-2} + \dots,
+	\label{modelo:filtro-linear}
+\end{equation}
+em que $\{\psi_j, j \geq 1\}$ é uma sequência de pesos correspondente a uma função de transferência e $\mu$ é um parâmetro que determina o nível da série. Dessa forma, o modelo ARIMA pode ser escrito como
+
+\begin{equation}
+Y_t - \alpha_1 X_{t-1} - \dots - \alpha_p X_{t-p} = \epsilon_t + \theta_1 \epsilon_{t-1} + \dots + \theta_q\epsilon_{t-q},
+\label{modelo:arima}
+\end{equation}
+sendo $(\alpha_1, \dots, \alpha_p)$ os parâmetros do modelo auto-regressivo e $(\theta_1, \dots, \theta_q)$ os parâmetros do modelo de médias móveis.
+
+Essa classe de modelos é frequentemente empregada na análise de séries não-estacionárias, para as quais uma ou mais diferenciações precisam ser aplicadas inicialmente (correspondente ao ``integrado'' no nome do modelo). A parte auto-regressiva implica que a variável será regredida ou explicada pelos seus próprios valores defasados, como indicado por (\ref{modelo:filtro-linear}). A parte de médias móveis resulta que os erros aleatórios são uma combinação de termos de erro que ocorreram em vários tempos no passado.
+
+Os modelos ARIMA são geralmente denotados por ARIMA$(p, d, q)$, em que os parâmetros $p$, $d$ e $q$ são inteiros não-negativos e correspondem, respectivamente, à ordem da defasagem do modelo auto-regressivo, do número de graus de diferenciação da série e da ordem do modelo de médias móveis. A estimação pode ser feita segundo a abordagem de \cite{Box1970}.
+
+Quando há evidências de um efeito sazonal na série, o modelo ARIMA pode ser generalizado para o modelo auto-regressivo integrado e de médias móveis sazonal (SARIMA). Esses modelos são usualmente denotados por ARIMA$(p, d, q)(P, D, Q)_m$, em que $m$ se refere ao número de períodos em cada ciclo e os parâmetros $P$, $D$ e $Q$ referem-se, respectivamente, aos termos auto-regressivo, de diferenciação e de médias móveis da parte sazonal do modelo.
+
+Como os modelos ARIMA e SARIMA não envolvem variáveis explicativas, os seus resíduos podem ser utilizados como variável resposta em um modelo linear para avaliar a relação com variáveis de interesse e controlar os confundidores. Se os modelos de séries temporais estiverem bem ajustados, espera-se que os resíduos resultantes não apresentem mais tendência, volatilidade ou componentes sazonais.
+
+A análise espectral caracteriza a frequência de séries temporais estacionárias, sendo essencial em estudos cujo objetivo é encontrar periodicidade nos dados. A técnica consiste em utilizar funções periódicas, como o seno, para decompor a série em partes mais simples, com diferentes frequências. O periodograma e a transformada de Fourier discreta podem ser utilizados para a estimação espectral.
+
+O periodograma e a função de autocorrelação parcial \citep{Morettin2004} também são técnicas muito utilizadas na análise de séries temporais. A primeira visa investigar a existência de padrões cíclicos em diferentes tamanhos de períodos da série. A segunda descreve a correlação serial das observações em defasagens de ordem $1, 2, 3, \dots$, com os valores corrigidos pelas defasagens anteriores. \cite{Katsouyanni1996} utilizaram essas técnicas para analisar séries de poluentes, mortalidade e admissões hospitalares emergenciais em quinze cidades europeias de dez diferentes países. Os autores também utilizaram gráficos das observações contra o tempo, da série temporal predita e da série residual para encontrar estruturas temporais, como tendência e sazonalidade, o efeito de variáveis climáticas, como temperaturas altas e baixas, e a ocorrência de epidemias.
+
+A metodologia usual para análise de séries temporais supõe que as observações são medidas em intervalos igualmente espaçados de tempo, sendo que dados omissos geralmente se tornam um grande problema. Para contornar esse problema, \cite{Shumway1982} propuseram um procedimento recursivo para estimação dos parâmetros via máxima verossimilhança que combina os estimadores suavizados de Kalman \citep{Kalman1960} com o algoritmo EM descrito em \cite{Dempster1977}.
+
+\section*{Proposta da tese}
+
+De uma maneira geral, este trabalho pretende abordar os seguintes tópicos:
+
+\begin{enumerate}
+	\item revisão bibliográfica para a identificação das diferentes técnicas estatísticas utilizadas na análise de dados de poluição do ar;
+	\item avaliação das suposições inerentes às técnicas estatísticas utilizadas e quais as consequências de sua violação nos trabalhos estudados;
+	\item proposta de soluções para contornar essas violações e outras limitações; e
+	\item aplicação dos resultados ao problema de avaliação do efeito de biocombustíveis na concentração atmosférica de diferentes poluentes.
+\end{enumerate}
+
+Para os modelos lineares e os modelos lineares generalizados, avaliar-se-á como contemplar os efeitos de sazonalidade e tendência e em quais situações as suposições desses modelos são razoáveis.
+
+Para os modelos aditivos generalizados, propõe-se discutir a escolha dos parâmetros de suavização, quais variáveis devem ser suavizadas, alternativas para lidar com grandes períodos sem observação e técnicas para avaliar a qualidade do ajuste.
+
+A abordagem baseada em séries temporais será estudada como uma maneira de decompor as séries em seus componentes, como autocorrelação, periodicidade, sazonalidade e tendência. Serão considerados modelos para retirar esses efeitos da série, de tal forma que seus resíduos possam ser ajustados por modelos de regressão sem a necessidade de controlar as variáveis temporais. Também pretende-se estudar formas de contemplar conjuntos de dados com grandes intervalos de observações omissas.
+
+No contexto geral de regressão, serão introduzidos termos que modelem a correlação entre as observações, comparando os resultados desse expediente com aqueles gerados sob a suposição de independência. Também serão discutidas técnicas de regularização, como regressão \textit{ridge} e LASSO \citep{James2013}, que reduzem a variância das estimativas, gerando modelos com menor erro preditivo. Esses procedimentos se baseiam em penalizar a soma de erros quadráticos ou a verossimilhança de tal forma que os coeficientes tendem a ser encolhidos na direção do zero. No caso do LASSO, coeficientes associados a variáveis pouco significativas podem ser estimados exatamente como zero, permitindo a utilização desse método para seleção de variáveis.
+
+Por fim, esta tese também é motivada pela potencial aplicação de seus resultados na reanálise dos dados de \cite{Salvo2014} e de um projeto de pesquisa financiado pela FAPESP, sob responsabilidade do professor José Goldemberg, que visa investigar a real associação entre a concentração de poluentes atmosféricos e a proporção de carros a gasolina na região metropolitana de São Paulo. Além disso, esses resultados também poderão ser utilizados no desenvolvimento de um projeto em colaboração com a CETESB cujo objetivo é estudar a série histórica da concentração de diversos poluentes em São Paulo e relacioná-la ao uso de biocombustíveis.
+
+\newpage
+
+% cabeçalho para os apêndices
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
+\fancyhead[RE,LO]{}
+\appendix
+
+% ---------------------------------------------------------------------------- %
+% Bibliografia
+\singlespacing   % espaçamento simples
+\bibliographystyle{plainnat-ime} % citação bibliográfica textual
+%\bibliography{C:/Users/William/Dropbox/Latex/Bibs/atlas.bib}  % associado ao arquivo: 'bibliografia.bib'
+\bibliography{../../../Latex/Bibs/atlas.bib}
+
+\end{document}
