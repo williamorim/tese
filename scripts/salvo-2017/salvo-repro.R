@@ -5,6 +5,7 @@
 
 library(tidyverse)
 library(broom)
+library(caret)
 
 # Data --------------------------------------------------------------------
 
@@ -99,6 +100,7 @@ df_model <-
 
 formula <- df_model %>%
   select(
+    -siteid,
     -date, -o3_mass_conc, -dayofweek,
     -starts_with("congestion"),
     -dv_kmregion_am_18_max, -dv_kmcity_am_80_max,
@@ -138,6 +140,17 @@ broom::tidy(fit)
 fit <- miceadds::lm.cluster(formula, data = df_model, cluster = "date")
 summary(fit)
 
+# Cross-validation
+
+set.seed(5893524)
+
+fit <- train(
+  formula,
+  na.omit(df_model),
+  method = "lm",
+  trControl = trainControl(method = "cv", number = 5)
+)
+fit
 
 # Bootstrapping -----------------------------------------------------------
 

@@ -6,6 +6,15 @@
     <meta name="author" content="William Nilson de Amorim   Antonio Carlos Pedroso de Lima   Julio Singer" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-1.3.1/leaflet.js"></script>
+    <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+    <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+    <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -55,9 +64,9 @@ class: middle
 ]
 
 ---
-class: middle
+class: middle, center
 
-&lt;img src="imagens/gado.jpg" style="background:none; border:none; box-shadow:none;"&gt;
+&lt;img src="imagens/gado.jpg" style="background:none; border:none; box-shadow:none;" width = "80%"&gt;
 
 ---
 
@@ -108,7 +117,13 @@ class: center, middle, inverse
 
 --
 
-- Modelos simples serão suficientes?
+- A flexibilidade do modelo é importante.
+
+&lt;br&gt;
+
+&gt; Para todo problema complexo sempre existe uma solução simples, elegante e completamente errada.
+&gt;
+&gt; &lt;footer&gt;H. L. Mencken&lt;/footer&gt;
 
 ---
 class: center, middle, inverse
@@ -162,7 +177,175 @@ class: center, middle, inverse
 
 # Uso de etanol e concentração de ozônio
 
+- Devido à dependência de combustíveis fósseis, o setor de transporte é o mais resiliente aos esforços de redução de emissões.
+
+- O bioetanol é considerado uma boa alternativa ao uso de gasolina:
+    - fonte quase renovável;
+    - a queima gera menos MP, NO&lt;sub&gt;x&lt;/sub&gt;, CO e CO&lt;sub&gt;2&lt;/sub&gt;.
+    
+- Pode ser utilizado puro ou como aditivo da gasolina.
+
 ---
+class: middle, center
+
+&lt;img src = "imagens/misturas-gasolina.png"&gt;
+
+---
+
+# Uso de etanol e concentração de ozônio
+
+- Embora o etanol seja considerado um combustível menos poluente, alguns estudos recentes sugerem associação entre o uso de etanol e o aumento da concentração de ozônio.
+
+- Reduction in local ozone levels in urban São Paulo due to a shift from ethanol to gasoline use --- Salvo e Geiger, 2014
+
+- Reduced ultrafine particle levels in São Paulo's atmosphere during shifts from gasoline to ethanol use --- Salvo et al 2017
+
+---
+class: middle, center
+
+&lt;img src = "imagens/ozonio.png"&gt;
+
+---
+
+# Estudo
+
+- **Hipótese**: a média diária da concentracão de ozônio (medida entre 12h e 16h) está associada com a proporção de carros a gasolina (entre os veículos bicombustíveis).
+
+- **Local**: Região Metropolitana de São Paulo.
+
+- **Período**: novembro de 2008 a maio de 2013.
+
+- **Amostra**: 13203 dias.
+
+---
+class: middle, center
+
+&lt;img src = "imagens/cap-comb-series-share-ozone.png"&gt;
+
+---
+class: center, middle
+
+&lt;img src = "imagens/preditores.png"&gt;
+---
+
+### Estações de monitoramento
+
+&lt;center&gt;
+<div id="htmlwidget-a32dd04d19d6cdd4bf80" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a32dd04d19d6cdd4bf80">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-23.544841,-23.505992,-23.549694,-23.591838,-23.48002,-23.618411,-23.685948,-23.639777,-23.668844,-23.561441,-23.776249,-23.566227],[-46.627672,-46.628971,-46.600418,-46.660682,-46.69197,-46.556301,-46.611581,-46.49162,-46.465838,-46.70202,-46.696962,-46.737457],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Parque D.Pedro II","Santana","Mooca","Ibirapuera","Nossa Senhora do Ó","São Caetano do Sul","Diadema","Santo André – Capuava","Mauá","Pinheiros","Parelheiros","IPEN-USP"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.776249,-23.48002],"lng":[-46.737457,-46.465838]}},"evals":[],"jsHooks":[]}</script>
+&lt;/center&gt;
+
+---
+class: center, middle
+
+`$$y = \beta_0 + \beta_{\textrm{prop}}X_p + \beta_{\textrm{clima}}X_c + \beta_{\textrm{trânsito}}X_t + \beta_{\textrm{calendário}}X_{ca} + \epsilon$$`
+
+---
+class: center, middle
+
+### A concentração média do ozônio troposférico caiu cerca de &lt;br&gt; 8.3 `\(\mu\)`g/m³ conforme a proporção de carros a gasolina subiu de &lt;br&gt; 30 para 80%.
+
+---
+class: center, middle
+
+&lt;img src="imagens/fluxograma_ozonio_1.png" style="background:none; border:none; box-shadow:none; width: 600px; height: 300px"&gt;
+
+--
+
+&lt;img src="imagens/fluxograma_ozonio_2.png" style="background:none; border:none; box-shadow:none; width: 640px; height: 330px"&gt;
+
+---
+class: center, middle
+
+&lt;img src = "imagens/no_vs_voc.png"&gt;
+
+---
+class: center, middle
+
+![](apresentacao_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+class: middle, center
+
+Modelo aditivo generalizado:
+
+`$$y = \beta_0 + s(X_{\textrm{prop}}) + s(X_{\textrm{clima}}) + \beta_{\textrm{trânsito}}X_t + \beta_{\textrm{calendário}}X_{ca} + \epsilon$$`
+---
+class: middle, center
+
+&lt;video width="400" controls Autoplay=autoplay&gt;
+  &lt;source src="imagens/loes-gif.mov" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: middle, center
+
+&lt;img src = "imagens/gam-ozonio.png"&gt;
+
+---
+class: middle, center
+
+### Random forest
+
+&lt;img src = "imagens/rf-ozonio.png"&gt;
+
+---
+class: middle, center
+
+### XGBoost
+
+&lt;img src = "imagens/xgboost-ozonio.png"&gt;
+
+---
+class: middle, center
+
+### XGBoost (clima)
+
+&lt;img src = "imagens/xgboost-ozonio-clima.png" width = "80%"&gt;
+
+---
+# Desempenho dos modelos
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; RMSE &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; R2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Variáveis mais importantes &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; XGBoost &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12.24 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 88.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Temperatura, umidade, radiação, tendência e vento &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Floresta aleatória &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 85.72 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Temperatura, umidade, radiação, tendência e vento &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GAM &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.82 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 70.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Temperatura, vento, umidade, radiação e tendência &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Salvo et al. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 70.19 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Temperatura, velocidade do vento, radiação, umidade e var. ind. estação São Caetano do Sul &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
 
 # Etanol, ozônio e saúde pública
 
