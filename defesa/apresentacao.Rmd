@@ -314,6 +314,8 @@ class: middle, center
 ---
 # Desempenho dos modelos
 
+<br>
+
 ```{r}
 tibble::tibble(
   Modelo = c("XGBoost", "Floresta aleatória", "GAM", "Salvo et al."),
@@ -327,8 +329,91 @@ tibble::tibble(
 
 ---
 
-
 # Etanol, ozônio e saúde pública
+
+A poluição do ar está associada com diversos problemas de saúde pública:
+
+- doenças respiratórias e cardiovasculares;
+
+- problemas digestivos e no sistema nervoso;
+
+- câncer;
+
+- aumento da mortalidade infantil.
+
+---
+class: middle, center
+
+### Será que a variação da proporção de carros a gasolina tem algum efeito na saúde pública?
+
+---
+
+## Estudo
+
+- Dados de mortalidade do Sistema de Informações de Mortalidade (SIM) do DATASUS:
+    - mortalidade geral
+    - mortalidade por doenças cardiopulmonares (câncer de pulmão, doenças do aparelho circulatório e doenças do aparelho respiratório)
+    
+- **Período**: novembro de 2008 a maio de 2013.
+
+- **Local**: cidade de São Paulo.
+
+- **Grupos**: crianças ( $\leq$ 5 anos) e idosos ( $\geq$ 60 anos).
+
+- **Variáveis de controle**:
+    - temperatura e umidade;
+    - dia da semana, mês, indicador de dia útil e tendência (linear);
+    - proporção de carros a gasolina.
+
+---
+class: middle, center
+
+<img src = "imagens/serie-mortalidade.png" width = "80%">
+
+---
+### Resultados (proporção de carros a gasolina)
+
+<br>
+<br>
+<center>
+<img src = "imagens/tab-res-saude-share.png">
+</center>
+
+---
+class: middle, center
+
+<img src = "imagens/gam-saude-share.png" width = "80%">
+
+---
+class: middle, center
+
+<img src = "imagens/rf-saude-share.png" width = "80%">
+
+---
+
+class: middle, center
+
+Vamos considerar agora as concenrtração de ozônio e óxidos de nitrogênio como preditores.
+
+---
+
+class: middle, center
+
+<img src = "imagens/tab-res-saude-o3-nox.png" width = "80%">
+
+---
+
+class: middle, center
+
+<img src = "imagens/rf-saude-o3-nox.png" width = "80%">
+
+---
+
+class: middle, center
+
+### Também ajustamos o modelo para a série defasada (1 dia)
+
+<img src = "imagens/rf-saude-o3-nox-defasado.png" width = "80%">
 
 ---
 

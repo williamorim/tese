@@ -231,8 +231,8 @@ class: center, middle
 ### Estações de monitoramento
 
 &lt;center&gt;
-<div id="htmlwidget-a32dd04d19d6cdd4bf80" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a32dd04d19d6cdd4bf80">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-23.544841,-23.505992,-23.549694,-23.591838,-23.48002,-23.618411,-23.685948,-23.639777,-23.668844,-23.561441,-23.776249,-23.566227],[-46.627672,-46.628971,-46.600418,-46.660682,-46.69197,-46.556301,-46.611581,-46.49162,-46.465838,-46.70202,-46.696962,-46.737457],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Parque D.Pedro II","Santana","Mooca","Ibirapuera","Nossa Senhora do Ó","São Caetano do Sul","Diadema","Santo André – Capuava","Mauá","Pinheiros","Parelheiros","IPEN-USP"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.776249,-23.48002],"lng":[-46.737457,-46.465838]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8a1e586190a18c117658" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8a1e586190a18c117658">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-23.544841,-23.505992,-23.549694,-23.591838,-23.48002,-23.618411,-23.685948,-23.639777,-23.668844,-23.561441,-23.776249,-23.566227],[-46.627672,-46.628971,-46.600418,-46.660682,-46.69197,-46.556301,-46.611581,-46.49162,-46.465838,-46.70202,-46.696962,-46.737457],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Parque D.Pedro II","Santana","Mooca","Ibirapuera","Nossa Senhora do Ó","São Caetano do Sul","Diadema","Santo André – Capuava","Mauá","Pinheiros","Parelheiros","IPEN-USP"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.776249,-23.48002],"lng":[-46.737457,-46.465838]}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -306,6 +306,8 @@ class: middle, center
 ---
 # Desempenho dos modelos
 
+&lt;br&gt;
+
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -346,8 +348,91 @@ class: middle, center
 
 ---
 
-
 # Etanol, ozônio e saúde pública
+
+A poluição do ar está associada com diversos problemas de saúde pública:
+
+- doenças respiratórias e cardiovasculares;
+
+- problemas digestivos e no sistema nervoso;
+
+- câncer;
+
+- aumento da mortalidade infantil.
+
+---
+class: middle, center
+
+### Será que a variação da proporção de carros a gasolina tem algum efeito na saúde pública?
+
+---
+
+## Estudo
+
+- Dados de mortalidade do Sistema de Informações de Mortalidade (SIM) do DATASUS:
+    - mortalidade geral
+    - mortalidade por doenças cardiopulmonares (câncer de pulmão, doenças do aparelho circulatório e doenças do aparelho respiratório)
+    
+- **Período**: novembro de 2008 a maio de 2013.
+
+- **Local**: cidade de São Paulo.
+
+- **Grupos**: crianças ( `\(\leq\)` 5 anos) e idosos ( `\(\geq\)` 60 anos).
+
+- **Variáveis de controle**:
+    - temperatura e umidade;
+    - dia da semana, mês, indicador de dia útil e tendência (linear);
+    - proporção de carros a gasolina.
+
+---
+class: middle, center
+
+&lt;img src = "imagens/serie-mortalidade.png" width = "80%"&gt;
+
+---
+### Resultados (proporção de carros a gasolina)
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src = "imagens/tab-res-saude-share.png"&gt;
+&lt;/center&gt;
+
+---
+class: middle, center
+
+&lt;img src = "imagens/gam-saude-share.png" width = "80%"&gt;
+
+---
+class: middle, center
+
+&lt;img src = "imagens/rf-saude-share.png" width = "80%"&gt;
+
+---
+
+class: middle, center
+
+Vamos considerar agora as concenrtração de ozônio e óxidos de nitrogênio como preditores.
+
+---
+
+class: middle, center
+
+&lt;img src = "imagens/tab-res-saude-o3-nox.png" width = "80%"&gt;
+
+---
+
+class: middle, center
+
+&lt;img src = "imagens/rf-saude-o3-nox.png" width = "80%"&gt;
+
+---
+
+class: middle, center
+
+### Também ajustamos o modelo para a série defasada (1 dia)
+
+&lt;img src = "imagens/rf-saude-o3-nox-defasado.png" width = "80%"&gt;
 
 ---
 
