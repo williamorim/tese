@@ -175,3 +175,15 @@ coefs <- map_dbl(
 )
 
 sd(coefs)
+
+
+df_model %>% 
+  #filter(share_gas > 0.5 & share_gas < 0.7) %>% 
+  ggplot(aes(x = share_gas, y = o3_mass_conc)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = "Proporção de carros a gasolina", 
+    y = expression(paste(O[3], " (", mu, "g/", m^3, ")"))
+  ) +
+  theme_minimal()
