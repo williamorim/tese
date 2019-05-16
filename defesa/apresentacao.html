@@ -34,17 +34,14 @@ class: center, middle, inverse, title-slide
 --
 
 - Poluição do ar é um problema complexo.
-    - Motivação da tese e como funciona a pesquisa em poluição do ar
 
 --
 
 - Estatística é difícil.
-    - Técnicas utilizadas no trabalho e por que estatística não é só rodar modelo.
 
 --
 
-- Problemas complexos não têm soluções simples. 
-    - Aplicação das técnicas aos problemas de poluição.
+- Problemas complexos não têm soluções simples.
 
 ---
 class: center, middle, inverse
@@ -91,7 +88,7 @@ class: middle
 
 # Interdisciplinaridade
 
-- A dispersão dos poluentes da atmosfera é um processo **físico**, geralmente modelado por modelos **matemáticos**.
+- A dispersão dos poluentes da atmosfera é um processo **físico**, geralmente caracterizados por modelos **matemáticos**.
 
 - A emissão dos compostos e a reação entre os gases da atmosfera são explicadas por equações **químicas**.
 
@@ -101,7 +98,7 @@ class: middle
 
 - Os principais efeitos da poluição do ar estão na **saúde pública** e no **meio ambiente**.
 
-- A análise do dados requer conhecimento de **estatística**.
+- A análise dos dados requer conhecimento de **estatística**.
 
 ---
 
@@ -143,7 +140,7 @@ class: center, middle, inverse
 
 ---
 
-# Machine learning
+## Machine learning (aprendizado automático)
 
 --
 
@@ -156,6 +153,14 @@ class: center, middle, inverse
 --
 
 - Machine Learning é uma abordagem de análise de dados que visa gerar a estimativa mais precisa possível para uma quantidade ou fenômeno (Max Kuhn, 2014).
+
+--
+
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;img src = "imagens/box.png", width = "50%"&gt;
+&lt;/center&gt;
 
 ---
 class:: middle
@@ -178,6 +183,8 @@ class:: middle, center
 
 ---
 class:: middle, center
+### Validação cruzada k-fold
+
 
 &lt;img src = "imagens/cap-aprend-estat-esquema-k-fold-cv.png"&gt;
 
@@ -186,10 +193,12 @@ class:: middle, center
 
 &lt;img src = "imagens/exemplo-iml.png", width = "80%"&gt;
 
-&lt;!-- --- --&gt;
-&lt;!-- class:: middle, center --&gt;
+---
+class:: middle, center
 
-&lt;!-- &lt;img src = "imagens/cat.gif", width = "40%"&gt; --&gt;
+--
+
+&lt;img src = "imagens/cat.gif", width = "40%"&gt;
 
 ---
 class: center, middle, inverse
@@ -254,8 +263,8 @@ class: center, middle
 ### Estações de monitoramento
 
 &lt;center&gt;
-<div id="htmlwidget-4a5357e178df23a52d09" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4a5357e178df23a52d09">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-23.544841,-23.505992,-23.549694,-23.591838,-23.48002,-23.618411,-23.685948,-23.639777,-23.668844,-23.561441,-23.776249,-23.566227],[-46.627672,-46.628971,-46.600418,-46.660682,-46.69197,-46.556301,-46.611581,-46.49162,-46.465838,-46.70202,-46.696962,-46.737457],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Parque D.Pedro II","Santana","Mooca","Ibirapuera","Nossa Senhora do Ó","São Caetano do Sul","Diadema","Santo André – Capuava","Mauá","Pinheiros","Parelheiros","IPEN-USP"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.776249,-23.48002],"lng":[-46.737457,-46.465838]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b0d58fd8eb5f47045f35" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b0d58fd8eb5f47045f35">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-23.544841,-23.505992,-23.549694,-23.591838,-23.48002,-23.618411,-23.685948,-23.639777,-23.668844,-23.561441,-23.776249,-23.566227],[-46.627672,-46.628971,-46.600418,-46.660682,-46.69197,-46.556301,-46.611581,-46.49162,-46.465838,-46.70202,-46.696962,-46.737457],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Parque D.Pedro II","Santana","Mooca","Ibirapuera","Nossa Senhora do Ó","São Caetano do Sul","Diadema","Santo André – Capuava","Mauá","Pinheiros","Parelheiros","IPEN-USP"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.776249,-23.48002],"lng":[-46.737457,-46.465838]}},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -370,19 +379,7 @@ class: middle, center
 
 ---
 
-# Outros resultados e conclusão
-
-- Modelos de regressão segmentada
-
-- Modelos aditivos generalizados com outras distribuições
-
-- LASSO
-
-- Modelo para cada estação
-
---
-
-&lt;br&gt;
+# Conclusão parcial
 
 - Embora a maioria dos modelos sugira uma redução na concentração do ozônio com o aumento na proporção de carros a gasolina, ainda não é clara qual é de fato a relação entre essas variáveis.
 
