@@ -320,7 +320,7 @@ class: middle, center
 ---
 class: middle, center
 
-### Random forest
+### Floresta aleatória
 
 <img src = "imagens/rf-ozonio.png">
 
@@ -362,7 +362,7 @@ class: middle, center
 
 # Conclusão parcial
 
-- Embora a maioria dos modelos sugira uma redução na concentração do ozônio com o aumento na proporção de carros a gasolina, ainda não é clara qual é de fato a relação entre essas variáveis.
+Embora os modelos mais simples sugiram uma redução na concentração do ozônio com o aumento na proporção de carros a gasolina (e essa associação tenha uma explicação teórica), o modelo melhor ajustado levantou dúvidas se podemos descrever de fato a relação entre essas variáveis.
 
 ---
 
@@ -432,53 +432,43 @@ class: middle, center
 
 Vamos considerar agora as concentração de ozônio e óxidos de nitrogênio como preditores.
 
----
+<!-- --- -->
 
+<!-- class: middle, center -->
+
+<!-- <img src = "imagens/tab-res-saude-o3-nox.png" width = "80%"> -->
+
+<!-- --- -->
+
+<!-- class: middle, center -->
+
+<!-- <img src = "imagens/rf-saude-o3-nox.png" width = "80%"> -->
+
+---
 class: middle, center
 
-<img src = "imagens/tab-res-saude-o3-nox.png" width = "80%">
-
----
-
-class: middle, center
-
-<img src = "imagens/rf-saude-o3-nox.png" width = "80%">
-
----
-class: middle, center
-
-### Também ajustamos o modelo para a série defasada (1 dia)
+### Modelo para a série defasada (1 dia)
 
 <img src = "imagens/rf-saude-o3-nox-defasado.png" width = "80%">
 
 ---
 
-# Outros resultados e conclusões
+# Conclusões parciais
 
-- XGBoost
+- Não é muito clara a relação entre a proporção de carros a gasolina e a mortalidade, principalmente se levarmos em conta o desequilíbrio da amostra.
 
-- Modelo para a relação entre NOx e ozônio.
+- A concentração de ozônio e NOx parecem estar positivante associadas com a mortalidade.
 
-- Modelo para mortalidade por doenças cardiopulmonares
-
---
-<br>
-
-- Não é muito clara a relação entre a proporção de carros a gasolina e a mortalidade.
-
-- A concentração de ozônio e NOx parecem estar positivimante associadas com a mortalidade.
-
-- O melhor modelo foi aquele com concentração dos poluentes defasada em um dia.
-
+- Problemas complexos não têm soluções simples. 
 ---
 
 # Conclusões gerais
 
-- Este tabalho é uma ponte entre a Estatística e a área de estudos em Poluição do ar.
+- Este trabalho é uma ponte entre a Estatística e a área de estudos em Poluição do Ar.
 
 - A Ciência de Dados e o Machine Learning precisam fazer parte do repertório de quem trabalha com análise de dados.
 
-- Devemos tomar cuidado para que as suposições do modelo escolhido não limitem o conhecimento que podemos extrair dos dados.
+- Modelos muito restritivos podem limitar o conhecimento que podemos extrair dos dados.
 
 ---
 
@@ -507,3 +497,18 @@ class: middle, center
 # Github
 
 - [Repositório da tese](https://github.com/williamorim/tese)
+
+--
+
+.pull-left[
+<img src="imagens/gata_1.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px">
+]
+
+.pull-right[
+<img src="imagens/gata_2.jpg" style="background:none; border:none; box-shadow:none; width: 400px; height: 300px">
+]
+
+<br>
+<center>
+Obrigado!
+</center>
